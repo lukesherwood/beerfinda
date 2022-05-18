@@ -6,9 +6,9 @@ import { RouterLink, RouterView } from "vue-router";
   <header>
     <div class="wrapper">
       <nav>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand" href="/">Navbar</a>
+            <img src="./assets/beerfinda.png" class="navbar-brand" href="/" />
             <button
               class="navbar-toggler"
               type="button"
@@ -23,12 +23,31 @@ import { RouterLink, RouterView } from "vue-router";
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"
-                    >Home</a
+                  <a
+                    class="nav-link active text-primary"
+                    aria-current="page"
+                    href="/beers"
+                    >Beers</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a
+                    class="nav-link active text-primary"
+                    aria-current="page"
+                    href="#"
+                    >Brewers</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link active text-primary"
+                    aria-current="page"
+                    href="#"
+                    >Merchants</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-primary" href="#">Sign Up</a>
                 </li>
               </ul>
               <form class="d-flex">
@@ -38,7 +57,7 @@ import { RouterLink, RouterView } from "vue-router";
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button class="btn btn-outline-secondary" type="submit">
+                <button class="btn btn-outline-warning" type="submit">
                   Search
                 </button>
               </form>
