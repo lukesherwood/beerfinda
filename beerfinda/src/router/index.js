@@ -14,7 +14,7 @@ const router = createRouter({
       path: "/beers",
       name: "beers",
       component: Beers,
-    }
+    },
   ],
 });
 

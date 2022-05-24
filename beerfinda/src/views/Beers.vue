@@ -1,24 +1,27 @@
 <template>
-  <ul v-for="beer in getBeers" :key="beer.beer_id">
-    <li>
-      <div>{{ beer.beer_id }}. {{ beer.name }}</div>
-      <div class="small">
-        <em>{{ beer.brewer_name }}</em>
-      </div>
-    </li>
-  </ul>
+  <div class="container">
+    <h1 class="text-center text-primary">BEERS</h1>
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+    >
+      <Card v-for="beer in getBeers" :beer="beer" :key="beer.beer_id"></Card>
+    </div>
+  </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
+import Card from "../components/Card.vue";
 export default {
-  created() {
-    this.$store.dispatch("fetchBeers").then(() => {
-      console.log(this.$store.state.beers);
-    });
-  },
+  components: { Card },
+  name: "Beers",
   computed: {
-    getBeers() {
-      return this.$store.getters.getBeers;
-    },
+    ...mapGetters({ getBeers: "getBeers" }),
+  },
+  methods: {
+    ...mapActions({ fetchBeers: "fetchBeers" }),
+  },
+  created() {
+    this.fetchBeers();
   },
 };
 </script>
