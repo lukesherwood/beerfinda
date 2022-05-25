@@ -6,6 +6,6 @@ import "bootstrap"
 
 
 const app = createApp(App);
-
+app.config.globalProperties.$hostname = 'https://drspgoa.digifern.com/'
 app.use(router).use(store);
 app.mount("#app");

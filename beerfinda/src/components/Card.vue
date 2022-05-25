@@ -1,14 +1,12 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3">
-      <img
-        src="../../public/index.png"
-        class="card-img-top"
-        alt="default-beer"
-      />
+      <img :src="this.$hostname + '/img/beer/' + beer.imagefound" class="card-img-top" alt="default-beer" />
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ beer.name }}</h5>
-        <p class="card-text"></p>
+        <p class="card-text">
+          {{beer.beer_id}}. {{beer.brewer_name}}
+        </p>
         <a href="#" class="btn btn-primary mt-auto mx-auto">Click Me</a>
       </div>
     </div>
@@ -16,9 +14,10 @@
 </template>
 <script>
 export default {
+  name: "Card",
   props: ["beer"],
   created() {
-    console.log(this.beer);
+    // console.log(this.beer);
   },
 };
 </script>
