@@ -7,7 +7,7 @@
         alt="default-beer"
       />
       <div class="card-body d-flex flex-column">
-        <div class="beer-category badge rounded-pill bg-danger w-75">
+        <div class="beer-category badge rounded-pill bg-danger">
           {{ beer.type_upper }}
         </div>
         <h5 class="card-title">{{ beer.name }}</h5>
@@ -56,6 +56,9 @@ export default {
 .beer-category {
   position: absolute;
   top: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
 }
 .card-body {
   padding-top: 0px;
