@@ -1,13 +1,29 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3">
-      <img :src="this.$hostname + '/img/beer/' + beer.imagefound" class="card-img-top" alt="default-beer" />
+      <img
+        :src="this.$hostname + 'img/beer/' + this.imageUrl"
+        class="card-img-top"
+        alt="default-beer"
+      />
       <div class="card-body d-flex flex-column">
+        <div class="beer-category badge rounded-pill bg-danger w-75">
+          {{ beer.type_upper }}
+        </div>
         <h5 class="card-title">{{ beer.name }}</h5>
-        <p class="card-text">
-          {{beer.beer_id}}. {{beer.brewer_name}}
-        </p>
-        <a href="#" class="btn btn-primary mt-auto mx-auto">Click Me</a>
+        <div class="card-text">
+          <div class="brewer-name">
+            <em>
+              {{ beer.brewer_name }}
+            </em>
+          </div>
+          <div class="beer-type">
+            <small>{{ beer.type }}</small>
+          </div>
+          <!-- <a href="#" class="btn btn-primary btn-sm mt-auto mx-auto"
+            >More information</a
+          > -->
+        </div>
       </div>
     </div>
   </div>
@@ -16,12 +32,14 @@
 export default {
   name: "Card",
   props: ["beer"],
-  created() {
-    // console.log(this.beer);
+  data() {
+    return {
+      imageUrl: this.beer.imagefound[0]?.image || this.beer.imagefound,
+    };
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -35,7 +53,18 @@ export default {
   height: 15rem;
   object-fit: cover;
 }
-
+.beer-category {
+  position: absolute;
+  top: 5px;
+}
+.card-body {
+  padding-top: 0px;
+}
+.card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 @media only screen and (max-width: 500px) {
   .container {
     padding: 0px;
