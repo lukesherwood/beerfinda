@@ -6,6 +6,7 @@ export default createStore({
     state: {
         beers: [],
         pages: { currentPage: 1, firstPage: baseUrl + "beers" },
+        loading: false
     },
     mutations: {
         addBeers(state, payload) {
@@ -16,10 +17,14 @@ export default createStore({
         },
         setCurrentPage(state, payload) {
             state.pages.currentPage = payload
+        },
+        setLoading(state, payload) {
+            state.loading = payload
         }
     },
     actions: {
         async fetchBeers(state, { url, nextPage } = {}) {
+            state.commit("setLoading", true)
             if (nextPage) {
                 state.commit("setCurrentPage", nextPage)
             }
@@ -35,9 +40,10 @@ export default createStore({
                 totalPages: Math.ceil(res.count / perPage),
             }
             state.commit("setupPages", pages)
+            state.commit("setLoading", false)
         }
     },
     modules: {
     },
-    getters: { getBeers: state => state.beers, getPages: state => state.pages },
+    getters: { getBeers: state => state.beers, getPages: state => state.pages, isLoading: state => state.loading },
 })

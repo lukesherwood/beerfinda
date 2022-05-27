@@ -2,7 +2,7 @@
   <div class="col">
     <div class="card h-100 mb-3">
       <img
-        :src="this.$hostname + 'img/beer/' + this.imageUrl"
+        v-lazy="this.$hostname + 'img/beer/' + this.imageUrl"
         class="card-img-top"
         alt="default-beer"
       />

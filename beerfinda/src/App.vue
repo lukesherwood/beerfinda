@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import Spinner from "./components/Spinner.vue";
 </script>
 
 <template>
@@ -58,7 +59,16 @@ import { RouterLink, RouterView } from "vue-router";
       </div>
     </header>
 
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <Suspense>
+        <component :is="Component"></component>
+
+        <!-- loading state -->
+        <template #fallback>
+          <Spinner />
+        </template>
+      </Suspense>
+    </RouterView>
   </div>
 </template>
 

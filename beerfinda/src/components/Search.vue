@@ -4,14 +4,28 @@
       <div class="col-md-8">
         <div class="search">
           <i v-show="!searchTerm" class="bi bi-search search-icon"></i>
-          <form ref="searchTerm" @submit.prevent="onSearch">
+          <form @submit.prevent="onSearch">
             <input
               v-model="searchTerm"
               type="text"
               class="form-control search-input"
               placeholder="Search for beer"
             />
+            <button
+              disabled
+              v-if="isLoading"
+              type="submit"
+              class="btn btn-primary search-button"
+            >
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Loading...
+            </button>
             <input
+              v-else
               type="submit"
               value="Search"
               class="btn btn-primary search-button"
@@ -20,23 +34,40 @@
         </div>
       </div>
     </div>
-    <h6 v-if="searchTerm && searchDone">Results for '{{ searchTerm }}'</h6>
   </div>
 </template>
 <script>
+import { debounce } from "lodash";
+import { mapGetters } from "vuex";
 export default {
   name: "Search",
-  props: ["searchDone"],
   data() {
     return {
       searchTerm: "",
     };
   },
-  methods: {
-    onSearch(e) {
-      this.$emit("search", this.searchTerm);
-      this.$refs.searchTerm.reset();
+  computed: {
+    ...mapGetters({
+      isLoading: "isLoading",
+    }),
+  },
+  watch: {
+    searchTerm() {
+      if (!this.searchTerm) return;
+      this.debounceSearch();
     },
+  },
+  methods: {
+    onSearchSubmit() {
+      this.$emit("search", this.searchTerm);
+      this.searchTerm = "";
+    },
+    onSearch() {
+      this.$emit("search", this.searchTerm);
+    },
+  },
+  created() {
+    this.debounceSearch = debounce(this.onSearch, 1000);
   },
 };
 </script>
@@ -80,5 +111,6 @@ body {
   position: absolute;
   top: 0px;
   right: 0px;
+  min-width: 10rem;
 }
 </style>
