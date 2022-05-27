@@ -19,11 +19,11 @@ export default createStore({
         }
     },
     actions: {
-        async fetchBeers(state, { nextUrl, nextPage } = {}) {
+        async fetchBeers(state, { url, nextPage } = {}) {
             if (nextPage) {
                 state.commit("setCurrentPage", nextPage)
             }
-            const fetchUrl = nextUrl || baseUrl + 'beer'
+            const fetchUrl = url || baseUrl + 'beer'
             const beers = await fetch(fetchUrl, { headers })
             const res = await beers.json()
             state.commit("addBeers", res.results)

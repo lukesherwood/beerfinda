@@ -20,9 +20,6 @@
           <div class="beer-type">
             <small>{{ beer.type }}</small>
           </div>
-          <!-- <a href="#" class="btn btn-primary btn-sm mt-auto mx-auto"
-            >More information</a
-          > -->
         </div>
       </div>
     </div>
