@@ -2,6 +2,7 @@
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
     <Search @search="handleSearch" />
+    <Filter @filter="handleFilter" />
     <Spinner v-if="isLoading" />
     <div v-else>
       <div v-if="getBeers.length == 0">
@@ -32,11 +33,12 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import Card from "../components/Card.vue";
+import Filter from "../components/Filter.vue";
 import Pagination from "../components/Pagination.vue";
 import Search from "../components/Search.vue";
 import Spinner from "../components/Spinner.vue";
 export default {
-  components: { Card, Pagination, Search, Spinner },
+  components: { Card, Pagination, Search, Spinner, Filter },
   name: "Beers",
   computed: {
     ...mapGetters({
@@ -62,6 +64,14 @@ export default {
     handleSearch(searchTerm) {
       this.currentTerm = searchTerm;
       const url = `https://drspgoa.digifern.com/beer/?search=${searchTerm}`;
+      this.fetchBeers({ url }).then(() => {
+        this.searchDone = true;
+      });
+    },
+    handleFilter({ filterType, keyword }) {
+      // this.currentTerm = filterTerm;
+      // const fakeUrl = "?type_upper__in=Pale+Ales";
+      const url = `https://drspgoa.digifern.com/beer/?${filterType}__in=${keyword}`;
       this.fetchBeers({ url }).then(() => {
         this.searchDone = true;
       });
