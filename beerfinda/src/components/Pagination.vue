@@ -1,29 +1,34 @@
 <template>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item" v-if="pages.currentPage != 1">
-        <a class="page-link" href="#" @click="handler(1)">First</a>
-      </li>
       <li class="page-item" :class="{ disabled: pages.currentPage - 1 == 0 }">
         <a class="page-link" href="#" @click="handler(pages.currentPage - 1)"
           >Previous</a
         >
+      </li>
+      <li class="page-item" v-if="pages.currentPage != 1">
+        <a class="page-link" href="#" @click="handler(1)">1</a>
+      </li>
+      <li v-if="pages.currentPage != 1" class="page-item disabled">
+        <a class="page-link" href="#"> ... </a>
       </li>
       <li class="page-item" v-if="pages.currentPage - 2 > 0">
         <a class="page-link" @click="handler(pages.currentPage - 2)" href="#">{{
           pages.currentPage - 2
         }}</a>
       </li>
-
       <li class="page-item" v-if="pages.currentPage - 1 > 0">
         <a class="page-link" @click="handler(pages.currentPage - 1)" href="#">{{
           pages.currentPage - 1
         }}</a>
       </li>
       <li class="page-item active">
-        <a class="page-link" @click="handler(pages.currentPage)" href="#">{{
-          pages.currentPage
-        }}</a>
+        <a
+          class="page-link disabled"
+          @click="handler(pages.currentPage)"
+          href="#"
+          >{{ pages.currentPage }}</a
+        >
       </li>
       <li class="page-item" v-if="pages.currentPage + 1 < pages.totalPages">
         <a class="page-link" @click="handler(pages.currentPage + 1)" href="#">{{
@@ -35,14 +40,23 @@
           pages.currentPage + 2
         }}</a>
       </li>
-      <li class="page-item">
-        <a class="page-link" @click="handler(pages.currentPage + 1)" href="#"
-          >Next</a
-        >
+      <li
+        class="page-item disabled"
+        v-if="pages.currentPage != pages.totalPages"
+      >
+        <a class="page-link" href="#"> ... </a>
       </li>
       <li class="page-item" v-if="pages.currentPage != pages.totalPages">
-        <a class="page-link" href="#" @click="handler(pages.totalPages)"
-          >Last</a
+        <a class="page-link" href="#" @click="handler(pages.totalPages)">{{
+          pages.totalPages
+        }}</a>
+      </li>
+      <li
+        class="page-item"
+        :class="{ disabled: pages.currentPage == pages.totalPages }"
+      >
+        <a class="page-link" @click="handler(pages.currentPage + 1)" href="#"
+          >Next</a
         >
       </li>
     </ul>
