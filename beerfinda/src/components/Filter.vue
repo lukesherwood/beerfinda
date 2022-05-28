@@ -11,12 +11,17 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
       <li v-for="type in type_upper" :key="type">
-        <a
-          @click="handler('type_upper', type)"
-          class="dropdown-item"
-          href="#"
-          >{{ type }}</a
-        >
+        <div class="dropdown-item">
+          <label :for="type" class="w-100">{{ type }} </label>
+          <input
+            class="pull-right"
+            :id="type"
+            type="checkbox"
+            v-model="setFilters"
+            @click="handler('type_upper', type)"
+            :value="type"
+          />
+        </div>
       </li>
     </ul>
   </div>
@@ -26,14 +31,19 @@ export default {
   name: "Filter",
   methods: {
     handler(filterType, keyword) {
-      this.$emit("filter", { filterType, keyword });
+      this.setFilters.includes(keyword)
+        ? (this.setFilters = this.setFilters.filter(
+            (filter) => filter !== keyword
+          ))
+        : this.setFilters.push(keyword);
+      this.$emit("filter", { filterType, filters: this.setFilters });
     },
   },
   data() {
     return {
       type_upper: [
         "Pale Ales",
-        "Lager",
+        "Lagers",
         "India Pale Ales",
         "Belgium Style",
         "Stout",
@@ -52,6 +62,7 @@ export default {
         "Stout and Porter",
         "Other Styles",
       ],
+      setFilters: [],
     };
   },
 };
@@ -62,7 +73,7 @@ export default {
 }
 .dropdown-menu {
   height: 200px;
-  width: 200px;
+  width: 210px;
   overflow-y: auto;
   overflow-x: hidden;
 }

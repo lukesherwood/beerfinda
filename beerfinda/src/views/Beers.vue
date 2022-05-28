@@ -68,10 +68,8 @@ export default {
         this.searchDone = true;
       });
     },
-    handleFilter({ filterType, keyword }) {
-      // this.currentTerm = filterTerm;
-      // const fakeUrl = "?type_upper__in=Pale+Ales";
-      const url = `https://drspgoa.digifern.com/beer/?${filterType}__in=${keyword}`;
+    handleFilter({ filterType, filters }) {
+      const url = `https://drspgoa.digifern.com/beer/?${filterType}__in=${filters}`;
       this.fetchBeers({ url }).then(() => {
         this.searchDone = true;
       });
