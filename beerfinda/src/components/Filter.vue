@@ -1,42 +1,89 @@
 <template>
-  <div class="btn-group" role="group">
-    <button
-      id="btnGroupDrop1"
-      type="button"
-      class="btn btn-primary dropdown-toggle btn-sm"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Filter by Type
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-      <li v-for="type in type_upper" :key="type">
-        <div class="dropdown-item">
-          <label :for="type" class="w-100">{{ type }} </label>
-          <input
-            class="pull-right"
-            :id="type"
-            type="checkbox"
-            v-model="setFilters"
-            @click="handler('type_upper', type)"
-            :value="type"
-          />
-        </div>
-      </li>
-    </ul>
+  <div>
+    <div class="btn-group" role="group">
+      <button
+        id="filterButton"
+        type="button"
+        class="btn btn-primary dropdown-toggle btn-sm"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Filter by Type
+        <span v-if="getFilterCount > 0">({{ getFilterCount }})</span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="filterButton">
+        <li v-for="type in type_upper" :key="type">
+          <div class="dropdown-item">
+            <label :for="type" class="w-100">{{ type }} </label>
+            <input
+              class="pull-right"
+              :id="type"
+              type="checkbox"
+              @click="filterHandler(`type_upper__in`, type)"
+              :value="type"
+            />
+          </div>
+        </li>
+      </ul>
+
+      <button
+        id="orderButton"
+        type="button"
+        class="btn btn-primary dropdown-toggle btn-sm"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span v-if="!this.getFilters.order">Sort</span>
+        <span v-else>{{ this.getFilters.order }}</span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="orderButton">
+        <li v-for="type in Object.keys(ordering)" :key="type">
+          <a @click="orderHandler(type)" href="#" class="dropdown-item">{{
+            type
+          }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button
+        class="btn btn-sm btn-danger"
+        @click="clearHandler"
+        v-if="getFilterCount > 0 || this.getFilters.order"
+      >
+        Clear (X)
+      </button>
+      <button class="btn btn-sm btn-primary" @click="submitHandler">
+        Filter
+      </button>
+    </div>
   </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "Filter",
+  computed: {
+    ...mapGetters({
+      getBeers: "getBeers",
+      getFilters: "getFilters",
+      getFilterCount: "getFilterCount",
+    }),
+  },
   methods: {
-    handler(filterType, keyword) {
-      this.setFilters.includes(keyword)
-        ? (this.setFilters = this.setFilters.filter(
-            (filter) => filter !== keyword
-          ))
-        : this.setFilters.push(keyword);
-      this.$emit("filter", { filterType, filters: this.setFilters });
+    ...mapMutations(["setFilter", "setOrder", "clearFilters"]),
+    filterHandler(filterType, keyword) {
+      // need to figure out how to calculate number of set filter keywords
+      console.log(this.getFilters.filter);
+      this.setFilter({ filterType, keyword });
+    },
+    orderHandler(keyword) {
+      this.setOrder(this.ordering[keyword]);
+    },
+    clearHandler() {
+      this.clearFilters();
+    },
+    submitHandler() {
+      this.$emit("filter");
     },
   },
   data() {
@@ -45,24 +92,31 @@ export default {
         "Pale Ales",
         "Lagers",
         "India Pale Ales",
-        "Belgium Style",
+        "Belgian Style",
         "Stout",
         "Strong Ales",
         "Brown Ales",
         "Porter",
         "Wheat Beer",
-        "Specialty",
+        "Speciality",
         "Hybrid Beer",
         "Dark Lager",
         "Cider",
         "Pilsener",
         "Sour Beer",
-        "Belgium-Style Ales",
+        "Belgian-Style Ales",
         "Anglo-American Ales",
         "Stout and Porter",
         "Other Styles",
       ],
-      setFilters: [],
+      ordering: {
+        "Name A-Z": "+name",
+        "Name Z-A": "-name",
+        "Price (Low-High)": "+merchantsellsfound__price",
+        "Price (High-Low)": "-merchantsellsfound__price",
+        "Rating (High-Low)": "-rating",
+        "Rating (Low-High)": "+rating",
+      },
     };
   },
 };

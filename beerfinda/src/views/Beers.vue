@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
-    <Search @search="handleSearch" />
-    <Filter @filter="handleFilter" />
+    <Search @search="handleFilter" />
+    <Filter @filter="handleFilter" @order="handleFilter" />
     <Spinner v-if="isLoading" />
     <div v-else>
       <div v-if="getBeers.length == 0">
@@ -45,6 +45,7 @@ export default {
       getBeers: "getBeers",
       getPages: "getPages",
       isLoading: "isLoading",
+      getFilters: "getFilters",
     }),
   },
   data() {
@@ -54,22 +55,28 @@ export default {
   },
   methods: {
     ...mapActions({ fetchBeers: "fetchBeers" }),
-    ...mapMutations(["setCurrentPage"]),
     handlePageChange(nextPage) {
       const limit = 100;
       const offset = (nextPage - 1) * 100;
       const url = `https://drspgoa.digifern.com/beer/?limit=${limit}&offset=${offset}`;
       this.fetchBeers({ url, nextPage });
     },
-    handleSearch(searchTerm) {
-      this.currentTerm = searchTerm;
-      const url = `https://drspgoa.digifern.com/beer/?search=${searchTerm}`;
-      this.fetchBeers({ url }).then(() => {
-        this.searchDone = true;
-      });
-    },
-    handleFilter({ filterType, filters }) {
-      const url = `https://drspgoa.digifern.com/beer/?${filterType}__in=${filters}`;
+    handleFilter() {
+      const filters = this.getFilters.filter;
+      const order = this.getFilters.order;
+      const searchTerm = this.getFilters.searchTerm;
+      let url = `https://drspgoa.digifern.com/beer/?`;
+      if (filters.length) {
+        filters.forEach((filter) => {
+          url = url + `${filter.filterType}=${filter.keywords.join(", ")}&`;
+        });
+      }
+      if (order) {
+        url = url + `ordering=${order}&`;
+      }
+      if (searchTerm) {
+        url = url + `search=${searchTerm}&`;
+      }
       this.fetchBeers({ url }).then(() => {
         this.searchDone = true;
       });

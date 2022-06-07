@@ -3,10 +3,10 @@
     <div class="row height d-flex justify-content-center align-items-center">
       <div class="col-md-8">
         <div class="search">
-          <i v-show="!searchTerm" class="bi bi-search search-icon"></i>
+          <i v-show="!keyword" class="bi bi-search search-icon"></i>
           <form @submit.prevent="onSearch">
             <input
-              v-model="searchTerm"
+              v-model="keyword"
               type="text"
               class="form-control search-input"
               placeholder="Search for beer"
@@ -38,32 +38,36 @@
 </template>
 <script>
 import { debounce } from "lodash";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "Search",
-  data() {
-    return {
-      searchTerm: "",
-    };
-  },
   computed: {
     ...mapGetters({
       isLoading: "isLoading",
+      getFilters: "getFilters",
     }),
+    keyword: {
+      get() {
+        return this.getFilters.searchTerm;
+      },
+      set(value) {
+        this.setSearchTerm(value);
+      },
+    },
   },
   watch: {
     searchTerm() {
-      if (!this.searchTerm) return;
+      if (!keyword) return;
       this.debounceSearch();
     },
   },
   methods: {
+    ...mapMutations(["setSearchTerm"]),
     onSearchSubmit() {
-      this.$emit("search", this.searchTerm);
-      this.searchTerm = "";
+      this.$emit("search");
     },
     onSearch() {
-      this.$emit("search", this.searchTerm);
+      this.$emit("search");
     },
   },
   created() {
