@@ -72,8 +72,6 @@ export default {
   methods: {
     ...mapMutations(["setFilter", "setOrder", "clearFilters"]),
     filterHandler(filterType, keyword) {
-      // need to figure out how to calculate number of set filter keywords
-      console.log(this.getFilters.filter);
       this.setFilter({ filterType, keyword });
     },
     orderHandler(keyword) {

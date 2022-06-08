@@ -6,12 +6,12 @@
     <Spinner v-if="isLoading" />
     <div v-else>
       <div v-if="getBeers.length == 0">
-        Sorry, no beers match: '{{ this.currentTerm }}'
+        Sorry, no beers match
+        <span v-if="this.getFilters.searchTerm">
+          : '{{ this.getFilters.searchTerm }}'
+        </span>
       </div>
       <div v-else>
-        <h6 v-if="this.currentTerm">
-          Search results for: '{{ this.currentTerm }}'
-        </h6>
         <div
           class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
         >
@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Card from "../components/Card.vue";
 import Filter from "../components/Filter.vue";
 import Pagination from "../components/Pagination.vue";
@@ -47,11 +47,6 @@ export default {
       isLoading: "isLoading",
       getFilters: "getFilters",
     }),
-  },
-  data() {
-    return {
-      currentTerm: "",
-    };
   },
   methods: {
     ...mapActions({ fetchBeers: "fetchBeers" }),
