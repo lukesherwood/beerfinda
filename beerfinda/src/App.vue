@@ -10,7 +10,9 @@ import Spinner from "./components/Spinner.vue";
         <nav>
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <img src="./assets/beerfinda.png" class="navbar-brand" href="/" />
+              <router-link to="/">
+                <img src="./assets/beerfinda.png" class="navbar-brand" />
+              </router-link>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -25,31 +27,33 @@ import Spinner from "./components/Spinner.vue";
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a
+                    <router-link
+                      to="/beers"
                       class="nav-link active text-primary"
                       aria-current="page"
-                      href="/beers"
-                      >Beers</a
+                      >Beers</router-link
                     >
                   </li>
                   <li class="nav-item">
-                    <a
+                    <router-link
+                      to="/brewers"
                       class="nav-link active text-primary"
                       aria-current="page"
-                      href="#"
-                      >Brewers</a
+                      >Brewers</router-link
                     >
                   </li>
                   <li class="nav-item">
-                    <a
+                    <router-link
+                      to="/merchants"
                       class="nav-link active text-primary"
                       aria-current="page"
-                      href="#"
-                      >Merchants</a
+                      >Merchants</router-link
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-primary" href="#">Sign Up</a>
+                    <router-link to="/users" class="nav-link text-primary"
+                      >Sign Up</router-link
+                    >
                   </li>
                 </ul>
               </div>

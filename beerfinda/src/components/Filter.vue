@@ -34,7 +34,9 @@
         aria-expanded="false"
       >
         <span v-if="!this.getFilters.order">Sort</span>
-        <span v-else>{{ this.getFilters.order }}</span>
+        <span v-else>{{
+          getKeyByValue(this.ordering, this.getFilters.order)
+        }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
         <li v-for="type in Object.keys(ordering)" :key="type">
@@ -85,6 +87,9 @@ export default {
     },
     submitHandler() {
       this.$emit("filter");
+    },
+    getKeyByValue(object, value) {
+      return Object.keys(object).find((key) => object[key] === value);
     },
   },
   data() {
