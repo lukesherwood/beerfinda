@@ -7,7 +7,10 @@
         alt="default-beer"
       />
       <div class="card-body d-flex flex-column">
-        <div class="beer-category badge rounded-pill bg-danger">
+        <div
+          class="beer-category badge rounded-pill"
+          :style="{ 'background-color': beerCategoryColors[beer.type_upper] }"
+        >
           {{ beer.type_upper }}
         </div>
         <h5 class="card-title">{{ beer.name }}</h5>
@@ -32,6 +35,27 @@ export default {
   data() {
     return {
       imageUrl: this.beer.imagefound[0]?.image || this.beer.imagefound,
+      beerCategoryColors: {
+        Cider: "khaki",
+        "Sour Beer": "DarkGrey",
+        Lagers: "gold",
+        Pilsener: "NavajoWhite",
+        "Wheat Beer": "wheat",
+        "Pale Ales": "sandybrown",
+        "India Pale Ales": "goldenrod",
+        "Anglo-American Ales": "rosybrown",
+        "Hybrid Beer": "peru",
+        "Strong Ales": "chocolate",
+        "Brown Ales": "saddlebrown",
+        "Dark Lager": "sienna",
+        "Belgian Style": "brown",
+        "Belgian-Style Ales": "maroon",
+        Porter: "dimgray",
+        Stout: "slategray",
+        "Stout and Porter": "darkslategray",
+        Speciality: "purple",
+        "Other Styles": "coral",
+      },
     };
   },
 };
