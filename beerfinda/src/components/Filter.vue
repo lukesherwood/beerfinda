@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div class="btn-group" role="group">
+  <div class="container">
+    <div class="d-flex justify-content-evenly">
       <button
         id="filterButton"
         type="button"
-        class="btn btn-primary dropdown-toggle btn-sm"
+        class="btn btn-outline-primary dropdown-toggle btn-sm rounded-pill"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -29,7 +29,7 @@
       <button
         id="orderButton"
         type="button"
-        class="btn btn-primary dropdown-toggle btn-sm"
+        class="btn btn-outline-primary rounded-pill dropdown-toggle btn-sm"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -43,17 +43,19 @@
           }}</a>
         </li>
       </ul>
-    </div>
-    <div class="btn-group">
       <button
-        class="btn btn-sm btn-danger"
+        class="btn btn-sm btn-outline-danger rounded-pill clear-button"
         @click="clearHandler"
         v-if="getFilterCount > 0 || this.getFilters.order"
       >
-        Clear (X)
+        Clear
+        <i class="bi bi-x-circle"></i>
       </button>
-      <button class="btn btn-sm btn-primary" @click="submitHandler">
-        Filter
+      <button
+        class="btn btn-sm btn-primary rounded-pill"
+        @click="submitHandler"
+      >
+        Submit Filter
       </button>
     </div>
   </div>
@@ -79,6 +81,7 @@ export default {
     },
     clearHandler() {
       this.clearFilters();
+      this.$emit("filter");
     },
     submitHandler() {
       this.$emit("filter");
@@ -120,13 +123,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.btn-group {
-  padding-bottom: 15px;
-}
 .dropdown-menu {
   height: 200px;
   width: 210px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+.container {
+  width: 80%;
+  padding-bottom: 15px;
+}
+.btn {
+  min-width: 180px;
+}
+.clear-button {
+  min-width: 10px;
 }
 </style>

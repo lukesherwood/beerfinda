@@ -1,13 +1,12 @@
 import { createStore } from "vuex";
 const baseUrl = 'https://drspgoa.digifern.com/'
 const headers = { Accept: "application/json" }
-const defaultState = { searchTerm: "", filter: [], order: "", filterCount: 0 }
 
 export default createStore({
   state: {
     beers: [],
     pages: { currentPage: 1, firstPage: baseUrl + "beers" },
-    filters: defaultState,
+    filters: { searchTerm: "", filter: [], order: "", filterCount: 0 },
     loading: false
   },
   mutations: {
@@ -60,7 +59,7 @@ export default createStore({
       state.filters.filter = newFilters
     },
     clearFilters(state) {
-      state.filters = defaultState
+      state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0 }
     }
 
   },
