@@ -1,6 +1,10 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3">
+      <router-link
+        class="stretched-link"
+        :to="{ name: 'beer', params: { id: beer.beer_id } }"
+      />
       <img
         v-lazy="this.$hostname + 'img/beer/' + this.imageUrl"
         class="card-img-top"
@@ -51,7 +55,7 @@ export default {
         "Belgian Style": "brown",
         "Belgian-Style Ales": "maroon",
         Porter: "dimgray",
-        Stout: "slategray",
+        Stout: "black",
         "Stout and Porter": "darkslategray",
         Speciality: "purple",
         "Other Styles": "coral",

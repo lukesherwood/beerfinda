@@ -10,6 +10,6 @@ const app = createApp(App);
 app.config.globalProperties.$hostname = 'https://drspgoa.digifern.com/'
 app.use(router).use(store).use(VueLazyLoad, {
     loading: '/Loading_icon.gif',
-    error: '/index.png'
+    error: '/index.png',
 });
 app.mount("#app");
