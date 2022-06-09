@@ -12,7 +12,7 @@
         <span v-if="getFilterCount > 0">({{ getFilterCount }})</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="filterButton">
-        <li v-for="type in type_upper" :key="type">
+        <li v-for="type in beer_types" :key="type">
           <div class="dropdown-item">
             <label :for="type" class="w-100">{{ type }} </label>
             <input
@@ -35,11 +35,11 @@
       >
         <span v-if="!this.getFilters.order">Sort</span>
         <span v-else>{{
-          getKeyByValue(this.ordering, this.getFilters.order)
+          getKeyByValue(this.ordering_types, this.getFilters.order)
         }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
-        <li v-for="type in Object.keys(ordering)" :key="type">
+        <li v-for="type in Object.keys(ordering_types)" :key="type">
           <a @click="orderHandler(type)" href="#" class="dropdown-item">{{
             type
           }}</a>
@@ -64,6 +64,8 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import { beer_types } from "../helpers/beerTypeMaps";
+import { ordering_types } from "../helpers/apiTransformMaps";
 export default {
   name: "Filter",
   computed: {
@@ -79,7 +81,7 @@ export default {
       this.setFilter({ filterType, keyword });
     },
     orderHandler(keyword) {
-      this.setOrder(this.ordering[keyword]);
+      this.setOrder(this.ordering_types[keyword]);
     },
     clearHandler() {
       this.clearFilters();
@@ -94,35 +96,8 @@ export default {
   },
   data() {
     return {
-      type_upper: [
-        "Cider",
-        "Sour Beer",
-        "Lagers",
-        "Pilsener",
-        "Wheat Beer",
-        "Pale Ales",
-        "India Pale Ales",
-        "Hybrid Beer",
-        "Strong Ales",
-        "Brown Ales",
-        "Dark Lager",
-        "Belgian Style",
-        "Belgian-Style Ales",
-        "Anglo-American Ales",
-        "Porter",
-        "Stout",
-        "Stout and Porter",
-        "Speciality",
-        "Other Styles",
-      ],
-      ordering: {
-        "Name A-Z": "+name",
-        "Name Z-A": "-name",
-        "Price (Low-High)": "+merchantsellsfound__price",
-        "Price (High-Low)": "-merchantsellsfound__price",
-        "Rating (High-Low)": "-rating",
-        "Rating (Low-High)": "+rating",
-      },
+      beer_types,
+      ordering_types,
     };
   },
 };

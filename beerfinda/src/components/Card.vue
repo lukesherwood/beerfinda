@@ -33,33 +33,14 @@
   </div>
 </template>
 <script>
+import { beerCategoryColors } from "../helpers/beerTypeMaps";
 export default {
   name: "Card",
   props: ["beer"],
   data() {
     return {
       imageUrl: this.beer.imagefound[0]?.image || this.beer.imagefound,
-      beerCategoryColors: {
-        Cider: "khaki",
-        "Sour Beer": "DarkGrey",
-        Lagers: "gold",
-        Pilsener: "NavajoWhite",
-        "Wheat Beer": "wheat",
-        "Pale Ales": "sandybrown",
-        "India Pale Ales": "goldenrod",
-        "Anglo-American Ales": "rosybrown",
-        "Hybrid Beer": "peru",
-        "Strong Ales": "chocolate",
-        "Brown Ales": "saddlebrown",
-        "Dark Lager": "sienna",
-        "Belgian Style": "brown",
-        "Belgian-Style Ales": "maroon",
-        Porter: "dimgray",
-        Stout: "black",
-        "Stout and Porter": "darkslategray",
-        Speciality: "purple",
-        "Other Styles": "coral",
-      },
+      beerCategoryColors,
     };
   },
 };
