@@ -5,12 +5,13 @@
     <Filter @filter="handleFilter" @order="handleFilter" />
     <Spinner v-if="isLoading" />
     <div v-else>
-      <div v-if="getBeers.length == 0">
-        Sorry, no beers match
+      <h4 v-if="getBeers.length == 0" class="text-center pt-3">
+        <i class="bi bi-search"></i>
+        Sorry, we couldn't find
         <span v-if="this.getFilters.searchTerm">
           : '{{ this.getFilters.searchTerm }}'
         </span>
-      </div>
+      </h4>
       <div v-else>
         <div
           class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
