@@ -5,11 +5,7 @@
         class="stretched-link"
         :to="{ name: 'beer', params: { id: beer.beer_id } }"
       />
-      <img
-        v-lazy="this.$hostname + 'img/beer/' + this.imageUrl"
-        class="card-img-top"
-        alt="default-beer"
-      />
+      <img v-lazy="this.imageUrl" class="card-img-top" alt="default-beer" />
       <div class="card-body d-flex flex-column">
         <div
           class="beer-category badge rounded-pill"
@@ -39,18 +35,16 @@ export default {
   props: ["beer"],
   data() {
     return {
-      imageUrl: this.beer.imagefound[0]?.image || this.beer.imagefound,
+      imageUrl:
+        this.$hostname +
+        "img/beer/" +
+        (this.beer.imagefound[0]?.image || this.beer.imagefound),
       beerCategoryColors,
     };
   },
 };
 </script>
 <style lang="scss" scoped>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 12px;
-}
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
@@ -73,17 +67,5 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-@media only screen and (max-width: 500px) {
-  .container {
-    padding: 0px;
-  }
-  .card {
-    width: 100%;
-  }
-  .row {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
 }
 </style>

@@ -7,11 +7,15 @@ export default createStore({
     beers: [],
     pages: { currentPage: 1, firstPage: baseUrl + "beers" },
     filters: { searchTerm: "", filter: [], order: "", filterCount: 0 },
-    loading: false
+    loading: false,
+    beer: {}
   },
   mutations: {
     addBeers(state, payload) {
       state.beers = payload
+    },
+    addBeer(state, payload) {
+      state.beer = payload
     },
     setupPages(state, payload) {
       state.pages = { ...state.pages, ...payload }
@@ -82,9 +86,25 @@ export default createStore({
       }
       state.commit("setupPages", pages)
       state.commit("setLoading", false)
+    },
+    async fetchBeer(state, id) {
+      state.commit("setLoading", true)
+      const fetchUrl = baseUrl + `beer/${id}`
+      const beer = await fetch(fetchUrl, { headers })
+      const res = await beer.json()
+      console.log(res)
+      state.commit("addBeer", res)
+      state.commit("setLoading", false)
     }
   },
   modules: {
   },
-  getters: { getBeers: state => state.beers, getPages: state => state.pages, isLoading: state => state.loading, getFilters: state => state.filters, getFilterCount: state => state.filters.filterCount },
+  getters: {
+    getBeers: state => state.beers,
+    getPages: state => state.pages,
+    isLoading: state => state.loading,
+    getFilters: state => state.filters,
+    getFilterCount: state => state.filters.filterCount,
+    getBeer: state => state.beer,
+  },
 })

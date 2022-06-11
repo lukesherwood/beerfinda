@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="d-flex justify-content-evenly">
+    <div class="filter-buttons d-flex justify-content-evenly">
       <button
         id="filterButton"
         type="button"
@@ -118,5 +118,15 @@ export default {
 }
 .clear-button {
   min-width: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+  .filter-buttons button {
+    min-width: 100px;
+  }
+
+  .container {
+    width: 100%;
+  }
 }
 </style>
