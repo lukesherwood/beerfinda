@@ -64,8 +64,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { beer_types } from "../helpers/beerTypeMaps";
-import { ordering_types } from "../helpers/apiTransformMaps";
+import { beer_types, ordering_types } from "../helpers/beerHelpers.js";
 export default {
   name: "Filter",
   computed: {

@@ -41,3 +41,19 @@ export const beer_types = [
     "Speciality",
     "Other Styles",
 ]
+
+export const ordering_types = {
+    "Name A-Z": "+name",
+    "Name Z-A": "-name",
+    "Price (Low-High)": "+merchantsellsfound__price",
+    "Price (High-Low)": "-merchantsellsfound__price",
+    "Rating (High-Low)": "-rating",
+    "Rating (Low-High)": "+rating",
+}
+
+export const priceToString = (price) => {
+    return (price / 100).toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
+}

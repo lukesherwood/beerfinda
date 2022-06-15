@@ -21,10 +21,6 @@ const router = createRouter({
       name: "beer",
       component: Beer,
     },
-    {
-      path: "*",
-      redirect: "/"
-    }
   ],
 });
 

@@ -92,7 +92,6 @@ export default createStore({
       const fetchUrl = baseUrl + `beer/${id}`
       const beer = await fetch(fetchUrl, { headers })
       const res = await beer.json()
-      console.log(res)
       state.commit("addBeer", res)
       state.commit("setLoading", false)
     }

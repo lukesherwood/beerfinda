@@ -5,7 +5,7 @@
         class="stretched-link"
         :to="{ name: 'beer', params: { id: beer.beer_id } }"
       />
-      <img v-lazy="this.imageUrl" class="card-img-top" alt="default-beer" />
+      <img v-lazy="this.image" class="card-img-top" alt="default-beer" />
       <div class="card-body d-flex flex-column">
         <div
           class="beer-category badge rounded-pill"
@@ -29,30 +29,31 @@
   </div>
 </template>
 <script>
-import { beerCategoryColors } from "../helpers/beerTypeMaps";
+import { beerCategoryColors } from "../helpers/beerHelpers";
 export default {
   name: "Card",
   props: ["beer"],
   data() {
     return {
-      imageUrl:
-        this.$hostname +
-        "img/beer/" +
-        (this.beer.imagefound[0]?.image || this.beer.imagefound),
+      image: this.imageUrl(),
       beerCategoryColors,
     };
+  },
+  methods: {
+    imageUrl() {
+      if (!this.beer.imagefound.length) {
+        return "/index.png";
+      }
+      return (
+        this.$hostname +
+        "img/beer/" +
+        (this.beer.imagefound[0]?.image || this.beer.imagefound)
+      );
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-.card img {
-  border-radius: 12px;
-  height: 15rem;
-  object-fit: cover;
-}
 .beer-category {
   position: absolute;
   top: 5px;
@@ -60,12 +61,8 @@ export default {
   transform: translate(-50%, 0);
   -webkit-transform: translate(-50%, 0);
 }
-.card-body {
-  padding-top: 0px;
-}
-.card-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+.card img {
+  height: 15rem;
 }
 </style>

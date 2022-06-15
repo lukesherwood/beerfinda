@@ -9,28 +9,57 @@
           <em>{{ beer.brewer_name }}</em>
         </h5>
       </div>
-      <div class="card-body">
-        <img class="img-fluid float-end" width="400" v-lazy="this.imageUrl" />
+      <div class="card-body p-3">
+        <img class="img-fluid float-end" width="400" v-lazy="this.image" />
         <h5>{{ beer.type }}</h5>
         <h6 v-if="beer.percentage != 'unknown'">{{ beer.percentage }}</h6>
         <div class="card-text">
-          <p>{{ beer.description }}</p>
+          <p>{{ this.formatString(beer.description) }}</p>
+        </div>
+        <div class="clearfix"></div>
+        <div v-if="beer.merchantsellsfound.length">
+          <h3>Where to Buy</h3>
+          <div
+            class="row row-cols-2 row-cols-md-2 row-cols-lg-4 gy-4 d-flex p-4"
+          >
+            <MerchantsCard
+              v-for="merchant in beer.merchantsellsfound"
+              :key="merchant.merchant_id"
+              :merchant="merchant"
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import MerchantsCard from "./MerchantsCard.vue";
 export default {
   name: "BeerPage",
+  components: { MerchantsCard },
   props: ["beer"],
   data() {
     return {
-      imageUrl:
+      image: this.imageUrl(),
+    };
+  },
+  methods: {
+    imageUrl() {
+      if (!this.beer.imagefound.length) {
+        return "/index.png";
+      }
+      return (
         this.$hostname +
         "img/beer/" +
-        (this.beer.imagefound[0]?.image || this.beer.imagefound),
-    };
+        (this.beer.imagefound[0]?.image || this.beer.imagefound)
+      );
+    },
+    formatString(string) {
+      return string.replace(/.+?[\.\?\!](\s|$)/g, function (a) {
+        return a.charAt(0).toUpperCase() + a.slice(1);
+      });
+    },
   },
 };
 </script>

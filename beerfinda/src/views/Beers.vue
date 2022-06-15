@@ -16,11 +16,11 @@
         <div
           class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
         >
-          <Card
+          <BeerCard
             v-for="beer in getBeers"
             :beer="beer"
             :key="beer.beer_id"
-          ></Card>
+          ></BeerCard>
         </div>
         <Pagination
           class="p-5"
@@ -33,13 +33,13 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Card from "../components/Card.vue";
+import BeerCard from "../components/BeerCard.vue";
 import Filter from "../components/Filter.vue";
 import Pagination from "../components/Pagination.vue";
 import Search from "../components/Search.vue";
 import Spinner from "../components/Spinner.vue";
 export default {
-  components: { Card, Pagination, Search, Spinner, Filter },
+  components: { BeerCard, Pagination, Search, Spinner, Filter },
   name: "Beers",
   computed: {
     ...mapGetters({
