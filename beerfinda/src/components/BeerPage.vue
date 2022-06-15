@@ -16,8 +16,8 @@
         <div class="card-text">
           <p>{{ this.formatString(beer.description) }}</p>
         </div>
-        <div class="clearfix"></div>
         <div v-if="beer.merchantsellsfound.length">
+          <div class="clearfix"></div>
           <h3>Where to Buy</h3>
           <div
             class="row row-cols-2 row-cols-md-2 row-cols-lg-4 gy-4 d-flex p-4"
@@ -69,5 +69,8 @@ export default {
     box-shadow: none;
     border: none;
   }
+}
+.card img {
+  max-height: 400px;
 }
 </style>
