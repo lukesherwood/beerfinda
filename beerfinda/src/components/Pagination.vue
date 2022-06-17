@@ -6,10 +6,16 @@
           >Previous</a
         >
       </li>
-      <li class="page-item" v-if="pages.currentPage != 1">
+      <li
+        class="page-item"
+        v-if="pages.currentPage != 1 && pages.currentPage > 3"
+      >
         <a class="page-link" href="#" @click="handler(1)">1</a>
       </li>
-      <li v-if="pages.currentPage != 1" class="page-item disabled">
+      <li
+        v-if="pages.currentPage != 1 && pages.currentPage > 3"
+        class="page-item disabled"
+      >
         <a class="page-link" href="#"> ... </a>
       </li>
       <li class="page-item" v-if="pages.currentPage - 2 > 0">
@@ -42,7 +48,10 @@
       </li>
       <li
         class="page-item disabled"
-        v-if="pages.currentPage != pages.totalPages"
+        v-if="
+          pages.currentPage != pages.totalPages &&
+          pages.currentPage + 3 < pages.totalPages
+        "
       >
         <a class="page-link" href="#"> ... </a>
       </li>
@@ -63,12 +72,15 @@
   </nav>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "Pagination",
   props: ["pages"],
   methods: {
+    ...mapMutations(["setCurrentPage"]),
     handler(page) {
-      this.$emit("pageChange", page);
+      this.setCurrentPage(page)
+      this.$emit("pageChange");
     },
   },
 };

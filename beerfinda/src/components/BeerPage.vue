@@ -10,11 +10,17 @@
         </h5>
       </div>
       <div class="card-body p-3">
-        <img class="img-fluid float-end" width="400" v-lazy="this.image" />
+        <div class="w-50 float-end">
+          <img
+            class="img-fluid"
+            style="height: 100%; width: 100%; object-fit: contain"
+            v-lazy="this.image"
+          />
+        </div>
         <h5>{{ beer.type }}</h5>
         <h6 v-if="beer.percentage != 'unknown'">{{ beer.percentage }}</h6>
         <div class="card-text">
-          <p>{{ this.formatString(beer.description) }}</p>
+          <p>{{ beer.description }}</p>
         </div>
         <div v-if="beer.merchantsellsfound.length">
           <div class="clearfix"></div>

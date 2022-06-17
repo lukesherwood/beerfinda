@@ -32,7 +32,7 @@
 import { beerCategoryColors } from "../helpers/beerHelpers";
 export default {
   name: "Card",
-  props: ["beer"],
+  props: ["beer", "width"],
   data() {
     return {
       image: this.imageUrl(),
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     imageUrl() {
-      if (!this.beer.imagefound.length) {
+      if (!this.beer.imagefound?.length) {
         return "/index.png";
       }
       return (

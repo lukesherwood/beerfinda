@@ -65,9 +65,15 @@ import Spinner from "./components/Spinner.vue";
 
     <RouterView v-slot="{ Component }">
       <Suspense>
-        <component :is="Component"></component>
+        <template #default>
+          <div>
+            <component :is="Component"></component>
+          </div>
+        </template>
         <template #fallback>
-          <Spinner />
+          <div>
+            <Spinner />
+          </div>
         </template>
       </Suspense>
     </RouterView>

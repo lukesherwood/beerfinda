@@ -5,14 +5,18 @@ const headers = { Accept: "application/json" }
 export default createStore({
   state: {
     beers: [],
+    featuredBeers: [],
+    beer: {},
     pages: { currentPage: 1, firstPage: baseUrl + "beers" },
     filters: { searchTerm: "", filter: [], order: "", filterCount: 0 },
     loading: false,
-    beer: {}
   },
   mutations: {
     addBeers(state, payload) {
       state.beers = payload
+    },
+    addFeaturedBeers(state, payload) {
+      state.featuredBeers = payload
     },
     addBeer(state, payload) {
       state.beer = payload
@@ -68,11 +72,8 @@ export default createStore({
 
   },
   actions: {
-    async fetchBeers(state, { url, nextPage } = {}) {
+    async fetchBeers(state, { url } = {}) {
       state.commit("setLoading", true)
-      if (nextPage) {
-        state.commit("setCurrentPage", nextPage)
-      }
       const fetchUrl = url || baseUrl + 'beer'
       const beers = await fetch(fetchUrl, { headers })
       const res = await beers.json()
@@ -94,16 +95,25 @@ export default createStore({
       const res = await beer.json()
       state.commit("addBeer", res)
       state.commit("setLoading", false)
+    },
+    async fetchFeaturedBeers(state) {
+      state.commit("setLoading", true)
+      const fetchUrl = baseUrl + 'beerfeatured'
+      const beers = await fetch(fetchUrl, { headers })
+      const res = await beers.json()
+      state.commit("addFeaturedBeers", res.results)
+      state.commit("setLoading", false)
     }
   },
   modules: {
   },
   getters: {
     getBeers: state => state.beers,
+    getFeaturedBeers: state => state.featuredBeers,
+    getBeer: state => state.beer,
     getPages: state => state.pages,
     isLoading: state => state.loading,
     getFilters: state => state.filters,
     getFilterCount: state => state.filters.filterCount,
-    getBeer: state => state.beer,
   },
 })

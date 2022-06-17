@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
-    <Search @search="handleFilter" />
-    <Filter @filter="handleFilter" @order="handleFilter" />
+    <Search @search="getBeerResults" />
+    <Filter @filter="getBeerResults" @order="getBeerResults" />
     <Spinner v-if="isLoading" />
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-3">
@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import BeerCard from "../components/BeerCard.vue";
 import Filter from "../components/Filter.vue";
 import Pagination from "../components/Pagination.vue";
@@ -51,35 +51,39 @@ export default {
   },
   methods: {
     ...mapActions({ fetchBeers: "fetchBeers" }),
-    handlePageChange(nextPage) {
-      const limit = 100;
-      const offset = (nextPage - 1) * 100;
-      const url = `https://drspgoa.digifern.com/beer/?limit=${limit}&offset=${offset}`;
-      this.fetchBeers({ url, nextPage });
+    ...mapMutations(["setCurrentPage"]),
+    getBeerResults() {
+      this.setCurrentPage(1);
+      this.fetchBeers({ url: this.createUrl() });
     },
-    handleFilter() {
+    handlePageChange() {
+      const page = this.getPages.currentPage;
+      const limit = 100;
+      const offset = (page - 1) * 100;
+      const url = this.createUrl() + `limit=${limit}&offset=${offset}&`;
+      this.fetchBeers({ url });
+    },
+    createUrl() {
+      let url = this.$hostname + "beer/?";
       const filters = this.getFilters.filter;
       const order = this.getFilters.order;
       const searchTerm = this.getFilters.searchTerm;
-      let url = `https://drspgoa.digifern.com/beer/?`;
       if (filters.length) {
         filters.forEach((filter) => {
-          url = url + `${filter.filterType}=${filter.keywords.join(", ")}&`;
+          url += `${filter.filterType}=${filter.keywords.join(", ")}&`;
         });
       }
       if (order) {
-        url = url + `ordering=${order}&`;
+        url += `ordering=${order}&`;
       }
       if (searchTerm) {
-        url = url + `search=${searchTerm}&`;
+        url += `search=${searchTerm}&`;
       }
-      this.fetchBeers({ url }).then(() => {
-        this.searchDone = true;
-      });
+      return url;
     },
   },
   created() {
-    this.handleFilter();
+    this.getBeerResults();
   },
 };
 </script>

@@ -11,7 +11,7 @@
           class="btn btn-primary float-end"
           :href="merchant.link"
           target="_blank"
-          >To Merchant Site</a
+          >Buy Now</a
         >
       </div>
     </div>
