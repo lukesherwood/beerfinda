@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <div class="card h-100 mb-3">
+    <div class="card h-100 mb-3" :style="{ width: width }">
       <router-link
         class="stretched-link"
         :to="{ name: 'beer', params: { id: beer.beer_id } }"
@@ -41,13 +41,15 @@ export default {
   },
   methods: {
     imageUrl() {
-      if (!this.beer.imagefound?.length) {
+      if (!this.beer.imagefound?.length && !this.beer.image) {
         return "/index.png";
       }
       return (
         this.$hostname +
         "img/beer/" +
-        (this.beer.imagefound[0]?.image || this.beer.imagefound)
+        (this.beer.image ||
+          this.beer.imagefound[0]?.image ||
+          this.beer.imagefound)
       );
     },
   },
@@ -63,6 +65,7 @@ export default {
 }
 
 .card img {
+  object-fit: cover;
   height: 15rem;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="row row-cols-3 row-cols-md-3 row-cols-lg-3 gy-4 d-flex p-4">
-    <carousel :items-to-show="3">
+  <div class="row row-cols-1 gy-4 d-flex">
+    <carousel :settings="settings" :breakpoints="breakpoints">
       <slide v-for="beer in beers" :key="beer.beer_id">
-        <BeerCard :beer="beer" width="300px" />
+        <BeerCard :beer="beer" width="16rem" />
       </slide>
       <template #addons>
         <navigation />
@@ -18,6 +18,26 @@ import BeerCard from "./BeerCard.vue";
 export default {
   components: { BeerCard, Carousel, Slide, Pagination, Navigation },
   props: ["beers"],
+  data: () => ({
+    settings: {
+      itemsToShow: 1,
+      snapAlign: "center",
+    },
+    breakpoints: {
+      500: {
+        itemsToShow: 1.5,
+        snapAlign: "start",
+      },
+      770: {
+        itemsToShow: 2,
+        snapAlign: "start",
+      },
+      1024: {
+        itemsToShow: 3,
+        snapAlign: "start",
+      },
+    },
+  }),
 };
 </script>
 <style lang="scss">
