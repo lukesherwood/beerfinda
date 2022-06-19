@@ -4,8 +4,13 @@
       <slide v-for="beer in beers" :key="beer.beer_id">
         <BeerCard :beer="beer" width="16rem" />
       </slide>
-      <template #addons>
-        <navigation />
+      <template #addons="{ maxSlide, currentSlide }">
+        <navigation
+          :class="{
+            'is-first-slide': !currentSlide,
+            'is-last-slide': currentSlide === maxSlide,
+          }"
+        />
         <pagination />
       </template>
     </carousel>
@@ -47,10 +52,16 @@ export default {
   background-color: rgb(220, 217, 217);
 }
 .carousel__pagination-button {
-  //   border: 5px solid white;
   background-color: rgb(220, 217, 217);
 }
 .carousel__pagination-button--active {
   background-color: black;
+}
+
+.carousel__prev.is-first-slide {
+  display: none;
+}
+.carousel__next.is-last-slide {
+  display: none;
 }
 </style>
