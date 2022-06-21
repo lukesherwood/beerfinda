@@ -4,12 +4,14 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "bootstrap"
-
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
 
 const app = createApp(App);
 app.config.globalProperties.$hostname = 'https://drspgoa.digifern.com/'
 app.use(router).use(store).use(VueLazyLoad, {
     loading: '/Loading_icon.gif',
     error: '/index.png',
-});
+})
 app.mount("#app");

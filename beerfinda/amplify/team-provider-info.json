@@ -1,23 +1,23 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-beerfinda-dev-91945-authRole",
-      "UnauthRoleArn": "arn:aws:iam::465304469254:role/amplify-beerfinda-dev-91945-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::465304469254:role/amplify-beerfinda-dev-91945-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-beerfinda-dev-91945-deployment",
-      "UnauthRoleName": "amplify-beerfinda-dev-91945-unauthRole",
-      "StackName": "amplify-beerfinda-dev-91945",
-      "StackId": "arn:aws:cloudformation:us-east-1:465304469254:stack/amplify-beerfinda-dev-91945/642cd3c0-ea52-11ec-97b4-0e34227a6f2d",
-      "AmplifyAppId": "d2l87hv6rd16ht"
-    },
-    "categories": {
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d2l87hv6rd16ht",
-          "type": "cicd"
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-beerfinda-dev-160534-authRole",
+            "UnauthRoleArn": "arn:aws:iam::465304469254:role/amplify-beerfinda-dev-160534-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::465304469254:role/amplify-beerfinda-dev-160534-authRole",
+            "Region": "ap-southeast-2",
+            "DeploymentBucketName": "amplify-beerfinda-dev-160534-deployment",
+            "UnauthRoleName": "amplify-beerfinda-dev-160534-unauthRole",
+            "StackName": "amplify-beerfinda-dev-160534",
+            "StackId": "arn:aws:cloudformation:ap-southeast-2:465304469254:stack/amplify-beerfinda-dev-160534/86746fe0-f19d-11ec-8e7d-02daad409cde",
+            "AmplifyAppId": "d2gouhac56xo1h"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d2gouhac56xo1h",
+                    "type": "cicd"
+                }
+            }
         }
-      }
     }
-  }
 }
