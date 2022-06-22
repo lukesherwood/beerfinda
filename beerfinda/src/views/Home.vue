@@ -6,7 +6,9 @@
       <CardCarousel :beers="getFeaturedBeers" />
     </div>
     <div class="text-center">
-      <router-link class="btn btn-primary view-beers" :to="{ name: 'beers' }"
+      <router-link
+        class="btn btn-outline-primary view-beers"
+        :to="{ name: 'beers' }"
         ><b>Click Here To View All Beers</b></router-link
       >
     </div>
