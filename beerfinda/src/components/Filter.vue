@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div class="filter-buttons d-flex justify-content-evenly">
+    <div class="filter-buttons d-flex justify-content-evenly w-100">
       <button
         id="filterButton"
         type="button"
-        class="btn btn-outline-primary dropdown-toggle btn-sm rounded-pill"
+        class="btn btn-outline-primary dropdown-toggle btn-sm"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -29,7 +29,7 @@
       <button
         id="orderButton"
         type="button"
-        class="btn btn-outline-primary rounded-pill dropdown-toggle btn-sm"
+        class="btn btn-outline-primary dropdown-toggle btn-sm"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -46,18 +46,15 @@
         </li>
       </ul>
       <button
-        class="btn btn-sm btn-outline-danger rounded-pill clear-button"
+        class="btn btn-sm btn-outline-danger clear-button"
         @click="clearHandler"
         v-if="getFilterCount > 0 || this.getFilters.order"
       >
         Clear
         <i class="bi bi-x-circle"></i>
       </button>
-      <button
-        class="btn btn-sm btn-primary rounded-pill"
-        @click="submitHandler"
-      >
-        Submit Filter
+      <button class="btn btn-sm btn-primary" @click="submitHandler">
+        Filter
       </button>
     </div>
   </div>
@@ -112,20 +109,26 @@ export default {
   width: 80%;
   padding-bottom: 15px;
 }
-.btn {
-  min-width: 180px;
-}
-.clear-button {
-  min-width: 10px;
+.filter-buttons button {
+  border-radius: 50px;
+  min-width: 200px;
 }
 
 @media only screen and (max-width: 500px) {
-  .filter-buttons button {
-    min-width: 100px;
-  }
-
   .container {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .filter-buttons button {
+    min-width: 150px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .filter-buttons button {
+    min-width: 60px;
   }
 }
 </style>

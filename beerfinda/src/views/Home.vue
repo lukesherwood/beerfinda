@@ -1,16 +1,38 @@
 <template>
-  <main class="container">
-    <h3 class="text-center">Featured Beers</h3>
+  <main class="container text-center">
+    <h3 class="">Featured Beers</h3>
     <Spinner v-if="isLoading" />
     <div v-else>
       <CardCarousel :beers="getFeaturedBeers" />
-    </div>
-    <div class="text-center">
-      <router-link
-        class="btn btn-outline-primary view-beers"
-        :to="{ name: 'beers' }"
-        ><b>Click Here To View All Beers</b></router-link
-      >
+      <div class="card mt-3">
+        <router-link
+          class="btn btn-outline-primary border-0 w-100 p-3"
+          :to="{ name: 'beers' }"
+        >
+          <h5>View All Beers</h5>
+        </router-link>
+      </div>
+      <div class="card mt-3">
+        <h4>How it Works:</h4>
+        <div class="p-1">
+          <img
+            v-lazy="$hostname + 'img/brand/how-it-works-step-1.png'"
+            alt="how-to1"
+          />
+        </div>
+        <div class="p-1">
+          <img
+            v-lazy="$hostname + 'img/brand/how-it-works-step-2.png'"
+            alt="how-to2"
+          />
+        </div>
+        <div class="p-1">
+          <img
+            v-lazy="$hostname + 'img/brand/how-it-works-step-3.png'"
+            alt="how-to3"
+          />
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -41,13 +63,5 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 95%;
-}
-.view-beers {
-  width: 50%;
-}
-@media only screen and (max-width: 500px) {
-  .view-beers {
-    width: 100%;
-  }
 }
 </style>

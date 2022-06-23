@@ -62,21 +62,22 @@ import Spinner from "./components/Spinner.vue";
         </nav>
       </div>
     </header>
-
-    <RouterView v-slot="{ Component }">
-      <Suspense>
-        <template #default>
-          <div>
-            <component :is="Component"></component>
-          </div>
-        </template>
-        <template #fallback>
-          <div>
-            <Spinner />
-          </div>
-        </template>
-      </Suspense>
-    </RouterView>
+    <div class="body">
+      <RouterView v-slot="{ Component }">
+        <Suspense>
+          <template #default>
+            <div>
+              <component :is="Component"></component>
+            </div>
+          </template>
+          <template #fallback>
+            <div>
+              <Spinner />
+            </div>
+          </template>
+        </Suspense>
+      </RouterView>
+    </div>
   </div>
 </template>
 
