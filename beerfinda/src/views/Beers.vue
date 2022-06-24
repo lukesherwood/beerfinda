@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
-    <div class="card">
-      <Search @search="getBeerResults" />
-      <Filter @filter="getBeerResults" @order="getBeerResults" />
-    </div>
+    <Search @search="getBeerResults" />
+    <Filter @filter="getBeerResults" @order="getBeerResults" />
     <Spinner v-if="isLoading" />
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-3">

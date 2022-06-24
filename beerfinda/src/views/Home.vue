@@ -33,6 +33,14 @@
           />
         </div>
       </div>
+      <div class="card mt-3">
+        <router-link
+          class="btn btn-outline-primary border-0 w-100 p-3"
+          :to="{ name: 'users' }"
+        >
+          <h5>Sign Up</h5>
+        </router-link>
+      </div>
     </div>
   </main>
 </template>

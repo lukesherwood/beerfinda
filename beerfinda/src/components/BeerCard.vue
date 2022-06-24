@@ -13,6 +13,9 @@
         >
           {{ beer.type_upper }}
         </div>
+        <div v-if="featured" class="badge rounded-pill bg-danger featured">
+          Featured
+        </div>
         <h5 class="card-title">{{ beer.name }}</h5>
         <div class="card-text">
           <div class="brewer-name">
@@ -32,7 +35,7 @@
 import { beerCategoryColors } from "../helpers/beerHelpers";
 export default {
   name: "Card",
-  props: ["beer", "width"],
+  props: ["beer", "width", "featured"],
   data() {
     return {
       image: this.imageUrl(),
@@ -62,6 +65,12 @@ export default {
   left: 50%;
   transform: translate(-50%, 0);
   -webkit-transform: translate(-50%, 0);
+}
+
+.featured {
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 
 .card img {

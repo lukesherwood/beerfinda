@@ -2,7 +2,7 @@
   <div class="row row-cols-1 gy-4 d-flex">
     <carousel :settings="settings" :breakpoints="breakpoints">
       <slide v-for="beer in beers" :key="beer.beer_id">
-        <BeerCard :beer="beer" width="16rem" />
+        <BeerCard :beer="beer" width="16rem" featured="true" />
       </slide>
       <template #addons="{ maxSlide, currentSlide }">
         <navigation
