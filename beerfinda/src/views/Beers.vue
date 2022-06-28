@@ -47,6 +47,7 @@ export default {
       getPages: "getPages",
       isLoading: "isLoading",
       getFilters: "getFilters",
+      isInStockSet: "isInStockSet",
     }),
   },
   methods: {
@@ -68,6 +69,7 @@ export default {
       const filters = this.getFilters.filter;
       const order = this.getFilters.order;
       const searchTerm = this.getFilters.searchTerm;
+      const isInStockSet = this.isInStockSet;
       if (filters.length) {
         filters.forEach((filter) => {
           url += `${filter.filterType}=${filter.keywords.join(", ")}&`;
@@ -75,6 +77,9 @@ export default {
       }
       if (order) {
         url += `ordering=${order}&`;
+      }
+      if (isInStockSet) {
+        url += `merchantsellsfound__isnull=${!isInStockSet}&`;
       }
       if (searchTerm) {
         url += `search=${searchTerm}&`;

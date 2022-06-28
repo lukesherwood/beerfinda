@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 const baseUrl = 'https://drspgoa.digifern.com/'
 const headers = { Accept: "application/json" }
+const defaultFilterState = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: true }
 
 export default createStore({
   state: {
@@ -8,7 +9,7 @@ export default createStore({
     featuredBeers: [],
     beer: {},
     pages: { currentPage: 1, firstPage: baseUrl + "beers" },
-    filters: { searchTerm: "", filter: [], order: "", filterCount: 0 },
+    filters: defaultFilterState,
     loading: false,
   },
   mutations: {
@@ -35,6 +36,9 @@ export default createStore({
     },
     setOrder(state, payload) {
       state.filters.order = payload
+    },
+    setInStock(state, payload) {
+      state.filters.isInStockSet = payload
     },
     setFilter(state, { filterType, keyword }) {
       const newFilters = state.filters.filter
@@ -67,7 +71,7 @@ export default createStore({
       state.filters.filter = newFilters
     },
     clearFilters(state) {
-      state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0 }
+      state.filters = defaultFilterState
     }
 
   },
@@ -115,5 +119,6 @@ export default createStore({
     isLoading: state => state.loading,
     getFilters: state => state.filters,
     getFilterCount: state => state.filters.filterCount,
+    isInStockSet: state => state.filters.isInStockSet
   },
 })

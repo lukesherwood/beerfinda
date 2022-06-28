@@ -5,6 +5,7 @@
         id="filterButton"
         type="button"
         class="btn btn-outline-primary dropdown-toggle btn-sm"
+        :class="{ active: getFilterCount > 0 }"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -27,9 +28,20 @@
       </ul>
 
       <button
+        id="filterButton"
+        type="button"
+        class="btn btn-outline-primary btn-sm"
+        :class="{ active: isInStockSet }"
+        @click="inStockHandler()"
+      >
+        In Stock
+      </button>
+
+      <button
         id="orderButton"
         type="button"
         class="btn btn-outline-primary dropdown-toggle btn-sm"
+        :class="{ active: this.getFilters.order }"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -69,12 +81,17 @@ export default {
       getBeers: "getBeers",
       getFilters: "getFilters",
       getFilterCount: "getFilterCount",
+      isInStockSet: "isInStockSet",
     }),
   },
   methods: {
-    ...mapMutations(["setFilter", "setOrder", "clearFilters"]),
+    ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
     filterHandler(filterType, keyword) {
       this.setFilter({ filterType, keyword });
+    },
+    inStockHandler() {
+      this.setInStock(!this.isInStockSet);
+      this.$emit("filter");
     },
     orderHandler(keyword) {
       this.setOrder(this.ordering_types[keyword]);
@@ -94,11 +111,14 @@ export default {
     return {
       beer_types,
       ordering_types,
+      // inStock: getFilters.filter.filterType.merchantsellsfound__isnull,
     };
   },
 };
 </script>
 <style lang="scss" scoped>
+@import "../assets/variables.scss";
+
 .dropdown-menu {
   height: 200px;
   width: 210px;
@@ -112,6 +132,11 @@ export default {
 .filter-buttons button {
   border-radius: 50px;
   min-width: 200px;
+}
+
+.active {
+  background: $success;
+  color: $primary;
 }
 
 @media only screen and (max-width: 500px) {
