@@ -9,7 +9,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 
 export default defineConfig({
   plugins: [vue(), vueJsx, Components({
-    dirs: ['src/components', 'src/views']
+    dirs: ['src']
   })],
   server: {
     watch: {

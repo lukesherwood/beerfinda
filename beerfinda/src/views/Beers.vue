@@ -22,7 +22,7 @@
             :key="beer.beer_id"
           ></BeerCard>
         </div>
-        <Pagination
+        <PaginationComponent
           class="p-5"
           :pages="getPages"
           @pageChange="handlePageChange"
@@ -35,7 +35,7 @@
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import BeerCard from "../components/BeerCard.vue";
 import Filter from "../components/Filter.vue";
-import Pagination from "../components/Pagination.vue";
+import Pagination from "../components/PaginationComponent.vue";
 import Search from "../components/Search.vue";
 import Spinner from "../components/Spinner.vue";
 export default {
