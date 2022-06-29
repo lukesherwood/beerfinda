@@ -5,8 +5,8 @@
         id="filterButton"
         type="button"
         class="btn btn-outline-primary dropdown-toggle btn-sm"
-        :class="{ active: getFilterCount > 0 }"
         data-bs-toggle="dropdown"
+        data-bs-auto-close="outside"
         aria-expanded="false"
       >
         Filter by Type
@@ -28,12 +28,12 @@
       </ul>
 
       <button
-        id="filterButton"
         type="button"
         class="btn btn-outline-primary btn-sm"
-        :class="{ active: isInStockSet }"
         @click="inStockHandler()"
       >
+        <i v-if="isInStockSet" class="bi bi-check2-square pe-1"></i>
+        <i v-else class="bi bi-square pe-1"></i>
         In Stock
       </button>
 
@@ -41,7 +41,6 @@
         id="orderButton"
         type="button"
         class="btn btn-outline-primary dropdown-toggle btn-sm"
-        :class="{ active: this.getFilters.order }"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -73,6 +72,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import { debounce } from "lodash";
 import { beer_types, ordering_types } from "../helpers/beerHelpers.js";
 export default {
   name: "Filter",
@@ -88,6 +88,7 @@ export default {
     ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
     filterHandler(filterType, keyword) {
       this.setFilter({ filterType, keyword });
+      this.debounceFilter();
     },
     inStockHandler() {
       this.setInStock(!this.isInStockSet);
@@ -95,6 +96,7 @@ export default {
     },
     orderHandler(keyword) {
       this.setOrder(this.ordering_types[keyword]);
+      this.debounceFilter();
     },
     clearHandler() {
       this.clearFilters();
@@ -107,11 +109,13 @@ export default {
       return Object.keys(object).find((key) => object[key] === value);
     },
   },
+  created() {
+    this.debounceFilter = debounce(this.submitHandler, 2000);
+  },
   data() {
     return {
       beer_types,
       ordering_types,
-      // inStock: getFilters.filter.filterType.merchantsellsfound__isnull,
     };
   },
 };
@@ -131,10 +135,10 @@ export default {
 }
 .filter-buttons button {
   border-radius: 50px;
-  min-width: 200px;
+  padding: 5px 25px 5px 25px;
 }
 
-.active {
+.set {
   background: $success;
   color: $primary;
 }
@@ -147,13 +151,14 @@ export default {
 
 @media only screen and (max-width: 1000px) {
   .filter-buttons button {
-    min-width: 150px;
+    min-width: 160px;
   }
 }
 
 @media only screen and (max-width: 800px) {
   .filter-buttons button {
     min-width: 60px;
+    padding: 5px;
   }
 }
 </style>
