@@ -1,6 +1,6 @@
 <script setup>
 import Navbar from "./components/Navbar.vue";
-import Footer from "./components/Footer.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 import Spinner from "./components/Spinner.vue";
 </script>
 
@@ -26,7 +26,7 @@ import Spinner from "./components/Spinner.vue";
       </RouterView>
     </div>
     <footer>
-      <Footer />
+      <FooterComponent />
     </footer>
   </div>
 </template>
