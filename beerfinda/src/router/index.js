@@ -5,6 +5,7 @@ import Beer from "../views/Beer.vue"
 import Merchants from "../views/Merchants.vue"
 import Brewers from '../views/Brewers.vue'
 import Users from '../views/Users.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/users",
       name: "users",
       component: Users,
+    },
+    {
+      path: '/:catchAll(.*)*',
+      name: "PageNotFound",
+      component: PageNotFound,
     },
   ],
 });

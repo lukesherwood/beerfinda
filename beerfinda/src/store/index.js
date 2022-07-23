@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 const baseUrl = 'https://drspgoa.digifern.com/'
 const headers = { Accept: "application/json" }
-const defaultFilterState = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: true }
+const defaultFilterState = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false }
 
 export default createStore({
   state: {

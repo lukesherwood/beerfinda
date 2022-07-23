@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
-    <Search @search="getBeerResults" />
-    <Filter @filter="getBeerResults" @order="getBeerResults" />
+    <Search @search="filterBeerResults" />
+    <Filter @filter="filterBeerResults" @order="filterBeerResults" />
     <Spinner v-if="isLoading" />
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-3">
@@ -52,42 +52,100 @@ export default {
   },
   methods: {
     ...mapActions({ fetchBeers: "fetchBeers" }),
-    ...mapMutations(["setCurrentPage"]),
+    ...mapMutations([
+      "setCurrentPage",
+      "setOrder",
+      "setInStock",
+      "setFilter",
+      "setSearchTerm",
+    ]),
+    setStateFromQuery() {
+      const query = this.$route.query;
+      if (query.ordering) {
+        this.setOrder(query.ordering);
+      }
+      if (query.inStock == true || query.inStock === "true") {
+        // setting it to a boolean
+        this.setInStock(!!query.inStock);
+      }
+      if (query.search) {
+        this.setSearchTerm(query.search);
+      }
+      if (query.filterType && query.keywords) {
+        this.setFilter({
+          filterType: query.filterType,
+          keyword: query.keywords,
+        });
+      }
+    },
     getBeerResults() {
+      const page = parseInt(this.$route.query.page);
+      if (page) {
+        this.setCurrentPage(page);
+        this.fetchBeers({ url: this.createUrl({ page }) });
+      } else {
+        this.fetchBeers({ url: this.createUrl() });
+      }
+    },
+    filterBeerResults() {
       this.setCurrentPage(1);
       this.fetchBeers({ url: this.createUrl() });
     },
     handlePageChange() {
       const page = this.getPages.currentPage;
+      this.$router.push({ name: "beers", query: { page } });
       const limit = 100;
       const offset = (page - 1) * 100;
-      const url = this.createUrl() + `limit=${limit}&offset=${offset}&`;
+      const url = this.createUrl({ page }) + `limit=${limit}&offset=${offset}&`;
       this.fetchBeers({ url });
     },
-    createUrl() {
+    createUrl(page) {
       let url = this.$hostname + "beer/?";
+      const query = {};
+      if (page) {
+        query["page"] = page.page;
+        const limit = 100;
+        const offset = (page.page - 1) * 100;
+        url += `limit=${limit}&offset=${offset}&`;
+      }
       const filters = this.getFilters.filter;
       const order = this.getFilters.order;
       const searchTerm = this.getFilters.searchTerm;
       const isInStockSet = this.isInStockSet;
       if (filters.length) {
         filters.forEach((filter) => {
-          url += `${filter.filterType}=${filter.keywords.join(", ")}&`;
+          query["filterType"] = filter.filterType;
+          query["keywords"] = filter.keywords;
+          const keyword =
+            filter.keywords.length > 1
+              ? filter.keywords.join(", ")
+              : filter.keywords;
+          url += `${filter.filterType}=${keyword}&`;
         });
       }
       if (order) {
         url += `ordering=${order}&`;
+        query["ordering"] = order;
       }
-      if (isInStockSet) {
+      if (isInStockSet === true) {
         url += `merchantsellsfound__isnull=${!isInStockSet}&`;
       }
       if (searchTerm) {
         url += `search=${searchTerm}&`;
+        query["search"] = searchTerm;
       }
+      // this.$router.push({ name: "beers", query: query });
       return url;
     },
   },
   created() {
+    this.$watch(
+      () => this.$route.query,
+      () => {
+        this.setStateFromQuery();
+      },
+      { immediate: true }
+    );
     this.getBeerResults();
   },
 };

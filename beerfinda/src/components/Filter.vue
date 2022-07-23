@@ -15,6 +15,7 @@
       <ul class="dropdown-menu" aria-labelledby="filterButton">
         <li v-for="type in beer_types" :key="type">
           <div class="dropdown-item">
+            <!-- this now doesn't work if set from route, need to look at returning to v-model -->
             <label :for="type" class="w-100">{{ type }} </label>
             <input
               class="pull-right"
@@ -88,19 +89,50 @@ export default {
     ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
     filterHandler(filterType, keyword) {
       this.setFilter({ filterType, keyword });
+      // Make a clean copy of the current query
+      let queries = JSON.parse(JSON.stringify(this.$route.query));
+      queries.filter = filterType;
+      // this is only capable of setting one keyword will need to add keywords as an array if more than one set.
+      let keywords = [];
+      if (this.$route.query.keyword) {
+        keywords = [...this.$route.query.keyword, keyword];
+        console.log(keywords);
+      } else {
+        keywords.push(keyword);
+      }
+      // adding another keyword just adds it doesn't push the array
+      queries.keyword = keywords;
+      this.$router.push({
+        name: "beers",
+        query: queries,
+      });
       this.debounceFilter();
     },
     inStockHandler() {
-      this.setInStock(!this.isInStockSet);
-      this.$emit("filter");
+      // !!! ensures its a boolean and toggles to the opposite
+      this.setInStock(!!!this.isInStockSet);
+      let queries = JSON.parse(JSON.stringify(this.$route.query));
+      queries.inStock = this.isInStockSet;
+      this.$router.push({
+        name: "beers",
+        query: queries,
+      });
+      this.submitHandler();
     },
     orderHandler(keyword) {
       this.setOrder(this.ordering_types[keyword]);
-      this.debounceFilter();
+      let queries = JSON.parse(JSON.stringify(this.$route.query));
+      queries.ordering = this.ordering_types[keyword];
+      this.$router.push({
+        name: "beers",
+        query: queries,
+      });
+      this.submitHandler();
     },
     clearHandler() {
+      this.$router.push({ name: "beers", query: {} });
       this.clearFilters();
-      this.$emit("filter");
+      this.submitHandler();
     },
     submitHandler() {
       this.$emit("filter");
