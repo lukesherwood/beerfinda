@@ -1,8 +1,4 @@
-<script setup>
-import Navbar from "./components/Navbar.vue";
-import FooterComponent from "./components/FooterComponent.vue";
-import Spinner from "./components/Spinner.vue";
-</script>
+<script setup></script>
 
 <template>
   <div>

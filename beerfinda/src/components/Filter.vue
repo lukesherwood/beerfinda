@@ -88,20 +88,13 @@ export default {
   methods: {
     ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
     filterHandler(filterType, keyword) {
-      this.setFilter({ filterType, keyword });
       // Make a clean copy of the current query
       let queries = JSON.parse(JSON.stringify(this.$route.query));
-      queries.filter = filterType;
-      // this is only capable of setting one keyword will need to add keywords as an array if more than one set.
-      let keywords = [];
-      if (this.$route.query.keyword) {
-        keywords = [...this.$route.query.keyword, keyword];
-        console.log(keywords);
-      } else {
-        keywords.push(keyword);
-      }
-      // adding another keyword just adds it doesn't push the array
-      queries.keyword = keywords;
+      let keywords = this.getFilters.filter.find((filter) => {
+        return filter.filterType == filterType;
+      })?.keywords;
+      keywords ? (keywords += `,${keyword}`) : (keywords = keyword);
+      queries.filter = `${filterType}=${keywords}`;
       this.$router.push({
         name: "beers",
         query: queries,
@@ -109,7 +102,7 @@ export default {
       this.debounceFilter();
     },
     inStockHandler() {
-      // !!! ensures its a boolean and toggles to the opposite
+      // !!! ensures its a strict boolean and toggles to the opposite
       this.setInStock(!!!this.isInStockSet);
       let queries = JSON.parse(JSON.stringify(this.$route.query));
       queries.inStock = this.isInStockSet;
@@ -130,8 +123,8 @@ export default {
       this.submitHandler();
     },
     clearHandler() {
-      this.$router.push({ name: "beers", query: {} });
       this.clearFilters();
+      this.$router.replace({ name: "beers", query: {} });
       this.submitHandler();
     },
     submitHandler() {

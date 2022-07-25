@@ -38,6 +38,7 @@ import Filter from "../components/Filter.vue";
 import Pagination from "../components/PaginationComponent.vue";
 import Search from "../components/Search.vue";
 import Spinner from "../components/Spinner.vue";
+
 export default {
   components: { BeerCard, Pagination, Search, Spinner, Filter },
   name: "Beers",
@@ -65,16 +66,19 @@ export default {
         this.setOrder(query.ordering);
       }
       if (query.inStock == true || query.inStock === "true") {
-        // setting it to a boolean
+        // setting it to a strict boolean
         this.setInStock(!!query.inStock);
       }
       if (query.search) {
         this.setSearchTerm(query.search);
       }
-      if (query.filterType && query.keywords) {
+      if (query.filter) {
+        const splitFilter = query.filter.split("=");
+        const filterType = splitFilter[0];
+        const keywords = splitFilter[1].split(",");
         this.setFilter({
-          filterType: query.filterType,
-          keyword: query.keywords,
+          filterType: filterType,
+          keyword: keywords,
         });
       }
     },
@@ -134,7 +138,6 @@ export default {
         url += `search=${searchTerm}&`;
         query["search"] = searchTerm;
       }
-      // this.$router.push({ name: "beers", query: query });
       return url;
     },
   },

@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
+import { uniq } from "lodash";
 const baseUrl = 'https://drspgoa.digifern.com/'
 const headers = { Accept: "application/json" }
-const defaultFilterState = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false }
 
 export default createStore({
   state: {
@@ -9,7 +9,8 @@ export default createStore({
     featuredBeers: [],
     beer: {},
     pages: { currentPage: 1, firstPage: baseUrl + "beers" },
-    filters: defaultFilterState,
+    // abstracting this out to its own defaultState variable seemed to cause a pointer issue when trying to clear state.
+    filters: { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false },
     loading: false,
   },
   mutations: {
@@ -48,22 +49,15 @@ export default createStore({
       )
       // if there are no filters or this is a new filterType add a new one.
       if (!newFilters.length || !hasFilterType) {
-        newFilters.push({ filterType, keywords: [keyword] })
-        state.filters.filterCount += 1
+        newFilters.push({ filterType, keywords: keyword })
+        state.filters.filterCount = keyword.length
       }
       else {
-        // if filterType and keyword is already set, then remove the keyword
+        // if filterType and keyword is already set, then merge keywords
         newFilters.map((filter) => {
-          if (filter.filterType == filterType && filter.keywords.includes(keyword)) {
-            filter.keywords = filter.keywords.filter((el) => {
-              return el !== keyword
-            })
-            state.filters.filterCount -= 1
-          }
-          // if filterType already exists and the keyword isn't already there add the keyword.
-          else {
-            filter.keywords = [...filter.keywords, keyword]
-            state.filters.filterCount += 1
+          if (filter.filterType == filterType) {
+            filter.keywords = uniq([...filter.keywords, ...keyword])
+            state.filters.filterCount = filter.keywords.length
           }
           return filter
         })
@@ -71,7 +65,7 @@ export default createStore({
       state.filters.filter = newFilters
     },
     clearFilters(state) {
-      state.filters = defaultFilterState
+      state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false }
     }
 
   },
