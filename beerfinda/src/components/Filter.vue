@@ -20,6 +20,16 @@
             <input
               class="pull-right"
               :id="type"
+              v-if="this.getFilters.filter[0]?.keywords.includes(type)"
+              checked
+              type="checkbox"
+              @click="filterHandler(`type_upper__in`, type)"
+              :value="type"
+            />
+            <input
+              class="pull-right"
+              :id="type"
+              v-else
               type="checkbox"
               @click="filterHandler(`type_upper__in`, type)"
               :value="type"
@@ -84,6 +94,10 @@ export default {
       getFilterCount: "getFilterCount",
       isInStockSet: "isInStockSet",
     }),
+    // this is not working yet, need it to be able to easily grab keywords of filters
+    //     setFilterBeerType: this.getFilters?.filter?.filter((filter) => {
+    //   return filter.filterType == "type_upper__in";
+    // }).keywords,
   },
   methods: {
     ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
