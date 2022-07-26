@@ -15,23 +15,12 @@
       <ul class="dropdown-menu" aria-labelledby="filterButton">
         <li v-for="type in beer_types" :key="type">
           <div class="dropdown-item">
-            <!-- this now doesn't work if set from route, need to look at returning to v-model -->
             <label :for="type" class="w-100">{{ type }} </label>
             <input
               class="pull-right"
               :id="type"
-              v-if="this.getFilters.filter[0]?.keywords.includes(type)"
-              checked
+              v-model="beerTypeKeywords"
               type="checkbox"
-              @click="filterHandler(`type_upper__in`, type)"
-              :value="type"
-            />
-            <input
-              class="pull-right"
-              :id="type"
-              v-else
-              type="checkbox"
-              @click="filterHandler(`type_upper__in`, type)"
               :value="type"
             />
           </div>
@@ -94,27 +83,32 @@ export default {
       getFilterCount: "getFilterCount",
       isInStockSet: "isInStockSet",
     }),
-    // this is not working yet, need it to be able to easily grab keywords of filters
-    //     setFilterBeerType: this.getFilters?.filter?.filter((filter) => {
-    //   return filter.filterType == "type_upper__in";
-    // }).keywords,
+    beerTypeKeywords: {
+      get() {
+        return (
+          this.getFilters.filter.find((filter) => {
+            return filter.filterType == "type_upper__in";
+          }).keywords || []
+        );
+      },
+      set(value) {
+        // makes a clean copy of the router query
+        let queries = JSON.parse(JSON.stringify(this.$route.query));
+        queries.filter = `type_upper__in=${value}`;
+        this.$router.push({
+          name: "beers",
+          query: queries,
+        });
+        this.$store.commit("setFilter", {
+          filterType: "type_upper__in",
+          keyword: value,
+        });
+        this.debounceFilter();
+      },
+    },
   },
   methods: {
     ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
-    filterHandler(filterType, keyword) {
-      // Make a clean copy of the current query
-      let queries = JSON.parse(JSON.stringify(this.$route.query));
-      let keywords = this.getFilters.filter.find((filter) => {
-        return filter.filterType == filterType;
-      })?.keywords;
-      keywords ? (keywords += `,${keyword}`) : (keywords = keyword);
-      queries.filter = `${filterType}=${keywords}`;
-      this.$router.push({
-        name: "beers",
-        query: queries,
-      });
-      this.debounceFilter();
-    },
     inStockHandler() {
       // !!! ensures its a strict boolean and toggles to the opposite
       this.setInStock(!!!this.isInStockSet);

@@ -50,24 +50,22 @@ export default createStore({
       // if there are no filters or this is a new filterType add a new one.
       if (!newFilters.length || !hasFilterType) {
         newFilters.push({ filterType, keywords: keyword })
-        state.filters.filterCount = keyword.length
       }
       else {
-        // if filterType and keyword is already set, then merge keywords
+        // if filterType and keyword is already set, then set to new values
         newFilters.map((filter) => {
           if (filter.filterType == filterType) {
-            filter.keywords = uniq([...filter.keywords, ...keyword])
-            state.filters.filterCount = filter.keywords.length
+            filter.keywords = keyword
           }
           return filter
         })
       }
+      state.filters.filterCount = keyword.length
       state.filters.filter = newFilters
     },
     clearFilters(state) {
       state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false }
-    }
-
+    },
   },
   actions: {
     async fetchBeers(state, { url } = {}) {
@@ -113,6 +111,7 @@ export default createStore({
     isLoading: state => state.loading,
     getFilters: state => state.filters,
     getFilterCount: state => state.filters.filterCount,
-    isInStockSet: state => state.filters.isInStockSet
+    isInStockSet: state => state.filters.isInStockSet,
+    beerTypeKeywords: state => state.filters.filter[0]?.keywords,
   },
 })
