@@ -10,7 +10,7 @@ export default createStore({
     beer: {},
     pages: { currentPage: 1, firstPage: baseUrl + "beers" },
     // abstracting this out to its own defaultState variable seemed to cause a pointer issue when trying to clear state.
-    filters: { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false },
+    filters: { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: true },
     loading: false,
   },
   mutations: {
@@ -64,7 +64,7 @@ export default createStore({
       state.filters.filter = newFilters
     },
     clearFilters(state) {
-      state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: false }
+      state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: true }
     },
   },
   actions: {

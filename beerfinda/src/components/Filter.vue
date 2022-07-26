@@ -86,9 +86,9 @@ export default {
     beerTypeKeywords: {
       get() {
         return (
-          this.getFilters.filter.find((filter) => {
+          this.getFilters.filter?.find((filter) => {
             return filter.filterType == "type_upper__in";
-          }).keywords || []
+          })?.keywords || []
         );
       },
       set(value) {
