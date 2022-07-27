@@ -60,6 +60,12 @@ export default {
         return this.getFilters.searchTerm;
       },
       set(value) {
+        let queries = JSON.parse(JSON.stringify(this.$route.query));
+        queries.search = value;
+        this.$router.push({
+          name: "beers",
+          query: queries,
+        });
         this.setSearchTerm(value);
       },
     },
@@ -79,6 +85,12 @@ export default {
       this.$emit("search");
     },
     handleClear() {
+      let queries = JSON.parse(JSON.stringify(this.$route.query));
+      delete queries.search;
+      this.$router.push({
+        name: "beers",
+        query: queries,
+      });
       this.setSearchTerm("");
       this.$emit("search");
     },

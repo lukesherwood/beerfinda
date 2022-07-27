@@ -99,7 +99,7 @@ export default {
           name: "beers",
           query: queries,
         });
-        this.$store.commit("setFilter", {
+        this.setFilter({
           filterType: "type_upper__in",
           keyword: value,
         });
