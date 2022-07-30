@@ -13,9 +13,6 @@
         >
           {{ beer.type_upper }}
         </div>
-        <div v-if="featured" class="badge rounded-pill bg-danger featured">
-          Featured
-        </div>
         <h5 class="card-title">{{ beer.name }}</h5>
         <div class="card-text">
           <div class="brewer-name">
@@ -25,6 +22,9 @@
           </div>
           <div class="beer-type">
             <small>{{ beer.type }}</small>
+          </div>
+          <div v-if="featured" class="badge rounded-pill bg-danger featured">
+            Featured
           </div>
         </div>
       </div>
@@ -75,6 +75,6 @@ export default {
 
 .card img {
   object-fit: cover;
-  height: 15rem;
+  height: 20rem;
 }
 </style>

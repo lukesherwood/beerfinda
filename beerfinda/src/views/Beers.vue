@@ -65,9 +65,11 @@ export default {
       if (query.ordering) {
         this.setOrder(query.ordering);
       }
-      if (query.inStock == true || query.inStock === "true") {
-        // setting it to a strict boolean
-        this.setInStock(!!query.inStock);
+      if (query.inStock) {
+        // if 'false' is entered change to strict boolean, otherwise its true as a strict boolean
+        query.inStock === "false"
+          ? this.setInStock(!!!query.inStock)
+          : this.setInStock(!!query.inStock);
       }
       if (query.search) {
         this.setSearchTerm(query.search);
