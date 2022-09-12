@@ -4,7 +4,6 @@ import Beers from "../views/Beers.vue"
 import Beer from "../views/Beer.vue"
 import Merchants from "../views/Merchants.vue"
 import Brewers from '../views/Brewers.vue'
-import Users from '../views/Users.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 
 const router = createRouter({
@@ -34,11 +33,6 @@ const router = createRouter({
       path: "/brewers",
       name: "brewers",
       component: Brewers,
-    },
-    {
-      path: "/users",
-      name: "users",
-      component: Users,
     },
     {
       path: '/:catchAll(.*)*',
