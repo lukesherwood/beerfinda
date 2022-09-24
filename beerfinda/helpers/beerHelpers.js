@@ -20,7 +20,7 @@ export const beerCategoryColors = {
     "Other Styles": "coral",
 }
 
-export const beer_types = [
+export const beerTypes = [
     "Cider",
     "Sour Beer",
     "Lagers",
@@ -42,7 +42,7 @@ export const beer_types = [
     "Other Styles",
 ]
 
-export const ordering_types = {
+export const orderingTypes = {
     "Name A-Z": "+name",
     "Name Z-A": "-name",
     "Price (Low-High)": "+merchantsellsfound__price",

@@ -3,72 +3,78 @@
     <h3 class="">Featured Beers</h3>
     <Spinner v-if="isLoading" />
     <div v-else>
-      <CardCarousel :beers="getFeaturedBeers" />
+      <!-- <CardCarousel :beers="getFeaturedBeers" /> -->
       <div class="card mt-3">
-        <router-link
+        <nuxtLink
           class="btn btn-outline-primary border-0 w-100 p-3"
-          :to="{ name: 'beers' }"
+          to="/beers"
         >
           <h5>View All Beers</h5>
-        </router-link>
+        </nuxtLink>
       </div>
       <div class="card mt-3">
         <h4>How it Works:</h4>
         <div class="p-1">
           <img
-            v-lazy="$hostname + 'img/brand/how-it-works-step-1.png'"
+            src="
+              'https://drspgoa.digifern.com/img/brand/how-it-works-step-1.png'
+            "
             alt="how-to1"
           />
         </div>
         <div class="p-1">
           <img
-            v-lazy="$hostname + 'img/brand/how-it-works-step-2.png'"
+            src="
+              'https://drspgoa.digifern.com/img/brand/how-it-works-step-2.png'
+            "
             alt="how-to2"
           />
         </div>
         <div class="p-1">
           <img
-            v-lazy="$hostname + 'img/brand/how-it-works-step-3.png'"
+            src="
+              'https://drspgoa.digifern.com/img/brand/how-it-works-step-3.png'
+            "
             alt="how-to3"
           />
         </div>
       </div>
       <div class="card mt-3">
-        <router-link
+        <nuxtLink
           class="btn btn-outline-primary border-0 w-100 p-3"
-          :to="{ name: 'users' }"
+          to="/users"
         >
           <h5>Sign Up</h5>
-        </router-link>
+        </nuxtLink>
       </div>
     </div>
   </main>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
-import CardCarousel from "../components/CardCarousel.vue";
-import Spinner from "../components/Spinner.vue";
+import { mapActions, mapGetters } from 'vuex'
+// import CardCarousel from '../components/CardCarousel.vue'
+import Spinner from '../components/Spinner.vue'
 export default {
+  name: 'index',
   components: {
-    CardCarousel,
+    // CardCarousel,
     Spinner,
   },
-  name: "Home",
   computed: {
     ...mapGetters({
-      isLoading: "isLoading",
-      getFeaturedBeers: "getFeaturedBeers",
+      isLoading: 'isLoading',
+      getFeaturedBeers: 'getFeaturedBeers',
     }),
   },
-  methods: {
-    ...mapActions({ fetchFeaturedBeers: "fetchFeaturedBeers" }),
-  },
   created() {
-    this.fetchFeaturedBeers();
+    this.fetchFeaturedBeers()
   },
-};
+  methods: {
+    ...mapActions({ fetchFeaturedBeers: 'fetchFeaturedBeers' }),
+  },
+}
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .container {
   width: 95%;
 }

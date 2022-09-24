@@ -1,7 +1,7 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3">
-      <img v-lazy="this.image" class="card-img-top" alt="default-beer" />
+      <img v-src="this.image" class="card-img-top" alt="default-beer" />
       <div class="card-body pt-2">
         <div>{{ merchant.title }}</div>
         <div class="text-primary">{{ priceToString(merchant.price) }}</div>
@@ -18,17 +18,17 @@
   </div>
 </template>
 <script>
-import { priceToString } from "../helpers/beerHelpers.js";
+import { priceToString } from '../helpers/beerHelpers.js'
 export default {
-  props: ["merchant"],
+  props: ['merchant'],
   methods: {
     priceToString,
   },
   data() {
     return {
-      image: "/index.png",
-    };
+      image: '/index.png',
+    }
   },
-};
+}
 </script>
 <style lang="scss" scoped></style>

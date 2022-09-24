@@ -13,7 +13,7 @@
         <span v-if="getFilterCount > 0">({{ getFilterCount }})</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="filterButton">
-        <li v-for="type in beer_types" :key="type">
+        <li v-for="type in beerTypes" :key="type">
           <div class="dropdown-item">
             <label :for="type" class="w-100">{{ type }} </label>
             <input
@@ -46,11 +46,11 @@
       >
         <span v-if="!this.getFilters.order">Sort</span>
         <span v-else>{{
-          getKeyByValue(this.ordering_types, this.getFilters.order)
+          getKeyByValue(this.orderingTypes, this.getFilters.order)
         }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
-        <li v-for="type in Object.keys(ordering_types)" :key="type">
+        <li v-for="type in Object.keys(orderingTypes)" :key="type">
           <a @click="orderHandler(type)" href="#" class="dropdown-item">{{
             type
           }}</a>
@@ -71,90 +71,90 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from "vuex";
-import { debounce } from "lodash";
-import { beer_types, ordering_types } from "../helpers/beerHelpers.js";
+import { mapGetters, mapMutations } from 'vuex'
+import { debounce } from 'lodash'
+import { beerTypes, orderingTypes } from '../helpers/beerHelpers.js'
 export default {
-  name: "Filter",
+  name: 'BeerFilter',
+  data() {
+    return {
+      beerTypes,
+      orderingTypes,
+    }
+  },
   computed: {
     ...mapGetters({
-      getBeers: "getBeers",
-      getFilters: "getFilters",
-      getFilterCount: "getFilterCount",
-      isInStockSet: "isInStockSet",
+      getBeers: 'getBeers',
+      getFilters: 'getFilters',
+      getFilterCount: 'getFilterCount',
+      isInStockSet: 'isInStockSet',
     }),
     beerTypeKeywords: {
       get() {
         return (
           this.getFilters.filter?.find((filter) => {
-            return filter.filterType == "type_upper__in";
+            return filter.filterType == 'type_upper__in'
           })?.keywords || []
-        );
+        )
       },
       set(value) {
         // makes a clean copy of the router query
-        let queries = JSON.parse(JSON.stringify(this.$route.query));
-        queries.filter = `type_upper__in=${value}`;
+        const queries = JSON.parse(JSON.stringify(this.$route.query))
+        queries.filter = `type_upper__in=${value}`
         this.$router.push({
-          name: "beers",
+          name: 'beers',
           query: queries,
-        });
+        })
         this.setFilter({
-          filterType: "type_upper__in",
+          filterType: 'type_upper__in',
           keyword: value,
-        });
-        this.debounceFilter();
+        })
+        this.debounceFilter()
       },
     },
   },
+  created() {
+    this.debounceFilter = debounce(this.submitHandler, 2000)
+  },
   methods: {
-    ...mapMutations(["setFilter", "setOrder", "clearFilters", "setInStock"]),
+    ...mapMutations(['setFilter', 'setOrder', 'clearFilters', 'setInStock']),
     inStockHandler() {
       // !!! ensures its a strict boolean and toggles to the opposite
-      this.setInStock(!!!this.isInStockSet);
-      let queries = JSON.parse(JSON.stringify(this.$route.query));
-      queries.inStock = this.isInStockSet;
+      this.setInStock(!!!this.isInStockSet)
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      queries.inStock = this.isInStockSet
       this.$router.push({
-        name: "beers",
+        name: 'beers',
         query: queries,
-      });
-      this.submitHandler();
+      })
+      this.submitHandler()
     },
     orderHandler(keyword) {
-      this.setOrder(this.ordering_types[keyword]);
-      let queries = JSON.parse(JSON.stringify(this.$route.query));
-      queries.ordering = this.ordering_types[keyword];
+      this.setOrder(this.orderingTypes[keyword])
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      queries.ordering = this.orderingTypes[keyword]
       this.$router.push({
-        name: "beers",
+        name: 'beers',
         query: queries,
-      });
-      this.submitHandler();
+      })
+      this.submitHandler()
     },
     clearHandler() {
-      this.clearFilters();
-      this.$router.replace({ name: "beers", query: {} });
-      this.submitHandler();
+      this.clearFilters()
+      this.$router.replace({ name: 'beers', query: {} })
+      this.submitHandler()
     },
     submitHandler() {
-      this.$emit("filter");
+      this.$emit('filter')
     },
     getKeyByValue(object, value) {
-      return Object.keys(object).find((key) => object[key] === value);
+      return Object.keys(object).find((key) => object[key] === value)
     },
   },
-  created() {
-    this.debounceFilter = debounce(this.submitHandler, 2000);
-  },
-  data() {
-    return {
-      beer_types,
-      ordering_types,
-    };
-  },
-};
+}
 </script>
 <style lang="scss" scoped>
-@import "../assets/variables.scss";
+@import '../assets/scss/variables.scss';
 
 .dropdown-menu {
   height: 200px;

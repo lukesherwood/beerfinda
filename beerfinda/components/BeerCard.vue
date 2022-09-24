@@ -1,11 +1,11 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3" :style="{ width: width }">
-      <router-link
+      <nuxtLink
         class="stretched-link"
         :to="{ name: 'beer', params: { id: beer.beer_id } }"
       />
-      <img v-lazy="this.image" class="card-img-top" alt="default-beer" />
+      <img v-src="image" class="card-img-top" alt="default-beer" />
       <div class="card-body d-flex flex-column">
         <div
           class="beer-category badge rounded-pill"
@@ -32,31 +32,36 @@
   </div>
 </template>
 <script>
-import { beerCategoryColors } from "../helpers/beerHelpers";
+import { beerCategoryColors } from '../helpers/beerHelpers.js'
 export default {
-  name: "Card",
-  props: ["beer", "width", "featured"],
+  name: 'BeerCard',
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['beer', 'width', 'featured'],
   data() {
     return {
       image: this.imageUrl(),
       beerCategoryColors,
-    };
+    }
   },
   methods: {
     imageUrl() {
+      if (this.beer.merchantsellsfound[0]?.image_link) {
+        return (
+          'https://drspgoa.digifern.com/img/beer/this.beer.merchantsellsfound[0].image_link'
+        )
+      }
       if (!this.beer.imagefound?.length && !this.beer.image) {
-        return "/index.png";
+        return '../static/index.png'
       }
       return (
-        this.$hostname +
-        "img/beer/" +
+        'https://drspgoa.digifern.com/img/beer/' +
         (this.beer.image ||
           this.beer.imagefound[0]?.image ||
           this.beer.imagefound)
-      );
+      )
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 .beer-category {

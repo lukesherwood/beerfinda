@@ -46,65 +46,65 @@
   </div>
 </template>
 <script>
-import { debounce } from "lodash";
-import { mapGetters, mapMutations } from "vuex";
+import { debounce } from 'lodash'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
-  name: "Search",
+  name: 'Search',
   computed: {
     ...mapGetters({
-      isLoading: "isLoading",
-      getFilters: "getFilters",
+      isLoading: 'isLoading',
+      getFilters: 'getFilters',
     }),
     keyword: {
       get() {
-        return this.getFilters.searchTerm;
+        return this.getFilters.searchTerm
       },
       set(value) {
-        let queries = JSON.parse(JSON.stringify(this.$route.query));
-        queries.search = value;
+        let queries = JSON.parse(JSON.stringify(this.$route.query))
+        queries.search = value
         this.$router.push({
-          name: "beers",
+          name: 'beers',
           query: queries,
-        });
-        this.setSearchTerm(value);
+        })
+        this.setSearchTerm(value)
       },
     },
   },
   watch: {
     keyword() {
-      if (!this.keyword) return;
-      this.debounceSearch();
+      if (!this.keyword) return
+      this.debounceSearch()
     },
   },
   methods: {
-    ...mapMutations(["setSearchTerm"]),
+    ...mapMutations(['setSearchTerm']),
     onSearchSubmit() {
-      this.$emit("search");
+      this.$emit('search')
     },
     onSearch() {
-      this.$emit("search");
+      this.$emit('search')
     },
     handleClear() {
-      let queries = JSON.parse(JSON.stringify(this.$route.query));
-      delete queries.search;
+      let queries = JSON.parse(JSON.stringify(this.$route.query))
+      delete queries.search
       this.$router.push({
-        name: "beers",
+        name: 'beers',
         query: queries,
-      });
-      this.setSearchTerm("");
-      this.$emit("search");
+      })
+      this.setSearchTerm('')
+      this.$emit('search')
     },
   },
   created() {
-    this.debounceSearch = debounce(this.onSearch, 1000);
+    this.debounceSearch = debounce(this.onSearch, 1000)
   },
-};
+}
 </script>
 <style lang="scss" scoped>
-@import "../assets/variables.scss";
+@import '../assets/scss/variables.scss';
 body {
   background-color: #eee;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
 }
 

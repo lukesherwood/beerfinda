@@ -14,7 +14,7 @@
           <img
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
-            v-lazy="this.image"
+            v-src="this.image"
           />
         </div>
         <h5>{{ beer.type }}</h5>
@@ -40,34 +40,40 @@
   </div>
 </template>
 <script>
-import MerchantsCard from "./MerchantsCard.vue";
+import MerchantsCard from './MerchantsCard.vue'
 export default {
-  name: "BeerPage",
+  name: 'BeerPage',
   components: { MerchantsCard },
-  props: ["beer"],
+  props: ['beer'],
   data() {
     return {
       image: this.imageUrl(),
-    };
+    }
   },
   methods: {
     imageUrl() {
+      if (this.beer.merchantsellsfound[0]?.image_link) {
+        return (
+          'https://drspgoa.digifern.com/img/beer/' +
+          this.beer.merchantsellsfound[0].image_link
+        )
+      }
       if (!this.beer.imagefound.length) {
-        return "/index.png";
+        return '../static/index.png'
       }
       return (
-        this.$hostname +
-        "img/beer/" +
+        'https://drspgoa.digifern.com/' +
+        'img/beer/' +
         (this.beer.imagefound[0]?.image || this.beer.imagefound)
-      );
+      )
     },
     formatString(string) {
       return string.replace(/.+?[\.\?\!](\s|$)/g, function (a) {
-        return a.charAt(0).toUpperCase() + a.slice(1);
-      });
+        return a.charAt(0).toUpperCase() + a.slice(1)
+      })
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 @media only screen and (max-width: 500px) {
