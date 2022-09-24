@@ -3,9 +3,9 @@
     <div class="card h-100 mb-3" :style="{ width: width }">
       <nuxtLink
         class="stretched-link"
-        :to="{ name: 'beer', params: { id: beer.beer_id } }"
+        :to="`/beer/${beer.beer_id}`"
       />
-      <img v-src="image" class="card-img-top" alt="default-beer" />
+      <img :src="image" class="card-img-top" alt="default-beer" />
       <div class="card-body d-flex flex-column">
         <div
           class="beer-category badge rounded-pill"
@@ -45,11 +45,6 @@ export default {
   },
   methods: {
     imageUrl() {
-      if (this.beer.merchantsellsfound[0]?.image_link) {
-        return (
-          'https://drspgoa.digifern.com/img/beer/this.beer.merchantsellsfound[0].image_link'
-        )
-      }
       if (!this.beer.imagefound?.length && !this.beer.image) {
         return '../static/index.png'
       }

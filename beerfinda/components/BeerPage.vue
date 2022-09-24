@@ -14,7 +14,7 @@
           <img
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
-            v-src="this.image"
+            :src="image"
           />
         </div>
         <h5>{{ beer.type }}</h5>
@@ -52,23 +52,22 @@ export default {
   },
   methods: {
     imageUrl() {
-      if (this.beer.merchantsellsfound[0]?.image_link) {
-        return (
-          'https://drspgoa.digifern.com/img/beer/' +
-          this.beer.merchantsellsfound[0].image_link
-        )
-      }
+      // if (this.beer.merchantsellsfound[0]?.image_link) {
+      //   return (
+      //     'https://drspgoa.digifern.com/img/beer/' +
+      //     this.beer.merchantsellsfound[0].image_link
+      //   )
+      // }
       if (!this.beer.imagefound.length) {
         return '../static/index.png'
       }
       return (
-        'https://drspgoa.digifern.com/' +
-        'img/beer/' +
+        'https://drspgoa.digifern.com/img/beer/' +
         (this.beer.imagefound[0]?.image || this.beer.imagefound)
       )
     },
     formatString(string) {
-      return string.replace(/.+?[\.\?\!](\s|$)/g, function (a) {
+      return string.replace(/.+?[.?!](\s|$)/g, function (a) {
         return a.charAt(0).toUpperCase() + a.slice(1)
       })
     },

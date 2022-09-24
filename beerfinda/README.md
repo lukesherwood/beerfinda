@@ -1,9 +1,8 @@
 # Beerfinda
 Todo:
 
-- see if bootstrap is compatible with nuxt and vue 2
+- add a failed fetch image to lazy load or change to another library
 - fix routing
-- fix images not displaying
 - go through each page and ensure that they work.
 - see if I can get amplify working again, or if there is a better way to deploy
 - install a better carousel library and get that working.
