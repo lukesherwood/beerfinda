@@ -15,19 +15,25 @@
       <div class="card mt-3">
         <h4>How it Works:</h4>
         <div class="p-1">
-          <img
+          <nuxt-img
+            loading="lazy"
+            placeholder="200"
             src="https://drspgoa.digifern.com/img/brand/how-it-works-step-1.png"
             alt="how-to1"
           />
         </div>
         <div class="p-1">
-          <img
+          <nuxt-img
+            loading="lazy"
+            placeholder="200"
             src="https://drspgoa.digifern.com/img/brand/how-it-works-step-2.png"
             alt="how-to2"
           />
         </div>
         <div class="p-1">
-          <img
+          <nuxt-img
+            loading="lazy"
+            placeholder="200"
             src="https://drspgoa.digifern.com/img/brand/how-it-works-step-3.png"
             alt="how-to3"
           />

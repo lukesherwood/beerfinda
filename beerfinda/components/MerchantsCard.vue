@@ -1,7 +1,13 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3">
-      <img :src="image" class="card-img-top" alt="default-beer" />
+      <nuxt-img
+        loading="lazy"
+        placeholder="200"
+        :src="image"
+        class="card-img-top"
+        alt="default-beer"
+      />
       <div class="card-body pt-2">
         <div>{{ merchant.title }}</div>
         <div class="text-primary">{{ priceToString(merchant.price) }}</div>
@@ -21,12 +27,13 @@
 import { priceToString } from '../helpers/beerHelpers.js'
 export default {
   props: ['merchant'],
-    data() {
-      return {
-        // not working need to update
-        image: 'https://drspgoa.digifern.com/img/beer/' + this.merchant.image_link,
-      }
-    },
+  data() {
+    return {
+      // not working need to update
+      image:
+        'https://drspgoa.digifern.com/img/beer/' + this.merchant.image_link,
+    }
+  },
   methods: {
     priceToString,
   },

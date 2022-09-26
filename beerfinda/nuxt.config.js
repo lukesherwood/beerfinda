@@ -33,15 +33,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxt/image',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    [
-      'nuxt-lazy-load',
-      {
-        defaultImage: '/Loading_icon.gif',
-      },
-    ],
   ],
+
+  image: {
+    alias: { baseUrl: 'https://drspgoa.digifern.com/beer/img/' },
+  },
 
   bootstrapVue: {
     bootstrapCSS: false,

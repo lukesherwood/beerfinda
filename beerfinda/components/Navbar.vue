@@ -4,7 +4,12 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <nuxtLink to="/">
-            <img src="../static/beerfinda.png" class="navbar-brand" />
+            <nuxt-img
+              loading="lazy"
+              placeholder="200"
+              src="/beerfinda.png"
+              class="navbar-brand"
+            />
           </nuxtLink>
           <button
             class="navbar-toggler"

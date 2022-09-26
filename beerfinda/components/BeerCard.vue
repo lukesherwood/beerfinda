@@ -1,11 +1,14 @@
 <template>
   <div class="col">
     <div class="card h-100 mb-3" :style="{ width: width }">
-      <nuxtLink
-        class="stretched-link"
-        :to="`/beer/${beer.beer_id}`"
+      <nuxtLink class="stretched-link" :to="`/beer/${beer.beer_id}`" />
+      <nuxt-img
+        loading="lazy"
+        :src="image"
+        placeholder="/index.png"
+        class="card-img-top"
+        alt="default-beer"
       />
-      <img :src="image" class="card-img-top" alt="default-beer" />
       <div class="card-body d-flex flex-column">
         <div
           class="beer-category badge rounded-pill"
@@ -32,6 +35,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { beerCategoryColors } from '../helpers/beerHelpers.js'
 export default {
   name: 'BeerCard',
@@ -43,17 +47,22 @@ export default {
       beerCategoryColors,
     }
   },
+  computed: {
+    ...mapGetters({
+      apiUrl: 'apiUrl',
+    }),
+  },
+
   methods: {
     imageUrl() {
       if (!this.beer.imagefound?.length && !this.beer.image) {
-        return '../static/index.png'
+        return '/index.png'
       }
-      return (
-        'https://drspgoa.digifern.com/img/beer/' +
-        (this.beer.image ||
-          this.beer.imagefound[0]?.image ||
-          this.beer.imagefound)
-      )
+      return `${this.$store.state.apiUrl}img/beer/${
+        this.beer.image ||
+        this.beer.imagefound[0]?.image ||
+        this.beer.imagefound
+      }`
     },
   },
 }
@@ -61,6 +70,7 @@ export default {
 <style lang="scss" scoped>
 .beer-category {
   position: absolute;
+
   top: 5px;
   left: 50%;
   transform: translate(-50%, 0);
@@ -74,7 +84,7 @@ export default {
 }
 
 .card img {
-  object-fit: cover;
-  height: 20rem;
+  object-fit: contain;
+  height: 30rem;
 }
 </style>

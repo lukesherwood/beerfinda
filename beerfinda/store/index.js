@@ -1,14 +1,22 @@
 const baseUrl = 'https://drspgoa.digifern.com/'
-const headers = { Accept: "application/json" }
+const headers = { Accept: 'application/json' }
 
 export const state = () => ({
   beers: [],
   featuredBeers: [],
   beer: {},
-  pages: { currentPage: 1, firstPage: baseUrl + "beers" },
+  pages: { currentPage: 1, firstPage: baseUrl + 'beers' },
   // abstracting this out to its own defaultState variable seemed to cause a pointer issue when trying to clear state.
-  filters: { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: true },
+  filters: {
+    searchTerm: '',
+    filter: [],
+    order: '',
+    filterCount: 0,
+    isInStockSet: true,
+  },
   loading: false,
+  apiUrl: 'https://drspgoa.digifern.com/',
+  imgUrl: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/',
 })
 export const mutations = {
   addBeers(state, payload) {
@@ -42,13 +50,11 @@ export const mutations = {
     const newFilters = state.filters.filter
     const hasFilterType = newFilters.find((filter) => {
       return filter.filterType == filterType
-    }
-    )
+    })
     // if there are no filters or this is a new filterType add a new one.
     if (!newFilters.length || !hasFilterType) {
       newFilters.push({ filterType, keywords: keyword })
-    }
-    else {
+    } else {
       // if filterType and keyword is already set, then set to new values
       newFilters.map((filter) => {
         if (filter.filterType == filterType) {
@@ -61,16 +67,22 @@ export const mutations = {
     state.filters.filter = newFilters
   },
   clearFilters(state) {
-    state.filters = { searchTerm: "", filter: [], order: "", filterCount: 0, isInStockSet: true }
+    state.filters = {
+      searchTerm: '',
+      filter: [],
+      order: '',
+      filterCount: 0,
+      isInStockSet: true,
+    }
   },
 }
 export const actions = {
   async fetchBeers(state, { url } = {}) {
-    state.commit("setLoading", true)
+    state.commit('setLoading', true)
     const fetchUrl = url || baseUrl + 'beer'
     const beers = await fetch(fetchUrl, { headers })
     const res = await beers.json()
-    state.commit("addBeers", res.results)
+    state.commit('addBeers', res.results)
     const perPage = 100
     const pages = {
       perPage,
@@ -78,37 +90,38 @@ export const actions = {
       previousPage: res.previous,
       totalPages: Math.ceil(res.count / perPage),
     }
-    state.commit("setupPages", pages)
-    state.commit("setLoading", false)
+    state.commit('setupPages', pages)
+    state.commit('setLoading', false)
   },
   async fetchBeer(state, id) {
-    state.commit("setLoading", true)
+    state.commit('setLoading', true)
     const fetchUrl = baseUrl + `beer/${id}`
     const beer = await fetch(fetchUrl, { headers })
-    console.log(beer, "beer")
     const res = await beer.json()
-    console.log(res, "res")
-    state.commit("addBeer", res)
-    state.commit("setLoading", false)
+    state.commit('addBeer', res)
+    state.commit('setLoading', false)
   },
   async fetchFeaturedBeers(state) {
-    state.commit("setLoading", true)
+    state.commit('setLoading', true)
     const fetchUrl = baseUrl + 'beerfeatured'
     const beers = await fetch(fetchUrl, { headers })
     const res = await beers.json()
-    state.commit("addFeaturedBeers", res.results)
-    state.commit("setLoading", false)
-  }
+    state.commit('addFeaturedBeers', res.results)
+    state.commit('setLoading', false)
+  },
 }
 
 export const getters = {
-  getBeers: state => state.beers,
-  getFeaturedBeers: state => state.featuredBeers,
-  getBeer: state => state.beer,
-  getPages: state => state.pages,
-  isLoading: state => state.loading,
-  getFilters: state => state.filters,
-  getFilterCount: state => state.filters.filterCount,
-  isInStockSet: state => state.filters.isInStockSet,
-  beerTypeKeywords: state => state.filters.filter[0]?.keywords,
+  getBeers: (state) => state.beers,
+  getFeaturedBeers: (state) => state.featuredBeers,
+  getBeer: (state) => state.beer,
+  getPages: (state) => state.pages,
+  isLoading: (state) => state.loading,
+  getFilters: (state) => state.filters,
+  getFilterCount: (state) => state.filters.filterCount,
+  isInStockSet: (state) => state.filters.isInStockSet,
+  beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
+  apiUrl: (state) => state.apiUrl,
+  imgUrl: (state) => state.imgUrl
+
 }

@@ -55,6 +55,7 @@ export default {
       isLoading: 'isLoading',
       getFilters: 'getFilters',
       isInStockSet: 'isInStockSet',
+      apiUrl: 'apiUrl',
     }),
   },
   created() {
@@ -84,7 +85,8 @@ export default {
       if (query.inStock) {
         // if 'false' is entered change to strict boolean, otherwise its true as a strict boolean
         query.inStock === 'false'
-          ? this.setInStock(!!!query.inStock)
+          ? // eslint-disable-next-line no-extra-boolean-cast
+            this.setInStock(!!!query.inStock)
           : this.setInStock(!!query.inStock)
       }
       if (query.search) {
@@ -122,7 +124,7 @@ export default {
       this.fetchBeers({ url })
     },
     createUrl(page) {
-      let url = 'https://drspgoa.digifern.com/' + 'beer/?'
+      let url = this.apiUrl + 'beer/?'
       const query = {}
       if (page) {
         query.page = page.page

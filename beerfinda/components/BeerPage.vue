@@ -11,7 +11,9 @@
       </div>
       <div class="card-body p-3">
         <div class="w-50 float-end">
-          <img
+          <nuxt-img
+            loading="lazy"
+            placeholder="200"
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
             :src="image"
@@ -61,10 +63,9 @@ export default {
       if (!this.beer.imagefound.length) {
         return '../static/index.png'
       }
-      return (
-        'https://drspgoa.digifern.com/img/beer/' +
-        (this.beer.imagefound[0]?.image || this.beer.imagefound)
-      )
+      return `${this.$store.state.apiUrl}/img/beer/${
+        this.beer.imagefound[0]?.image || this.beer.imagefound
+      }`
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {
