@@ -55,14 +55,17 @@ export default {
 
   methods: {
     imageUrl() {
-      if (!this.beer.imagefound?.length && !this.beer.image) {
-        return '/index.png'
+      // if (this.beer.imagefound[1]?.image_pre_link) {
+      // what to do with this array? carousel?
+      //   console.log(this.beer.imagefound)
+      //   return `${this.beer.imagefound[1].image_pre_link}${this.beer.imagefound[1].image_link}`
+      // }
+      if (this.beer.merchantsellsfound?.length) {
+        // what to do with this array? carousel?
+        // console.log(this.beer.merchantsellsfound)
+        return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
       }
-      return `${this.$store.state.apiUrl}img/beer/${
-        this.beer.image ||
-        this.beer.imagefound[0]?.image ||
-        this.beer.imagefound
-      }`
+      return 'index.png'
     },
   },
 }

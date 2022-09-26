@@ -9,6 +9,7 @@
         alt="default-beer"
       />
       <div class="card-body pt-2">
+        <div>Need to add a fetch to get merchant by id {{merchant.merchant_id}} so we can display merchant name</div>
         <div>{{ merchant.title }}</div>
         <div class="text-primary">{{ priceToString(merchant.price) }}</div>
       </div>
@@ -26,15 +27,22 @@
 <script>
 import { priceToString } from '../helpers/beerHelpers.js'
 export default {
+  // eslint-disable-next-line vue/require-prop-types
   props: ['merchant'],
   data() {
     return {
-      // not working need to update
-      image:
-        'https://drspgoa.digifern.com/img/beer/' + this.merchant.image_link,
+      image: this.imageUrl()
     }
   },
   methods: {
+    imageUrl() {
+      console.log(this.merchant)
+      if (this.merchant.image_link) {
+        // what to do with this array? carousel?
+        return `${this.merchant.image_pre_link}${this.merchant.image_link}`
+      }
+      return 'index.png'
+    },
     priceToString,
   },
 }

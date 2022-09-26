@@ -54,18 +54,12 @@ export default {
   },
   methods: {
     imageUrl() {
-      // if (this.beer.merchantsellsfound[0]?.image_link) {
-      //   return (
-      //     'https://drspgoa.digifern.com/img/beer/' +
-      //     this.beer.merchantsellsfound[0].image_link
-      //   )
-      // }
-      if (!this.beer.imagefound.length) {
-        return '../static/index.png'
+      if (this.beer.merchantsellsfound?.length) {
+        // what to do with this array? carousel?
+        // console.log(this.beer.merchantsellsfound)
+        return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
       }
-      return `${this.$store.state.apiUrl}/img/beer/${
-        this.beer.imagefound[0]?.image || this.beer.imagefound
-      }`
+        return 'index.png'
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {
