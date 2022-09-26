@@ -7,9 +7,9 @@
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-3">
         <i class="bi bi-search"></i>
-        Sorry, we couldn't find
-        <span v-if="this.getFilters.searchTerm">
-          : '{{ this.getFilters.searchTerm }}'
+        Sorry, we couldn't find:
+        <span v-if="getFilters.searchTerm">
+          '{{ getFilters.searchTerm }}'
         </span>
       </h4>
       <div v-else>
@@ -112,12 +112,16 @@ export default {
       }
     },
     filterBeerResults() {
+      // is this set page not working anymore??
       this.setCurrentPage(1)
       this.fetchBeers({ url: this.createUrl() })
     },
     handlePageChange() {
       const page = this.getPages.currentPage
-      this.$router.push({ name: 'beers', query: { page } })
+      this.$router.replace({
+        path: 'beers',
+        query: { ...this.$route.query, page },
+      })
       const limit = 100
       const offset = (page - 1) * 100
       const url = this.createUrl({ page }) + `limit=${limit}&offset=${offset}&`

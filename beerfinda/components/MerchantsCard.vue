@@ -9,7 +9,10 @@
         alt="default-beer"
       />
       <div class="card-body pt-2">
-        <div>Need to add a fetch to get merchant by id {{merchant.merchant_id}} so we can display merchant name</div>
+        <div>
+          Need to add a fetch to get merchant by id
+          {{ merchant.merchant_id }} so we can display merchant name
+        </div>
         <div>{{ merchant.title }}</div>
         <div class="text-primary">{{ priceToString(merchant.price) }}</div>
       </div>
@@ -31,14 +34,12 @@ export default {
   props: ['merchant'],
   data() {
     return {
-      image: this.imageUrl()
+      image: this.imageUrl(),
     }
   },
   methods: {
     imageUrl() {
-      console.log(this.merchant)
       if (this.merchant.image_link) {
-        // what to do with this array? carousel?
         return `${this.merchant.image_pre_link}${this.merchant.image_link}`
       }
       return 'index.png'

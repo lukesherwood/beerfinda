@@ -17,9 +17,9 @@
           <div class="dropdown-item">
             <label :for="type" class="w-100">{{ type }} </label>
             <input
-              class="pull-right"
               :id="type"
               v-model="beerTypeKeywords"
+              class="pull-right"
               type="checkbox"
               :value="type"
             />
@@ -44,22 +44,20 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <span v-if="!this.getFilters.order">Sort</span>
-        <span v-else>{{
-          getKeyByValue(this.orderingTypes, this.getFilters.order)
-        }}</span>
+        <span v-if="!getFilters.order">Sort</span>
+        <span v-else>{{ getKeyByValue(orderingTypes, getFilters.order) }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
         <li v-for="type in Object.keys(orderingTypes)" :key="type">
-          <a @click="orderHandler(type)" href="#" class="dropdown-item">{{
+          <a href="#" class="dropdown-item" @click="orderHandler(type)">{{
             type
           }}</a>
         </li>
       </ul>
       <button
+        v-if="getFilterCount > 0 || getFilters.order"
         class="btn btn-sm btn-outline-danger clear-button"
         @click="clearHandler"
-        v-if="getFilterCount > 0 || this.getFilters.order"
       >
         Clear
         <i class="bi bi-x-circle"></i>
@@ -93,16 +91,17 @@ export default {
       get() {
         return (
           this.getFilters.filter?.find((filter) => {
-            return filter.filterType == 'type_upper__in'
+            return filter.filterType === 'type_upper__in'
           })?.keywords || []
         )
       },
       set(value) {
         // makes a clean copy of the router query
         const queries = JSON.parse(JSON.stringify(this.$route.query))
+        delete queries.page
         queries.filter = `type_upper__in=${value}`
         this.$router.push({
-          name: 'beers',
+          path: 'beers',
           query: queries,
         })
         this.setFilter({
@@ -120,11 +119,13 @@ export default {
     ...mapMutations(['setFilter', 'setOrder', 'clearFilters', 'setInStock']),
     inStockHandler() {
       // !!! ensures its a strict boolean and toggles to the opposite
+      // eslint-disable-next-line no-extra-boolean-cast
       this.setInStock(!!!this.isInStockSet)
       const queries = JSON.parse(JSON.stringify(this.$route.query))
       queries.inStock = this.isInStockSet
+      delete queries.page
       this.$router.push({
-        name: 'beers',
+        path: 'beers',
         query: queries,
       })
       this.submitHandler()
@@ -133,15 +134,16 @@ export default {
       this.setOrder(this.orderingTypes[keyword])
       const queries = JSON.parse(JSON.stringify(this.$route.query))
       queries.ordering = this.orderingTypes[keyword]
+      delete queries.page
       this.$router.push({
-        name: 'beers',
+        path: 'beers',
         query: queries,
       })
       this.submitHandler()
     },
     clearHandler() {
       this.clearFilters()
-      this.$router.replace({ name: 'beers', query: {} })
+      this.$router.replace({ path: 'beers', query: {} })
       this.submitHandler()
     },
     submitHandler() {

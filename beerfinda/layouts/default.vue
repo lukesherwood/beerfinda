@@ -1,10 +1,10 @@
 <template>
-    <div>
+  <div>
     <header>
       <Navbar />
     </header>
     <div class="body">
-    	<Nuxt/>
+      <Nuxt />
     </div>
     <footer>
       <FooterComponent />
@@ -14,25 +14,18 @@
 
 <script>
 export default {
-  data () {
-    return {
-
-    }
+  data() {
+    return {}
   },
 
-  head () {
+  head() {
     return {
       script: [
-        { src: "/bootstrap/bootstrap.bundle.min.js", type: "text/javascript"}
-      ]
-
+        { src: '/bootstrap/bootstrap.bundle.min.js', type: 'text/javascript' },
+      ],
     }
-  }
-
-
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

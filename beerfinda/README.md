@@ -1,11 +1,8 @@
 # Beerfinda
 Todo:
-
-- add a failed fetch image to lazy load or change to another library
-- fix routing
-- go through each page and ensure that they work.
-- see if I can get amplify working again, or if there is a better way to deploy
+- page number not being reset when new filter query set
 - install a better carousel library and get that working.
+- see if I can get amplify working again, or if there is a better way to deploy
 
 ## Build Setup
 

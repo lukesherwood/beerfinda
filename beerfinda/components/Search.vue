@@ -13,14 +13,14 @@
                 placeholder="Search for beer"
               />
               <i
-                @click="handleClear"
                 v-show="keyword"
                 class="bi bi-x-circle search-clear"
+                @click="handleClear"
               ></i>
               <span class="input-group-append">
                 <button
-                  disabled
                   v-if="isLoading"
+                  disabled
                   type="submit"
                   class="btn btn-primary search-button"
                 >
@@ -60,10 +60,11 @@ export default {
         return this.getFilters.searchTerm
       },
       set(value) {
-        let queries = JSON.parse(JSON.stringify(this.$route.query))
+        const queries = JSON.parse(JSON.stringify(this.$route.query))
         queries.search = value
+        delete queries.page
         this.$router.push({
-          name: 'beers',
+          path: 'beers',
           query: queries,
         })
         this.setSearchTerm(value)
@@ -76,6 +77,9 @@ export default {
       this.debounceSearch()
     },
   },
+  created() {
+    this.debounceSearch = debounce(this.onSearch, 1000)
+  },
   methods: {
     ...mapMutations(['setSearchTerm']),
     onSearchSubmit() {
@@ -85,18 +89,15 @@ export default {
       this.$emit('search')
     },
     handleClear() {
-      let queries = JSON.parse(JSON.stringify(this.$route.query))
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
       delete queries.search
       this.$router.push({
-        name: 'beers',
+        path: 'beers',
         query: queries,
       })
       this.setSearchTerm('')
       this.$emit('search')
     },
-  },
-  created() {
-    this.debounceSearch = debounce(this.onSearch, 1000)
   },
 }
 </script>
