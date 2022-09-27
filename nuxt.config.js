@@ -66,9 +66,11 @@ export default {
     color: 'DodgerBlue',
     height: '10px',
     continuous: true,
-    duration: 3000
+    duration: 3000,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {transpile: ['vue-agile']},
+  build: { transpile: ['vue-agile'] },
+
+  target: 'static',
 }
