@@ -1,6 +1,7 @@
 # Beerfinda
 Todo:
 - see if I can get amplify working again, or if there is a better way to deploy
+- fix searchBar
 
 ## Build Setup
 

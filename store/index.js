@@ -49,7 +49,7 @@ export const mutations = {
   setFilter(state, { filterType, keyword }) {
     const newFilters = state.filters.filter
     const hasFilterType = newFilters.find((filter) => {
-      return filter.filterType == filterType
+      return filter.filterType === filterType
     })
     // if there are no filters or this is a new filterType add a new one.
     if (!newFilters.length || !hasFilterType) {
@@ -57,7 +57,7 @@ export const mutations = {
     } else {
       // if filterType and keyword is already set, then set to new values
       newFilters.map((filter) => {
-        if (filter.filterType == filterType) {
+        if (filter.filterType === filterType) {
           filter.keywords = keyword
         }
         return filter
