@@ -3,7 +3,7 @@
     <h3 class="">Featured Beers</h3>
     <Spinner v-if="isLoading" />
     <div v-else>
-      <!-- <CardCarousel :beers="getFeaturedBeers" /> -->
+      <CardCarousel :beers="getFeaturedBeers" />
       <div class="card mt-3">
         <nuxtLink
           class="btn btn-outline-primary border-0 w-100 p-3"
@@ -74,8 +74,8 @@ export default {
   },
 }
 </script>
-<style lang="scss">
-.container {
-  width: 95%;
-}
+<style lang="scss" scoped>
+  .container {
+    width: 90%;
+  }
 </style>
