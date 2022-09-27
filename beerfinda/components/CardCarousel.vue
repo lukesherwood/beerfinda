@@ -1,7 +1,7 @@
 <template>
   <agile :options="myOptions">
-    <div v-for="beer in beers" :key="beer.beer_id" class="card-wrapper">
-      <BeerCard :beer="beer" :featured="true" width="300px"/>
+    <div v-for="beer in beers" :key="beer.beer_id">
+      <BeerCard :beer="beer" :featured="true" width="300px" />
     </div>
   </agile>
 </template>
@@ -39,8 +39,6 @@ export default {
 </script>
 
 <style lang="sass">
-.card-wrapper
-//   margin: 5px 5px 0px 5px
 .agile
   margin-top: 20px
   &__actions
