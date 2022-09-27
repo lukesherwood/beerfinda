@@ -42,7 +42,9 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import MerchantsCard from './MerchantsCard.vue'
+
 export default {
   name: 'BeerPage',
   components: { MerchantsCard },
@@ -52,6 +54,11 @@ export default {
       image: this.imageUrl(),
     }
   },
+  computed: {
+    ...mapGetters({
+      imgUrl: 'imgUrl',
+    }),
+  },
   methods: {
     imageUrl() {
       if (this.beer.merchantsellsfound?.length) {
@@ -59,7 +66,10 @@ export default {
         // console.log(this.beer.merchantsellsfound)
         return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
       }
-        return 'index.png'
+      if (this.beer.image) {
+        return this.imgUrl + 'beer/' + this.beer.image
+      }
+      return 'index.png'
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {

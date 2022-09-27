@@ -49,14 +49,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      apiUrl: 'apiUrl',
+      imgUrl: 'imgUrl',
     }),
   },
-
   methods: {
     imageUrl() {
       if (this.beer.merchantsellsfound?.length) {
         return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
+      }
+      if (this.beer.image){
+        return this.imgUrl + 'beer/' + this.beer.image
       }
       return 'index.png'
     },

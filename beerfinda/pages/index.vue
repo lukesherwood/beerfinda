@@ -52,14 +52,9 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
-// import CardCarousel from '../components/CardCarousel.vue'
-import Spinner from '../components/Spinner.vue'
 export default {
   name: 'index',
-  components: {
-    // CardCarousel,
-    Spinner,
-  },
+  components: {},
   computed: {
     ...mapGetters({
       isLoading: 'isLoading',
@@ -75,7 +70,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .container {
-    width: 90%;
-  }
+.container {
+  width: 90%;
+}
 </style>
