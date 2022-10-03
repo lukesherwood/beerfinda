@@ -22,6 +22,12 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+  watchers: {
+    webpack: {
+      aggregateTimeout: 300,
+      poll: 1000,
+    },
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -63,5 +69,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {transpile: ['vue-agile']},
+  build: { transpile: ['vue-agile'], postcss: null, },
 }
