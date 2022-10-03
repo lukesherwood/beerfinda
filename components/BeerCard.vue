@@ -5,9 +5,10 @@
       <nuxt-img
         loading="lazy"
         :src="image"
-        placeholder="/index.png"
+        placeholder="Loading_icon.gif"
         class="card-img-top"
         alt="default-beer"
+        @error="$event.target.src = require('~/static/index.png')"
       />
       <div class="card-body d-flex flex-column">
         <div
@@ -55,7 +56,10 @@ export default {
 
   methods: {
     imageUrl() {
-      if (this.beer.merchantsellsfound?.length) {
+      if (
+        this.beer.merchantsellsfound?.length &&
+        this.beer.merchantsellsfound[0].image_link
+      ) {
         return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
       }
       return 'index.png'

@@ -45,7 +45,8 @@ export default {
   ],
 
   image: {
-    alias: { baseUrl: 'https://drspgoa.digifern.com/beer/img/' },
+    alias: { imgUrl: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com' },
+    domains: ['https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com'],
   },
 
   bootstrapVue: {
@@ -69,5 +70,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: { transpile: ['vue-agile'], postcss: null, },
+  build: { transpile: ['vue-agile'], postcss: null },
 }

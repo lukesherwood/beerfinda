@@ -14,5 +14,6 @@ module.exports = {
     semi: 'off',
     'trailing-comma': 'off',
     'vue/multi-word-component-names': 'off',
+    'vue/require-prop-types': 'off',
   },
 }

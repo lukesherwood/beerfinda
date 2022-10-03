@@ -13,10 +13,11 @@
         <div class="w-50 float-end">
           <nuxt-img
             loading="lazy"
-            placeholder="200"
+            placeholder="/index.png"
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
             :src="image"
+            alt="default-beer"
           />
         </div>
         <h5>{{ beer.type }}</h5>
@@ -54,12 +55,13 @@ export default {
   },
   methods: {
     imageUrl() {
-      if (this.beer.merchantsellsfound?.length) {
-        // what to do with this array? carousel?
-        // console.log(this.beer.merchantsellsfound)
+      if (
+        this.beer.merchantsellsfound?.length &&
+        this.beer.merchantsellsfound[0].image_link
+      ) {
         return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
       }
-        return 'index.png'
+      return 'index.png'
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {
