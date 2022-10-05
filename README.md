@@ -1,5 +1,6 @@
 # Beerfinda
 Todo:
+- handle redirects for user register and sign in
 - remove all component imports
 
 ## Build Setup

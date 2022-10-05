@@ -49,7 +49,12 @@
                 >
               </li>
               <li class="nav-item">
-                <nuxtLink to="/users" class="nav-link text-primary"
+                <nuxtLink to="/login" class="nav-link text-primary"
+                  >Login</nuxtLink
+                >
+              </li>
+              <li class="nav-item">
+                <nuxtLink to="/register" class="nav-link text-primary"
                   >Sign Up</nuxtLink
                 >
               </li>
