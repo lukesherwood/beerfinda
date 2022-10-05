@@ -15,16 +15,16 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 
 export default {
-  name: "Spinner",
+  name: 'Spinner',
   computed: {
     ...mapGetters({
-      isLoading: "isLoading",
+      isLoading: 'isLoading',
     }),
   },
-};
+}
 </script>
 <style lang="scss">
 .spinner-container {

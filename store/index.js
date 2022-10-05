@@ -122,6 +122,5 @@ export const getters = {
   isInStockSet: (state) => state.filters.isInStockSet,
   beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
   apiUrl: (state) => state.apiUrl,
-  imgUrl: (state) => state.imgUrl
-
+  imgUrl: (state) => state.imgUrl,
 }

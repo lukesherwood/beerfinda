@@ -42,7 +42,7 @@
       <div class="card mt-3">
         <nuxtLink
           class="btn btn-outline-primary border-0 w-100 p-3"
-          to="/users"
+          to="/register"
         >
           <h5>Sign Up</h5>
         </nuxtLink>
@@ -55,7 +55,7 @@ import { mapActions, mapGetters } from 'vuex'
 // import CardCarousel from '../components/CardCarousel.vue'
 import Spinner from '../components/Spinner.vue'
 export default {
-  name: 'index',
+  name: 'Index',
   components: {
     // CardCarousel,
     Spinner,
@@ -75,7 +75,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .container {
-    width: 90%;
-  }
+.container {
+  width: 90%;
+}
 </style>

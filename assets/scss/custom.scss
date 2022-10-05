@@ -1,13 +1,13 @@
-@import "./variables";
+@import './variables';
 @import '~/node_modules/bootstrap/scss/bootstrap.scss';
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css');
 
 .body {
   color: $primary;
   min-height: 100vh;
 }
 
-.card{
+.card {
   border: 0;
   background-color: transparent;
   border-radius: 12px;
@@ -62,5 +62,4 @@
     margin-right: 0px;
     margin-left: 0px;
   }
-  
 }

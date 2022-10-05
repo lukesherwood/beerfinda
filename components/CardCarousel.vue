@@ -1,7 +1,7 @@
 <template>
   <agile :options="myOptions">
     <div v-for="beer in beers" :key="beer.beer_id" class="card-wrapper">
-      <BeerCard :beer="beer" :featured="true" width="300px"/>
+      <BeerCard :beer="beer" :featured="true" width="300px" />
     </div>
   </agile>
 </template>
