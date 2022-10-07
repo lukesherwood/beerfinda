@@ -5,17 +5,31 @@
       "src": "nuxt.config.js",
       "use": "@nuxtjs/vercel-builder",
       "config": {
-        "serverFiles": ["package.json"]
+        "serverFiles": ["server-middleware/**"]
       }
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/sw.js",
-      "continue": true,
+      "src": "/api/contents/(?<id>[^/]+)",
+      "dest": "/api/contents/[id].js?id=$id",
+      "methods": ["GET", "OPTIONS"],
       "headers": {
-        "Cache-Control": "public, max-age=0, must-revalidate",
-        "Service-Worker-Allowed": "/"
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Content-Type"
+      }
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1.js",
+      "methods": ["GET", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     }
   ]
