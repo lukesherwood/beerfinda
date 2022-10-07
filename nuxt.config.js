@@ -40,8 +40,12 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxt/image',
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    '@nuxtjs/axios',    
+    '@nuxtjs/auth-next'
   ],
+  auth: {
+    // Options
+  },
 
   image: {
     alias: { imgUrl: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com' },
