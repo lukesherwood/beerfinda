@@ -144,3 +144,4 @@ sw.*
 .nuxt/router.js
 .nuxt/routes.json
 .nuxt/store.js
+.vercel
