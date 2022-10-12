@@ -1,9 +1,12 @@
 # Beerfinda
 
 Todo:
-
+- make registerUser route private, has to have made profile first.
+- convert all fetches to axios
+- complete config for token refresh
 - handle redirects for user register and sign in
 - remove all component imports
+- boostrap js is broken, filter dropdowns don't work
 
 ## Build Setup
 

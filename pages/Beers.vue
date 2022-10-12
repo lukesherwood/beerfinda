@@ -112,7 +112,6 @@ export default {
       }
     },
     filterBeerResults() {
-      // is this set page not working anymore??
       this.setCurrentPage(1)
       this.fetchBeers({ url: this.createUrl() })
     },

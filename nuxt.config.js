@@ -40,11 +40,55 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxt/image',
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',    
-    '@nuxtjs/auth-next'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+  axios: {
+    proxy: true,
+  },
+
+  env: {
+    baseUrl: 'https://drspgoa.digifern.com/'
+  },
+
+  proxy: {
+    '/api': 'http://localhost:3000',
+  },
   auth: {
-    // Options
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'access',
+          global: false, // This determines if the authentication token is automatically included in all custom axios requests.
+          maxAge: 1800,
+          // name: 'Token',
+        },
+        refreshToken: {
+          property: 'refresh',
+          data: 'refresh',
+          maxAge: 60 * 60 * 24 * 30,
+        },
+        user: {
+          property: false,
+        },
+        endpoints: {
+          login: {
+            url: 'https://drspgoa.digifern.com/api/token/',
+            method: 'post',
+          },
+          user: {
+            url: 'https://drspgoa.digifern.com/UserView/',
+            method: 'get',
+            withCredentials: true,
+          },
+          refresh: {
+            url: 'https://drspgoa.digifern.com/api/token/refresh/',
+            method: 'post',
+          },
+        },
+      },
+    },
   },
 
   image: {

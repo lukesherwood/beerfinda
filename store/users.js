@@ -1,7 +1,4 @@
-import axios from 'axios'
-
-const baseUrl = 'https://drspgoa.digifern.com/'
-// const headers = { Accept: 'application/json' }
+import axios from '~/plugins/axios'
 
 export const state = () => ({
   refreshToken: '',
@@ -24,18 +21,26 @@ export const mutations = {
 
 export const actions = {
   async postLogin(state, form) {
-    await axios
-      // const beers = await fetch(fetchUrl, { headers })
-      // const res = await beers.json()
-      .post(baseUrl + 'api/token/', form)
-      .then((res) => {
-        state.commit('login', res.data)
-        // redirect to sign
-      })
-      .catch((e) => {
-        console.log(e)
-        // redirect to same page, show error message if has one.
-      })
+    try {
+      await this.$auth.loginWith('local', { data: form })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  async postRegisterProfile(state, form) {
+    try {
+      await axios.post('ProfileCreate/', form)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async postRegisterUser(state, form) {
+    try {
+      await axios.post('UserCreate/', form)
+      this.$router.push('/login')
+    } catch (e) {
+      console.log(e)
+    }
   },
 }
 export const getters = {
