@@ -1,6 +1,8 @@
 # Beerfinda
 
 Todo:
+
+- check if nuxt images needs special treatment for ssr
 - make registerUser route private, has to have made profile first.
 - convert all fetches to axios
 - complete config for token refresh

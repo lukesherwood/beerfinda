@@ -10,7 +10,7 @@
         alt="default-beer"
         @error="$event.target.src = require('~/static/index.png')"
       />
-      <div class="card-body d-flex flex-column">
+      <div class="card-body d-flex flex-column pt-4">
         <div
           class="beer-category badge rounded-pill"
           :style="{ 'background-color': beerCategoryColors[beer.type_upper] }"
@@ -70,7 +70,6 @@ export default {
 <style lang="scss" scoped>
 .beer-category {
   position: absolute;
-
   top: 5px;
   left: 50%;
   transform: translate(-50%, 0);

@@ -1,6 +1,6 @@
 <template lang="">
   <div class="container">
-    <div class="row height d-flex justify-content-center align-items-center">
+    <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-10">
         <div class="search">
           <form @submit.prevent="onSearch">
@@ -109,45 +109,40 @@ body {
   font-weight: 300;
 }
 
-.height {
-  height: 10vh;
-}
-
 .search {
   box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
+  height: 6rem;
 }
 
 .search-input {
-  border-radius: 15px 0px 0 15px;
-  padding: 0px;
-  height: 38px;
-  text-indent: 40px;
-  border: 2px solid #d6d4d4;
-}
-
-.search input:focus {
-  box-shadow: none;
-  border: 2px solid $primary;
+  text-indent: 25px;
+  border-top-left-radius: 0.5rem !important;
+  border-bottom-left-radius: 0.5rem !important;
+  margin-left: -8px !important;
+  height: 4rem;
+  font-size: 1.5rem;
 }
 
 .search-icon {
   z-index: 100;
   position: absolute;
+  font-size: 1.5rem;
   top: 7px;
-  left: 8px;
   padding-right: 5px;
 }
 
 .search-clear {
   z-index: 100;
   position: absolute;
+  font-size: 1.5rem;
   top: 7px;
-  right: 180px;
+  right: 11rem;
   cursor: pointer;
 }
 
 .search-button {
-  border-radius: 0px 15px 15 0px;
   min-width: 10rem;
+  height: 100%;
+  cursor: pointer;
 }
 </style>

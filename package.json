@@ -1,5 +1,5 @@
 {
-  "name": "tester",
+  "name": "Beerfinda",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
     "bootstrap": "^5.2.1",
     "bootstrap-icons": "^1.9.1",
     "bootstrap-vue": "^2.22.0",
-    "core-js": "^3.19.3",
+    "core-js": "^3.25",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.8",
     "underscore.string": "^3.3.6",

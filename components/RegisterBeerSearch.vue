@@ -76,13 +76,8 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/variables.scss';
-body {
-  background-color: #eee;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-}
 
 .search-input {
   text-indent: 20px;
