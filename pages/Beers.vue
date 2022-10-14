@@ -6,7 +6,7 @@
     <Spinner v-if="isLoading" />
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-3">
-        <i class="bi bi-search"></i>
+        <b-icon icon="search"></b-icon>
         Sorry, we couldn't find:
         <span v-if="getFilters.searchTerm">
           '{{ getFilters.searchTerm }}'

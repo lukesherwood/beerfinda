@@ -5,18 +5,25 @@
         <div class="search">
           <form @submit.prevent="onSearch">
             <div class="input-group">
-              <i v-show="!keyword" class="bi bi-search search-icon"></i>
+              <b-icon
+                v-show="!keyword"
+                width="25px"
+                class="search-icon"
+                icon="search"
+              ></b-icon>
               <input
                 v-model="keyword"
                 class="form-control border-end-0 border search-input"
                 type="search"
                 placeholder="Search for beer"
               />
-              <i
+              <b-icon
                 v-show="keyword"
-                class="bi bi-x-circle search-clear"
+                width="25px"
+                class="search-clear"
+                icon="x-circle"
                 @click="handleClear"
-              ></i>
+              ></b-icon>
               <span class="input-group-append">
                 <button
                   v-if="isLoading"
@@ -103,15 +110,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../assets/scss/variables.scss';
-body {
-  background-color: #eee;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-}
 
 .search {
   box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
-  height: 6rem;
 }
 
 .search-input {
@@ -126,16 +127,16 @@ body {
 .search-icon {
   z-index: 100;
   position: absolute;
-  font-size: 1.5rem;
-  top: 7px;
+  font-size: 1.75rem;
+  top: 10px;
   padding-right: 5px;
 }
 
 .search-clear {
   z-index: 100;
   position: absolute;
-  font-size: 1.5rem;
-  top: 7px;
+  font-size: 1.75rem;
+  top: 10px;
   right: 11rem;
   cursor: pointer;
 }

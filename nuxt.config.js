@@ -113,5 +113,11 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: { transpile: ['vue-agile'], postcss: null },
+  build: {
+    transpile: ['vue-agile'],
+    postcss: null,
+    babel: {
+      compact: true,
+    },
+  },
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container pt-4">
     <div class="filter-buttons d-flex justify-content-evenly w-100">
       <button
         id="filterButton"
@@ -32,8 +32,8 @@
         class="btn btn-outline-primary btn-sm"
         @click="inStockHandler()"
       >
-        <i v-if="isInStockSet" class="bi bi-check2-square pe-1"></i>
-        <i v-else class="bi bi-square pe-1"></i>
+        <b-icon v-if="isInStockSet" icon="check2-square" class="pe-1"></b-icon>
+        <b-icon v-else icon="square" class="pe-1"></b-icon>
         In Stock
       </button>
 
@@ -60,7 +60,7 @@
         @click="clearHandler"
       >
         Clear
-        <i class="bi bi-x-circle"></i>
+        <b-icon icon="x-circle"></b-icon>
       </button>
       <button class="btn btn-sm btn-primary" @click="submitHandler">
         Filter

@@ -3,18 +3,25 @@
     <div class="search">
       <form @submit.prevent="onSearch">
         <div class="input-group form-group mb-3">
-          <i v-show="!keyword" class="bi bi-search search-icon"></i>
+          <b-icon
+            v-show="!keyword"
+            width="25px"
+            icon="search"
+            class="search-icon"
+          ></b-icon>
           <input
             v-model="keyword"
             class="form-control form-control-lg border-end-0 border search-input"
             type="search"
             placeholder="Search for beer"
           />
-          <i
+          <b-icon
             v-show="keyword"
-            class="bi bi-x-circle search-clear"
+            icon="x-circle"
+            class="search-clear"
+            width="25px"
             @click="handleClear"
-          ></i>
+          ></b-icon>
           <span class="input-group-append">
             <button
               v-if="isLoading"
@@ -90,7 +97,7 @@ export default {
   z-index: 100;
   position: absolute;
   font-size: 1.5rem;
-  top: 5px;
+  top: 7px;
   padding-right: 5px;
 }
 
