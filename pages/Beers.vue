@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
     <Search @search="filterBeerResults" />
-    <FilterComponent @filter="filterBeerResults" @order="filterBeerResults" />
+    <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
     <Spinner v-if="isLoading" />
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-3">
@@ -33,21 +33,9 @@
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import BeerCard from '../components/BeerCard.vue'
-import FilterComponent from '../components/BeerFilter.vue'
-import PaginationComponent from '../components/PaginationComponent.vue'
-import Search from '../components/Search.vue'
-import Spinner from '../components/Spinner.vue'
 
 export default {
   name: 'Beers',
-  components: {
-    BeerCard,
-    PaginationComponent,
-    Search,
-    Spinner,
-    FilterComponent,
-  },
   computed: {
     ...mapGetters({
       getBeers: 'getBeers',

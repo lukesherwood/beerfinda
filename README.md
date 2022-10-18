@@ -4,6 +4,7 @@ Todo:
 
 - index carousel cards are a bit funky
 - filter dropdowns a bit funky
+- remove component imports
 - make registerUser route private, has to have made profile first.
 - convert all fetches to axios
 - handle redirects for user register and sign in
