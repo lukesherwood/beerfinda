@@ -2,6 +2,8 @@
 
 Todo:
 
+- make submit of profile create form to backend
+- loading for new beer search
 - index carousel cards are a bit funky
 - filter dropdowns a bit funky
 - remove component imports

@@ -17,7 +17,7 @@
           <div class="dropdown-item">
             <label :for="type" class="w-100">{{ type }} </label>
             <input
-              :id="type"
+              :id="type"  
               v-model="beerTypeKeywords"
               class="pull-right"
               type="checkbox"

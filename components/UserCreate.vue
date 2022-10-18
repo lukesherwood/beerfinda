@@ -45,6 +45,7 @@
 
 <script>
 export default {
+  name: 'UserCreate',
   data() {
     return {
       form: {

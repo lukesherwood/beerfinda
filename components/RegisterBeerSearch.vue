@@ -46,21 +46,55 @@
         </div>
       </form>
     </div>
+    <form v-if="getBeerResults.length" @submit.prevent="submitHandler">
+      <ul
+        aria-labelledby="filterButton"
+        class="dropdown-menu beer-select"
+        :class="{ show: getBeerResults.length && keyword }"
+      >
+        <li v-for="beer in getBeerResults" :key="beer.id">
+          <div class="dropdown-item">
+            <label class="w-100">
+              <h6>{{ beer.name }}</h6>
+              {{ beer.brewer_name }}
+              <input
+                :id="beer.beer_id"
+                v-model="beersSelected"
+                class="float-end"
+                type="checkbox"
+                :value="beer.beer_id"
+              />
+            </label>
+          </div>
+        </li>
+      </ul>
+      <ul v-if="beersSelected.length">
+        <li v-for="beer in beersSelected" :key="beer.id">
+          {{ beer }}
+        </li>
+      </ul>
+      <input type="submit" value="Save" class="btn btn-primary" />
+    </form>
   </div>
 </template>
 <script>
 import { debounce } from 'lodash'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Search',
+  name: 'RegisterBeerSearch',
   data() {
     return {
       keyword: '',
+      beersSelected: [],
     }
+  },
+  fetch() {
+    this.debounceSearch = debounce(this.onSearch, 1000)
   },
   computed: {
     ...mapGetters({
-      isLoading: 'isLoading',
+      isLoading: 'isLoading', // this doesn't work yet
+      getBeerResults: 'user/getBeerResults',
     }),
   },
   watch: {
@@ -69,16 +103,17 @@ export default {
       this.debounceSearch()
     },
   },
-  created() {
-    this.debounceSearch = debounce(this.onSearch, 1000)
-  },
   methods: {
+    ...mapActions({ fetchBeerResults: 'user/fetchBeerResults' }),
     onSearch() {
       console.log(this.keyword)
-      //   this.$emit('search')
+      this.fetchBeerResults({ keyword: this.keyword })
     },
     handleClear() {
       this.keyword = ''
+    },
+    submitHandler() {
+      this.$emit('beersSave', this.beersSelected)
     },
   },
 }
@@ -114,5 +149,10 @@ export default {
   min-width: 10rem;
   height: 100%;
   cursor: pointer;
+}
+
+.beer-select {
+  max-height: 300px;
+  overflow: scroll;
 }
 </style>

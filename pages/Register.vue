@@ -18,6 +18,7 @@ import { snakeCase } from 'lodash'
 import { mapActions } from 'vuex'
 
 export default {
+  name: 'Register',
   methods: {
     ...mapActions({ postRegisterUser: 'users/postRegisterUser' }),
     handleUserCreate(userData) {

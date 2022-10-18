@@ -4,13 +4,13 @@
       <h3>Sign Up 1/2</h3>
       <h4>Create Profile</h4>
       <div class="form-group mb-3">
-        <RegisterBeerSearch />
+        <RegisterBeerSearch @beersSave="handleBeersSave" />
       </div>
 
       <div class="form-group mb-3">
         <label>Describe the type of beer that you like</label>
         <input
-          v-model="form.description"
+          v-model="description"
           type="text"
           name="description"
           class="form-control form-control-lg"
@@ -20,7 +20,7 @@
       <div class="form-group mb-3">
         <label>Email address</label>
         <input
-          v-model="form.email"
+          v-model="email"
           type="email"
           name="email"
           class="form-control form-control-lg"
@@ -38,14 +38,18 @@
 
 <script>
 export default {
+  name: 'ProfileCreate',
   data() {
     return {
-      form: {
-        beers_like: '',
-        description: '',
-        email: '',
-      },
+      beersLike: [],
+      description: '',
+      email: '',
     }
+  },
+  methods: {
+    handleBeersSave(beers) {
+      this.beersLike = beers
+    },
   },
 }
 </script>
