@@ -43,10 +43,8 @@
   </div>
 </template>
 <script>
-import MerchantsCard from './MerchantsCard.vue'
 export default {
   name: 'BeerPage',
-  components: { MerchantsCard },
   props: ['beer'],
   data() {
     return {

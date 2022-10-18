@@ -36,6 +36,21 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Beers',
+  async fetch() {
+    this.$watch(
+      () => this.$route.query,
+      () => {
+        this.setStateFromQuery()
+      },
+      { immediate: true }
+    )
+    await this.getBeerResults()
+  },
+  head() {
+    return {
+      title: `Beerfinda | Beers`,
+    }
+  },
   computed: {
     ...mapGetters({
       getBeers: 'getBeers',
@@ -45,16 +60,6 @@ export default {
       isInStockSet: 'isInStockSet',
       apiUrl: 'apiUrl',
     }),
-  },
-  created() {
-    this.$watch(
-      () => this.$route.query,
-      () => {
-        this.setStateFromQuery()
-      },
-      { immediate: true }
-    )
-    this.getBeerResults()
   },
   methods: {
     ...mapActions({ fetchBeers: 'fetchBeers' }),

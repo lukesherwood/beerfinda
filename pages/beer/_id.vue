@@ -7,14 +7,19 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import BeerPage from '../../components/BeerPage.vue'
-import Spinner from '../../components/Spinner.vue'
 export default {
   name: 'Beer',
-  components: { BeerPage, Spinner },
-  data() {
+  asyncData({ route }) {
     return {
-      id: this.$route.params.id,
+      id: route.params.id,
+    }
+  },
+  async fetch() {
+    await this.fetchBeer(this.id)
+  },
+  head() {
+    return {
+      title: `Beerfinda | Beers | ${this.getBeer.name}`,
     }
   },
   computed: {
@@ -24,9 +29,6 @@ export default {
     }),
   },
 
-  created() {
-    this.fetchBeer(this.id)
-  },
   methods: {
     ...mapActions({ fetchBeer: 'fetchBeer' }),
   },

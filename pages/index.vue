@@ -52,14 +52,8 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
-// import CardCarousel from '../components/CardCarousel.vue'
-import Spinner from '../components/Spinner.vue'
 export default {
   name: 'Index',
-  components: {
-    // CardCarousel,
-    Spinner,
-  },
   computed: {
     ...mapGetters({
       isLoading: 'isLoading',
