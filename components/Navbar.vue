@@ -6,7 +6,6 @@
           <nuxtLink to="/">
             <nuxt-img
               loading="lazy"
-              placeholder="200"
               src="/beerfinda.png"
               class="navbar-brand"
             />

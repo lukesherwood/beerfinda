@@ -17,24 +17,24 @@
         <div class="p-1">
           <nuxt-img
             loading="lazy"
-            placeholder="200"
-            src="https://drspgoa.digifern.com/img/brand/how-it-works-step-1.png"
+            placeholder="400"
+            src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png"
             alt="how-to1"
           />
         </div>
         <div class="p-1">
           <nuxt-img
             loading="lazy"
-            placeholder="200"
-            src="https://drspgoa.digifern.com/img/brand/how-it-works-step-2.png"
+            placeholder="400"
+            src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png"
             alt="how-to2"
           />
         </div>
         <div class="p-1">
           <nuxt-img
             loading="lazy"
-            placeholder="200"
-            src="https://drspgoa.digifern.com/img/brand/how-it-works-step-3.png"
+            placeholder="400"
+            src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png"
             alt="how-to3"
           />
         </div>

@@ -3,7 +3,7 @@
     <div class="card h-100 mb-3">
       <nuxt-img
         loading="lazy"
-        placeholder="200"
+        placeholder="/index.png"
         :src="image"
         class="card-img-top"
         alt="default-beer"

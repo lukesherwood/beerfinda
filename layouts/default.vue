@@ -22,6 +22,10 @@ export default {
     return {
       script: [
         { src: '/bootstrap/bootstrap.bundle.min.js', type: 'text/javascript' },
+        {
+          src: 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js',
+          type: 'text/javascript',
+        },
       ],
     }
   },
