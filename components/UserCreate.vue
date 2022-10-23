@@ -4,7 +4,7 @@
       <h3>Sign Up 2/2</h3>
       <h4>Create User</h4>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-3 pt-3">
         <label>First Name</label>
         <input
           v-model="form.firstName"

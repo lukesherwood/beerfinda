@@ -1,16 +1,17 @@
 <template>
   <div>
-    <form @submit.prevent="$emit('userCreate', form)">
+    <form @submit.prevent="$emit('profileCreate', form)">
       <h3>Sign Up 1/2</h3>
       <h4>Create Profile</h4>
-      <div class="form-group mb-3">
+      <div class="form-group mb-3 pt-3">
+        <label>Enter one or more NZ beers that you enjoy</label>
         <RegisterBeerSearch @beersSave="handleBeersSave" />
       </div>
 
       <div class="form-group mb-3">
         <label>Describe the type of beer that you like</label>
         <input
-          v-model="description"
+          v-model="form.description"
           type="text"
           name="description"
           class="form-control form-control-lg"
@@ -20,7 +21,7 @@
       <div class="form-group mb-3">
         <label>Email address</label>
         <input
-          v-model="email"
+          v-model="form.email"
           type="email"
           name="email"
           class="form-control form-control-lg"
@@ -41,14 +42,12 @@ export default {
   name: 'ProfileCreate',
   data() {
     return {
-      beersLike: [],
-      description: '',
-      email: '',
+      form: { beersLike: [], description: '', email: '' },
     }
   },
   methods: {
     handleBeersSave(beers) {
-      this.beersLike = beers
+      this.form.beersLike = beers
     },
   },
 }

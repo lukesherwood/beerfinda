@@ -2,9 +2,10 @@
 
 Todo:
 
-- make submit of profile create form to backend
+- close button or click away for search dropdown
 - loading for new beer search
-- index carousel cards are a bit funky
+- refix  labels for beer search - clicking label needs to check
+- make next button for profile create open the next page ie create user
 - filter dropdowns a bit funky
 - remove component imports
 - change created to fetch

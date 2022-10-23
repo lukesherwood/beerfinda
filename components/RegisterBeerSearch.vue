@@ -52,19 +52,18 @@
         class="dropdown-menu beer-select"
         :class="{ show: getBeerResults.length && keyword }"
       >
-        <li v-for="beer in getBeerResults" :key="beer.id">
+        <li v-for="beer in getBeerResults" :key="beer.beer_id">
           <div class="dropdown-item">
-            <label class="w-100">
-              <h6>{{ beer.name }}</h6>
-              {{ beer.brewer_name }}
-              <input
-                :id="beer.beer_id"
-                v-model="beersSelected"
-                class="float-end"
-                type="checkbox"
-                :value="beer.beer_id"
-              />
-            </label>
+            <label :for="beer.beer_id" class="w-100"> </label>
+            <h6>{{ beer.name }}</h6>
+            {{ beer.brewer_name }}
+            <input
+              :id="beer.beer_id"
+              v-model="beersSelected"
+              class="float-end"
+              type="checkbox"
+              :value="beer.beer_id"
+            />
           </div>
         </li>
       </ul>
@@ -106,7 +105,6 @@ export default {
   methods: {
     ...mapActions({ fetchBeerResults: 'user/fetchBeerResults' }),
     onSearch() {
-      console.log(this.keyword)
       this.fetchBeerResults({ keyword: this.keyword })
     },
     handleClear() {

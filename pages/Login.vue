@@ -73,7 +73,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions({ postLogin: 'users/postLogin' }),
+    ...mapActions({ postLogin: 'user/postLogin' }),
     handleSubmit() {
       this.postLogin(this.form)
     },

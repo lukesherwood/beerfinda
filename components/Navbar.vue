@@ -47,15 +47,24 @@
                   >Merchants</nuxtLink
                 >
               </li>
-              <li class="nav-item">
+              <li v-if="!$auth.loggedIn" class="nav-item">
                 <nuxtLink to="/login" class="nav-link text-primary"
                   >Login</nuxtLink
                 >
               </li>
-              <li class="nav-item">
+              <li v-if="!$auth.loggedIn" class="nav-item">
                 <nuxtLink to="/register" class="nav-link text-primary"
                   >Sign Up</nuxtLink
                 >
+              </li>
+              <li v-if="$auth.loggedIn" class="nav-item">
+                <a
+                  href="#"
+                  class="nav-link text-primary"
+                  @click="$auth.logout()"
+                >
+                  Logout
+                </a>
               </li>
             </ul>
           </div>

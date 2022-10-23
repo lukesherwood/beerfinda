@@ -60,6 +60,12 @@ export default {
     strategies: {
       local: {
         scheme: 'refresh',
+        cookie: {
+          cookie: {
+            // we check this cookie existence for loggedIn check
+            name: 'XSRF-TOKEN',
+          },
+        },
         token: {
           property: 'access',
           global: false, // This determines if the authentication token is automatically included in all custom axios requests.
@@ -88,6 +94,7 @@ export default {
             url: 'https://drspgoa.digifern.com/api/token/refresh/',
             method: 'post',
           },
+          logout: false,
         },
       },
     },

@@ -3,7 +3,11 @@
     <div class="pt-5"></div>
     <div class="inner-block">
       <div class="vue-template">
-        <ProfileCreate @profileCreate="handleProfileCreate($event)" />
+        <ProfileCreate
+          v-if="profileData"
+          :form="profileData"
+          @profileCreate="handleProfileCreate($event)"
+        />
         <UserCreate @userCreate="handleUserCreate($event)" />
         <p class="forgot-password text-right">
           Already registered?
@@ -19,15 +23,28 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'Register',
+  data() {
+    return {
+      profileData: {},
+    }
+  },
   methods: {
-    ...mapActions({ postRegisterUser: 'users/postRegisterUser' }),
+    ...mapActions({
+      postRegisterUser: 'user/postRegisterUser',
+      postRegisterProfile: 'user/postRegisterProfile',
+    }),
     handleUserCreate(userData) {
       const form = this.transformForm(userData)
-      this.postRegisterUser(form)
+      form.email = this.profileData.email
+      this.postRegisterUser(form).then((res) => {
+        this.postRegisterProfile(this.profileData).then((res) => {
+          this.$router.push('/login')
+        })
+      })
     },
     handleProfileCreate(profileData) {
       const form = this.transformForm(profileData)
-      this.postRegisterProfile(form)
+      this.profileData = form
     },
     transformForm(form) {
       const newForm = {}
