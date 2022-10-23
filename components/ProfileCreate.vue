@@ -8,7 +8,7 @@
         <RegisterBeerSearch @beersSave="handleBeersSave" />
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-3 pt-3">
         <label>Describe the type of beer that you like</label>
         <input
           v-model="form.description"
@@ -29,7 +29,11 @@
         />
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
+        <button
+          :disabled="validate()"
+          type="submit"
+          class="btn btn-primary btn-lg btn-block"
+        >
           Next
         </button>
       </div>
@@ -48,6 +52,13 @@ export default {
   methods: {
     handleBeersSave(beers) {
       this.form.beersLike = beers
+    },
+    validate() {
+      return (
+        !this.form.beersLike.length ||
+        !this.form.description ||
+        !this.form.email
+      )
     },
   },
 }

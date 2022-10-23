@@ -4,11 +4,11 @@
     <div class="inner-block">
       <div class="vue-template">
         <ProfileCreate
-          v-if="profileData"
+          v-if="!profileData"
           :form="profileData"
           @profileCreate="handleProfileCreate($event)"
         />
-        <UserCreate @userCreate="handleUserCreate($event)" />
+        <UserCreate v-if="profileData" @userCreate="handleUserCreate($event)" />
         <p class="forgot-password text-right">
           Already registered?
           <nuxtLink to="/login">Login</nuxtLink>
@@ -25,7 +25,7 @@ export default {
   name: 'Register',
   data() {
     return {
-      profileData: {},
+      profileData: undefined,
     }
   },
   methods: {

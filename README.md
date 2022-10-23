@@ -2,10 +2,8 @@
 
 Todo:
 
-- close button or click away for search dropdown
 - loading for new beer search
-- refix  labels for beer search - clicking label needs to check
-- make next button for profile create open the next page ie create user
+- notifications for things
 - filter dropdowns a bit funky
 - remove component imports
 - change created to fetch

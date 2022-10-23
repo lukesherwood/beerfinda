@@ -2,7 +2,7 @@
   <div class="container">
     <div class="search">
       <form @submit.prevent="onSearch">
-        <div class="input-group form-group mb-3">
+        <div class="input-group form-group">
           <b-icon
             v-show="!keyword"
             width="25px"
@@ -46,33 +46,47 @@
         </div>
       </form>
     </div>
-    <form v-if="getBeerResults.length" @submit.prevent="submitHandler">
+    <form @submit.prevent="submitHandler">
       <ul
+        v-if="getBeerResults.length"
         aria-labelledby="filterButton"
         class="dropdown-menu beer-select"
-        :class="{ show: getBeerResults.length && keyword }"
+        :class="{ show: keyword && getBeerResults.length && !dropdownClosed }"
       >
         <li v-for="beer in getBeerResults" :key="beer.beer_id">
           <div class="dropdown-item">
-            <label :for="beer.beer_id" class="w-100"> </label>
-            <h6>{{ beer.name }}</h6>
-            {{ beer.brewer_name }}
-            <input
-              :id="beer.beer_id"
-              v-model="beersSelected"
-              class="float-end"
-              type="checkbox"
-              :value="beer.beer_id"
-            />
+            <label class="w-100">
+              <h6>{{ beer.name }}</h6>
+              {{ beer.brewer_name }}
+              <input
+                :id="beer.beer_id"
+                v-model="beersSelected"
+                class="float-end"
+                type="checkbox"
+                :value="beer.beer_id"
+              />
+            </label>
           </div>
         </li>
       </ul>
-      <ul v-if="beersSelected.length">
-        <li v-for="beer in beersSelected" :key="beer.id">
-          {{ beer }}
-        </li>
-      </ul>
-      <input type="submit" value="Save" class="btn btn-primary" />
+      <div v-if="beersSelected.length" class="pt-3">
+        <h6>
+          Beers Selected:
+          {{ beersSelected.length }}
+          <input
+            v-if="beersSelected"
+            type="submit"
+            :value="saved && saved == beersSelected ? 'Saved' : 'Save'"
+            class="float-end"
+            :class="
+              saved && saved == beersSelected
+                ? 'btn btn-success'
+                : 'btn btn-primary'
+            "
+            :disabled="saved && saved == beersSelected"
+          />
+        </h6>
+      </div>
     </form>
   </div>
 </template>
@@ -85,6 +99,8 @@ export default {
     return {
       keyword: '',
       beersSelected: [],
+      saved: false,
+      dropdownClosed: false,
     }
   },
   fetch() {
@@ -98,9 +114,16 @@ export default {
   },
   watch: {
     keyword() {
+      this.dropdownClosed = false
       if (!this.keyword) return
       this.debounceSearch()
     },
+  },
+  mounted() {
+    document.addEventListener('click', this.close)
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.close)
   },
   methods: {
     ...mapActions({ fetchBeerResults: 'user/fetchBeerResults' }),
@@ -110,7 +133,13 @@ export default {
     handleClear() {
       this.keyword = ''
     },
+    close(e) {
+      if (!this.$el.contains(e.target)) {
+        this.dropdownClosed = true
+      }
+    },
     submitHandler() {
+      this.saved = this.beersSelected
       this.$emit('beersSave', this.beersSelected)
     },
   },
@@ -152,5 +181,7 @@ export default {
 .beer-select {
   max-height: 300px;
   overflow: scroll;
+  margin-left: -10px;
+  min-width: 340px;
 }
 </style>
