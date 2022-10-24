@@ -1,13 +1,15 @@
 # Beerfinda
 
 Todo:
+- filter dropdowns a bit funky
+- /beers direct link doesn't load any beers???
 - add hint to next for register to suggest click save if disabled
 - setup notifications and add to user sign in/out etc
-- filter dropdowns a bit funky
 - change created to fetch
 - change data to asyncData if required
 - add head titles to pages
 - make registerUser route private, has to have made profile first.
+- fix this.$refs.img error?
 
 ## Build Setup
 

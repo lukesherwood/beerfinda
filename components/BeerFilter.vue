@@ -12,17 +12,19 @@
         Filter by Type
         <span v-if="getFilterCount > 0">({{ getFilterCount }})</span>
       </button>
-      <ul class="dropdown-menu" aria-labelledby="filterButton">
+      <ul class="dropdown-menu type-filter" aria-labelledby="filterButton">
         <li v-for="type in beerTypes" :key="type">
           <div class="dropdown-item">
-            <label :for="type" class="w-100">{{ type }} </label>
-            <input
-              :id="type"  
-              v-model="beerTypeKeywords"
-              class="pull-right"
-              type="checkbox"
-              :value="type"
-            />
+            <label class="w-100"
+              >{{ type }}
+              <input
+                :id="type"
+                v-model="beerTypeKeywords"
+                class="float-end"
+                type="checkbox"
+                :value="type"
+              />
+            </label>
           </div>
         </li>
       </ul>
@@ -158,7 +160,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/variables.scss';
 
-.dropdown-menu {
+.type-filter {
   height: 200px;
   width: 210px;
   overflow-y: auto;
