@@ -103,4 +103,10 @@ export default {
 label {
   font-weight: 500;
 }
+@media only screen and (max-width: 500px) {
+  .inner-block {
+    width: 100%;
+    padding: 20px;
+  }
+}
 </style>

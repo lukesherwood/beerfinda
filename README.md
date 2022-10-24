@@ -1,18 +1,13 @@
 # Beerfinda
 
 Todo:
-
-- loading for new beer search
-- notifications for things
+- add hint to next for register to suggest click save if disabled
+- setup notifications and add to user sign in/out etc
 - filter dropdowns a bit funky
-- remove component imports
 - change created to fetch
 - change data to asyncData if required
 - add head titles to pages
 - make registerUser route private, has to have made profile first.
-- convert all fetches to axios
-- handle redirects for user register and sign in
-- remove all component imports
 
 ## Build Setup
 

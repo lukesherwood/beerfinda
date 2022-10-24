@@ -58,7 +58,6 @@ export default {
       isLoading: 'isLoading',
       getFilters: 'getFilters',
       isInStockSet: 'isInStockSet',
-      apiUrl: 'apiUrl',
     }),
   },
   methods: {
@@ -120,7 +119,7 @@ export default {
       this.fetchBeers({ url })
     },
     createUrl(page) {
-      let url = this.apiUrl + 'beer/?'
+      let url = 'beer/?'
       const query = {}
       if (page) {
         query.page = page.page

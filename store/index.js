@@ -1,11 +1,11 @@
-const baseUrl = 'https://drspgoa.digifern.com/'
-const headers = { Accept: 'application/json' }
+// const baseUrl = 'https://drspgoa.digifern.com/'
+// const headers = { Accept: 'application/json' }
 
 export const state = () => ({
   beers: [],
   featuredBeers: [],
   beer: {},
-  pages: { currentPage: 1, firstPage: baseUrl + 'beers' },
+  pages: { currentPage: 1, firstPage: 'beers' },
   // abstracting this out to its own defaultState variable seemed to cause a pointer issue when trying to clear state.
   filters: {
     searchTerm: '',
@@ -15,8 +15,8 @@ export const state = () => ({
     isInStockSet: true,
   },
   loading: false,
-  apiUrl: 'https://drspgoa.digifern.com/',
-  imgUrl: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/',
+  // apiUrl: 'https://drspgoa.digifern.com/',
+  // imgUrl: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/',
 })
 export const mutations = {
   addBeers(state, payload) {
@@ -79,9 +79,8 @@ export const mutations = {
 export const actions = {
   async fetchBeers(state, { url } = {}) {
     state.commit('setLoading', true)
-    const fetchUrl = url || baseUrl + 'beer'
-    const beers = await fetch(fetchUrl, { headers })
-    const res = await beers.json()
+    const fetchUrl = url || 'beer'
+    const res = await this.$axios.$get(fetchUrl)
     state.commit('addBeers', res.results)
     const perPage = 100
     const pages = {
@@ -95,17 +94,15 @@ export const actions = {
   },
   async fetchBeer(state, id) {
     state.commit('setLoading', true)
-    const fetchUrl = baseUrl + `beer/${id}`
-    const beer = await fetch(fetchUrl, { headers })
-    const res = await beer.json()
+    const fetchUrl = `beer/${id}`
+    const res = await this.$axios.$get(fetchUrl)
     state.commit('addBeer', res)
     state.commit('setLoading', false)
   },
   async fetchFeaturedBeers(state) {
     state.commit('setLoading', true)
-    const fetchUrl = baseUrl + 'beerfeatured'
-    const beers = await fetch(fetchUrl, { headers })
-    const res = await beers.json()
+    const fetchUrl = 'beerfeatured'
+    const res = await this.$axios.$get(fetchUrl)
     state.commit('addFeaturedBeers', res.results)
     state.commit('setLoading', false)
   },
@@ -121,6 +118,4 @@ export const getters = {
   getFilterCount: (state) => state.filters.filterCount,
   isInStockSet: (state) => state.filters.isInStockSet,
   beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
-  apiUrl: (state) => state.apiUrl,
-  imgUrl: (state) => state.imgUrl,
 }

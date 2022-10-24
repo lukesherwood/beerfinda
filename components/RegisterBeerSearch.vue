@@ -1,51 +1,49 @@
 <template lang="">
-  <div class="container">
-    <div class="search">
-      <form @submit.prevent="onSearch">
-        <div class="input-group form-group">
-          <b-icon
-            v-show="!keyword"
-            width="25px"
-            icon="search"
-            class="search-icon"
-          ></b-icon>
+  <div class="search">
+    <form @submit.prevent="onSearch">
+      <div class="input-group form-group">
+        <b-icon
+          v-show="!keyword"
+          width="25px"
+          icon="search"
+          class="search-icon"
+        ></b-icon>
+        <input
+          v-model="keyword"
+          class="form-control form-control-lg border-end-0 border search-input"
+          type="search"
+          placeholder="Search for beer"
+        />
+        <b-icon
+          v-show="keyword"
+          icon="x-circle"
+          class="search-clear"
+          width="25px"
+          @click="handleClear"
+        ></b-icon>
+        <span class="input-group-append">
+          <button
+            v-if="isLoading"
+            disabled
+            type="submit"
+            class="btn btn-primary search-button"
+          >
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Loading...
+          </button>
           <input
-            v-model="keyword"
-            class="form-control form-control-lg border-end-0 border search-input"
-            type="search"
-            placeholder="Search for beer"
+            v-else
+            type="submit"
+            value="Search"
+            class="btn btn-primary search-button"
           />
-          <b-icon
-            v-show="keyword"
-            icon="x-circle"
-            class="search-clear"
-            width="25px"
-            @click="handleClear"
-          ></b-icon>
-          <span class="input-group-append">
-            <button
-              v-if="isLoading"
-              disabled
-              type="submit"
-              class="btn btn-primary search-button"
-            >
-              <span
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-              Loading...
-            </button>
-            <input
-              v-else
-              type="submit"
-              value="Search"
-              class="btn btn-primary search-button"
-            />
-          </span>
-        </div>
-      </form>
-    </div>
+        </span>
+      </div>
+    </form>
     <form @submit.prevent="submitHandler">
       <ul
         v-if="getBeerResults.length"
@@ -108,7 +106,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isLoading: 'isLoading', // this doesn't work yet
+      isLoading: 'user/isLoading',
       getBeerResults: 'user/getBeerResults',
     }),
   },
@@ -152,7 +150,6 @@ export default {
   text-indent: 20px;
   border-top-left-radius: 0.5rem !important;
   border-bottom-left-radius: 0.5rem !important;
-  margin-left: -8px !important;
 }
 
 .search-icon {

@@ -17,14 +17,6 @@ export default {
   data() {
     return {}
   },
-
-  head() {
-    return {
-      script: [
-        { src: '/bootstrap/bootstrap.bundle.min.js', type: 'text/javascript' },
-      ],
-    }
-  },
 }
 </script>
 
