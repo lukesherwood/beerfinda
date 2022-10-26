@@ -168,16 +168,10 @@ export default {
 }
 .container {
   width: 80%;
-  padding-bottom: 15px;
 }
 .filter-buttons button {
   border-radius: 50px;
   padding: 5px 25px 5px 25px;
-}
-
-.set {
-  background: $success;
-  color: $primary;
 }
 
 @media only screen and (max-width: 500px) {

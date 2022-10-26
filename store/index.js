@@ -1,6 +1,3 @@
-// const baseUrl = 'https://drspgoa.digifern.com/'
-// const headers = { Accept: 'application/json' }
-
 export const state = () => ({
   beers: [],
   featuredBeers: [],
@@ -15,8 +12,6 @@ export const state = () => ({
     isInStockSet: true,
   },
   loading: false,
-  // apiUrl: 'https://drspgoa.digifern.com/',
-  // imgUrl: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/',
 })
 export const mutations = {
   addBeers(state, payload) {

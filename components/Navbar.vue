@@ -33,10 +33,10 @@
               </li>
               <li class="nav-item">
                 <nuxtLink
-                  to="/brewers"
+                  to="/breweries"
                   class="nav-link text-primary"
                   aria-current="page"
-                  >Brewers</nuxtLink
+                  >Breweries</nuxtLink
                 >
               </li>
               <li class="nav-item">

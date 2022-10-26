@@ -1,13 +1,27 @@
 <template>
   <agile :options="myOptions">
     <div v-for="beer in beers" :key="beer.beer_id" class="card-wrapper">
-      <BeerCard :beer="beer" :featured="true" width="300px" />
+      <Card
+        :key="beer.beer_id"
+        :title="beer.name"
+        :link="`beer/${beer.beer_id}`"
+        :image="beerImageUrl(beer)"
+      >
+        <template #text>
+          <div class="brewer-name">
+            <em>
+              {{ beer.brewer_name }}
+            </em>
+          </div>
+          <div class="badge rounded-pill bg-danger featured">Featured</div>
+        </template>
+      </Card>
     </div>
   </agile>
 </template>
 <script>
+import { beerImageUrl, beerCategoryColors } from '../helpers/beerHelpers'
 export default {
-  // eslint-disable-next-line vue/require-prop-types
   props: ['beers'],
   data() {
     return {
@@ -33,12 +47,21 @@ export default {
           },
         ],
       },
+      beerCategoryColors,
     }
+  },
+  methods: {
+    beerImageUrl,
   },
 }
 </script>
 
 <style lang="sass">
+
+.featured
+  position: absolute
+  top: 5px
+  left: 5px
 .agile
   margin-top: 20px
   &__actions

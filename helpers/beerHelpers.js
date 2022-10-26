@@ -58,6 +58,16 @@ export const priceToString = (price) => {
   })
 }
 
+export const beerImageUrl = (beer) => {
+  if (
+    beer.merchantsellsfound?.length &&
+    beer.merchantsellsfound[0].image_link
+  ) {
+    return `${beer.merchantsellsfound[0].image_pre_link}${beer.merchantsellsfound[0].image_link}`
+  }
+  return 'index.png'
+}
+
 export const brewerArray = {
   'B. Effect': 'b-effect',
   'Epic Brewing Company': 'epic-brewing-company',

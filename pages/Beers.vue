@@ -12,30 +12,58 @@
           '{{ getFilters.searchTerm }}'
         </span>
       </h4>
-      <div v-else>
-        <div
-          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+      <div
+        v-else
+        class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+      >
+        <Card
+          v-for="beer in getBeers"
+          :key="beer.beer_id"
+          :title="beer.name"
+          :link="`beer/${beer.beer_id}`"
+          :image="beerImageUrl(beer)"
         >
-          <BeerCard
-            v-for="beer in getBeers"
-            :key="beer.beer_id"
-            :beer="beer"
-          ></BeerCard>
-        </div>
-        <PaginationComponent
-          class="p-5"
-          :pages="getPages"
-          @pageChange="handlePageChange"
-        />
+          <template #badge>
+            <div
+              class="beer-category badge rounded-pill"
+              :style="{
+                'background-color': beerCategoryColors[beer.type_upper],
+              }"
+            >
+              {{ beer.type_upper }}
+            </div>
+          </template>
+          <template #text>
+            <div class="brewer-name">
+              <em>
+                {{ beer.brewer_name }}
+              </em>
+            </div>
+            <div class="beer-type">
+              <small>{{ beer.type }}</small>
+            </div>
+          </template>
+        </Card>
       </div>
+      <PaginationComponent
+        class="p-5"
+        :pages="getPages"
+        @pageChange="handlePageChange"
+      />
     </div>
   </div>
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { beerCategoryColors, beerImageUrl } from '../helpers/beerHelpers.js'
 
 export default {
   name: 'Beers',
+  data() {
+    return {
+      beerCategoryColors,
+    }
+  },
   head() {
     return {
       title: `Beerfinda | Beers`,
@@ -69,6 +97,7 @@ export default {
       'setFilter',
       'setSearchTerm',
     ]),
+    beerImageUrl,
     setStateFromQuery() {
       const query = this.$route.query
       if (query.ordering) {
@@ -158,4 +187,12 @@ export default {
   },
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.beer-category {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
+</style>
