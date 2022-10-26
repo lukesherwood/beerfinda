@@ -3,58 +3,62 @@
     <h1 class="text-center text-primary">BEERS</h1>
     <Search @search="filterBeerResults" />
     <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
-    <Spinner v-if="isLoading" />
+    <Spinner v-if="$fetchState.pending" :loading="$fetchState.pending" />
+    <p v-else-if="$fetchState.error">
+      Error while fetching posts: {{ $fetchState.error.message }}
+    </p>
     <div v-else>
-      <h4 v-if="getBeers.length == 0" class="text-center pt-3">
+      <h4 v-if="getBeers.length == 0" class="text-center pt-5">
         <b-icon icon="search"></b-icon>
         Sorry, we couldn't find:
         <span v-if="getFilters.searchTerm">
           '{{ getFilters.searchTerm }}'
         </span>
       </h4>
-      <div
-        v-else
-        class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
-      >
-        <Card
-          v-for="beer in getBeers"
-          :key="beer.beer_id"
-          :title="beer.name"
-          :link="`beer/${beer.beer_id}`"
-          :image="beerImageUrl(beer)"
+      <div v-else>
+        <div
+          class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
         >
-          <template #badge>
-            <div
-              class="beer-category badge rounded-pill"
-              :style="{
-                'background-color': beerCategoryColors[beer.type_upper],
-              }"
-            >
-              {{ beer.type_upper }}
-            </div>
-          </template>
-          <template #text>
-            <div class="brewer-name">
-              <em>
-                {{ beer.brewer_name }}
-              </em>
-            </div>
-            <div class="beer-type">
-              <small>{{ beer.type }}</small>
-            </div>
-          </template>
-        </Card>
+          <Card
+            v-for="beer in getBeers"
+            :key="beer.beer_id"
+            :title="beer.name"
+            :link="`beer/${beer.beer_id}`"
+            :image="beerImageUrl(beer)"
+          >
+            <template #badge>
+              <div
+                class="beer-category badge rounded-pill"
+                :style="{
+                  'background-color': beerCategoryColors[beer.type_upper],
+                }"
+              >
+                {{ beer.type_upper }}
+              </div>
+            </template>
+            <template #text>
+              <div class="brewer-name">
+                <em>
+                  {{ beer.brewer_name }}
+                </em>
+              </div>
+              <div class="beer-type">
+                <small>{{ beer.type }}</small>
+              </div>
+            </template>
+          </Card>
+        </div>
+        <PaginationComponent
+          class="p-5"
+          :pages="getPages"
+          @pageChange="handlePageChange"
+        />
       </div>
-      <PaginationComponent
-        class="p-5"
-        :pages="getPages"
-        @pageChange="handlePageChange"
-      />
     </div>
   </div>
 </template>
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { beerCategoryColors, beerImageUrl } from '../helpers/beerHelpers.js'
 
 export default {
@@ -64,6 +68,22 @@ export default {
       beerCategoryColors,
     }
   },
+  async fetch() {
+    this.$watch(
+      () => this.$route.query,
+      () => {
+        this.setStateFromQuery()
+      },
+      { immediate: true }
+    )
+    try {
+      const page = this.getPages.currentPage
+      await this.$store.dispatch('fetchBeers', { url: this.createUrl(page) })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  fetchOnServer: true,
   head() {
     return {
       title: `Beerfinda | Beers`,
@@ -78,18 +98,8 @@ export default {
       isInStockSet: 'isInStockSet',
     }),
   },
-  created() {
-    this.$watch(
-      () => this.$route.query,
-      () => {
-        this.setStateFromQuery()
-      },
-      { immediate: true }
-    )
-    this.getBeerResults()
-  },
+
   methods: {
-    ...mapActions({ fetchBeers: 'fetchBeers' }),
     ...mapMutations([
       'setCurrentPage',
       'setOrder',
@@ -100,6 +110,9 @@ export default {
     beerImageUrl,
     setStateFromQuery() {
       const query = this.$route.query
+      if (query.page) {
+        this.setCurrentPage(query.page)
+      }
       if (query.ordering) {
         this.setOrder(query.ordering)
       }
@@ -123,18 +136,9 @@ export default {
         })
       }
     },
-    getBeerResults() {
-      const page = parseInt(this.$route.query.page)
-      if (page) {
-        this.setCurrentPage(page)
-        this.fetchBeers({ url: this.createUrl({ page }) })
-      } else {
-        this.fetchBeers({ url: this.createUrl() })
-      }
-    },
     filterBeerResults() {
       this.setCurrentPage(1)
-      this.fetchBeers({ url: this.createUrl() })
+      this.$fetch()
     },
     handlePageChange() {
       const page = this.getPages.currentPage
@@ -142,18 +146,15 @@ export default {
         path: 'beers',
         query: { ...this.$route.query, page },
       })
-      const limit = 100
-      const offset = (page - 1) * 100
-      const url = this.createUrl({ page }) + `limit=${limit}&offset=${offset}&`
-      this.fetchBeers({ url })
+      this.$fetch()
     },
     createUrl(page) {
       let url = 'beer/?'
       const query = {}
       if (page) {
-        query.page = page.page
+        query.page = page
         const limit = 100
-        const offset = (page.page - 1) * 100
+        const offset = (page - 1) * 100
         url += `limit=${limit}&offset=${offset}&`
       }
       const filters = this.getFilters.filter

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isLoading"
+    v-if="loading"
     class="d-flex justify-content-center align-items-center spinner-container"
   >
     <div class="spinner-grow" style="width: 5rem; height: 5rem" role="status">
@@ -15,15 +15,9 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'Spinner',
-  computed: {
-    ...mapGetters({
-      isLoading: 'isLoading',
-    }),
-  },
+  props: ['loading'],
 }
 </script>
 <style lang="scss">

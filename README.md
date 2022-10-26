@@ -1,9 +1,12 @@
 # Beerfinda
 
 Todo:
-- Merchants:
-  - 
+- breweries:
+  - fix search
+  - add filters
+  - id page
 - add hint to next for register to suggest click save if disabled
+- image error handler not working at all
 - setup notifications and add to user sign in/out etc
 - make registerUser route private, has to have made profile first.
 - fix this.$refs.img error?

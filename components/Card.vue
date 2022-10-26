@@ -4,10 +4,12 @@
       <nuxtLink class="stretched-link" :to="`/${link}`" />
       <nuxt-img
         loading="lazy"
-        :src="image"
+        placeholder="Loading_icon.gif"
+        quality="25"
+        :src="imageUrl"
         class="card-img-top"
         alt="card-img"
-        @error="$event.target.src = require('~/static/index.png')"
+        @error="handleError"
       />
       <div class="card-body d-flex flex-column pt-4">
         <slot name="badge" />
@@ -23,6 +25,16 @@
 export default {
   name: 'Card',
   props: ['image', 'link', 'width', 'title'],
+  data() {
+    return {
+      imageUrl: this.image,
+    }
+  },
+  methods: {
+    handleError(e) {
+      this.imageUrl = 'index.png'
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

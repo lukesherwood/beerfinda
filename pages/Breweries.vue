@@ -2,7 +2,10 @@
   <div class="container">
     <h1 class="text-center text-primary">BREWERIES</h1>
     <Search @search="filterBreweriesResults" />
-    <Spinner v-if="isLoading" />
+    <Spinner v-if="$fetchState.pending" :loading="$fetchState.pending" />
+    <p v-else-if="$fetchState.error">
+      Error while fetching posts: {{ $fetchState.error.message }}
+    </p>
     <div v-else>
       <h4 v-if="getBreweries.length == 0" class="text-center pt-3">
         <b-icon icon="search"></b-icon>
@@ -47,10 +50,24 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Breweries',
+  async fetch() {
+    this.$watch(
+      () => this.$route.query,
+      () => {
+        this.setStateFromQuery()
+      },
+      { immediate: true }
+    )
+    try {
+      await this.$store.dispatch('brewer/fetchBreweries')
+    } catch (error) {
+      console.error(error)
+    }
+  },
   head() {
     return {
       title: `Beerfinda | Breweries`,
@@ -64,27 +81,15 @@ export default {
       getFilters: 'brewer/getFilters',
     }),
   },
-  created() {
-    this.$watch(
-      () => this.$route.query,
-      () => {
-        this.setStateFromQuery()
-      },
-      { immediate: true }
-    )
-    this.getBreweriesResults()
-  },
   methods: {
-    ...mapActions({ fetchBreweries: 'brewer/fetchBreweries' }),
     ...mapMutations(['brewer/setCurrentPage', 'brewer/setSearchTerm']),
     setStateFromQuery() {
       const query = this.$route.query
       if (query.search) {
         this.setSearchTerm(query.search)
       }
-      const page = parseInt(this.$route.query.page)
-      if (page) {
-        this.setCurrentPage(page)
+      if (query.page) {
+        this.setCurrentPage(query.page)
       }
     },
     getBreweriesResults() {
@@ -92,7 +97,7 @@ export default {
     },
     filterBreweriesResults() {
       this.setCurrentPage(1)
-      this.fetchBreweries({ url: this.createUrl() })
+      this.$fetch()
     },
     handlePageChange() {
       const page = this.getPages.currentPage
@@ -100,8 +105,7 @@ export default {
         path: 'beers',
         query: { ...this.$route.query, page },
       })
-      const url = this.createUrl({ page })
-      this.fetchBreweries({ url })
+      this.$fetch()
     },
     createUrl() {
       // have this as a build query instead??
