@@ -2,7 +2,6 @@
 
 Todo:
 - breweries:
-  - add filters
   - id page
 
 - add active class to pagination current page

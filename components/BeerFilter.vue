@@ -73,7 +73,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import { debounce } from 'lodash'
-import { beerTypes, orderingTypes } from '../helpers/beerHelpers.js'
+import { beerTypes, orderingTypes } from '../helpers/beer.js'
 export default {
   name: 'BeerFilter',
   data() {

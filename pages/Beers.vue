@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
-    <SearchComponent
+    <Search
       :loading="isLoading"
       @search="handleSearch"
       @clear="handleClearResults"
@@ -55,7 +55,7 @@
             </template>
           </Card>
         </div>
-        <PaginationComponent
+        <Pagination
           class="p-5"
           :pages="getPages"
           @pageChange="handlePageChange"
@@ -66,7 +66,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-import { beerCategoryColors, beerImageUrl } from '../helpers/beerHelpers.js'
+import { beerCategoryColors, beerImageUrl } from '../helpers/beer.js'
 
 export default {
   name: 'Beers',
@@ -192,6 +192,11 @@ export default {
     createUrl() {
       let url = 'beer/?'
       const query = {}
+      const searchTerm = this.getFilters.searchTerm
+      if (searchTerm) {
+        url += `search=${searchTerm}&`
+        query.search = searchTerm
+      }
       const page = this.getPages.currentPage
       if (page > 1) {
         query.page = page
@@ -201,7 +206,6 @@ export default {
       }
       const filters = this.getFilters.filter
       const order = this.getFilters.order
-      const searchTerm = this.getFilters.searchTerm
       const isInStockSet = this.isInStockSet
       if (filters.length) {
         filters.forEach((filter) => {
@@ -220,10 +224,6 @@ export default {
       }
       if (isInStockSet === true) {
         url += `merchantsellsfound__isnull=${!isInStockSet}&`
-      }
-      if (searchTerm) {
-        url += `search=${searchTerm}&`
-        query.search = searchTerm
       }
       return url
     },

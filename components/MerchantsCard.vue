@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { priceToString } from '../helpers/beerHelpers.js'
+import { priceToString } from '../helpers/beer.js'
 export default {
   // eslint-disable-next-line vue/require-prop-types
   props: ['merchant'],

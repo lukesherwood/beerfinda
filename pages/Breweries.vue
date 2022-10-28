@@ -1,12 +1,20 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BREWERIES</h1>
-    <SearchComponent
+    <Search
       :loading="isLoading"
       @search="handleSearch"
       @clear="handleClearResults"
     />
-    <Spinner v-if="$fetchState.pending" :loading="$fetchState.pending || isLoading" />
+    <FilterComponent
+      :ordering="orderingTypes"
+      @filter="filterBreweriesResults"
+      @clear="handleClearFilter"
+    />
+    <Spinner
+      v-if="$fetchState.pending"
+      :loading="$fetchState.pending || isLoading"
+    />
     <p v-else-if="$fetchState.error">
       Error while fetching posts: {{ $fetchState.error.message }}
     </p>
@@ -46,7 +54,7 @@
           </template>
         </Card>
       </div>
-      <PaginationComponent
+      <Pagination
         class="p-5"
         :pages="getPages"
         @pageChange="handlePageChange"
@@ -56,9 +64,14 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-
+import { orderingTypes } from '../helpers/brewery'
 export default {
   name: 'Breweries',
+  data() {
+    return {
+      orderingTypes,
+    }
+  },
   async fetch() {
     this.$watch(
       () => this.$route.query,
@@ -92,6 +105,7 @@ export default {
     ...mapMutations({
       setCurrentPage: 'brewer/setCurrentPage',
       setSearchTerm: 'brewer/setSearchTerm',
+      setOrder: 'brewer/setOrder',
     }),
     ...mapActions({
       fetchBreweries: 'brewer/fetchBreweries',
@@ -105,9 +119,20 @@ export default {
         // need to convert from string because pagination component needs ints for correct calculations
         this.setCurrentPage(parseInt(query.page))
       }
+      if (query.ordering) {
+        this.setOrder(query.ordering)
+      }
     },
-    filterBreweriesResults() {
+    filterBreweriesResults(filters) {
       this.setCurrentPage(1)
+      this.setOrder(filters.order)
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      queries.ordering = filters.order
+      delete queries.page
+      this.$router.push({
+        path: 'breweries',
+        query: queries,
+      })
       this.fetchBreweries({
         url: this.createUrl(),
       })
@@ -139,6 +164,20 @@ export default {
         url: '/brewer',
       })
     },
+    handleClearFilter() {
+      this.setCurrentPage(1)
+      this.setOrder('')
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      delete queries.ordering
+      delete queries.page
+      this.$router.push({
+        path: 'breweries',
+        query: queries,
+      })
+      this.fetchBreweries({
+        url: this.createUrl(),
+      })
+    },
     handlePageChange(page) {
       this.setCurrentPage(page)
       this.$router.replace({
@@ -153,6 +192,11 @@ export default {
       // have this as a build query instead??
       let url = 'brewer/?'
       const query = {}
+      const searchTerm = this.getFilters.searchTerm
+      if (searchTerm) {
+        url += `search=${searchTerm}&`
+        query.search = searchTerm
+      }
       const page = this.getPages.currentPage
       if (page > 1) {
         query.page = page
@@ -160,10 +204,10 @@ export default {
         const offset = (page - 1) * 100
         url += `limit=${limit}&offset=${offset}&`
       }
-      const searchTerm = this.getFilters.searchTerm
-      if (searchTerm) {
-        url += `search=${searchTerm}&`
-        query.search = searchTerm
+      const order = this.getFilters.order
+      if (order) {
+        url += `ordering=${order}&`
+        query.ordering = order
       }
       return url
     },

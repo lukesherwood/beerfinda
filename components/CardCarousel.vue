@@ -20,7 +20,7 @@
   </agile>
 </template>
 <script>
-import { beerImageUrl, beerCategoryColors } from '../helpers/beerHelpers'
+import { beerImageUrl, beerCategoryColors } from '../helpers/beer'
 export default {
   props: ['beers'],
   data() {
