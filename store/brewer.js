@@ -5,7 +5,7 @@ export const state = () => ({
   loading: false,
   filters: {
     searchTerm: '',
-    order: ''
+    order: '',
   },
 })
 
@@ -28,9 +28,9 @@ export const mutations = {
   setSearchTerm(state, payload) {
     state.filters.searchTerm = payload
   },
-  setOrder(state, payload){
+  setOrder(state, payload) {
     state.filters.order = payload
-  }
+  },
 }
 export const actions = {
   async fetchBreweries(state, { url } = {}) {

@@ -33,7 +33,7 @@
         <Card
           v-for="brewer in getBreweries"
           :key="brewer.brewer_id"
-          :link="`brewer/${brewer.brewer_id}`"
+          :link="`brewer/${brewer.link}`"
           :title="brewer.name"
           image="index.png"
         >
