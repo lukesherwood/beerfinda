@@ -72,16 +72,12 @@
   </nav>
 </template>
 <script>
-import { mapMutations } from 'vuex'
 export default {
   name: 'Pagination',
-  // eslint-disable-next-line vue/require-prop-types
   props: ['pages'],
   methods: {
-    ...mapMutations(['setCurrentPage']),
     handler(page) {
-      this.setCurrentPage(page)
-      this.$emit('pageChange')
+      this.$emit('pageChange', page)
     },
   },
 }

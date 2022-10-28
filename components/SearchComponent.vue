@@ -15,7 +15,7 @@
                 v-model="keyword"
                 class="form-control border-end-0 border search-input"
                 type="search"
-                placeholder="Search for beer"
+                placeholder="Search"
               />
               <b-icon
                 v-show="keyword"
@@ -26,7 +26,7 @@
               ></b-icon>
               <span class="input-group-append">
                 <button
-                  v-if="isLoading"
+                  v-if="loading"
                   disabled
                   type="submit"
                   class="btn btn-primary search-button"
@@ -54,29 +54,13 @@
 </template>
 <script>
 import { debounce } from 'lodash'
-import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Search',
-  computed: {
-    ...mapGetters({
-      isLoading: 'isLoading',
-      getFilters: 'getFilters',
-    }),
-    keyword: {
-      get() {
-        return this.getFilters.searchTerm
-      },
-      set(value) {
-        const queries = JSON.parse(JSON.stringify(this.$route.query))
-        queries.search = value
-        delete queries.page
-        this.$router.push({
-          path: 'beers',
-          query: queries,
-        })
-        this.setSearchTerm(value)
-      },
-    },
+  props: ['loading'],
+  data() {
+    return {
+      keyword: '',
+    }
   },
   watch: {
     keyword() {
@@ -88,22 +72,12 @@ export default {
     this.debounceSearch = debounce(this.onSearch, 1000)
   },
   methods: {
-    ...mapMutations(['setSearchTerm']),
-    onSearchSubmit() {
-      this.$emit('search')
-    },
     onSearch() {
-      this.$emit('search')
+      this.$emit('search', this.keyword)
     },
     handleClear() {
-      const queries = JSON.parse(JSON.stringify(this.$route.query))
-      delete queries.search
-      this.$router.push({
-        path: 'beers',
-        query: queries,
-      })
-      this.setSearchTerm('')
-      this.$emit('search')
+      this.keyword = ''
+      this.$emit('clear')
     },
   },
 }

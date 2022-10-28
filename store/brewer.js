@@ -24,16 +24,18 @@ export const mutations = {
   setCurrentPage(state, payload) {
     state.pages.currentPage = payload
   },
+  setSearchTerm(state, payload) {
+    state.filters.searchTerm = payload
+  },
 }
 export const actions = {
-  async fetchBreweries(state) {
+  async fetchBreweries(state, { url } = {}) {
     state.commit('setLoading', true)
-    const res = await this.$axios.$get('brewer')
+    const fetchUrl = url || 'brewer'
+    const res = await this.$axios.$get(fetchUrl)
     state.commit('addBreweries', res.results)
     const perPage = 100
     const pages = {
-      loading: false,
-
       perPage,
       nextPage: res.next,
       previousPage: res.previous,

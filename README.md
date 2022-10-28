@@ -2,9 +2,13 @@
 
 Todo:
 - breweries:
-  - fix search
   - add filters
   - id page
+
+- add active class to pagination current page
+- add current search term to display in search component if set by query
+- beer search/pages a tiny bit wonky?? it kinda gets stuck loading
+- convert create url to query builder
 - add hint to next for register to suggest click save if disabled
 - image error handler not working at all
 - setup notifications and add to user sign in/out etc

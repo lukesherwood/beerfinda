@@ -1,9 +1,16 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BEERS</h1>
-    <Search @search="filterBeerResults" />
+    <SearchComponent
+      :loading="isLoading"
+      @search="handleSearch"
+      @clear="handleClearResults"
+    />
     <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
-    <Spinner v-if="$fetchState.pending" :loading="$fetchState.pending" />
+    <Spinner
+      v-if="$fetchState.pending || isLoading"
+      :loading="$fetchState.pending || isLoading"
+    />
     <p v-else-if="$fetchState.error">
       Error while fetching posts: {{ $fetchState.error.message }}
     </p>
@@ -58,7 +65,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { beerCategoryColors, beerImageUrl } from '../helpers/beerHelpers.js'
 
 export default {
@@ -77,8 +84,7 @@ export default {
       { immediate: true }
     )
     try {
-      const page = this.getPages.currentPage
-      await this.$store.dispatch('fetchBeers', { url: this.createUrl(page) })
+      await this.$store.dispatch('fetchBeers', { url: this.createUrl() })
     } catch (error) {
       console.error(error)
     }
@@ -107,11 +113,15 @@ export default {
       'setFilter',
       'setSearchTerm',
     ]),
+    ...mapActions({
+      fetchBeers: 'fetchBeers',
+    }),
     beerImageUrl,
     setStateFromQuery() {
       const query = this.$route.query
       if (query.page) {
-        this.setCurrentPage(query.page)
+        // need to convert from string because pagination component needs ints for correct calculations
+        this.setCurrentPage(parseInt(query.page))
       }
       if (query.ordering) {
         this.setOrder(query.ordering)
@@ -138,20 +148,52 @@ export default {
     },
     filterBeerResults() {
       this.setCurrentPage(1)
-      this.$fetch()
+      this.fetchBeers({
+        url: this.createUrl(),
+      })
     },
-    handlePageChange() {
-      const page = this.getPages.currentPage
+    handleSearch(keyword) {
+      this.setSearchTerm(keyword)
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      queries.search = keyword
+      delete queries.page
+      this.$router.push({
+        path: 'beers',
+        query: queries,
+      })
+      this.fetchBeers({
+        url: this.createUrl(),
+      })
+    },
+    handleClearResults() {
+      this.setCurrentPage(1)
+      this.setSearchTerm('')
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      delete queries.search
+      delete queries.page
+      this.$router.push({
+        path: 'beers',
+        query: queries,
+      })
+      this.fetchBeers({
+        url: this.createUrl(),
+      })
+    },
+    handlePageChange(page) {
+      this.setCurrentPage(page)
       this.$router.replace({
         path: 'beers',
         query: { ...this.$route.query, page },
       })
-      this.$fetch()
+      this.fetchBeers({
+        url: this.createUrl(),
+      })
     },
-    createUrl(page) {
+    createUrl() {
       let url = 'beer/?'
       const query = {}
-      if (page) {
+      const page = this.getPages.currentPage
+      if (page > 1) {
         query.page = page
         const limit = 100
         const offset = (page - 1) * 100
