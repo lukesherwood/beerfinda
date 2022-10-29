@@ -1,9 +1,9 @@
 # Beerfinda
 
 Todo:
-- breweries:
-  - id page
 
+- fix featured page to use the new nuxt way of doing
+- then fix card carousel
 - add active class to pagination current page
 - add current search term to display in search component if set by query
 - beer search/pages a tiny bit wonky?? it kinda gets stuck loading

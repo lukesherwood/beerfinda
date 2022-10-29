@@ -1,6 +1,6 @@
 export const state = () => ({
-  breweries: [],
-  brewer: {},
+  merchants: [],
+  merchant: {},
   pages: { currentPage: 1 },
   loading: false,
   filters: {
@@ -10,14 +10,14 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addBreweries(state, payload) {
-    state.breweries = payload
+  addMerchants(state, payload) {
+    state.merchants = payload
   },
   setLoading(state, payload) {
     state.loading = payload
   },
-  addBrewer(state, payload) {
-    state.brewer = payload
+  addMerchant(state, payload) {
+    state.merchant = payload
   },
   setupPages(state, payload) {
     state.pages = { ...state.pages, ...payload }
@@ -33,11 +33,11 @@ export const mutations = {
   },
 }
 export const actions = {
-  async fetchBreweries(state, { url } = {}) {
+  async fetchMerchants(state, { url } = {}) {
     state.commit('setLoading', true)
-    const fetchUrl = url || 'brewer'
+    const fetchUrl = url || 'merchant'
     const res = await this.$axios.$get(fetchUrl)
-    state.commit('addBreweries', res.results)
+    state.commit('addMerchants', res.results)
     const perPage = 100
     const pages = {
       perPage,
@@ -48,19 +48,19 @@ export const actions = {
     state.commit('setupPages', pages)
     state.commit('setLoading', false)
   },
-  async fetchBrewer(state, slug) {
+  async fetchMerchant(state, slug) {
     state.commit('setLoading', true)
-    const fetchUrl = `brewer/${slug}`
+    const fetchUrl = `merchant/${slug}`
     const res = await this.$axios.$get(fetchUrl)
-    state.commit('addBrewer', res)
+    state.commit('addMerchant', res)
     state.commit('setLoading', false)
   },
 }
 
 export const getters = {
-  getBreweries: (state) => state.breweries,
+  getMerchants: (state) => state.merchants,
   isLoading: (state) => state.loading,
-  getBrewer: (state) => state.brewer,
+  getMerchant: (state) => state.merchant,
   getFilters: (state) => state.filters,
   getPages: (state) => state.pages,
 }

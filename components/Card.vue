@@ -1,7 +1,7 @@
 <template>
   <div class="col">
-    <div class="card h-100 mb-3" :style="{ width: width }">
-      <nuxtLink class="stretched-link" :to="`/${link}`" />
+    <div class="card h-100" :style="{ width: width }">
+      <nuxtLink v-if="link" class="stretched-link" :to="`/${link}`" />
       <nuxt-img
         loading="lazy"
         placeholder="Loading_icon.gif"
@@ -11,12 +11,15 @@
         alt="card-img"
         @error="handleError"
       />
-      <div class="card-body d-flex flex-column pt-4">
+      <div class="card-body pt-3">
         <slot name="badge" />
         <h5 class="card-title">{{ title }}</h5>
         <div class="card-text">
           <slot name="text" />
         </div>
+      </div>
+      <div v-if="hasFooterSlot()" class="card-footer">
+        <slot name="footer" />
       </div>
     </div>
   </div>
@@ -34,12 +37,15 @@ export default {
     handleError(e) {
       this.imageUrl = 'index.png'
     },
+    hasFooterSlot() {
+      return !!this.$slots.footer
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
 .card img {
   object-fit: contain;
-  height: 30rem;
+  height: 25rem;
 }
 </style>

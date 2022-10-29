@@ -30,32 +30,32 @@
           {{ brewer.type }}
         </div>
         <div>Beers: {{ brewer.numberbeers }}</div>
-        <h4>Contact</h4>
         <div>
-          <div class="float-start p-2" v-if="brewer.email">
+          <h4>Contact</h4>
+          <div v-if="brewer.email" class="float-start p-2">
             <a :href="brewer.email"> <b-icon icon="envelope"></b-icon> </a>
           </div>
-          <div class="float-start p-2" v-if="brewer.twitter">
+          <div v-if="brewer.twitter" class="float-start p-2">
             <a :href="brewer.twitter" target="_blank">
               <b-icon icon="twitter"></b-icon>
             </a>
           </div>
-          <div class="float-start p-2" v-if="brewer.facebook">
+          <div v-if="brewer.facebook" class="float-start p-2">
             <a :href="brewer.facebook" target="_blank">
               <b-icon icon="facebook"></b-icon>
             </a>
           </div>
-          <div class="float-start p-2" v-if="brewer.instagram" target="_blank">
+          <div v-if="brewer.instagram" class="float-start p-2" target="_blank">
             <a :href="brewer.instagram" target="_blank">
               <b-icon icon="instagram"></b-icon>
             </a>
           </div>
-          <div class="float-start p-2">
+          <div v-if="brewer.phone" class="float-start p-2">
             <a :href="'tel:' + brewer.phone">
               <b-icon icon="telephone"></b-icon
             ></a>
           </div>
-          <div class="float-start p-2">
+          <div v-if="brewer.address" class="float-start p-2">
             <b-icon icon="mailbox2"></b-icon>
             {{ brewer.address }}
           </div>
