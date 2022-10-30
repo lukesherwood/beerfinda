@@ -76,4 +76,12 @@
 <script>
 export default {}
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+li {
+  font-family: 'Michroma';
+  word-spacing: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-left: 20px;
+}
+</style>

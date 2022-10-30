@@ -2,8 +2,8 @@
 
 Todo:
 
-- fix featured page to use the new nuxt way of doing
-- then fix card carousel
+- static pages
+- fix merchant links in beerPage
 - add active class to pagination current page
 - add current search term to display in search component if set by query
 - beer search/pages a tiny bit wonky?? it kinda gets stuck loading
@@ -13,6 +13,18 @@ Todo:
 - setup notifications and add to user sign in/out etc
 - make registerUser route private, has to have made profile first.
 - fix this.$refs.img error?
+
+
+new arrivals beer slider to be carousel of cards
+like this example 
+https://www.pinterest.nz/pin/659284832943300607/
+
+Using this Card at the top of the examples here
+https://demos.creative-tim.com/paper-kit-react/?_ga=2.232348186.443500910.1640640466-1720198016.1640163227#/documentation/card
+
+
+
+
 
 t## Build Setup
 

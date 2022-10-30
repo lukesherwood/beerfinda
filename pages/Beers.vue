@@ -1,11 +1,12 @@
 <template>
   <div class="container">
-    <h1 class="text-center text-primary">BEERS</h1>
-    <Search
-      :loading="isLoading"
-      @search="handleSearch"
-      @clear="handleClearResults"
-    />
+    <Banner text="Search for Beers">
+      <Search
+        :loading="isLoading"
+        @search="handleSearch"
+        @clear="handleClearResults"
+      />
+    </Banner>
     <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
     <Spinner
       v-if="$fetchState.pending || isLoading"

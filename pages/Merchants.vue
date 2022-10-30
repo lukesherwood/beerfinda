@@ -1,11 +1,12 @@
 <template>
   <div class="container">
-    <h1 class="text-center text-primary">MERCHANTS</h1>
-    <Search
-      :loading="isLoading"
-      @search="handleSearch"
-      @clear="handleClearResults"
-    />
+    <Banner text="Search for Merchants">
+      <Search
+        :loading="isLoading"
+        @search="handleSearch"
+        @clear="handleClearResults"
+      />
+    </Banner>
     <FilterComponent
       :ordering="orderingTypes"
       @filter="filterMerchantsResults"

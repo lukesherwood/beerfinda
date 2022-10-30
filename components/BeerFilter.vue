@@ -4,7 +4,7 @@
       <button
         id="filterButton"
         type="button"
-        class="btn btn-outline-primary dropdown-toggle btn-sm"
+        class="btn btn-outline-primary dropdown-toggle btn-lg"
         data-bs-toggle="dropdown"
         data-bs-auto-close="outside"
         aria-expanded="false"
@@ -31,7 +31,7 @@
 
       <button
         type="button"
-        class="btn btn-outline-primary btn-sm"
+        class="btn btn-outline-primary btn-lg"
         @click="inStockHandler()"
       >
         <b-icon v-if="isInStockSet" icon="check2-square" class="pe-1"></b-icon>
@@ -42,7 +42,7 @@
       <button
         id="orderButton"
         type="button"
-        class="btn btn-outline-primary dropdown-toggle btn-sm"
+        class="btn btn-outline-primary dropdown-toggle btn-lg"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -58,13 +58,13 @@
       </ul>
       <button
         v-if="getFilterCount > 0 || getFilters.order"
-        class="btn btn-sm btn-outline-danger clear-button"
+        class="btn btn-lg btn-outline-danger clear-button"
         @click="clearHandler"
       >
         Clear
         <b-icon icon="x-circle"></b-icon>
       </button>
-      <button class="btn btn-sm btn-primary" @click="submitHandler">
+      <button class="btn btn-lg btn-primary" @click="submitHandler">
         Filter
       </button>
     </div>

@@ -6,6 +6,7 @@
         :title="beer.name"
         :link="`beer/${beer.beer_id}`"
         :image="beerImageUrl(beer)"
+        width="350px"
       >
         <template #text>
           <div class="brewer-name">
@@ -64,8 +65,9 @@ export default {
   left: 5px
 .agile
   margin-top: 20px
-  &__actions
-    margin-top: 20px
+  &__list
+    padding-top: 10px
+    padding-bottom: 10px
   &__nav-button
     background: transparent
     border: none

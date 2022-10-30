@@ -1,6 +1,6 @@
 <template>
   <main class="container text-center">
-    <h3 class="">Featured Beers</h3>
+    <Banner text="Featured Beers"> </Banner>
     <Spinner v-if="isLoading" />
     <div v-else>
       <CardCarousel :beers="getFeaturedBeers" />
@@ -51,20 +51,21 @@
   </main>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Index',
+  async fetch() {
+    try {
+      await this.$store.dispatch('fetchFeaturedBeers')
+    } catch (error) {
+      console.error(error)
+    }
+  },
   computed: {
     ...mapGetters({
       isLoading: 'isLoading',
       getFeaturedBeers: 'getFeaturedBeers',
     }),
-  },
-  created() {
-    this.fetchFeaturedBeers()
-  },
-  methods: {
-    ...mapActions({ fetchFeaturedBeers: 'fetchFeaturedBeers' }),
   },
 }
 </script>
