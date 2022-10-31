@@ -6,17 +6,12 @@
       >
     </li>
     <li class="nav-item">
-      <nuxtLink to="/blog" class="nav-link text-primary" aria-current="page"
-        >Blog</nuxtLink
-      >
-    </li>
-    <li class="nav-item">
-      <nuxtLink to="/brewers" class="nav-link text-primary" aria-current="page"
+      <nuxtLink to="/legal" class="nav-link text-primary" aria-current="page"
         >Legal</nuxtLink
       >
     </li>
     <li class="nav-item">
-      <nuxtLink to="/brewers" class="nav-link text-primary" aria-current="page"
+      <nuxtLink to="/contact" class="nav-link text-primary" aria-current="page"
         >Contact</nuxtLink
       >
     </li>
@@ -25,9 +20,17 @@
 <script>
 export default {}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .container-fluid-nav div {
   display: flex;
   justify-content: space-around;
+}
+
+li {
+  font-family: 'Michroma';
+  word-spacing: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-left: 20px;
 }
 </style>

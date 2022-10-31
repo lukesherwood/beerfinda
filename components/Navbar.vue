@@ -76,7 +76,7 @@
 <script>
 export default {}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 li {
   font-family: 'Michroma';
   word-spacing: 5px;

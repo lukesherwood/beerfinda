@@ -30,7 +30,7 @@
       </li>
       <li class="page-item active">
         <a
-          class="page-link disabled"
+          class="page-link"
           href="#"
           @click="handler(pages.currentPage)"
           >{{ pages.currentPage }}</a
