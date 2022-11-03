@@ -3,7 +3,7 @@
 Todo:
 
 - add banner to id pages
-- fix merchant links in beerPage
+- extract beer state to own store
 - add current search term to display in search component if set by query
 - beer search/pages a tiny bit wonky?? it kinda gets stuck loading
 - convert create url to query builder

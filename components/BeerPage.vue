@@ -16,7 +16,7 @@
             placeholder="/index.png"
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
-            :src="image"
+            :src="beerImageUrl(beer)"
             alt="default-beer"
           />
         </div>
@@ -31,11 +31,30 @@
           <div
             class="row row-cols-2 row-cols-md-2 row-cols-lg-4 gy-4 d-flex p-4"
           >
-            <MerchantsCard
+            <Card
               v-for="merchant in beer.merchantsellsfound"
               :key="merchant.merchant_id"
-              :merchant="merchant"
-            />
+              :title="merchant.title"
+              :image="merchant.image_pre_link + merchant.image_link"
+            >
+              <template #text>
+                <div>
+                  Need to add a fetch to get merchant by id
+                  {{ merchant.merchant_id }} so we can display merchant name
+                </div>
+                <div class="text-primary">
+                  {{ priceToString(merchant.price) }}
+                </div>
+              </template>
+              <template #footer>
+                <a
+                  class="btn btn-primary float-end"
+                  :href="merchant.link"
+                  target="_blank"
+                  >Buy Now</a
+                >
+              </template>
+            </Card>
           </div>
         </div>
       </div>
@@ -43,29 +62,13 @@
   </div>
 </template>
 <script>
+import { priceToString, beerImageUrl } from '../helpers/beer.js'
 export default {
   name: 'BeerPage',
   props: ['beer'],
-  data() {
-    return {
-      image: this.imageUrl(),
-    }
-  },
   methods: {
-    imageUrl() {
-      if (
-        this.beer.merchantsellsfound?.length &&
-        this.beer.merchantsellsfound[0].image_link
-      ) {
-        return `${this.beer.merchantsellsfound[0].image_pre_link}${this.beer.merchantsellsfound[0].image_link}`
-      }
-      return 'index.png'
-    },
-    formatString(string) {
-      return string.replace(/.+?[.?!](\s|$)/g, function (a) {
-        return a.charAt(0).toUpperCase() + a.slice(1)
-      })
-    },
+    priceToString,
+    beerImageUrl,
   },
 }
 </script>
