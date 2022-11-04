@@ -13,7 +13,7 @@
       :loading="$fetchState.pending || isLoading"
     />
     <p v-else-if="$fetchState.error">
-      Error while fetching posts: {{ $fetchState.error.message }}
+      Error while fetching beers: {{ $fetchState.error.message }}
     </p>
     <div v-else>
       <h4 v-if="getBeers.length == 0" class="text-center pt-5">
