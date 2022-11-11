@@ -2,14 +2,15 @@
 
 Todo:
 
-- add current search term to display in search component if set by query
+- find someone to do wireframe or design front page
+- logout message not working
+- active class for navbar
 - add banner to id pages
 - extract beer state to own store
 - beer search/pages a tiny bit wonky?? it kinda gets stuck loading
 - convert create url to query builder
 - add hint to next for register to suggest click save if disabled
 - image error handler not working at all
-- setup notifications and add to user sign in/out etc
 - fix this.$refs.img error?
 
 

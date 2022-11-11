@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export const state = () => ({
   beerResults: [],
   loading: false,
@@ -15,8 +17,18 @@ export const actions = {
   async postLogin(state, form) {
     try {
       await this.$auth.loginWith('local', { data: form })
-    } catch (err) {
-      console.log(err)
+      Vue.notify({
+        title: 'Authorization',
+        text: 'You have been logged in!',
+        type: 'success',
+      })
+    } catch (error) {
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error logging in - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`User unable to login - ${error.message}`)
     }
   },
   async fetchBeerResults(state, { keyword }) {
@@ -24,16 +36,26 @@ export const actions = {
     try {
       const res = await this.$axios.$get(`/beer/?search=${keyword}`)
       state.commit('addBeerResults', res.results)
+      state.commit('setLoading', false)
     } catch (error) {
-      console.error(error)
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error fetching beer results - ${error.message}`,
+        type: 'error',
+      })
+      state.commit('setLoading', false)
     }
-    state.commit('setLoading', false)
   },
   async postRegisterProfile(state, data) {
     try {
       await this.$axios.$post('/ProfileCreate/', data)
     } catch (error) {
-      console.error(error)
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error registering profile - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`User unable to register profile - ${error.message}`)
     }
   },
 
@@ -41,7 +63,12 @@ export const actions = {
     try {
       await this.$axios.$post('/UserCreate/', data)
     } catch (error) {
-      console.error(error)
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error registering user - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`User unable to register user - ${error.message}`)
     }
   },
 }

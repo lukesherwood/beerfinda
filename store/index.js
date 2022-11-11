@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export const state = () => ({
   beers: [],
   featuredBeers: [],
@@ -74,32 +76,62 @@ export const mutations = {
 export const actions = {
   async fetchBeers(state, { url } = {}) {
     state.commit('setLoading', true)
-    const fetchUrl = url || 'beer'
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addBeers', res.results)
-    const perPage = 100
-    const pages = {
-      perPage,
-      nextPage: res.next,
-      previousPage: res.previous,
-      totalPages: Math.ceil(res.count / perPage),
+    try {
+      const fetchUrl = url || 'beer'
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addBeers', res.results)
+      const perPage = 100
+      const pages = {
+        perPage,
+        nextPage: res.next,
+        previousPage: res.previous,
+        totalPages: Math.ceil(res.count / perPage),
+      }
+      state.commit('setupPages', pages)
+      state.commit('setLoading', false)
+    } catch (error) {
+      state.commit('setLoading', false)
+      Vue.notify({
+        title: 'Beer',
+        text: `Error fetching beers - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error('Beers not found')
     }
-    state.commit('setupPages', pages)
-    state.commit('setLoading', false)
   },
   async fetchBeer(state, id) {
     state.commit('setLoading', true)
-    const fetchUrl = `beer/${id}`
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addBeer', res)
-    state.commit('setLoading', false)
+    try {
+      const fetchUrl = `beer/${id}`
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addBeer', res)
+      state.commit('setLoading', false)
+    } catch (error) {
+      state.commit('setLoading', false)
+      Vue.notify({
+        title: 'Beer',
+        text: `Error fetching beer - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error('Beer not found')
+    }
   },
   async fetchFeaturedBeers(state) {
     state.commit('setLoading', true)
-    const fetchUrl = 'beerfeatured'
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addFeaturedBeers', res.results)
-    state.commit('setLoading', false)
+    try {
+      const fetchUrl = 'beerfeatured'
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addFeaturedBeers', res.results)
+      state.commit('setLoading', false)
+    } catch (error) {
+      state.commit('setLoading', false)
+      Vue.notify({
+        title: 'Beer',
+        text: `Error fetching featured beers - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error('Featured beers not found')
+    }
   },
 }
 

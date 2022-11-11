@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <h1 class="text-center text-primary">BREWER</h1>
-    <Spinner v-if="isLoading" />
+    <Spinner
+      v-if="$fetchState.pending || isLoading"
+      :loading="$fetchState.pending || isLoading"
+    />
+    <p v-else-if="$fetchState.error" class="alert alert-danger">
+      Error: {{ $fetchState.error.message }}
+    </p>
     <BrewerPage v-else :brewer="getBrewer" />
   </div>
 </template>

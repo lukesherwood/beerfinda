@@ -74,7 +74,17 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  methods: {
+    logout() {
+      this.$auth
+        .logout()
+        .then(() =>
+          this.$notify({ type: 'success', text: 'Logged out successfully' })
+        )
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 li {

@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export const state = () => ({
   breweries: [],
   brewer: {},
@@ -35,25 +37,45 @@ export const mutations = {
 export const actions = {
   async fetchBreweries(state, { url } = {}) {
     state.commit('setLoading', true)
-    const fetchUrl = url || 'brewer'
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addBreweries', res.results)
-    const perPage = 100
-    const pages = {
-      perPage,
-      nextPage: res.next,
-      previousPage: res.previous,
-      totalPages: Math.ceil(res.count / perPage),
+    try {
+      const fetchUrl = url || 'brewer'
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addBreweries', res.results)
+      const perPage = 100
+      const pages = {
+        perPage,
+        nextPage: res.next,
+        previousPage: res.previous,
+        totalPages: Math.ceil(res.count / perPage),
+      }
+      state.commit('setupPages', pages)
+      state.commit('setLoading', false)
+    } catch (error) {
+      state.commit('setLoading', false)
+      Vue.notify({
+        title: 'Brewer',
+        text: `Error fetching breweries - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error('Breweries not found')
     }
-    state.commit('setupPages', pages)
-    state.commit('setLoading', false)
   },
   async fetchBrewer(state, slug) {
     state.commit('setLoading', true)
-    const fetchUrl = `brewer/${slug}`
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addBrewer', res)
-    state.commit('setLoading', false)
+    try {
+      const fetchUrl = `brewers/${slug}`
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addBrewer', res)
+      state.commit('setLoading', false)
+    } catch (error) {
+      state.commit('setLoading', false)
+      Vue.notify({
+        title: 'Brewer',
+        text: `Error fetching brewer - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error('Brewer not found')
+    }
   },
 }
 

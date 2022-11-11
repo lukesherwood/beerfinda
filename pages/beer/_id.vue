@@ -5,8 +5,8 @@
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
     />
-    <p v-else-if="$fetchState.error">
-      Error while fetching beer: {{ $fetchState.error.message }}
+    <p v-else-if="$fetchState.error" class="alert alert-danger">
+      Error: {{ $fetchState.error.message }}
     </p>
     <BeerPage v-else :beer="getBeer" />
   </div>

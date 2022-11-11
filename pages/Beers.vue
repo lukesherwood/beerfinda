@@ -3,6 +3,7 @@
     <Banner text="Search for Beers">
       <Search
         :loading="isLoading"
+        :search-term="getFilters.searchTerm"
         @search="handleSearch"
         @clear="handleClearResults"
       />

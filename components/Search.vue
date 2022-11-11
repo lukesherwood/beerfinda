@@ -56,10 +56,10 @@
 import { debounce } from 'lodash'
 export default {
   name: 'Search',
-  props: ['loading'],
+  props: ['loading', 'searchTerm'],
   data() {
     return {
-      keyword: '',
+      keyword: this.searchTerm || '',
     }
   },
   watch: {

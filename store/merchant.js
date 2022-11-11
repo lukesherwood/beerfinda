@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export const state = () => ({
   merchants: [],
   merchant: {},
@@ -35,25 +37,45 @@ export const mutations = {
 export const actions = {
   async fetchMerchants(state, { url } = {}) {
     state.commit('setLoading', true)
-    const fetchUrl = url || 'merchant'
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addMerchants', res.results)
-    const perPage = 100
-    const pages = {
-      perPage,
-      nextPage: res.next,
-      previousPage: res.previous,
-      totalPages: Math.ceil(res.count / perPage),
+    try {
+      const fetchUrl = url || 'merchant'
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addMerchants', res.results)
+      const perPage = 100
+      const pages = {
+        perPage,
+        nextPage: res.next,
+        previousPage: res.previous,
+        totalPages: Math.ceil(res.count / perPage),
+      }
+      state.commit('setupPages', pages)
+      state.commit('setLoading', false)
+    } catch (error) {
+      Vue.notify({
+        title: 'Merchant',
+        text: `Error fetching merchants - ${error.message}`,
+        type: 'error',
+      })
+      state.commit('setLoading', false)
+      throw new Error('Merchants not found')
     }
-    state.commit('setupPages', pages)
-    state.commit('setLoading', false)
   },
   async fetchMerchant(state, slug) {
     state.commit('setLoading', true)
-    const fetchUrl = `merchant/${slug}`
-    const res = await this.$axios.$get(fetchUrl)
-    state.commit('addMerchant', res)
-    state.commit('setLoading', false)
+    try {
+      const fetchUrl = `merchant/${slug}`
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addMerchant', res)
+      state.commit('setLoading', false)
+    } catch (error) {
+      Vue.notify({
+        title: 'Merchant',
+        text: `Error fetching merchant - ${error.message}`,
+        type: 'error',
+      })
+      state.commit('setLoading', false)
+      throw new Error('Merchant not found')
+    }
   },
 }
 

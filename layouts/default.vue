@@ -2,6 +2,7 @@
   <div>
     <header>
       <Navbar />
+      <notifications position="top right" />
     </header>
     <div class="body">
       <Nuxt />
