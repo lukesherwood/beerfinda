@@ -63,7 +63,7 @@ export const actions = {
   async fetchBrewer(state, slug) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `brewers/${slug}`
+      const fetchUrl = `brewer/${slug}`
       const res = await this.$axios.$get(fetchUrl)
       state.commit('addBrewer', res)
       state.commit('setLoading', false)
