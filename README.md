@@ -2,7 +2,13 @@
 
 Todo:
 
-- find someone to do wireframe or design front page
+- implement design changes for index page
+- implement design changes for brewers 
+- implement design changes for brewer
+- implement design changes for beers 
+- implement design changes for beer 
+- implement design changes for merchants 
+- implement design changes for merchant
 - logout message not working
 - active class for navbar
 - add banner to id pages

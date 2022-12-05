@@ -12,7 +12,7 @@
       </p>
       <p>
         <nuxtLink
-          to="/legal/term"
+          to="/legal/terms"
           class="nav-link text-primary p-5"
           aria-current="page"
           ><h4>Terms and Conditions</h4></nuxtLink
