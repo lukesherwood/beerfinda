@@ -158,8 +158,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/scss/variables.scss';
-
 .type-filter {
   height: 200px;
   width: 210px;

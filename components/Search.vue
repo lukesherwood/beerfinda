@@ -83,7 +83,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/scss/variables.scss';
 
 .search {
   box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
