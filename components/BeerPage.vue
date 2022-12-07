@@ -61,8 +61,10 @@
     </div>
   </div>
 </template>
+
 <script>
 import { priceToString, beerImageUrl } from '../helpers/beer.js'
+
 export default {
   name: 'BeerPage',
   props: ['beer'],
@@ -72,6 +74,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
 @media only screen and (max-width: 500px) {
   .card {

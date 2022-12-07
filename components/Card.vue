@@ -1,7 +1,12 @@
 <template>
   <div class="col">
     <div class="card h-100" :style="{ width: width }">
-      <nuxtLink v-if="link" class="stretched-link" :to="`/${link}`" />
+      <nuxtLink
+        v-if="link"
+        class="stretched-link"
+        :to="`/${link}`"
+        :aria-label="`Go to ${title}`"
+      />
       <nuxt-img
         loading="lazy"
         placeholder="Loading_icon.gif"
@@ -18,12 +23,13 @@
           <slot name="text" />
         </div>
       </div>
-      <div v-if="hasFooterSlot()" class="card-footer">
+      <div v-if="hasFooterSlot" class="card-footer">
         <slot name="footer" />
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'Card',
@@ -33,16 +39,19 @@ export default {
       imageUrl: this.image,
     }
   },
-  methods: {
-    handleError(e) {
-      this.imageUrl = 'index.png'
-    },
+  computed: {
     hasFooterSlot() {
       return !!this.$slots.footer
     },
   },
+  methods: {
+    handleError(e) {
+      this.imageUrl = 'index.png'
+    },
+  },
 }
 </script>
+
 <style lang="scss" scoped>
 .card img {
   object-fit: contain;
