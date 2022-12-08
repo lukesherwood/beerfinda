@@ -40,84 +40,7 @@
         <div class="section-wrapper">
           <div class="section mt-3">
             <h2 class="pb-5">How We Work:</h2>
-            <div
-              id="carouselExampleIndicators"
-              class="carousel slide carousel-dark"
-              data-mdb-ride="carousel"
-            >
-              <div class="carousel-indicators">
-                <button
-                  type="button"
-                  data-mdb-target="#carouselExampleIndicators"
-                  data-mdb-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Slide 1"
-                ></button>
-                <button
-                  type="button"
-                  data-mdb-target="#carouselExampleIndicators"
-                  data-mdb-slide-to="1"
-                  aria-label="Slide 2"
-                ></button>
-                <button
-                  type="button"
-                  data-mdb-target="#carouselExampleIndicators"
-                  data-mdb-slide-to="2"
-                  aria-label="Slide 3"
-                ></button>
-              </div>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <nuxt-img
-                    loading="lazy"
-                    placeholder="400"
-                    src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png"
-                    alt="how-to1"
-                  />
-                </div>
-                <div class="carousel-item">
-                  <nuxt-img
-                    loading="lazy"
-                    placeholder="400"
-                    src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png"
-                    alt="how-to2"
-                  />
-                </div>
-                <div class="carousel-item">
-                  <nuxt-img
-                    loading="lazy"
-                    placeholder="400"
-                    src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png"
-                    alt="how-to3"
-                  />
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-mdb-target="#carouselExampleIndicators"
-                data-mdb-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-mdb-target="#carouselExampleIndicators"
-                data-mdb-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
+            <MDCarousel :images="howWeWorkImages" />
           </div>
         </div>
         <div class="sign-up-content">
@@ -183,6 +106,21 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Index',
+  data() {
+    return {
+      howWeWorkImages: [
+        {
+          src: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png',
+        },
+        {
+          src: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png',
+        },
+        {
+          src: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png',
+        },
+      ],
+    }
+  },
   async fetch() {
     try {
       await this.$store.dispatch('fetchFeaturedBeers')

@@ -2,6 +2,7 @@
 
 Todo:
 
+- hamburger icon missing??
 - implement design changes for brewers 
 - implement design changes for brewer
 - implement design changes for beers 
