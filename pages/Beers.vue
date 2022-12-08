@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="w-100">
     <Banner text="Search for Beers">
       <Search
         :loading="isLoading"
@@ -8,60 +8,62 @@
         @clear="handleClearResults"
       />
     </Banner>
-    <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
-    <Spinner
-      v-if="$fetchState.pending || isLoading"
-      :loading="$fetchState.pending || isLoading"
-    />
-    <p v-else-if="$fetchState.error">
-      Error while fetching beers: {{ $fetchState.error.message }}
-    </p>
-    <div v-else>
-      <h4 v-if="getBeers.length == 0" class="text-center pt-5">
-        <b-icon icon="search"></b-icon>
-        Sorry, we couldn't find:
-        <span v-if="getFilters.searchTerm">
-          '{{ getFilters.searchTerm }}'
-        </span>
-      </h4>
+    <div class="container">
+      <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
+      <Spinner
+        v-if="$fetchState.pending || isLoading"
+        :loading="$fetchState.pending || isLoading"
+      />
+      <p v-else-if="$fetchState.error">
+        Error while fetching beers: {{ $fetchState.error.message }}
+      </p>
       <div v-else>
-        <div
-          class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
-        >
-          <Card
-            v-for="beer in getBeers"
-            :key="beer.beer_id"
-            :title="beer.name"
-            :link="`beer/${beer.beer_id}`"
-            :image="beerImageUrl(beer)"
+        <h4 v-if="getBeers.length == 0" class="text-center pt-5">
+          <b-icon icon="search"></b-icon>
+          Sorry, we couldn't find:
+          <span v-if="getFilters.searchTerm">
+            '{{ getFilters.searchTerm }}'
+          </span>
+        </h4>
+        <div v-else>
+          <div
+            class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
           >
-            <template #badge>
-              <div
-                class="beer-category badge rounded-pill"
-                :style="{
-                  'background-color': beerCategoryColors[beer.type_upper],
-                }"
-              >
-                {{ beer.type_upper }}
-              </div>
-            </template>
-            <template #text>
-              <div class="brewer-name">
-                <em>
-                  {{ beer.brewer_name }}
-                </em>
-              </div>
-              <div class="beer-type">
-                <small>{{ beer.type }}</small>
-              </div>
-            </template>
-          </Card>
+            <Card
+              v-for="beer in getBeers"
+              :key="beer.beer_id"
+              :title="beer.name"
+              :link="`beer/${beer.beer_id}`"
+              :image="beerImageUrl(beer)"
+            >
+              <template #badge>
+                <div
+                  class="beer-category badge rounded-pill"
+                  :style="{
+                    'background-color': beerCategoryColors[beer.type_upper],
+                  }"
+                >
+                  {{ beer.type_upper }}
+                </div>
+              </template>
+              <template #text>
+                <div class="brewer-name">
+                  <em>
+                    {{ beer.brewer_name }}
+                  </em>
+                </div>
+                <div class="beer-type">
+                  <small>{{ beer.type }}</small>
+                </div>
+              </template>
+            </Card>
+          </div>
+          <Pagination
+            class="p-5"
+            :pages="getPages"
+            @pageChange="handlePageChange"
+          />
         </div>
-        <Pagination
-          class="p-5"
-          :pages="getPages"
-          @pageChange="handlePageChange"
-        />
       </div>
     </div>
   </div>

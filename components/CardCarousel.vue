@@ -1,12 +1,12 @@
 <template>
-  <agile :options="myOptions">
-    <div v-for="beer in beers" :key="beer.beer_id" class="card-wrapper">
+  <agile :options="myOptions" class="pb-5">
+    <div v-for="beer in beers" :key="beer.beer_id" class="card-wrapper p-5">
       <Card
         :key="beer.beer_id"
         :title="beer.name"
         :link="`beer/${beer.beer_id}`"
         :image="beerImageUrl(beer)"
-        width="350px"
+        width="300px"
       >
         <template #text>
           <div class="brewer-name">
@@ -31,15 +31,22 @@ export default {
         navButtons: false,
         responsive: [
           {
-            breakpoint: 600,
+            breakpoint: 300,
             settings: {
               slidesToShow: '1',
               dots: false,
             },
           },
+          {
+            breakpoint: 800,
+            settings: {
+              slidesToShow: '2',
+              dots: true,
+            },
+          },
 
           {
-            breakpoint: 900,
+            breakpoint: 1100,
             settings: {
               navButtons: true,
               slidesToShow: '3',

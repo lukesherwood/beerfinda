@@ -21,38 +21,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.centered {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  height: 100%;
-}
 .banner {
   background-image: linear-gradient(
-      rgba(74, 97, 99, 0.7),
-      rgba(74, 97, 99, 0.7)
+      rgba(74, 97, 99, 0.8),
+      rgba(74, 97, 99, 0.8)
     ),
     url('~static/beerWallpaper.jpg');
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(90% - 5vw));
   width: 100%;
   height: 400px;
   background-size: cover;
-}
-.centered > div:first-child {
-  margin-top: auto;
-  visibility: hidden;
-}
-.centered > div:nth-child(2) {
-  margin-top: auto;
-  visibility: hidden;
-}
-.centered > div:nth-child(3) {
-  margin-top: auto;
-  display: flex;
-}
-.centered > div:last-child {
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 h1 {

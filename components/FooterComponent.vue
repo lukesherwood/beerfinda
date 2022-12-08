@@ -1,36 +1,86 @@
 <template>
-  <ul class="nav justify-content-center navbar-light bg-light">
-    <li class="nav-item">
-      <nuxtLink to="/about" class="nav-link text-primary" aria-current="page"
-        >About</nuxtLink
+  <footer class="text-center text-lg-start bg-primary text-white">
+    <div class="container pt-4 text-center">
+      <section class="mb-4">
+        <a
+          class="btn btn-link btn-floating btn-lg text-white m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a
+          class="btn btn-link btn-floating btn-lg text-white m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a
+          class="btn btn-link btn-floating btn-lg text-white m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-google"></i
+        ></a>
+        <a
+          class="btn btn-link btn-floating btn-lg text-white m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          class="btn btn-link btn-floating btn-lg text-white m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a
+          class="btn btn-link btn-floating btn-lg text-white m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+    </div>
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <div class="row mt-3">
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <nuxtLink class="nav-link" to="/blog" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">Blog</h6></nuxtLink
+            >
+          </div>
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <nuxtLink class="nav-link" to="/about" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">About</h6></nuxtLink
+            >
+          </div>
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <nuxtLink class="nav-link" to="/legal" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">Legal</h6></nuxtLink
+            >
+          </div>
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <nuxtLink class="nav-link" to="/contact" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">Contact</h6></nuxtLink
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="text-center p-4 text-dark" style="background-color: #dcd8cf">
+      © 2022 Copyright:
+      <a class="text-reset fw-bold" href="https://beerfinda.com/"
+        >BeerFinda.com</a
       >
-    </li>
-    <li class="nav-item">
-      <nuxtLink to="/legal" class="nav-link text-primary" aria-current="page"
-        >Legal</nuxtLink
-      >
-    </li>
-    <li class="nav-item">
-      <nuxtLink to="/contact" class="nav-link text-primary" aria-current="page"
-        >Contact</nuxtLink
-      >
-    </li>
-  </ul>
+    </div>
+  </footer>
 </template>
 <script>
 export default {}
 </script>
-<style lang="scss" scoped>
-.container-fluid-nav div {
-  display: flex;
-  justify-content: space-around;
-}
-
-li {
-  font-family: 'Michroma';
-  word-spacing: 5px;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-left: 20px;
-}
-</style>
+<style lang="scss" scoped></style>

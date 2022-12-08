@@ -29,7 +29,7 @@
                   v-if="loading"
                   disabled
                   type="submit"
-                  class="btn btn-primary search-button"
+                  class="btn btn-secondary search-button"
                 >
                   <span
                     class="spinner-border spinner-border-sm"
@@ -42,7 +42,7 @@
                   v-else
                   type="submit"
                   value="Search"
-                  class="btn btn-primary search-button"
+                  class="btn btn-secondary search-button"
                 />
               </span>
             </div>

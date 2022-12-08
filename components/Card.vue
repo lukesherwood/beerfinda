@@ -57,4 +57,19 @@ export default {
   object-fit: contain;
   height: 25rem;
 }
+
+.card-body {
+  border-radius: 0 0 12px 12px;
+}
+
+.card {
+  border: 0;
+  border-radius: 12px;
+  transition: 0.3s;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 </style>

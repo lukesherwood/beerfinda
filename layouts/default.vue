@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-100">
     <header>
       <Navbar />
       <notifications position="top right" />
@@ -25,5 +25,19 @@ export default {
 @import '../assets/scss/variables.scss';
 a.nuxt-link-active {
   color: $secondary !important;
+}
+.body {
+  background: #dcd8cf;
+  margin-top: -5px;
+}
+.card {
+  background: white;
+}
+.card-body {
+  background: $primary;
+  color: $light;
+}
+.section {
+  background: $light;
 }
 </style>
