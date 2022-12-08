@@ -1,6 +1,6 @@
 <template>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
+  <nav>
+    <ul class="pagination justify-content-center pagination-lg">
       <li class="page-item" :class="{ disabled: pages.currentPage - 1 == 0 }">
         <a class="page-link" href="#" @click="handler(pages.currentPage - 1)"
           >Previous</a
@@ -29,12 +29,9 @@
         }}</a>
       </li>
       <li class="page-item active">
-        <a
-          class="page-link"
-          href="#"
-          @click="handler(pages.currentPage)"
-          >{{ pages.currentPage }}</a
-        >
+        <a class="page-link" href="#" @click="handler(pages.currentPage)">{{
+          pages.currentPage
+        }}</a>
       </li>
       <li v-if="pages.currentPage + 1 < pages.totalPages" class="page-item">
         <a class="page-link" href="#" @click="handler(pages.currentPage + 1)">{{

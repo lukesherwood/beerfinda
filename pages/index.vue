@@ -2,13 +2,9 @@
   <main class="text-center">
     <HomeBanner>
       <div class="text-start header-content">
-        <h2 class="text-white">
-          Lets get straight to the pint:
-          <br />
-          You want to find beer
-          <br />
-          We want to help
-        </h2>
+        <h1 class="text-white">Lets get straight to the pint:</h1>
+        <h5 class="text-white">You want to find beer</h5>
+        <h5 class="text-white">We want to help</h5>
         <div class="text-white pt-3 pb-3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
           tempore saepe, dignissimos quae hic error corporis facilis magnam
@@ -143,6 +139,7 @@ export default {
 }
 .header-content {
   width: 50%;
+  font-size: 1rem;
 }
 .sign-up-content {
   text-align: left;
