@@ -10,6 +10,7 @@
       <nuxt-img
         loading="lazy"
         placeholder="Loading_icon.gif"
+        format="webp"
         quality="25"
         :src="imageUrl"
         class="card-img-top"
@@ -23,6 +24,7 @@
           <slot name="text" />
         </div>
       </div>
+      <slot name="body" />
       <div v-if="hasFooterSlot" class="card-footer">
         <slot name="footer" />
       </div>

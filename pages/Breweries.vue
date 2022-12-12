@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="w-100">
     <Banner text="Search for Breweries">
       <Search
         :loading="isLoading"
@@ -8,59 +8,61 @@
         @clear="handleClearResults"
       />
     </Banner>
-    <FilterComponent
-      :ordering="orderingTypes"
-      @filter="filterBreweriesResults"
-      @clear="handleClearFilter"
-    />
-    <Spinner
-      v-if="$fetchState.pending"
-      :loading="$fetchState.pending || isLoading"
-    />
-    <p v-else-if="$fetchState.error">
-      Error while fetching posts: {{ $fetchState.error.message }}
-    </p>
-    <div v-else>
-      <h4 v-if="getBreweries.length == 0" class="text-center pt-3">
-        <b-icon icon="search"></b-icon>
-        Sorry, we couldn't find:
-        <span v-if="getFilters.searchTerm">
-          '{{ getFilters.searchTerm }}'
-        </span>
-      </h4>
-      <div
-        v-else
-        class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
-      >
-        <Card
-          v-for="brewer in getBreweries"
-          :key="brewer.brewer_id"
-          :link="`brewer/${brewer.link}`"
-          :title="brewer.name"
-          image="index.png"
-        >
-          <!-- :image="brewer.image_pre_link + brewer.image" -->
-          <template #text>
-            <div class="brewer-est">
-              <em>Est. {{ brewer.established }}</em>
-            </div>
-            <div class="brewer-location">
-              <strong>{{ brewer.location }}</strong>
-            </div>
-            <div class="brewer-type">
-              {{ brewer.type }}
-            </div>
-            <div class="brewer-beer-num">
-              <small> Number of Beers: {{ brewer.numberbeers }}</small>
-            </div>
-          </template>
-        </Card>
-      </div>
-      <Pagination
-        class="p-5"
-        :pages="getPages"
-        @pageChange="handlePageChange"
+    <div class="container">
+      <FilterComponent
+        :ordering="orderingTypes"
+        @filter="filterBreweriesResults"
+        @clear="handleClearFilter"
       />
+      <Spinner
+        v-if="$fetchState.pending"
+        :loading="$fetchState.pending || isLoading"
+      />
+      <p v-else-if="$fetchState.error">
+        Error while fetching posts: {{ $fetchState.error.message }}
+      </p>
+      <div v-else>
+        <h4 v-if="getBreweries.length == 0" class="text-center pt-3">
+          <b-icon icon="search"></b-icon>
+          Sorry, we couldn't find:
+          <span v-if="getFilters.searchTerm">
+            '{{ getFilters.searchTerm }}'
+          </span>
+        </h4>
+        <div
+          v-else
+          class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+        >
+          <Card
+            v-for="brewer in getBreweries"
+            :key="brewer.brewer_id"
+            :link="`brewer/${brewer.link}`"
+            :title="brewer.name"
+            image="index.png"
+          >
+            <!-- :image="brewer.image_pre_link + brewer.image" -->
+            <template #text>
+              <div class="brewer-est">
+                <em>Est. {{ brewer.established }}</em>
+              </div>
+              <div class="brewer-location">
+                <strong>{{ brewer.location }}</strong>
+              </div>
+              <div class="brewer-type">
+                {{ brewer.type }}
+              </div>
+              <div class="brewer-beer-num">
+                <small> Number of Beers: {{ brewer.numberbeers }}</small>
+              </div>
+            </template>
+          </Card>
+        </div>
+        <Pagination
+          class="p-5"
+          :pages="getPages"
+          @pageChange="handlePageChange"
+        />
+      </div>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="w-100">
     <Banner text="Search for Merchants">
       <Search
         :loading="isLoading"
@@ -8,59 +8,61 @@
         @clear="handleClearResults"
       />
     </Banner>
-    <FilterComponent
-      :ordering="orderingTypes"
-      @filter="filterMerchantsResults"
-      @clear="handleClearFilter"
-    />
-    <Spinner
-      v-if="$fetchState.pending"
-      :loading="$fetchState.pending || isLoading"
-    />
-    <p v-else-if="$fetchState.error">
-      Error while fetching posts: {{ $fetchState.error.message }}
-    </p>
-    <div v-else>
-      <h4 v-if="getMerchants.length == 0" class="text-center pt-3">
-        <b-icon icon="search"></b-icon>
-        Sorry, we couldn't find:
-        <span v-if="getFilters.searchTerm">
-          '{{ getFilters.searchTerm }}'
-        </span>
-      </h4>
-      <div
-        v-else
-        class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
-      >
-        <Card
-          v-for="merchant in getMerchants"
-          :key="merchant.merchant_id"
-          :link="`merchant/${merchant.link}`"
-          :title="merchant.name"
-          image="index.png"
-        >
-          <!-- :image="merchant.image_pre_link + merchant.image" -->
-          <template #text>
-            <div class="merchant-est">
-              <em>Est. {{ merchant.established }}</em>
-            </div>
-            <div class="merchant-location">
-              <strong>{{ merchant.location }}</strong>
-            </div>
-            <div class="merchant-type">
-              {{ merchant.type }}
-            </div>
-            <div class="merchant-beer-num">
-              <small> Number of Beers: {{ merchant.numberbeers }}</small>
-            </div>
-          </template>
-        </Card>
-      </div>
-      <Pagination
-        class="p-5"
-        :pages="getPages"
-        @pageChange="handlePageChange"
+    <div class="container">
+      <FilterComponent
+        :ordering="orderingTypes"
+        @filter="filterMerchantsResults"
+        @clear="handleClearFilter"
       />
+      <Spinner
+        v-if="$fetchState.pending"
+        :loading="$fetchState.pending || isLoading"
+      />
+      <p v-else-if="$fetchState.error">
+        Error while fetching posts: {{ $fetchState.error.message }}
+      </p>
+      <div v-else>
+        <h4 v-if="getMerchants.length == 0" class="text-center pt-3">
+          <b-icon icon="search"></b-icon>
+          Sorry, we couldn't find:
+          <span v-if="getFilters.searchTerm">
+            '{{ getFilters.searchTerm }}'
+          </span>
+        </h4>
+        <div
+          v-else
+          class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+        >
+          <Card
+            v-for="merchant in getMerchants"
+            :key="merchant.merchant_id"
+            :link="`merchant/${merchant.link}`"
+            :title="merchant.name"
+            image="index.png"
+          >
+            <!-- :image="merchant.image_pre_link + merchant.image" -->
+            <template #text>
+              <div class="merchant-est">
+                <em>Est. {{ merchant.established }}</em>
+              </div>
+              <div class="merchant-location">
+                <strong>{{ merchant.location }}</strong>
+              </div>
+              <div class="merchant-type">
+                {{ merchant.type }}
+              </div>
+              <div class="merchant-beer-num">
+                <small> Number of Beers: {{ merchant.numberbeers }}</small>
+              </div>
+            </template>
+          </Card>
+        </div>
+        <Pagination
+          class="p-5"
+          :pages="getPages"
+          @pageChange="handlePageChange"
+        />
+      </div>
     </div>
   </div>
 </template>

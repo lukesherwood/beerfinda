@@ -43,7 +43,10 @@
         <nuxtLink to="/">
           <nuxt-img
             loading="lazy"
+            preload
+            width="200px"
             src="/beerfinda.png"
+            format="webp"
             class="navbar-brand pt-0"
           />
         </nuxtLink>

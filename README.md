@@ -3,13 +3,9 @@
 Todo:
 
 - add ratings for logged in users ()
-- implement design changes for brewers 
 - implement design changes for brewer
-- implement design changes for beers 
 - implement design changes for beer 
-- implement design changes for merchants 
 - implement design changes for merchant
-- clicking search button makes it disappear somehow
 - logout message not working
 - extract beer state to own store
 - beer search/pages a tiny bit wonky?? it kinda gets stuck loading

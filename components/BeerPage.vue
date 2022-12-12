@@ -9,11 +9,12 @@
           <em>{{ beer.brewer_name }}</em>
         </h5>
       </div>
-      <div class="card-body p-3">
+      <div class="p-3">
         <div class="w-50 float-end">
           <nuxt-img
             loading="lazy"
             placeholder="/index.png"
+            format="webp"
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
             :src="beerImageUrl(beer)"
@@ -39,10 +40,9 @@
             >
               <template #text>
                 <div>
-                  Need to add a fetch to get merchant by id
-                  {{ merchant.merchant_id }} so we can display merchant name
+                  {{ merchant.merchant_name[0]?.name }}
                 </div>
-                <div class="text-primary">
+                <div class="">
                   {{ priceToString(merchant.price) }}
                 </div>
               </template>

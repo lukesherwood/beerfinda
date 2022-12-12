@@ -6,11 +6,12 @@
           {{ brewer.name }}
         </h3>
       </div>
-      <div class="card-body p-3">
+      <div class="p-3">
         <div class="w-50 float-end">
           <nuxt-img
             loading="lazy"
             placeholder="/index.png"
+            format="webp"
             class="img-fluid"
             style="height: 100%; width: 100%; object-fit: contain"
             :src="image"

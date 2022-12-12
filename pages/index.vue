@@ -15,9 +15,11 @@
           >Find My Beer</nuxt-link
         >
       </div>
-      <img
+      <nuxt-img
         style="z-index: 1; position: absolute; right: -50px; top: 30px"
         src="beer-hand.png"
+        loading="lazy"
+        format="webp"
         alt="default-beer"
         class="beer-hand"
       />
@@ -47,7 +49,7 @@
             vel numquam aspernatur sit commodi maiores. Rerum recusandae dicta
             corrupti tempore ut.
           </div>
-          <img
+          <nuxt-img
             style="
               z-index: 2;
               width: 250px;
@@ -56,10 +58,12 @@
               bottom: 0px;
             "
             src="can1.png"
+            loading="lazy"
+            format="webp"
             alt="default-beer"
             class="beer-pictures"
           />
-          <img
+          <nuxt-img
             style="
               z-index: 1;
               width: 280px;
@@ -69,10 +73,12 @@
               opacity: 0.6;
             "
             src="bottle.png"
+            loading="lazy"
+            format="webp"
             alt="default-beer"
             class="beer-pictures"
           />
-          <img
+          <nuxt-img
             style="
               z-index: 1;
               width: 235px;
@@ -82,6 +88,8 @@
               opacity: 0.6;
             "
             src="bottles.png"
+            loading="lazy"
+            format="webp"
             alt="default-beer"
             class="beer-pictures"
           />
