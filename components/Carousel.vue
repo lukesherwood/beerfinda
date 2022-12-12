@@ -2,28 +2,28 @@
   <div>
     <div
       id="carouselExampleIndicators"
-      class="carousel slide carousel-dark"
-      data-mdb-ride="carousel"
+      class="carousel carousel-dark slide"
+      data-bs-ride="carousel"
     >
       <div class="carousel-indicators">
         <button
           type="button"
-          data-mdb-target="#carouselExampleIndicators"
-          data-mdb-slide-to="0"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
           class="active"
           aria-current="true"
           aria-label="Slide 1"
         ></button>
         <button
           type="button"
-          data-mdb-target="#carouselExampleIndicators"
-          data-mdb-slide-to="1"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
           aria-label="Slide 2"
         ></button>
         <button
           type="button"
-          data-mdb-target="#carouselExampleIndicators"
-          data-mdb-slide-to="2"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
           aria-label="Slide 3"
         ></button>
       </div>
@@ -31,7 +31,7 @@
         <div
           v-for="(image, index) in images"
           :key="index"
-          class="carousel-item"
+          class="carousel-item active"
           :class="{ active: index === 0 }"
         >
           <nuxt-img
@@ -45,8 +45,8 @@
       <button
         class="carousel-control-prev"
         type="button"
-        data-mdb-target="#carouselExampleIndicators"
-        data-mdb-slide="prev"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -54,8 +54,8 @@
       <button
         class="carousel-control-next"
         type="button"
-        data-mdb-target="#carouselExampleIndicators"
-        data-mdb-slide="next"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
@@ -75,7 +75,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .carousel-indicators {
-      bottom: -50px;
-    }
+.carousel-indicators {
+  bottom: -50px;
+}
 </style>

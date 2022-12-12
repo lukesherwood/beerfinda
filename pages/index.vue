@@ -2,7 +2,7 @@
   <main class="text-center">
     <HomeBanner>
       <div class="text-start header-content">
-        <h1 class="text-white">Lets get straight to the pint:</h1>
+        <h2 class="text-white">Lets get straight to the pint:</h2>
         <h5 class="text-white">You want to find beer</h5>
         <h5 class="text-white">We want to help</h5>
         <div class="text-white pt-3 pb-3">
@@ -16,7 +16,7 @@
         >
       </div>
       <img
-        style="z-index: 1; position: absolute; right: -30px; top: -30px"
+        style="z-index: 1; position: absolute; right: -50px; top: 30px"
         src="beer-hand.png"
         alt="default-beer"
         class="beer-hand"
@@ -36,7 +36,7 @@
         <div class="section-wrapper">
           <div class="section mt-3">
             <h2 class="pb-5">How We Work:</h2>
-            <MDCarousel :images="howWeWorkImages" />
+            <Carousel :images="howWeWorkImages" />
           </div>
         </div>
         <div class="sign-up-content">
@@ -138,8 +138,7 @@ export default {
   padding-left: 20px;
 }
 .header-content {
-  width: 50%;
-  font-size: 1rem;
+  width: 65%;
 }
 .sign-up-content {
   text-align: left;
@@ -175,14 +174,36 @@ export default {
   }
 }
 
-@media screen and (max-width: 615px) {
+@media screen and (max-width: 800px) {
   .beer-hand {
-    scale: 80%;
-    right: -120px !important;
-    top: 0px !important;
+    scale: 90%;
+    right: -100px !important;
+    top: 50px !important;
   }
   .text-start {
     padding: 20px !important;
+  }
+}
+@media screen and (max-width: 630px) {
+  .header-content {
+    padding: 5px !important;
+    font-size: 70%;
+  }
+  .beer-hand {
+    scale: 60%;
+    right: -140px !important;
+    top: 90px !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .header-content {
+    padding: 5px !important;
+    font-size: 50%;
+  }
+  .beer-hand {
+    scale: 50%;
+    top: 130px !important;
   }
 }
 </style>

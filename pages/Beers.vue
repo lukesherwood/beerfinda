@@ -47,6 +47,9 @@
                 </div>
               </template>
               <template #text>
+                <div class="beer-price float-end">
+                  <small>{{ price(beer) }}</small>
+                </div>
                 <div class="brewer-name">
                   <em>
                     {{ beer.brewer_name }}
@@ -70,7 +73,11 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-import { beerCategoryColors, beerImageUrl } from '../helpers/beer.js'
+import {
+  beerCategoryColors,
+  beerImageUrl,
+  priceToString,
+} from '../helpers/beer.js'
 
 export default {
   name: 'Beers',
@@ -120,6 +127,21 @@ export default {
     ...mapActions({
       fetchBeers: 'fetchBeers',
     }),
+    price(beer) {
+      if (beer.merchantsellsfound) {
+        if (!beer.merchantsellsfound.length) return ''
+        if (beer.merchantsellsfound.length === 1) {
+          return priceToString(beer.merchantsellsfound[0].price)
+        }
+        return priceToString(
+          beer.merchantsellsfound.reduce((prev, curr) =>
+            prev.price < curr.price ? prev : curr
+          ).price
+        )
+      } else {
+        return ''
+      }
+    },
     beerImageUrl,
     setStateFromQuery() {
       const query = this.$route.query

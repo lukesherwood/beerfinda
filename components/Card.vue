@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped>
 .card img {
   object-fit: contain;
-  height: 25rem;
+  height: 25vh;
 }
 
 .card-body {

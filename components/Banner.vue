@@ -4,7 +4,7 @@
       <div></div>
       <div></div>
       <div>
-        <h1 class="text-white display-1">{{ text }}</h1>
+        <h1 class="text-white display-4">{{ text }}</h1>
       </div>
       <div class="w-100">
         <slot />

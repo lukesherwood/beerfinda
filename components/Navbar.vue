@@ -90,7 +90,7 @@ export default {
 
 .nav-item {
   word-spacing: 3px;
-  font-size: 1.5em;
+  font-size: 1rem;
   font-weight: bold;
   margin-left: 20px;
 }

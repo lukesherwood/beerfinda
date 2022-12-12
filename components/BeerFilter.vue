@@ -2,17 +2,20 @@
   <div class="container pt-4">
     <div class="filter-buttons d-flex justify-content-evenly w-100">
       <button
-        id="filterButton"
+        id="dropdownMenuButton"
         type="button"
-        class="btn btn-outline-primary dropdown-toggle btn-lg"
+        class="dropdown-toggle btn btn-sm btn-outline-primary"
         data-bs-toggle="dropdown"
         data-bs-auto-close="outside"
         aria-expanded="false"
       >
-        Filter by Type
+        Beer Type
         <span v-if="getFilterCount > 0">({{ getFilterCount }})</span>
       </button>
-      <ul class="dropdown-menu type-filter" aria-labelledby="filterButton">
+      <ul
+        class="dropdown-menu type-filter"
+        aria-labelledby="dropdownMenuButton"
+      >
         <li v-for="type in beerTypes" :key="type">
           <div class="dropdown-item">
             <label class="w-100"
@@ -31,7 +34,7 @@
 
       <button
         type="button"
-        class="btn btn-outline-primary btn-lg"
+        class="btn btn-sm btn-outline-primary"
         @click="inStockHandler()"
       >
         <b-icon v-if="isInStockSet" icon="check2-square" class="pe-1"></b-icon>
@@ -42,7 +45,7 @@
       <button
         id="orderButton"
         type="button"
-        class="btn btn-outline-primary dropdown-toggle btn-lg"
+        class="btn btn-sm btn-outline-primary dropdown-toggle"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -58,13 +61,13 @@
       </ul>
       <button
         v-if="getFilterCount > 0 || getFilters.order"
-        class="btn btn-lg btn-outline-danger clear-button"
+        class="btn btn-sm btn-outline-danger clear-button"
         @click="clearHandler"
       >
         Clear
         <b-icon icon="x-circle"></b-icon>
       </button>
-      <button class="btn btn-lg btn-primary" @click="submitHandler">
+      <button class="btn btn-sm btn-primary" @click="submitHandler">
         Filter
       </button>
     </div>
@@ -167,27 +170,10 @@ export default {
 .container {
   width: 80%;
 }
-.filter-buttons button {
-  border-radius: 50px;
-  padding: 5px 25px 5px 25px;
-}
 
 @media only screen and (max-width: 500px) {
   .container {
     width: 100%;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .filter-buttons button {
-    min-width: 160px;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .filter-buttons button {
-    min-width: 60px;
-    padding: 5px;
   }
 }
 </style>

@@ -83,7 +83,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .search {
   box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
 }
@@ -93,8 +92,8 @@ export default {
   border-top-left-radius: 0.5rem !important;
   border-bottom-left-radius: 0.5rem !important;
   margin-left: -8px !important;
-  height: 4rem;
-  font-size: 1.5rem;
+  height: 3rem;
+  font-size: 1.25rem;
 }
 
 .search-icon {

@@ -2,7 +2,7 @@
 
 Todo:
 
-- hamburger icon missing??
+- add ratings for logged in users ()
 - implement design changes for brewers 
 - implement design changes for brewer
 - implement design changes for beers 

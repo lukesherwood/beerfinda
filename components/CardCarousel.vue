@@ -34,7 +34,7 @@ export default {
             breakpoint: 300,
             settings: {
               slidesToShow: '1',
-              dots: false,
+              dots: true,
             },
           },
           {

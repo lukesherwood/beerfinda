@@ -29,7 +29,7 @@ export default {
     url('~static/beerWallpaper.jpg');
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(90% - 5vw));
   width: 100%;
-  height: 400px;
+  height: 450px;
   background-size: cover;
 }
 

@@ -2,7 +2,7 @@
   <div class="container pt-4">
     <div class="filter-buttons d-flex justify-content-evenly w-100">
       <button
-        id="orderButton"
+        id="dropdownMenuButton"
         type="button"
         class="btn btn-outline-primary dropdown-toggle btn-lg"
         data-bs-toggle="dropdown"
@@ -11,7 +11,7 @@
         <span v-if="!filters.order">Sort</span>
         <span v-else>{{ getKeyByValue(orderingTypes, filters.order) }}</span>
       </button>
-      <ul class="dropdown-menu" aria-labelledby="orderButton">
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <li v-for="type in Object.keys(orderingTypes)" :key="type">
           <a
             href="#"
@@ -70,7 +70,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .type-filter {
   height: 200px;
   width: 210px;
