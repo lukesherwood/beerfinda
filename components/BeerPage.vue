@@ -1,61 +1,67 @@
 <template>
-  <div class="container">
-    <div class="card" style="width: 90%">
-      <div class="card-header bg-warning">
-        <h3 class="pt-2">
-          {{ beer.name }}
-        </h3>
-        <h5>
-          <em>{{ beer.brewer_name }}</em>
-        </h5>
-      </div>
-      <div class="p-3">
-        <div class="w-50 float-end">
+  <div class="p-5">
+    <div class="header">
+      <h1 class="display-2">
+        <strong>{{ beer.name }} </strong>
+      </h1>
+      <h2 class="display-6">
+        <em>{{ beer.brewer_name }}</em>
+      </h2>
+    </div>
+    <div>
+      <div class="row py-5">
+        <div class="col-sm-6 col-xs-12 pb-5 d-flex justify-content-center">
           <nuxt-img
             loading="lazy"
-            placeholder="/index.png"
+            placeholder="/Loading_icon.gif"
             format="webp"
             class="img-fluid"
-            style="height: 100%; width: 100%; object-fit: contain"
+            style="beer-img"
             :src="beerImageUrl(beer)"
             alt="default-beer"
           />
         </div>
-        <h5>{{ beer.type }}</h5>
-        <h6 v-if="beer.percentage != 'unknown'">{{ beer.percentage }}</h6>
-        <div class="card-text">
-          <p>{{ beer.description }}</p>
-        </div>
-        <div v-if="beer.merchantsellsfound.length">
-          <div class="clearfix"></div>
-          <h3>Where to Buy</h3>
-          <div
-            class="row row-cols-2 row-cols-md-2 row-cols-lg-4 gy-4 d-flex p-4"
-          >
-            <Card
-              v-for="merchant in beer.merchantsellsfound"
-              :key="merchant.merchant_id"
-              :title="merchant.title"
-              :image="merchant.image_pre_link + merchant.image_link"
+        <div class="col-sm-6 col-xs-12">
+          <h5>
+            {{ beer.type }}
+            <span v-if="beer.percentage != 'unknown'"
+              >({{ beer.percentage }}% ABV)</span
             >
-              <template #text>
-                <div>
-                  {{ merchant.merchant_name[0]?.name }}
-                </div>
-                <div class="">
-                  {{ priceToString(merchant.price) }}
-                </div>
-              </template>
-              <template #footer>
-                <a
-                  class="btn btn-primary float-end"
-                  :href="merchant.link"
-                  target="_blank"
-                  >Buy Now</a
-                >
-              </template>
-            </Card>
+          </h5>
+          <div>
+            <p>{{ beer.description }}</p>
           </div>
+        </div>
+      </div>
+      <div v-if="beer.merchantsellsfound.length">
+        <div class="clearfix"></div>
+        <h3>Where to Buy</h3>
+        <div
+          class="row row-cols-2 row-cols-md-2 row-cols-lg-4 gy-4 d-flex pt-3"
+        >
+          <Card
+            v-for="merchant in beer.merchantsellsfound"
+            :key="merchant.merchant_id"
+            :title="merchant.title"
+            :image="merchant.image_pre_link + merchant.image_link"
+          >
+            <template #text>
+              <div>
+                {{ merchant.merchant_name[0]?.name }}
+              </div>
+              <div class="">
+                {{ priceToString(merchant.price) }}
+              </div>
+            </template>
+            <template #footer>
+              <a
+                class="btn btn-secondary float-end stretched-link"
+                :href="merchant.link"
+                target="_blank"
+                >Buy Now</a
+              >
+            </template>
+          </Card>
         </div>
       </div>
     </div>
@@ -76,13 +82,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media only screen and (max-width: 500px) {
-  .card {
-    box-shadow: none;
-    border: none;
-  }
-}
-.card img {
-  max-height: 400px;
+.beer-image {
+  max-height: 100vh;
+  width: 100%;
+  object-fit: contain;
 }
 </style>

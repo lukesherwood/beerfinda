@@ -4,8 +4,9 @@ Todo:
 
 - add ratings for logged in users ()
 - implement design changes for brewer
-- implement design changes for beer 
 - implement design changes for merchant
+- card image zooms on hover
+- card design could be longer horizontally image on left text on right
 - logout message not working
 - extract beer state to own store
 - beer search/pages a tiny bit wonky?? it kinda gets stuck loading

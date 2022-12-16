@@ -59,6 +59,9 @@
                   <small>{{ beer.type }}</small>
                 </div>
               </template>
+              <template #modal>
+                <!-- <BeerModal :beer-id="beer.beer_id" /> -->
+              </template>
             </Card>
           </div>
           <Pagination

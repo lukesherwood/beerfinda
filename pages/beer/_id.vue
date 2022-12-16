@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1 class="text-center text-primary">BEER</h1>
     <Spinner
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
@@ -40,4 +39,9 @@ export default {
   },
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.container {
+  background-color: white !important;
+  min-height: 100vh;
+}
+</style>

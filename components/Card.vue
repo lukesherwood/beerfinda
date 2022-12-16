@@ -1,6 +1,11 @@
 <template>
   <div class="col">
-    <div class="card h-100" :style="{ width: width }">
+    <div
+      class="card h-100"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      :style="{ width: width }"
+    >
       <nuxtLink
         v-if="link"
         class="stretched-link"
@@ -25,7 +30,8 @@
         </div>
       </div>
       <slot name="body" />
-      <div v-if="hasFooterSlot" class="card-footer">
+      <slot name="modal" />
+      <div class="card-footer">
         <slot name="footer" />
       </div>
     </div>
@@ -40,11 +46,6 @@ export default {
     return {
       imageUrl: this.image,
     }
-  },
-  computed: {
-    hasFooterSlot() {
-      return !!this.$slots.footer
-    },
   },
   methods: {
     handleError(e) {
@@ -61,7 +62,7 @@ export default {
 }
 
 .card-body {
-  border-radius: 0 0 12px 12px;
+  padding-bottom: 0px;
 }
 
 .card {
@@ -69,9 +70,15 @@ export default {
   border-radius: 12px;
   transition: 0.3s;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.card-footer {
+  padding-top: 0px;
+  border-radius: 0 0 12px 12px;
+  border: 0px;
 }
 </style>
