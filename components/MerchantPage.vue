@@ -1,10 +1,9 @@
 <template>
-  <div class="container">
-    <div class="card" style="width: 90%">
-      <div class="card-header bg-warning">
-        <h3 class="pt-2">
-          <a :href="merchant.website"> {{ merchant.name }}</a>
-        </h3>
+  <div class="p-5">
+    <div class="header">
+      <h1 class="display-2">
+          <a :href="merchant.website" target="_blank"> {{ merchant.name }}</a>
+        </h1>
       </div>
       <div class="p-3">
         <div class="w-50 float-end">
@@ -12,8 +11,7 @@
             loading="lazy"
             placeholder="/index.png"
             format="webp"
-            class="img-fluid"
-            style="height: 100%; width: 100%; object-fit: contain"
+            class="img-fluid beer-image"
             :src="image"
             alt="default-beer"
           />
@@ -115,13 +113,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media only screen and (max-width: 500px) {
-  .card {
-    box-shadow: none;
-    border: none;
-  }
-}
-.card img {
-  max-height: 400px;
+.beer-image {
+  max-height: 100vh;
+  width: 100%;
+  object-fit: contain;
 }
 </style>

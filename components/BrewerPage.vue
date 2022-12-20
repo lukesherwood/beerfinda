@@ -1,24 +1,13 @@
 <template>
-  <div class="container">
-    <div class="card" style="width: 90%">
-      <div class="card-header bg-warning">
-        <h3 class="pt-2">
-          {{ brewer.name }}
-        </h3>
-      </div>
-      <div class="p-3">
-        <div class="w-50 float-end">
-          <nuxt-img
-            loading="lazy"
-            placeholder="/index.png"
-            format="webp"
-            class="img-fluid"
-            style="height: 100%; width: 100%; object-fit: contain"
-            :src="image"
-            alt="default-beer"
-          />
-        </div>
-        <div class="brewer-desc">
+  <div class="p-5">
+    <div class="header">
+      <h1 class="display-2">
+        <strong>{{ brewer.name }} </strong>
+      </h1>
+    </div>
+    <div class="row py-5">
+      <div class="col-sm-6 col-xs-12">
+        <div v-if="brewer.description" class="brewer-desc">
           {{ brewer.description.substring(1, brewer.description.length - 1) }}
         </div>
         <div class="brewer-est">
@@ -31,7 +20,7 @@
           {{ brewer.type }}
         </div>
         <div>Beers: {{ brewer.numberbeers }}</div>
-        <div>
+        <div class="pt-5">
           <h4>Contact</h4>
           <div v-if="brewer.email" class="float-start p-2">
             <a :href="brewer.email"> <b-icon icon="envelope"></b-icon> </a>
@@ -62,6 +51,16 @@
           </div>
         </div>
       </div>
+      <div class="col-sm-6 col-xs-12 pb-5 d-flex justify-content-center">
+        <nuxt-img
+          loading="lazy"
+          placeholder="/index.png"
+          format="webp"
+          class="img-fluid beer-image"
+          :src="image"
+          alt="default-beer"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -87,13 +86,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media only screen and (max-width: 500px) {
-  .card {
-    box-shadow: none;
-    border: none;
-  }
-}
-.card img {
-  max-height: 400px;
+.beer-image {
+  max-height: 100vh;
+  width: 100%;
+  object-fit: contain;
 }
 </style>

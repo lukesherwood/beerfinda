@@ -15,8 +15,7 @@
             loading="lazy"
             placeholder="/Loading_icon.gif"
             format="webp"
-            class="img-fluid"
-            style="beer-img"
+            class="img-fluid beer-image"
             :src="beerImageUrl(beer)"
             alt="default-beer"
           />
@@ -25,7 +24,7 @@
           <h5>
             {{ beer.type }}
             <span v-if="beer.percentage != 'unknown'"
-              >({{ beer.percentage }}% ABV)</span
+              >- <em>{{ beer.percentage }} </em></span
             >
           </h5>
           <div>
