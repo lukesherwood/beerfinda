@@ -32,10 +32,10 @@
           </div>
           <div class="forgot-password text-right mt-2 mb-4">
             <div>
-              <nuxtLink to="/register">Register</nuxtLink>
+              <a href="/register">Register</a>
             </div>
             <div>
-              <nuxtLink to="/user/forgotPassword">Forgot Password?</nuxtLink>
+              <a href="/user/forgotPassword">Forgot Password?</a>
             </div>
           </div>
           <div class="social-icons">

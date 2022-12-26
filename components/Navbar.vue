@@ -14,33 +14,33 @@
       >
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <nuxtLink
-              to="/beers"
+            <a
+              href="/beers"
               class="nav-link text-primary"
               aria-current="page"
-              >Beers</nuxtLink
+              >Beers</a
             >
           </li>
           <li class="nav-item">
-            <nuxtLink
-              to="/breweries"
+            <a
+              href="/breweries"
               class="nav-link text-primary"
               aria-current="page"
-              >Breweries</nuxtLink
+              >Breweries</a
             >
           </li>
           <li class="nav-item">
-            <nuxtLink
-              to="/merchants"
+            <a
+              href="/merchants"
               class="nav-link text-primary"
               aria-current="page"
-              >Merchants</nuxtLink
+              >Merchants</a
             >
           </li>
         </ul>
       </div>
       <div class="mx-auto order-0">
-        <nuxtLink to="/">
+        <a href="/">
           <nuxt-img
             loading="lazy"
             preload
@@ -49,16 +49,16 @@
             format="webp"
             class="navbar-brand pt-0"
           />
-        </nuxtLink>
+        </a>
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ms-auto">
           <li v-if="!$auth.loggedIn" class="nav-item">
-            <nuxtLink to="/login" class="nav-link text-primary">Login</nuxtLink>
+            <a href="/login" class="nav-link text-primary">Login</a>
           </li>
           <li v-if="!$auth.loggedIn" class="nav-item">
-            <nuxtLink to="/register" class="nav-link text-primary"
-              >Sign Up</nuxtLink
+            <a href="/register" class="nav-link text-primary"
+              >Sign Up</a
             >
           </li>
           <li v-if="$auth.loggedIn" class="nav-item">

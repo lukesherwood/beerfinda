@@ -29,6 +29,8 @@ export const actions = {
         type: 'error',
       })
       throw new Error(`User unable to login - ${error.message}`)
+    } finally {
+      window.location.replace('/')
     }
   },
   async fetchBeerResults(state, { keyword }) {

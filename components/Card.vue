@@ -6,10 +6,10 @@
       data-bs-target="#staticBackdrop"
       :style="{ width: width }"
     >
-      <nuxtLink
+      <a
         v-if="link"
         class="stretched-link"
-        :to="`/${link}`"
+        :href="`/${link}`"
         :aria-label="`Go to ${title}`"
       />
       <nuxt-img

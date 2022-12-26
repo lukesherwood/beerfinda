@@ -69,6 +69,11 @@ export default {
   },
 
   auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: false,
+    },
     strategies: {
       local: {
         scheme: 'refresh',
