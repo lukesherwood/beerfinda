@@ -4,7 +4,7 @@
       <button
         id="dropdownMenuButton"
         type="button"
-        class="btn btn-outline-primary dropdown-toggle btn-lg"
+        class="btn btn-outline-primary dropdown-toggle"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -23,13 +23,13 @@
       </ul>
       <button
         v-if="filters.order"
-        class="btn btn-lg btn-outline-danger clear-button"
+        class="btn btn-outline-danger clear-button"
         @click="handleClear"
       >
         Clear
         <b-icon icon="x-circle"></b-icon>
       </button>
-      <button class="btn btn-lg btn-primary" @click="onFilter">Filter</button>
+      <button class="btn btn-primary" @click="onFilter">Filter</button>
     </div>
   </div>
 </template>
@@ -78,10 +78,6 @@ export default {
 }
 .container {
   width: 80%;
-}
-.filter-buttons button {
-  border-radius: 50px;
-  padding: 5px 25px 5px 25px;
 }
 
 @media only screen and (max-width: 500px) {

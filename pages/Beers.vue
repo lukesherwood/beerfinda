@@ -98,7 +98,7 @@ export default {
       { immediate: true }
     )
     try {
-      await this.$store.dispatch('fetchBeers', { url: this.createUrl() })
+      await this.$store.dispatch('beer/fetchBeers', { url: this.createUrl() })
     } catch (error) {
       console.error(error)
     }
@@ -111,24 +111,24 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getBeers: 'getBeers',
-      getPages: 'getPages',
-      isLoading: 'isLoading',
-      getFilters: 'getFilters',
-      isInStockSet: 'isInStockSet',
+      getBeers: 'beer/getBeers',
+      getPages: 'beer/getPages',
+      isLoading: 'beer/isLoading',
+      getFilters: 'beer/getFilters',
+      isInStockSet: 'beer/isInStockSet',
     }),
   },
 
   methods: {
-    ...mapMutations([
-      'setCurrentPage',
-      'setOrder',
-      'setInStock',
-      'setFilter',
-      'setSearchTerm',
-    ]),
+    ...mapMutations({
+      setCurrentPage: 'beer/setCurrentPage',
+      setOrder: 'beer/setOrder',
+      setInStock: 'beer/setInStock',
+      setFilter: 'beer/setFilter',
+      setSearchTerm: 'beer/setSearchTerm',
+    }),
     ...mapActions({
-      fetchBeers: 'fetchBeers',
+      fetchBeers: 'beer/fetchBeers',
     }),
     price(beer) {
       if (beer.merchantsellsfound) {

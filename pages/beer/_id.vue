@@ -29,13 +29,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getBeer: 'getBeer',
-      isLoading: 'isLoading',
+      getBeer: 'beer/getBeer',
+      isLoading: 'beer/isLoading',
     }),
   },
 
   methods: {
-    ...mapActions({ fetchBeer: 'fetchBeer' }),
+    ...mapActions({ fetchBeer: 'beer/fetchBeer' }),
   },
 }
 </script>

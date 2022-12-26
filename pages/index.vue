@@ -127,15 +127,15 @@ export default {
   },
   async fetch() {
     try {
-      await this.$store.dispatch('fetchFeaturedBeers')
+      await this.$store.dispatch('beer/fetchFeaturedBeers')
     } catch (error) {
       console.error(error)
     }
   },
   computed: {
     ...mapGetters({
-      isLoading: 'isLoading',
-      getFeaturedBeers: 'getFeaturedBeers',
+      isLoading: 'beer/isLoading',
+      getFeaturedBeers: 'beer/getFeaturedBeers',
     }),
   },
 }

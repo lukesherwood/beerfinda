@@ -4,7 +4,7 @@
       <button
         id="dropdownMenuButton"
         type="button"
-        class="dropdown-toggle btn btn-sm btn-outline-primary"
+        class="dropdown-toggle btn btn-outline-primary"
         data-bs-toggle="dropdown"
         data-bs-auto-close="outside"
         aria-expanded="false"
@@ -34,7 +34,7 @@
 
       <button
         type="button"
-        class="btn btn-sm btn-outline-primary"
+        class="btn btn-outline-primary"
         @click="inStockHandler()"
       >
         <b-icon v-if="isInStockSet" icon="check2-square" class="pe-1"></b-icon>
@@ -45,7 +45,7 @@
       <button
         id="orderButton"
         type="button"
-        class="btn btn-sm btn-outline-primary dropdown-toggle"
+        class="btn btn-outline-primary dropdown-toggle"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
@@ -61,15 +61,13 @@
       </ul>
       <button
         v-if="getFilterCount > 0 || getFilters.order"
-        class="btn btn-sm btn-outline-danger clear-button"
+        class="btn btn-outline-danger clear-button"
         @click="clearHandler"
       >
         Clear
         <b-icon icon="x-circle"></b-icon>
       </button>
-      <button class="btn btn-sm btn-primary" @click="submitHandler">
-        Filter
-      </button>
+      <button class="btn btn-primary" @click="submitHandler">Filter</button>
     </div>
   </div>
 </template>
@@ -87,10 +85,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getBeers: 'getBeers',
-      getFilters: 'getFilters',
-      getFilterCount: 'getFilterCount',
-      isInStockSet: 'isInStockSet',
+      getBeers: 'beer/getBeers',
+      getFilters: 'beer/getFilters',
+      getFilterCount: 'beer/getFilterCount',
+      isInStockSet: 'beer/isInStockSet',
     }),
     beerTypeKeywords: {
       get() {
@@ -121,7 +119,12 @@ export default {
     this.debounceFilter = debounce(this.submitHandler, 2000)
   },
   methods: {
-    ...mapMutations(['setFilter', 'setOrder', 'clearFilters', 'setInStock']),
+    ...mapMutations({
+      setFilter: 'beer/setFilter',
+      setOrder: 'beer/setOrder',
+      clearFilters: 'beer/clearFilters',
+      setInStock: 'beer/setInStock',
+    }),
     inStockHandler() {
       // !!! ensures its a strict boolean and toggles to the opposite
       // eslint-disable-next-line no-extra-boolean-cast

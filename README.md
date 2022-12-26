@@ -2,8 +2,8 @@
 
 Todo:
 
-- extract beer state to own store
 - convert create url to query builder
+- abstract (join) filter component from beerfilter component
 - add ratings for logged in users ()
 - card image zooms on hover
 - card design could be longer horizontally image on left text on right
