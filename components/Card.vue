@@ -1,10 +1,13 @@
 <template>
   <div class="col">
-    <div class="card h-100" :style="{ width: width }">
-      <a
+    <div
+      class="card h-100"
+      :style="{ width: width }"
+    >
+      <nuxtLink
         v-if="link"
         class="stretched-link"
-        :href="`/${link}`"
+        :to="`/${link}`"
         :aria-label="`Go to ${title}`"
       />
       <nuxt-img

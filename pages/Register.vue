@@ -11,7 +11,7 @@
         <UserCreate v-if="profileData" @userCreate="handleUserCreate($event)" />
         <p class="forgot-password text-right">
           Already registered?
-          <a href="/login">Login</a>
+          <nuxtLink to="/login">Login</nuxtLink>
         </p>
       </div>
     </div>

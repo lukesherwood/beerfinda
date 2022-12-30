@@ -3,19 +3,19 @@
     <h1 class="text-center pb-5">Legal</h1>
     <div class="text-center">
       <p>
-        <a
-          href="/legal/privacy"
+        <nuxtLink
+          to="/legal/privacy"
           class="nav-link text-primary p-5"
           aria-current="page"
-          ><h4>Privacy Policy</h4></a
+          ><h4>Privacy Policy</h4></nuxtLink
         >
       </p>
       <p>
-        <a
-          href="/legal/terms"
+        <nuxtLink
+          to="/legal/terms"
           class="nav-link text-primary p-5"
           aria-current="page"
-          ><h4>Terms and Conditions</h4></a
+          ><h4>Terms and Conditions</h4></nuxtLink
         >
       </p>
     </div>

@@ -29,12 +29,12 @@
       <div v-else>
         <h1 class="text-start title">Featured Beers</h1>
         <CardCarousel :beers="getFeaturedBeers" />
-        <a
+        <nuxtLink
           class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
-          href="/beers"
+          to="/beers"
         >
           <h5>View All Beers</h5>
-        </a>
+        </nuxtLink>
         <div class="section-wrapper">
           <div class="section mt-3">
             <h2 class="pb-5">How We Work:</h2>
@@ -94,12 +94,12 @@
             class="beer-pictures"
           />
           <div class="py-5">
-            <a
+            <nuxtLink
               class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
-              href="/register"
+              to="/register"
             >
               <h5>Sign Up</h5>
-            </a>
+            </nuxtLink>
           </div>
         </div>
       </div>

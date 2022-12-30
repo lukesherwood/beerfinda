@@ -50,23 +50,23 @@
       <div class="container text-center text-md-start mt-5">
         <div class="row mt-3">
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <a class="nav-link" href="/blog" aria-current="page"
-              ><h6 class="text-uppercase fw-bold mb-4">Blog</h6></a
+            <nuxtLink class="nav-link" to="/blog" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">Blog</h6></nuxtLink
             >
           </div>
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <a class="nav-link" href="/about" aria-current="page"
-              ><h6 class="text-uppercase fw-bold mb-4">About</h6></a
+            <nuxtLink class="nav-link" to="/about" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">About</h6></nuxtLink
             >
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <a class="nav-link" href="/legal" aria-current="page"
-              ><h6 class="text-uppercase fw-bold mb-4">Legal</h6></a
+            <nuxtLink class="nav-link" to="/legal" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">Legal</h6></nuxtLink
             >
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <a class="nav-link" href="/contact" aria-current="page"
-              ><h6 class="text-uppercase fw-bold mb-4">Contact</h6></a
+            <nuxtLink class="nav-link" to="/contact" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">Contact</h6></nuxtLink
             >
           </div>
         </div>
