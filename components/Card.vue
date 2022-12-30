@@ -1,11 +1,6 @@
 <template>
   <div class="col">
-    <div
-      class="card h-100"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-      :style="{ width: width }"
-    >
+    <div class="card h-100" :style="{ width: width }">
       <a
         v-if="link"
         class="stretched-link"
@@ -28,9 +23,9 @@
         <div class="card-text">
           <slot name="text" />
         </div>
+        <slot name="rating" />
       </div>
       <slot name="body" />
-      <slot name="modal" />
       <div class="card-footer">
         <slot name="footer" />
       </div>

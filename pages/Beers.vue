@@ -59,8 +59,18 @@
                   <small>{{ beer.type }}</small>
                 </div>
               </template>
-              <template #modal>
-                <!-- <BeerModal :beer-id="beer.beer_id" /> -->
+              <template #rating>
+                <div
+                  class="beer-rating badge rounded-pill"
+                  :style="{
+                    'background-color': beerRatingColor(
+                      beerRating(beer.ratings)
+                    ),
+                  }"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  {{ beerRating(beer.ratings) }}
+                </div>
               </template>
             </Card>
           </div>
@@ -80,6 +90,8 @@ import {
   beerCategoryColors,
   beerImageUrl,
   priceToString,
+  beerRating,
+  beerRatingColor,
 } from '../helpers/beer.js'
 
 export default {
@@ -103,7 +115,6 @@ export default {
       console.error(error)
     }
   },
-  fetchOnServer: true,
   head() {
     return {
       title: `Beerfinda | Beers`,
@@ -146,6 +157,8 @@ export default {
       }
     },
     beerImageUrl,
+    beerRating,
+    beerRatingColor,
     setStateFromQuery() {
       const query = this.$route.query
       if (query.page) {
@@ -263,8 +276,15 @@ export default {
 .beer-category {
   position: absolute;
   top: 5px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  -webkit-transform: translate(-50%, 0);
+  left: 5px;
+  font-size: 1rem;
+}
+
+.beer-rating {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  font-size: 1rem;
 }
 </style>

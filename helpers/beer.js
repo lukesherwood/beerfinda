@@ -1,3 +1,5 @@
+import { round } from 'lodash'
+
 export const beerCategoryColors = {
   Cider: 'khaki',
   'Sour Beer': 'DarkGrey',
@@ -56,6 +58,28 @@ export const priceToString = (price) => {
     style: 'currency',
     currency: 'USD',
   })
+}
+
+export const beerRating = (array) => {
+  if (!array[0]) {
+    return ''
+  }
+  const ratings = Object.values(array[0])
+  const values = ratings.reduce((a, b) => a + b, 0)
+  return round(values / ratings.length, 1)
+}
+
+export const beerRatingColor = (rating) => {
+  if (rating >= 4.5) {
+    return 'green'
+  }
+  if (rating >= 3.5) {
+    return 'lightgreen'
+  }
+  if (rating >= 2.5) {
+    return 'gold'
+  }
+  return 'grey'
 }
 
 export const beerImageUrl = (beer) => {

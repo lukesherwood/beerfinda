@@ -67,6 +67,9 @@ export default {
   axios: {
     baseURL: 'https://drspgoa.digifern.com/',
   },
+  router: {
+    middleware: [],
+  },
 
   auth: {
     redirect: {
