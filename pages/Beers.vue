@@ -14,9 +14,7 @@
         v-if="$fetchState.pending || isLoading"
         :loading="$fetchState.pending || isLoading"
       />
-      <p v-else-if="$fetchState.error">
-        Error while fetching beers: {{ $fetchState.error.message }}
-      </p>
+      <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
         <h4 v-if="getBeers.length == 0" class="text-center pt-5">
           <b-icon icon="search"></b-icon>
@@ -31,7 +29,7 @@
           >
             <Card
               v-for="beer in getBeers"
-              :key="beer.beer_id"
+              :key="'beer-card' + beer.beer_id"
               :title="beer.name"
               :link="`beer/${beer.beer_id}`"
               :image="beerImageUrl(beer)"
@@ -101,6 +99,10 @@ export default {
       beerCategoryColors,
     }
   },
+  // it would be better to use this below instead of the watch inside of the fetch. Try changing to this before reworking the query builder
+  //   watch: {
+  //   '$route.query': '$fetch'
+  // },
   async fetch() {
     this.$watch(
       () => this.$route.query,
@@ -112,7 +114,7 @@ export default {
     try {
       await this.$store.dispatch('beer/fetchBeers', { url: this.createUrl() })
     } catch (error) {
-      console.error(error)
+      throw new Error(error)
     }
   },
   head() {

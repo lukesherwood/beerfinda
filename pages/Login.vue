@@ -41,13 +41,13 @@
           <div class="social-icons">
             <ul>
               <li>
-                <a href="#"><b-icon icon="google"></b-icon></a>
+                <div role="button"><b-icon icon="google"></b-icon></div>
               </li>
               <li>
-                <a href="#"><b-icon icon="facebook"></b-icon></a>
+                <div role="button"><b-icon icon="facebook"></b-icon></div>
               </li>
               <li>
-                <a href="#"><b-icon icon="twitter"></b-icon></a>
+                <div role="button"><b-icon icon="twitter"></b-icon></div>
               </li>
             </ul>
           </div>

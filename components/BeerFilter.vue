@@ -16,9 +16,9 @@
         class="dropdown-menu type-filter"
         aria-labelledby="dropdownMenuButton"
       >
-        <li v-for="type in beerTypes" :key="type">
+        <li v-for="type in beerTypes" :key="'beerTypes' + type">
           <div class="dropdown-item">
-            <label class="w-100"
+            <label role="button" class="w-100"
               >{{ type }}
               <input
                 :id="type"
@@ -53,10 +53,13 @@
         <span v-else>{{ getKeyByValue(orderingTypes, getFilters.order) }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
-        <li v-for="type in Object.keys(orderingTypes)" :key="type">
-          <a href="#" class="dropdown-item" @click="orderHandler(type)">{{
-            type
-          }}</a>
+        <li
+          v-for="type in Object.keys(orderingTypes)"
+          :key="'ordering-types' + type"
+        >
+          <div role="button" class="dropdown-item" @click="orderHandler(type)">
+            {{ type }}
+          </div>
         </li>
       </ul>
       <button

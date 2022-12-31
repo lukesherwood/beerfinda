@@ -64,7 +64,7 @@
           >
             <Card
               v-for="beer in merchant.merchantdetails"
-              :key="beer.beer_id"
+              :key="'merchant-page-card' + beer.beer_id"
               :title="beer.title"
               :image="beer.image_pre_link + beer.image_link"
               footer="true"

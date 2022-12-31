@@ -12,13 +12,14 @@
         <span v-else>{{ getKeyByValue(orderingTypes, filters.order) }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li v-for="type in Object.keys(orderingTypes)" :key="type">
-          <a
-            href="#"
+        <li v-for="type in Object.keys(orderingTypes)" :key="'ordering' + type">
+          <div
+            role="button"
             class="dropdown-item"
             @click="filters.order = orderingTypes[type]"
-            >{{ type }}</a
           >
+            {{ type }}
+          </div>
         </li>
       </ul>
       <button

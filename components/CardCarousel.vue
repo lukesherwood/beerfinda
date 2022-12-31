@@ -1,6 +1,10 @@
 <template>
   <agile :options="myOptions" class="pb-5">
-    <div v-for="beer in beers" :key="beer.beer_id" class="card-wrapper p-5">
+    <div
+      v-for="beer in beers"
+      :key="'carousel-beer' + beer.beer_id"
+      class="card-wrapper p-5"
+    >
       <Card
         :key="beer.beer_id"
         :title="beer.name"

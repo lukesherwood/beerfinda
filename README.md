@@ -4,7 +4,7 @@ Todo:
 
 - convert create url to query builder
 - proxy for calls to api with axios
-- pagination back button to go to page 1 from 2 needs fixed
+- pagination needs to use nuxt links else back buttons don't work
 - abstract (join) filter component from beerfilter component
 - card image zooms on hover
 - card design could be longer horizontally image on left text on right

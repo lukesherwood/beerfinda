@@ -11,8 +11,8 @@
           voluptate aut neque provident deserunt quia dolorem iure at sit
           perferendis quo? Lorem ipsum dolor sit amet consectetur adipisicing.
         </div>
-        <nuxt-link to="/beers" class="btn btn-secondary text-white"
-          >Find My Beer</nuxt-link
+        <nuxtLink to="/beers" class="btn btn-secondary text-white"
+          >Find My Beer</nuxtLink
         >
       </div>
       <nuxt-img
@@ -129,7 +129,7 @@ export default {
     try {
       await this.$store.dispatch('beer/fetchFeaturedBeers')
     } catch (error) {
-      console.error(error)
+      throw new Error(error)
     }
   },
   computed: {

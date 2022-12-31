@@ -40,7 +40,7 @@
         >
           <Card
             v-for="merchant in beer.merchantsellsfound"
-            :key="merchant.merchant_id"
+            :key="'beerPage-merchant' + merchant.merchant_id"
             :title="merchant.title"
             :image="merchant.image_pre_link + merchant.image_link"
           >

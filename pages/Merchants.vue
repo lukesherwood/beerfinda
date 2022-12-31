@@ -18,9 +18,7 @@
         v-if="$fetchState.pending"
         :loading="$fetchState.pending || isLoading"
       />
-      <p v-else-if="$fetchState.error">
-        Error while fetching posts: {{ $fetchState.error.message }}
-      </p>
+      <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
         <h4 v-if="getMerchants.length == 0" class="text-center pt-3">
           <b-icon icon="search"></b-icon>
@@ -35,7 +33,7 @@
         >
           <Card
             v-for="merchant in getMerchants"
-            :key="merchant.merchant_id"
+            :key="'merchant-card' + merchant.merchant_id"
             :link="`merchant/${merchant.link}`"
             :title="merchant.name"
             image="index.png"
@@ -89,7 +87,7 @@ export default {
         url: this.createUrl(),
       })
     } catch (error) {
-      console.error(error)
+      throw new Error(error)
     }
   },
   head() {

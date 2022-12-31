@@ -2,48 +2,48 @@
   <footer class="text-center text-lg-start bg-primary text-white">
     <div class="container pt-4 text-center">
       <section class="mb-4">
-        <a
+        <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-        <a
+        >
+          <i class="fab fa-facebook-f"></i>
+        </div>
+        <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-twitter"></i
-        ></a>
-        <a
+        >
+          <i class="fab fa-twitter"></i>
+        </div>
+        <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-google"></i
-        ></a>
-        <a
+        >
+          <i class="fab fa-google"></i>
+        </div>
+        <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-instagram"></i
-        ></a>
-        <a
+        >
+          <i class="fab fa-instagram"></i>
+        </div>
+        <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-linkedin"></i
-        ></a>
-        <a
+        >
+          <i class="fab fa-linkedin"></i>
+        </div>
+        <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-github"></i
-        ></a>
+        >
+          <i class="fab fa-github"></i>
+        </div>
       </section>
     </div>
     <section class="">

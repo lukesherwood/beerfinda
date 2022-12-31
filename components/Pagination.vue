@@ -1,48 +1,81 @@
 <template>
   <nav>
     <ul class="pagination justify-content-center pagination-lg">
+      <!-- Previous Button -->
       <li class="page-item" :class="{ disabled: pages.currentPage - 1 == 0 }">
-        <a class="page-link" href="#" @click="handler(pages.currentPage - 1)"
-          >Previous</a
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage - 1)"
         >
+          Previous
+        </div>
       </li>
+      <!-- Page 1 Button -->
       <li
         v-if="pages.currentPage != 1 && pages.currentPage > 3"
         class="page-item"
       >
-        <a class="page-link" href="#" @click="handler(1)">1</a>
+        <div role="button" class="page-link" @click="handler(1)">1</div>
       </li>
+      <!-- '...' showing gap in range -->
       <li
-        v-if="pages.currentPage != 1 && pages.currentPage > 3"
+        v-if="pages.currentPage != 1 && pages.currentPage > 4"
         class="page-item disabled"
       >
-        <a class="page-link" href="#"> ... </a>
+        <div role="button" class="page-link">...</div>
       </li>
+      <!-- Go back 2 Button -->
       <li v-if="pages.currentPage - 2 > 0" class="page-item">
-        <a class="page-link" href="#" @click="handler(pages.currentPage - 2)">{{
-          pages.currentPage - 2
-        }}</a>
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage - 2)"
+        >
+          {{ pages.currentPage - 2 }}
+        </div>
       </li>
+      <!-- Go back 1 Button -->
       <li v-if="pages.currentPage - 1 > 0" class="page-item">
-        <a class="page-link" href="#" @click="handler(pages.currentPage - 1)">{{
-          pages.currentPage - 1
-        }}</a>
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage - 1)"
+        >
+          {{ pages.currentPage - 1 }}
+        </div>
       </li>
+      <!-- GCurrent Page -->
       <li class="page-item active">
-        <a class="page-link" href="#" @click="handler(pages.currentPage)">{{
-          pages.currentPage
-        }}</a>
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage)"
+        >
+          {{ pages.currentPage }}
+        </div>
       </li>
+      <!-- Go forward 1 Button -->
       <li v-if="pages.currentPage + 1 < pages.totalPages" class="page-item">
-        <a class="page-link" href="#" @click="handler(pages.currentPage + 1)">{{
-          pages.currentPage + 1
-        }}</a>
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage + 1)"
+        >
+          {{ pages.currentPage + 1 }}
+        </div>
       </li>
+      <!-- Go forward 2 Button -->
       <li v-if="pages.currentPage + 2 < pages.totalPages" class="page-item">
-        <a class="page-link" href="#" @click="handler(pages.currentPage + 2)">{{
-          pages.currentPage + 2
-        }}</a>
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage + 2)"
+        >
+          {{ pages.currentPage + 2 }}
+        </div>
       </li>
+      <!-- '...' showing gap in range -->
       <li
         v-if="
           pages.currentPage != pages.totalPages &&
@@ -50,20 +83,26 @@
         "
         class="page-item disabled"
       >
-        <a class="page-link" href="#"> ... </a>
+        <div role="button" class="page-link">...</div>
       </li>
+      <!-- Last Page Button -->
       <li v-if="pages.currentPage != pages.totalPages" class="page-item">
-        <a class="page-link" href="#" @click="handler(pages.totalPages)">{{
-          pages.totalPages
-        }}</a>
+        <div role="button" class="page-link" @click="handler(pages.totalPages)">
+          {{ pages.totalPages }}
+        </div>
       </li>
+      <!-- Next Button -->
       <li
         class="page-item"
         :class="{ disabled: pages.currentPage == pages.totalPages }"
       >
-        <a class="page-link" href="#" @click="handler(pages.currentPage + 1)"
-          >Next</a
+        <div
+          role="button"
+          class="page-link"
+          @click="handler(pages.currentPage + 1)"
         >
+          Next
+        </div>
       </li>
     </ul>
   </nav>

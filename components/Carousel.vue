@@ -30,7 +30,7 @@
       <div class="carousel-inner">
         <div
           v-for="(image, index) in images"
-          :key="index"
+          :key="'carousel-image' + index"
           class="carousel-item active"
           :class="{ active: index === 0 }"
         >

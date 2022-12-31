@@ -23,7 +23,9 @@
         <div class="pt-5">
           <h4>Contact</h4>
           <div v-if="brewer.email" class="float-start p-2">
-            <a :href="brewer.email"> <b-icon icon="envelope"></b-icon> </a>
+            <a :href="`mailto:${brewer.email}`">
+              <b-icon icon="envelope"></b-icon>
+            </a>
           </div>
           <div v-if="brewer.twitter" class="float-start p-2">
             <a :href="brewer.twitter" target="_blank">
@@ -42,8 +44,8 @@
           </div>
           <div v-if="brewer.phone" class="float-start p-2">
             <a :href="'tel:' + brewer.phone">
-              <b-icon icon="telephone"></b-icon
-            ></a>
+              <b-icon icon="telephone"></b-icon> {{ brewer.phone }}</a
+            >
           </div>
           <div v-if="brewer.address" class="float-start p-2">
             <b-icon icon="mailbox2"></b-icon>

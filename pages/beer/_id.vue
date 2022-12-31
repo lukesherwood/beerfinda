@@ -4,9 +4,7 @@
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
     />
-    <p v-else-if="$fetchState.error" class="alert alert-danger">
-      Error: {{ $fetchState.error.message }}
-    </p>
+    <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
     <BeerPage v-else :beer="getBeer" />
   </div>
 </template>
@@ -20,7 +18,11 @@ export default {
     }
   },
   async fetch() {
-    await this.fetchBeer(this.id)
+    try {
+      await this.fetchBeer(this.id)
+    } catch (error) {
+      throw new Error(error)
+    }
   },
   head() {
     return {

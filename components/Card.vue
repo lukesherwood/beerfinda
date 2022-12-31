@@ -1,18 +1,15 @@
 <template>
   <div class="col">
-    <div
-      class="card h-100"
-      :style="{ width: width }"
-    >
+    <div class="card h-100" :style="{ width: width }">
       <nuxtLink
-        v-if="link"
+        v-show="link"
         class="stretched-link"
         :to="`/${link}`"
         :aria-label="`Go to ${title}`"
       />
       <nuxt-img
         loading="lazy"
-        placeholder="Loading_icon.gif"
+        placeholder="/Loading_icon.gif"
         format="webp"
         quality="25"
         :src="imageUrl"

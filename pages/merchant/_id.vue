@@ -4,9 +4,7 @@
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
     />
-    <p v-else-if="$fetchState.error" class="alert alert-danger">
-      Error: {{ $fetchState.error.message }}
-    </p>
+    <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
     <MerchantPage v-else :merchant="getMerchant" />
   </div>
 </template>
