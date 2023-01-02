@@ -69,8 +69,16 @@ export default {
     '@nuxtjs/auth-next',
   ],
   axios: {
-    baseURL: 'https://drspgoa.digifern.com/',
+    proxy: true,
   },
+
+  proxy: {
+    '/api/': {
+      target: 'https://drspgoa.digifern.com/',
+      pathRewrite: { '^/api/': '' },
+    },
+  },
+
   router: {
     middleware: [],
   },

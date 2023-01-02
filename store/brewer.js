@@ -38,7 +38,7 @@ export const actions = {
   async fetchBreweries(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get('brewer', { params: query })
+      const res = await this.$axios.$get('/api/brewer/', { params: query })
       state.commit('addBreweries', res.results)
       const perPage = 100
       const pages = {
@@ -62,7 +62,7 @@ export const actions = {
   async fetchBrewer(state, slug) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `brewer/${slug}`
+      const fetchUrl = `/api/brewer/${slug}/`
       const res = await this.$axios.$get(fetchUrl)
       state.commit('addBrewer', res)
       state.commit('setLoading', false)

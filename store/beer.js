@@ -77,7 +77,7 @@ export const actions = {
   async fetchBeers(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get('beer', { params: query })
+      const res = await this.$axios.$get('/api/beer/', { params: query })
       state.commit('addBeers', res.results)
       const perPage = 100
       const pages = {
@@ -101,7 +101,7 @@ export const actions = {
   async fetchBeer(state, id) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `beer/${id}`
+      const fetchUrl = `/api/beer/${id}/`
       const res = await this.$axios.$get(fetchUrl)
       state.commit('addBeer', res)
       state.commit('setLoading', false)
@@ -118,7 +118,7 @@ export const actions = {
   async fetchFeaturedBeers(state) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = 'beerfeatured'
+      const fetchUrl = '/api/beerfeatured/'
       const res = await this.$axios.$get(fetchUrl)
       state.commit('addFeaturedBeers', res.results)
       state.commit('setLoading', false)

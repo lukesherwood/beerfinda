@@ -38,7 +38,7 @@ export const actions = {
   async fetchMerchants(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get('merchant', { params: query })
+      const res = await this.$axios.$get('/api/merchant/', { params: query })
       state.commit('addMerchants', res.results)
       const perPage = 100
       const pages = {
@@ -62,7 +62,7 @@ export const actions = {
   async fetchMerchant(state, slug) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `merchant/${slug}`
+      const fetchUrl = `/api/merchant/${slug}/`
       const res = await this.$axios.$get(fetchUrl)
       state.commit('addMerchant', res)
       state.commit('setLoading', false)
