@@ -75,16 +75,10 @@ export default {
     }
   },
   async fetch() {
-    this.$watch(
-      () => this.$route.query,
-      () => {
-        this.setStateFromQuery()
-      },
-      { immediate: true }
-    )
+    this.setStateFromQuery()
     try {
       await this.$store.dispatch('brewer/fetchBreweries', {
-        url: this.createUrl(),
+        query: this.buildQuery(),
       })
     } catch (error) {
       throw new Error(error)
@@ -103,6 +97,9 @@ export default {
       getFilters: 'brewer/getFilters',
     }),
   },
+  watch: {
+    '$route.query': '$fetch',
+  },
   methods: {
     ...mapMutations({
       setCurrentPage: 'brewer/setCurrentPage',
@@ -112,6 +109,23 @@ export default {
     ...mapActions({
       fetchBreweries: 'brewer/fetchBreweries',
     }),
+    buildQuery() {
+      const query = {}
+      const searchTerm = this.getFilters.searchTerm
+      if (searchTerm) {
+        query.search = searchTerm
+      }
+      const page = this.getPages.currentPage
+      if (page > 1) {
+        query.limit = 100
+        query.offset = (page - 1) * 100
+      }
+      const order = this.getFilters.order
+      if (order) {
+        query.ordering = order
+      }
+      return query
+    },
     setStateFromQuery() {
       const query = this.$route.query
       if (query.search) {
@@ -135,9 +149,6 @@ export default {
         path: 'breweries',
         query: queries,
       })
-      this.fetchBreweries({
-        url: this.createUrl(),
-      })
     },
     handleSearch(keyword) {
       this.setSearchTerm(keyword)
@@ -147,9 +158,6 @@ export default {
       this.$router.push({
         path: 'breweries',
         query: queries,
-      })
-      this.fetchBreweries({
-        url: this.createUrl(),
       })
     },
     handleClearResults() {
@@ -162,9 +170,6 @@ export default {
         path: 'breweries',
         query: queries,
       })
-      this.fetchBreweries({
-        url: '/brewer',
-      })
     },
     handleClearFilter() {
       this.setCurrentPage(1)
@@ -176,9 +181,6 @@ export default {
         path: 'breweries',
         query: queries,
       })
-      this.fetchBreweries({
-        url: this.createUrl(),
-      })
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
@@ -186,32 +188,6 @@ export default {
         path: 'breweries',
         query: { ...this.$route.query, page },
       })
-      this.fetchBreweries({
-        url: this.createUrl(),
-      })
-    },
-    createUrl() {
-      // have this as a build query instead??
-      let url = 'brewer/?'
-      const query = {}
-      const searchTerm = this.getFilters.searchTerm
-      if (searchTerm) {
-        url += `search=${searchTerm}&`
-        query.search = searchTerm
-      }
-      const page = this.getPages.currentPage
-      if (page > 1) {
-        query.page = page
-        const limit = 100
-        const offset = (page - 1) * 100
-        url += `limit=${limit}&offset=${offset}&`
-      }
-      const order = this.getFilters.order
-      if (order) {
-        url += `ordering=${order}&`
-        query.ordering = order
-      }
-      return url
     },
   },
 }

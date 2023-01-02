@@ -38,6 +38,7 @@
             :title="merchant.name"
             image="index.png"
           >
+            <!-- Image is not in JSON yet -->
             <!-- :image="merchant.image_pre_link + merchant.image" -->
             <template #text>
               <div class="merchant-est">
@@ -66,7 +67,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-import { orderingTypes } from '../helpers/brewery'
+import { orderingTypes } from '../helpers/merchant'
 export default {
   name: 'Merchants',
   data() {
@@ -75,16 +76,9 @@ export default {
     }
   },
   async fetch() {
-    this.$watch(
-      () => this.$route.query,
-      () => {
-        this.setStateFromQuery()
-      },
-      { immediate: true }
-    )
     try {
       await this.$store.dispatch('merchant/fetchMerchants', {
-        url: this.createUrl(),
+        query: this.buildQuery(),
       })
     } catch (error) {
       throw new Error(error)
@@ -103,6 +97,9 @@ export default {
       getFilters: 'merchant/getFilters',
     }),
   },
+  watch: {
+    '$route.query': '$fetch',
+  },
   methods: {
     ...mapMutations({
       setCurrentPage: 'merchant/setCurrentPage',
@@ -112,6 +109,23 @@ export default {
     ...mapActions({
       fetchMerchants: 'merchant/fetchMerchants',
     }),
+    buildQuery() {
+      const query = {}
+      const searchTerm = this.getFilters.searchTerm
+      if (searchTerm) {
+        query.search = searchTerm
+      }
+      const page = this.getPages.currentPage
+      if (page > 1) {
+        query.limit = 100
+        query.offset = (page - 1) * 100
+      }
+      const order = this.getFilters.order
+      if (order) {
+        query.ordering = order
+      }
+      return query
+    },
     setStateFromQuery() {
       const query = this.$route.query
       if (query.search) {
@@ -135,9 +149,6 @@ export default {
         path: 'merchants',
         query: queries,
       })
-      this.fetchMerchants({
-        url: this.createUrl(),
-      })
     },
     handleSearch(keyword) {
       this.setSearchTerm(keyword)
@@ -147,9 +158,6 @@ export default {
       this.$router.push({
         path: 'merchants',
         query: queries,
-      })
-      this.fetchmerchants({
-        url: this.createUrl(),
       })
     },
     handleClearResults() {
@@ -162,9 +170,6 @@ export default {
         path: 'merchants',
         query: queries,
       })
-      this.fetchMerchants({
-        url: '/merchant',
-      })
     },
     handleClearFilter() {
       this.setCurrentPage(1)
@@ -176,9 +181,6 @@ export default {
         path: 'merchants',
         query: queries,
       })
-      this.fetchMerchants({
-        url: this.createUrl(),
-      })
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
@@ -186,32 +188,6 @@ export default {
         path: 'merchants',
         query: { ...this.$route.query, page },
       })
-      this.fetchMerchants({
-        url: this.createUrl(),
-      })
-    },
-    createUrl() {
-      // have this as a build query instead??
-      let url = 'merchant/?'
-      const query = {}
-      const searchTerm = this.getFilters.searchTerm
-      if (searchTerm) {
-        url += `search=${searchTerm}&`
-        query.search = searchTerm
-      }
-      const page = this.getPages.currentPage
-      if (page > 1) {
-        query.page = page
-        const limit = 100
-        const offset = (page - 1) * 100
-        url += `limit=${limit}&offset=${offset}&`
-      }
-      const order = this.getFilters.order
-      if (order) {
-        url += `ordering=${order}&`
-        query.ordering = order
-      }
-      return url
     },
   },
 }

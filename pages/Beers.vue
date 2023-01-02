@@ -139,7 +139,6 @@ export default {
     }),
     buildQuery() {
       const query = {}
-
       const searchTerm = this.getFilters.searchTerm
       if (searchTerm) {
         query.search = searchTerm
@@ -153,12 +152,12 @@ export default {
       if (filters.length) {
         filters.forEach((filter) => {
           query[filter.filterType] = ''
-        const keyword =
-          filter.keywords.length > 1
-            ? filter.keywords.join(',')
-            : filter.keywords
+          const keyword =
+            filter.keywords.length > 1
+              ? filter.keywords.join(',')
+              : filter.keywords
           // API doesn't like array
-        query[filter.filterType] = keyword.toString()
+          query[filter.filterType] = keyword.toString()
         })
       }
       const order = this.getFilters.order
@@ -169,27 +168,8 @@ export default {
       if (isInStockSet === true) {
         query.merchantsellsfound__isnull = !isInStockSet
       }
-
       return query
     },
-    price(beer) {
-      if (beer.merchantsellsfound) {
-        if (!beer.merchantsellsfound.length) return ''
-        if (beer.merchantsellsfound.length === 1) {
-          return priceToString(beer.merchantsellsfound[0].price)
-        }
-        return priceToString(
-          beer.merchantsellsfound.reduce((prev, curr) =>
-            prev.price < curr.price ? prev : curr
-          ).price
-        )
-      } else {
-        return ''
-      }
-    },
-    beerImageUrl,
-    beerRating,
-    beerRatingColor,
     setStateFromQuery() {
       const query = this.$route.query
       if (query.page) {
@@ -219,6 +199,24 @@ export default {
         })
       }
     },
+    price(beer) {
+      if (beer.merchantsellsfound) {
+        if (!beer.merchantsellsfound.length) return ''
+        if (beer.merchantsellsfound.length === 1) {
+          return priceToString(beer.merchantsellsfound[0].price)
+        }
+        return priceToString(
+          beer.merchantsellsfound.reduce((prev, curr) =>
+            prev.price < curr.price ? prev : curr
+          ).price
+        )
+      } else {
+        return ''
+      }
+    },
+    beerImageUrl,
+    beerRating,
+    beerRatingColor,
     filterBeerResults() {
       this.setCurrentPage(1)
     },

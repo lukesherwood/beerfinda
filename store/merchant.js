@@ -35,11 +35,10 @@ export const mutations = {
   },
 }
 export const actions = {
-  async fetchMerchants(state, { url } = {}) {
+  async fetchMerchants(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = url || 'merchant'
-      const res = await this.$axios.$get(fetchUrl)
+      const res = await this.$axios.$get('merchant', { params: query })
       state.commit('addMerchants', res.results)
       const perPage = 100
       const pages = {
@@ -51,12 +50,12 @@ export const actions = {
       state.commit('setupPages', pages)
       state.commit('setLoading', false)
     } catch (error) {
+      state.commit('setLoading', false)
       Vue.notify({
         title: 'Merchant',
         text: `Error fetching merchants - ${error.message}`,
         type: 'error',
       })
-      state.commit('setLoading', false)
       throw new Error('Merchants not found')
     }
   },
@@ -68,12 +67,12 @@ export const actions = {
       state.commit('addMerchant', res)
       state.commit('setLoading', false)
     } catch (error) {
+      state.commit('setLoading', false)
       Vue.notify({
         title: 'Merchant',
         text: `Error fetching merchant - ${error.message}`,
         type: 'error',
       })
-      state.commit('setLoading', false)
       throw new Error('Merchant not found')
     }
   },

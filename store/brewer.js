@@ -35,11 +35,10 @@ export const mutations = {
   },
 }
 export const actions = {
-  async fetchBreweries(state, { url } = {}) {
+  async fetchBreweries(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = url || 'brewer'
-      const res = await this.$axios.$get(fetchUrl)
+      const res = await this.$axios.$get('brewer', { params: query })
       state.commit('addBreweries', res.results)
       const perPage = 100
       const pages = {

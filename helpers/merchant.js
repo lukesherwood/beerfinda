@@ -1,8 +1,6 @@
 export const orderingTypes = {
   'Name A-Z': 'name',
   'Name Z-A': '-name',
-  'Location A-Z': 'location',
-  'Location Z-A': '-location',
   'Oldest -> Newest': 'created_on',
   'Newest -> Oldest': '-created_on',
 }
