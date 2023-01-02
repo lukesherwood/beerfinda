@@ -45,12 +45,12 @@ export const beerTypes = [
 ]
 
 export const orderingTypes = {
-  'Name A-Z': '+name',
+  'Name A-Z': 'name',
   'Name Z-A': '-name',
-  'Price (Low-High)': '+merchantsellsfound__price',
+  'Price (Low-High)': 'merchantsellsfound__price',
   'Price (High-Low)': '-merchantsellsfound__price',
+  'Rating (Low-High)': 'rating',
   'Rating (High-Low)': '-rating',
-  'Rating (Low-High)': '+rating',
 }
 
 export const priceToString = (price) => {

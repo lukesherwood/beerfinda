@@ -5,7 +5,7 @@
         :loading="isLoading"
         :search-term="getFilters.searchTerm"
         @search="handleSearch"
-        @clear="handleClearResults"
+        @clear="handleClearSearch"
       />
     </Banner>
     <div class="container">
@@ -99,20 +99,12 @@ export default {
       beerCategoryColors,
     }
   },
-  // it would be better to use this below instead of the watch inside of the fetch. Try changing to this before reworking the query builder
-  //   watch: {
-  //   '$route.query': '$fetch'
-  // },
   async fetch() {
-    this.$watch(
-      () => this.$route.query,
-      () => {
-        this.setStateFromQuery()
-      },
-      { immediate: true }
-    )
+    this.setStateFromQuery()
     try {
-      await this.$store.dispatch('beer/fetchBeers', { url: this.createUrl() })
+      await this.$store.dispatch('beer/fetchBeers', {
+        query: this.buildQuery(),
+      })
     } catch (error) {
       throw new Error(error)
     }
@@ -131,7 +123,9 @@ export default {
       isInStockSet: 'beer/isInStockSet',
     }),
   },
-
+  watch: {
+    '$route.query': '$fetch',
+  },
   methods: {
     ...mapMutations({
       setCurrentPage: 'beer/setCurrentPage',
@@ -143,6 +137,41 @@ export default {
     ...mapActions({
       fetchBeers: 'beer/fetchBeers',
     }),
+    buildQuery() {
+      const query = {}
+
+      const searchTerm = this.getFilters.searchTerm
+      if (searchTerm) {
+        query.search = searchTerm
+      }
+      const page = this.getPages.currentPage
+      if (page > 1) {
+        query.limit = 100
+        query.offset = (page - 1) * 100
+      }
+      const filters = this.getFilters.filter
+      if (filters.length) {
+        filters.forEach((filter) => {
+          query[filter.filterType] = ''
+        const keyword =
+          filter.keywords.length > 1
+            ? filter.keywords.join(',')
+            : filter.keywords
+          // API doesn't like array
+        query[filter.filterType] = keyword.toString()
+        })
+      }
+      const order = this.getFilters.order
+      if (order) {
+        query.ordering = order
+      }
+      const isInStockSet = this.isInStockSet
+      if (isInStockSet === true) {
+        query.merchantsellsfound__isnull = !isInStockSet
+      }
+
+      return query
+    },
     price(beer) {
       if (beer.merchantsellsfound) {
         if (!beer.merchantsellsfound.length) return ''
@@ -192,9 +221,6 @@ export default {
     },
     filterBeerResults() {
       this.setCurrentPage(1)
-      this.fetchBeers({
-        url: this.createUrl(),
-      })
     },
     handleSearch(keyword) {
       this.setSearchTerm(keyword)
@@ -205,11 +231,8 @@ export default {
         path: 'beers',
         query: queries,
       })
-      this.fetchBeers({
-        url: this.createUrl(),
-      })
     },
-    handleClearResults() {
+    handleClearSearch() {
       this.setCurrentPage(1)
       this.setSearchTerm('')
       const queries = JSON.parse(JSON.stringify(this.$route.query))
@@ -219,9 +242,6 @@ export default {
         path: 'beers',
         query: queries,
       })
-      this.fetchBeers({
-        url: this.createUrl(),
-      })
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
@@ -229,47 +249,6 @@ export default {
         path: 'beers',
         query: { ...this.$route.query, page },
       })
-      this.fetchBeers({
-        url: this.createUrl(),
-      })
-    },
-    createUrl() {
-      let url = 'beer/?'
-      const query = {}
-      const searchTerm = this.getFilters.searchTerm
-      if (searchTerm) {
-        url += `search=${searchTerm}&`
-        query.search = searchTerm
-      }
-      const page = this.getPages.currentPage
-      if (page > 1) {
-        query.page = page
-        const limit = 100
-        const offset = (page - 1) * 100
-        url += `limit=${limit}&offset=${offset}&`
-      }
-      const filters = this.getFilters.filter
-      const order = this.getFilters.order
-      const isInStockSet = this.isInStockSet
-      if (filters.length) {
-        filters.forEach((filter) => {
-          query.filterType = filter.filterType
-          query.keywords = filter.keywords
-          const keyword =
-            filter.keywords.length > 1
-              ? filter.keywords.join(', ')
-              : filter.keywords
-          url += `${filter.filterType}=${keyword}&`
-        })
-      }
-      if (order) {
-        url += `ordering=${order}&`
-        query.ordering = order
-      }
-      if (isInStockSet === true) {
-        url += `merchantsellsfound__isnull=${!isInStockSet}&`
-      }
-      return url
     },
   },
 }

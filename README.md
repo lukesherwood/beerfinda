@@ -2,30 +2,17 @@
 
 Todo:
 
-- convert create url to query builder
 - proxy for calls to api with axios
 - pagination needs to use nuxt links else back buttons don't work
 - abstract (join) filter component from beerfilter component
+- complete user functions
 - card image zooms on hover
-- card design could be longer horizontally image on left text on right
 - logout message not working
 - add hint to next for register to suggest click save if disabled
 - image error handler not working at all
 - fix this.$refs.img error?
 
-
-new arrivals beer slider to be carousel of cards
-like this example 
-https://www.pinterest.nz/pin/659284832943300607/
-
-Using this Card at the top of the examples here
-https://demos.creative-tim.com/paper-kit-react/?_ga=2.232348186.443500910.1640640466-1720198016.1640163227#/documentation/card
-
-
-
-
-
-t## Build Setup
+## Build Setup
 
 ```bash
 # install dependencies
