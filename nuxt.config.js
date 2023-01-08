@@ -69,12 +69,15 @@ export default {
     '@nuxtjs/auth-next',
   ],
   axios: {
+    credentials: true,
     proxy: true,
   },
 
+  privateRuntimeConfig: { baseURL: process.env.BASE_URL },
+
   proxy: {
     '/api/': {
-      target: 'https://drspgoa.digifern.com/',
+      target: process.env.baseUrl,
       pathRewrite: { '^/api/': '' },
     },
   },
@@ -91,6 +94,7 @@ export default {
           cookie: {
             // we check this cookie existence for loggedIn check
             name: 'XSRF-TOKEN',
+            secure: true,
           },
         },
         token: {
@@ -122,6 +126,29 @@ export default {
             method: 'post',
           },
           logout: false,
+        },
+      },
+      local2: {
+        cookie: {
+          cookie: {
+            name: 'XSRF-TOKEN',
+            secure: true,
+          },
+        },
+        scheme: 'local',
+        token: {
+          property: 'Token', // this is the place it gets the token from in the json response
+          global: true, // this determines if the authentication token is automatically included in all custom axios requests.
+          name: 'AToken', // this is the name of the key that is sent with the request in headers
+          type: false, // this sets the prefix of the token key
+        },
+        endpoints: {
+          login: {
+            url: 'https://drspgoa.digifern.com/setAuthToken/',
+            method: 'get',
+          },
+          logout: false,
+          user: false,
         },
       },
     },

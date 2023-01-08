@@ -2,7 +2,7 @@
 
 Todo:
 
-- proxy for calls to api with axios
+- see if we can further obfuscate the api url with env variables. Need to check that production still works
 - pagination needs to use nuxt links else back buttons don't work
 - abstract (join) filter component from beerfilter component
 - complete user functions
