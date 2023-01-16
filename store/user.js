@@ -16,7 +16,7 @@ export const mutations = {
 export const actions = {
   async postLogin(state, form) {
     try {
-      await this.$auth.loginWith('local', { data: form })
+      await this.$auth.loginWith('user', { data: form })
       Vue.notify({
         title: 'Authorization',
         text: 'You have been logged in!',

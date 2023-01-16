@@ -88,7 +88,7 @@ export default {
 
   auth: {
     strategies: {
-      local: {
+      user: {
         scheme: 'refresh',
         cookie: {
           cookie: {
@@ -113,22 +113,22 @@ export default {
         },
         endpoints: {
           login: {
-            url: 'https://drspgoa.digifern.com/api/token/',
+            url: process.env.baseUrl + 'api/token/',
             method: 'post',
           },
           user: {
-            url: 'https://drspgoa.digifern.com/UserView/',
+            url: process.env.baseUrl + 'UserView/',
             method: 'get',
             withCredentials: true,
           },
           refresh: {
-            url: 'https://drspgoa.digifern.com/api/token/refresh/',
+            url: process.env.baseUrl + 'api/token/refresh/',
             method: 'post',
           },
           logout: false,
         },
       },
-      local2: {
+      basicRequestCookie: {
         cookie: {
           cookie: {
             name: 'XSRF-TOKEN',
@@ -144,7 +144,7 @@ export default {
         },
         endpoints: {
           login: {
-            url: 'https://drspgoa.digifern.com/setAuthToken/',
+            url: process.env.baseUrl + 'setAuthToken/',
             method: 'get',
           },
           logout: false,
