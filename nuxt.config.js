@@ -99,7 +99,7 @@ export default {
         },
         token: {
           property: 'access',
-          global: false, // This determines if the authentication token is automatically included in all custom axios requests.
+          global: true, // This determines if the authentication token is automatically included in all custom axios requests.
           maxAge: 1800,
           // name: 'Token',
         },

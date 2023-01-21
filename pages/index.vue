@@ -25,7 +25,11 @@
       />
     </HomeBanner>
     <div class="container">
-      <Spinner v-if="isLoading" />
+      <Spinner
+        v-if="$fetchState.pending || isLoading"
+        :loading="$fetchState.pending || isLoading"
+      />
+      <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
         <h1 class="text-start title">Featured Beers</h1>
         <CardCarousel :beers="getFeaturedBeers" />
