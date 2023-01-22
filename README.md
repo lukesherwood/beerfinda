@@ -2,10 +2,10 @@
 
 Todo:
 
-- see if we can further obfuscate the api url with env variables. Need to check that production still works
+- complete user functions
+- see if we can further obfuscate the api url with env variables.
 - pagination needs to use nuxt links else back buttons don't work
 - abstract (join) filter component from beerfilter component
-- complete user functions
 - card image zooms on hover
 - logout message not working
 - add hint to next for register to suggest click save if disabled

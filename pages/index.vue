@@ -131,6 +131,9 @@ export default {
   },
   async fetch() {
     try {
+      if (!this.$auth.strategy.token.status().valid()) {
+        await this.$auth.loginWith('basicRequestCookie')
+      }
       await this.$store.dispatch('beer/fetchFeaturedBeers')
     } catch (error) {
       throw new Error(error)

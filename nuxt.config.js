@@ -113,16 +113,16 @@ export default {
         },
         endpoints: {
           login: {
-            url: process.env.baseUrl + 'api/token/',
+            url: '/api/api/token/',
             method: 'post',
           },
           user: {
-            url: process.env.baseUrl + 'UserView/',
+            url: '/api/UserView/',
             method: 'get',
             withCredentials: true,
           },
           refresh: {
-            url: process.env.baseUrl + 'api/token/refresh/',
+            url: '/api/api/token/refresh/',
             method: 'post',
           },
           logout: false,
@@ -144,7 +144,7 @@ export default {
         },
         endpoints: {
           login: {
-            url: process.env.baseUrl + 'setAuthToken/',
+            url: '/api/setAuthToken/',
             method: 'get',
           },
           logout: false,
