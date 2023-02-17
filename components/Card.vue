@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <div class="card h-100" :style="{ width: width }">
+    <div class="card h-100 zoom" :style="{ width: width }">
       <nuxtLink
         v-show="link"
         class="stretched-link"
@@ -54,6 +54,10 @@ export default {
 .card img {
   object-fit: contain;
   height: 25vh;
+}
+
+.zoom:hover {
+  transform: scale(1.075);
 }
 
 .card-body {

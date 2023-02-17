@@ -85,13 +85,14 @@
   </nav>
 </template>
 <script>
+import Vue from 'vue'
 export default {
   methods: {
     logout() {
       this.$auth
         .logout()
         .then(() =>
-          this.$notify({ type: 'success', text: 'Logged out successfully' })
+          Vue.notify({ type: 'success', text: 'Logged out successfully' })
         )
     },
   },

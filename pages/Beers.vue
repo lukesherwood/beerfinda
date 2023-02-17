@@ -172,6 +172,9 @@ export default {
     },
     setStateFromQuery() {
       const query = this.$route.query
+      if (!query.page) {
+        this.setCurrentPage(1)
+      }
       if (query.page) {
         // need to convert from string because pagination component needs ints for correct calculations
         this.setCurrentPage(parseInt(query.page))
@@ -243,7 +246,7 @@ export default {
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
-      this.$router.replace({
+      this.$router.push({
         path: 'beers',
         query: { ...this.$route.query, page },
       })

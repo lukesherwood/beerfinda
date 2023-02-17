@@ -1,18 +1,17 @@
 # Beerfinda
 
 Todo:
-
-- pagination needs to use nuxt links else back buttons don't work
-- complete user functions
+- add forgotten password and or change password features
 - redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
-- add hint to next for register to suggest click save if disabled
-- forgotten password page and functionality
 - see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component
-- card image zooms on hover
+
+
+Issues found but maybe too-hard-basket/low value:
+- fix this.$refs.img error? image error handler not working at all
 - logout message not working
-- image error handler not working at all
-- fix this.$refs.img error?
+- figure out why tooltips don't work or import a library
+
 
 ## Build Setup
 

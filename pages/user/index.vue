@@ -6,7 +6,7 @@
         <h3>User Page</h3>
         <form @submit.prevent="handleUserUpdate">
           <div class="form-group mb-3 pt-3">
-            <label>First Name</label>
+            <label>First Name *</label>
             <input
               v-model="form.firstName"
               type="text"
@@ -16,7 +16,7 @@
             />
           </div>
           <div class="form-group mb-3">
-            <label>Last Name</label>
+            <label>Last Name *</label>
             <input
               v-model="form.lastName"
               type="text"
@@ -26,7 +26,7 @@
             />
           </div>
           <div class="form-group mb-3">
-            <label>Email</label>
+            <label>Email *</label>
             <input
               v-model="form.email"
               type="email"
@@ -36,7 +36,7 @@
             />
           </div>
           <div class="form-group mb-3">
-            <label>Describe the type of beer that you like</label>
+            <label>Describe the type of beer that you like *</label>
             <input
               v-model="form.description"
               type="text"
@@ -47,13 +47,29 @@
           </div>
           <div class="form-group mb-3">
             <!-- would be cool to have icons/badges with the selected beers above or below, x's to remove, search to add new ones. -->
-            <RegisterBeerSearch @beersSave="handleBeersSave" />
+            <RegisterBeerSearch
+              :beers-like="form.beersLike"
+              @beersSave="handleBeersSave"
+            />
           </div>
+          <div class="py-3">* Required</div>
           <!-- need a way to reset password safely -->
+          <!-- tooltip not working but its straight from bootstrap docs-->
           <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">
-              Update
-            </button>
+            <span
+              class="d-flex"
+              tabindex="0"
+              data-bs-toggle="tooltip"
+              data-bs-title="Please Fill Required Fields"
+            >
+              <button
+                :disabled="validate()"
+                type="submit"
+                class="btn btn-primary btn-lg"
+              >
+                Update
+              </button>
+            </span>
           </div>
         </form>
       </div>
@@ -75,7 +91,7 @@ export default {
         lastName: this.$auth.user.last_name,
         email: this.$auth.user.email,
         description: this.$auth.user.description,
-        beersLike: [],
+        beersLike: [this.$auth.user.beersLike],
       },
     }
   },
@@ -92,9 +108,19 @@ export default {
     transformForm(form) {
       const newForm = {}
       for (const key in form) {
-        newForm[snakeCase(key)] = form[key]
+        // if the data has been changed in the form add it to the data in the correct format (snakecase)
+        if (form[key] !== this.$auth.user[snakeCase(key)]) {
+          newForm[snakeCase(key)] = form[key]
+        }
       }
       return newForm
+    },
+    validate() {
+      return (
+        !this.form.beersLike.length ||
+        !this.form.description ||
+        !this.form.email
+      )
     },
   },
 }

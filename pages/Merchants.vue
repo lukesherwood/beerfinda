@@ -131,6 +131,9 @@ export default {
       if (query.search) {
         this.setSearchTerm(query.search)
       }
+      if (!query.page) {
+        this.setCurrentPage(1)
+      }
       if (query.page) {
         // need to convert from string because pagination component needs ints for correct calculations
         this.setCurrentPage(parseInt(query.page))
@@ -184,7 +187,7 @@ export default {
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
-      this.$router.replace({
+      this.$router.push({
         path: 'merchants',
         query: { ...this.$route.query, page },
       })

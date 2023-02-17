@@ -59,6 +59,7 @@
             <label class="w-100">
               <h6>{{ beer.name }}</h6>
               {{ beer.brewer_name }}
+              <!-- this isn't reflecting the props passed in as selected/checked -->
               <input
                 :id="beer.beer_id"
                 v-model="beersSelected"
@@ -96,10 +97,11 @@ import { debounce } from 'lodash'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'RegisterBeerSearch',
+  props: ['beersLike'],
   data() {
     return {
       keyword: '',
-      beersSelected: [],
+      beersSelected: this.beersLike || [],
       saved: false,
       dropdownClosed: false,
     }
