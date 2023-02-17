@@ -37,14 +37,6 @@
               >Merchants</nuxtLink
             >
           </li>
-          <li v-if="$auth.user.email" class="nav-item">
-            <nuxtLink
-              to="/user"
-              class="nav-link text-primary"
-              aria-current="page"
-              >User</nuxtLink
-            >
-          </li>
         </ul>
       </div>
       <div class="mx-auto order-0">
@@ -62,6 +54,14 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ms-auto">
+          <li v-if="$auth.user.email" class="nav-item">
+            <nuxtLink
+              to="/user"
+              class="nav-link text-primary"
+              aria-current="page"
+              ><i class="bi bi-person-circle"></i>
+            </nuxtLink>
+          </li>
           <li v-show="!$auth.user.email" class="nav-item">
             <nuxtLink to="/login" class="nav-link text-primary">Login</nuxtLink>
           </li>
@@ -110,5 +110,12 @@ export default {
   font-size: 1rem;
   font-weight: bold;
   margin-left: 20px;
+  display: flex;
+
+}
+
+.nav-link {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 </style>
