@@ -37,6 +37,14 @@
               >Merchants</nuxtLink
             >
           </li>
+          <li v-if="$auth.user.email" class="nav-item">
+            <nuxtLink
+              to="/user"
+              class="nav-link text-primary"
+              aria-current="page"
+              >User</nuxtLink
+            >
+          </li>
         </ul>
       </div>
       <div class="mx-auto order-0">
@@ -45,6 +53,7 @@
             loading="lazy"
             preload
             width="200px"
+            height="50px"
             src="/beerfinda.png"
             format="webp"
             class="navbar-brand pt-0"

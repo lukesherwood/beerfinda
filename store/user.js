@@ -34,7 +34,7 @@ export const actions = {
   async fetchBeerResults(state, { keyword }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get(`/beer/?search=${keyword}`)
+      const res = await this.$axios.$get(`/api/beer/?search=${keyword}`)
       state.commit('addBeerResults', res.results)
       state.commit('setLoading', false)
     } catch (error) {
@@ -48,7 +48,7 @@ export const actions = {
   },
   async postRegisterProfile(state, data) {
     try {
-      await this.$axios.$post('/ProfileCreate/', data)
+      await this.$axios.$post('/api/ProfileCreate/', data)
     } catch (error) {
       Vue.notify({
         title: 'Authorization',
@@ -61,7 +61,7 @@ export const actions = {
 
   async postRegisterUser(state, data) {
     try {
-      await this.$axios.$post('/UserCreate/', data)
+      await this.$axios.$post('/api/UserCreate/', data)
     } catch (error) {
       Vue.notify({
         title: 'Authorization',
@@ -69,6 +69,27 @@ export const actions = {
         type: 'error',
       })
       throw new Error(`User unable to register user - ${error.message}`)
+    }
+  },
+
+  async userUpdate(state, data) {
+    try {
+      // data = {
+      //     "email": "test1235545@gmail.com",
+      //     "first_name": "1234",
+      //     "last_name": "123444",
+      //     "password": "123",
+      //     "beers_like": [6, 11],
+      //     "description": "sour beer tastes good"
+      // }
+      await this.$axios.$post('/api/UserUpdate/', data)
+    } catch (error) {
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error registering user - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`User unable to update user - ${error.message}`)
     }
   },
 }

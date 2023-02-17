@@ -2,13 +2,15 @@
 
 Todo:
 
-- complete user functions
-- see if we can further obfuscate the api url with env variables.
 - pagination needs to use nuxt links else back buttons don't work
+- complete user functions
+- redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
+- add hint to next for register to suggest click save if disabled
+- forgotten password page and functionality
+- see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component
 - card image zooms on hover
 - logout message not working
-- add hint to next for register to suggest click save if disabled
 - image error handler not working at all
 - fix this.$refs.img error?
 

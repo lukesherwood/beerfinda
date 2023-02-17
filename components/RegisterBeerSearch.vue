@@ -51,7 +51,10 @@
         class="dropdown-menu beer-select"
         :class="{ show: keyword && getBeerResults.length && !dropdownClosed }"
       >
-        <li v-for="beer in getBeerResults" :key="'register-beer' + beer.beer_id">
+        <li
+          v-for="beer in getBeerResults"
+          :key="'register-beer' + beer.beer_id"
+        >
           <div class="dropdown-item">
             <label class="w-100">
               <h6>{{ beer.name }}</h6>
@@ -144,7 +147,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .search-input {
   text-indent: 20px;
   border-top-left-radius: 0.5rem !important;
@@ -177,7 +179,6 @@ export default {
 .beer-select {
   max-height: 300px;
   overflow: scroll;
-  margin-left: -10px;
   min-width: 340px;
 }
 </style>
