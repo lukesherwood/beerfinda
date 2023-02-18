@@ -1,7 +1,9 @@
 # Beerfinda
 
 Todo:
+- add ads
 - add forgotten password and or change password features
+- add change email features
 - redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
 - see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component

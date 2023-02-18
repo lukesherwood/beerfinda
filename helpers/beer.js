@@ -84,16 +84,17 @@ export const beerRatingColor = (rating) => {
 
 export const beerImageUrl = (beer) => {
   if (
-    beer?.imagefound?.length > 0 &&
-    beer.imagefound[0].image_pre_link &&
-    beer.imagefound[0].image_link
-  ) {
-    return `${beer.imagefound[0].image_pre_link}${beer.imagefound[0].image_link}`
-  } else if (
     beer.merchantsellsfound?.length &&
-    beer.merchantsellsfound[0].image_link
+    beer.merchantsellsfound[0].image_link &&
+    beer.merchantsellsfound[0].image_pre_link
   ) {
     return `${beer.merchantsellsfound[0].image_pre_link}${beer.merchantsellsfound[0].image_link}`
+  } else if (
+    beer?.imagefound?.length &&
+    beer.imagefound[0].image_pre_link &&
+    beer.imagefound[0].image
+  ) {
+    return `${beer.imagefound[0].image_pre_link}${beer.imagefound[0].image}`
   }
   return 'index.png'
 }
