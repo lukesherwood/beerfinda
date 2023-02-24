@@ -22,7 +22,9 @@ export default {
   },
   head() {
     return {
-      title: `Beerfinda | Brewer | ${this.getBrewer.name}`,
+      title: this.getBrewer.name
+        ? `Beerfinda | Brewer | ${this.getBrewer.name}`
+        : 'Beerfinda | Brewer',
     }
   },
   computed: {

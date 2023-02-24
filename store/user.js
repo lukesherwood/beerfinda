@@ -74,22 +74,27 @@ export const actions = {
 
   async userUpdate(state, data) {
     try {
-      // data = {
-      //     "email": "test1235545@gmail.com",
-      //     "first_name": "1234",
-      //     "last_name": "123444",
-      //     "password": "123",
-      //     "beers_like": [6, 11],
-      //     "description": "sour beer tastes good"
-      // }
       await this.$axios.$post('/api/UserUpdate/', data)
     } catch (error) {
       Vue.notify({
         title: 'Authorization',
-        text: `Error registering user - ${error.message}`,
+        text: `Error updating user - ${error.message}`,
         type: 'error',
       })
       throw new Error(`User unable to update user - ${error.message}`)
+    }
+  },
+
+  async requestResetPassword(state, data) {
+    try {
+      await this.$axios.$post('/api/request-reset-email/', data)
+    } catch (error) {
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error resetting password - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`User unable to reset password - ${error.message}`)
     }
   },
 }

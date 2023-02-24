@@ -26,7 +26,9 @@ export default {
   },
   head() {
     return {
-      title: `Beerfinda | Beers | ${this.getBeer.name}`,
+      title: this.getBeer.name
+        ? `Beerfinda | Beers | ${this.getBeer.name}`
+        : 'Beerfinda | Beers',
     }
   },
   computed: {

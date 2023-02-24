@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -66,11 +66,6 @@ export default {
         password: '',
       },
     }
-  },
-  computed: {
-    ...mapGetters({
-      getLoggedIn: 'users/getLoggedIn',
-    }),
   },
   methods: {
     ...mapActions({ postLogin: 'user/postLogin' }),

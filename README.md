@@ -2,11 +2,12 @@
 
 Todo:
 - add ads
-- add forgotten password and or change password features
+- create new page for /password-reset/{user-id}/{token}/?redirect_url="" which gets the user id and token and asks for password. Sends request with all above to /password-reset-complete/
 - add change email features
 - redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
 - see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component
+- fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 
 
 Issues found but maybe too-hard-basket/low value:
