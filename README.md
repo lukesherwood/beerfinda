@@ -1,7 +1,7 @@
 # Beerfinda
 
 Todo:
-- add ads
+- hook up contact form/email
 - create new page for /password-reset/{user-id}/{token}/?redirect_url="" which gets the user id and token and asks for password. Sends request with all above to /password-reset-complete/
 - add change email features
 - redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
