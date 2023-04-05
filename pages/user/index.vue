@@ -53,7 +53,6 @@
             />
           </div>
           <div class="py-3">* Required</div>
-          <!-- need a way to reset password safely -->
           <!-- tooltip not working but its straight from bootstrap docs-->
           <div class="form-group">
             <span

@@ -87,7 +87,40 @@ export const actions = {
 
   async requestResetPassword(state, data) {
     try {
-      await this.$axios.$post('/api/request-reset-email/', data)
+      await this.$axios
+        .$post('/api/request-reset-email/', data)
+        .then((resp) => {
+          if (resp.success) {
+            Vue.notify({
+              title: 'Authorization',
+              text: `${resp.success}`,
+              type: 'success',
+            })
+          }
+        })
+    } catch (error) {
+      Vue.notify({
+        title: 'Authorization',
+        text: `Error resetting password - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`User unable to reset password - ${error.message}`)
+    }
+  },
+
+  async updatePassword(state, data) {
+    try {
+      await this.$axios
+        .$patch('/api/password-reset-complete/', data)
+        .then((resp) => {
+          if (resp.success) {
+            Vue.notify({
+              title: 'Authorization',
+              text: `Successfully reset password, please log in with the new password`,
+              type: 'success',
+            })
+          }
+        })
     } catch (error) {
       Vue.notify({
         title: 'Authorization',

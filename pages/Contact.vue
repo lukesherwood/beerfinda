@@ -8,6 +8,7 @@
           <div class="form-group">
             <label>Email address</label>
             <input
+              v-model="form.email"
               type="email"
               name="email"
               class="form-control form-control-lg"
@@ -17,10 +18,11 @@
           <div class="form-group">
             <label for="text">Send a message</label>
             <textarea
-              id="text"
+              v-model="form.message"
               class="w-100 form-control form-control-lg"
               name="text"
               rows="10"
+              required
             ></textarea>
           </div>
           <div class="form-group pt-3">
@@ -37,6 +39,20 @@
 <script>
 export default {
   name: 'Contact',
+  data() {
+    return {
+      form: {
+        email: '',
+        message: '',
+      },
+    }
+  },
+  methods: {
+    handleSubmit() {
+      // this.postContact(this.form)
+      this.$axios.$post('/api/contact/', this.form)
+    },
+  },
 }
 </script>
 
