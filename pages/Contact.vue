@@ -6,6 +6,16 @@
         <form @submit.prevent="handleSubmit">
           <h3>Contact</h3>
           <div class="form-group">
+            <label>Name</label>
+            <input
+              v-model="form.name"
+              type="text"
+              name="name"
+              class="form-control form-control-lg"
+              required
+            />
+          </div>
+          <div class="form-group">
             <label>Email address</label>
             <input
               v-model="form.email"
@@ -37,20 +47,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Contact',
   data() {
     return {
       form: {
+        name: '',
         email: '',
         message: '',
       },
     }
   },
   methods: {
+    ...mapActions({ postContact: 'user/postContact' }),
     handleSubmit() {
-      // this.postContact(this.form)
-      this.$axios.$post('/api/contact/', this.form)
+      this.postContact(this.form).then(() => {
+        this.$router.push('/')
+      })
     },
   },
 }

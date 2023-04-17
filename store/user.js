@@ -31,6 +31,23 @@ export const actions = {
       throw new Error(`User unable to login - ${error.message}`)
     }
   },
+  async postContact(state, form) {
+    try {
+      await this.$axios.$post('/api/contact/', form)
+      Vue.notify({
+        title: 'Contact',
+        text: 'Successfully sent contact message',
+        type: 'success',
+      })
+    } catch (error) {
+      Vue.notify({
+        title: 'Contact',
+        text: `Error sending contact message - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`Contact message unsuccessful - ${error.message}`)
+    }
+  },
   async fetchBeerResults(state, { keyword }) {
     state.commit('setLoading', true)
     try {
