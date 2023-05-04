@@ -41,6 +41,7 @@ export default {
     '~/plugins/vue-agile',
     { src: '~/plugins/notifications-ssr', ssr: true },
     { src: '~/plugins/notifications-client', ssr: false },
+    { src: '~/plugins/vee-validate.js', ssr: true },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -174,7 +175,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-agile'],
+    transpile: ['vue-agile', 'vee-validate'],
     postcss: null,
     babel: {
       compact: true,

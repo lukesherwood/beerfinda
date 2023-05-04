@@ -20,13 +20,16 @@
       </div>
       <div class="form-group mb-3">
         <label>Email address</label>
-        <input
-          v-model="form.email"
-          type="email"
-          name="email"
-          class="form-control form-control-lg"
-          required
-        />
+        <ValidationProvider v-slot="{ errors }" name="Email" rules="email">
+          <input
+            v-model="form.email"
+            type="email"
+            name="email"
+            class="form-control form-control-lg"
+            required
+          />
+          <span>{{ errors[0] }}</span>
+        </ValidationProvider>
       </div>
       <div class="form-group">
         <button

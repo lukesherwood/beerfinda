@@ -2,12 +2,11 @@
 
 Todo:
 - redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
+- change profile create validation to vee-validate
 - add change email features
-- add confirmation to password fields, and validators to make
 - see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component
 - fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
-- hook up contact form/email - this should probably be done via backend /contact. Difficult to set up on frontend - need to configure node express server etcetc
 
 
 Issues found but maybe too-hard-basket/low value:
