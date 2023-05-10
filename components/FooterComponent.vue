@@ -7,42 +7,42 @@
           role="button"
           data-mdb-ripple-color="dark"
         >
-          <i class="fab fa-facebook-f"></i>
+          <b-icon icon="facebook"></b-icon>
         </div>
         <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
         >
-          <i class="fab fa-twitter"></i>
+          <b-icon icon="twitter"></b-icon>
         </div>
         <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
         >
-          <i class="fab fa-google"></i>
+          <b-icon icon="google"></b-icon>
         </div>
         <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
         >
-          <i class="fab fa-instagram"></i>
+          <b-icon icon="instagram"></b-icon>
         </div>
         <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
         >
-          <i class="fab fa-linkedin"></i>
+          <b-icon icon="linkedin"></b-icon>
         </div>
         <div
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
         >
-          <i class="fab fa-github"></i>
+          <b-icon icon="github"></b-icon>
         </div>
       </section>
     </div>

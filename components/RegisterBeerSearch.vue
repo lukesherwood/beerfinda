@@ -103,7 +103,6 @@ export default {
     return {
       keyword: '',
       beersSelected: this.beersLike || [],
-      saved: false,
       dropdownClosed: false,
     }
   },
@@ -159,7 +158,6 @@ export default {
       this.dropdownClosed = !this.dropdownClosed
     },
     submitHandler() {
-      this.saved = this.beersSelected
       this.$emit('beersSave', this.beersSelected)
     },
     updateBeerInfo() {

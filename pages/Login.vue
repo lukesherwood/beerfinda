@@ -79,8 +79,6 @@ export default {
 * {
   box-sizing: border-box;
 }
-html,
-.App,
 .vue-template,
 .vertical-center {
   width: 100%;
@@ -169,5 +167,12 @@ label {
 .social-icons ul li a:active i {
   transition: none;
   color: #222222;
+}
+
+@media only screen and (max-width: 500px) {
+  .inner-block {
+    width: 100%;
+    padding: 20px;
+  }
 }
 </style>

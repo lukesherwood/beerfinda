@@ -66,7 +66,7 @@
                     ),
                   }"
                 >
-                  <i class="bi bi-star-fill"></i>
+                  <b-icon icon="star-fill"></b-icon>
                   {{ beerRating(beer.ratings) }}
                 </div>
               </template>

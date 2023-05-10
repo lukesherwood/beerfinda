@@ -1,7 +1,9 @@
 # Beerfinda
 
 Todo:
-
+- problem after logging in/logging out, beer fetch doesn't work, I think maybe it happens just before user gets logged in.
+- mobile enhance all pages
+- icons missing in prod (svg- bi-check2-square works, user and star doesn't)
 - change profile create/update validation to vee-validate
 - add change email features
 - see if we can further obfuscate the image api url with env variables.
@@ -10,10 +12,13 @@ Todo:
 
 
 Issues found but maybe too-hard-basket/low value:
+- setup omniauth google, facebook etc
 - fix this.$refs.img error? image error handler not working at all
 - logout message not working
 - figure out why tooltips don't work or import a library
 
+Deployment:
+```git archive -v -o beerfinda.zip --format=zip HEAD```
 
 ## Build Setup
 

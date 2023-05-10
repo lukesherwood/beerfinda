@@ -59,7 +59,7 @@
               to="/user"
               class="nav-link text-primary"
               aria-current="page"
-              ><i class="bi bi-person-circle"></i>
+              ><b-icon class="pe-1" icon="person-circle"></b-icon>
             </nuxtLink>
           </li>
           <li v-show="!$auth.user.email" class="nav-item">
@@ -111,7 +111,6 @@ export default {
   font-weight: bold;
   margin-left: 20px;
   display: flex;
-
 }
 
 .nav-link {
