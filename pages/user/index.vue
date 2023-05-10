@@ -46,7 +46,6 @@
             />
           </div>
           <div class="form-group mb-3">
-            <!-- would be cool to have icons/badges with the selected beers above or below, x's to remove, search to add new ones. -->
             <RegisterBeerSearch
               :beers-like="form.beersLike"
               @beersSave="handleBeersSave"
@@ -90,7 +89,7 @@ export default {
         lastName: this.$auth.user.last_name,
         email: this.$auth.user.email,
         description: this.$auth.user.description,
-        beersLike: [this.$auth.user.beersLike],
+        beersLike: this.$auth.user.beers_like,
       },
     }
   },

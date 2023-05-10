@@ -101,12 +101,12 @@ export default {
         token: {
           property: 'access',
           global: true, // This determines if the authentication token is automatically included in all custom axios requests.
-          maxAge: 1800,
+          maxAge: 60 * 60 * 12,
         },
         refreshToken: {
           property: 'refresh',
           data: 'refresh',
-          maxAge: 1800,
+          maxAge: 60 * 60 * 12,
         },
         user: {
           property: false,

@@ -16,7 +16,22 @@
 <script>
 export default {
   data() {
-    return {}
+    return { polling: null }
+  },
+  created() {
+    this.pollData()
+  },
+  beforeDestroy() {
+    clearInterval(this.polling)
+  },
+  methods: {
+    pollData() {
+      this.polling = setInterval(() => {
+        if (!this.$auth.user && !this.$auth.loggedIn) {
+          this.$auth.loginWith('basicRequestCookie')
+        }
+      }, 3000)
+    },
   },
 }
 </script>

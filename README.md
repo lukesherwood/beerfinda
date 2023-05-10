@@ -1,8 +1,8 @@
 # Beerfinda
 
 Todo:
-- redo beers_liked search - it should show the beers' badges once selected, and they can be deleted
-- change profile create validation to vee-validate
+
+- change profile create/update validation to vee-validate
 - add change email features
 - see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component

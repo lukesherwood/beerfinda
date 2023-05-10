@@ -3,16 +3,26 @@ import Vue from 'vue'
 export const state = () => ({
   beerResults: [],
   loading: false,
+  beersSelectedInfo: [],
 })
 
 export const mutations = {
   addBeerResults(state, payload) {
     state.beerResults = payload
   },
+  addBeerInfo(state, payload) {
+    // if there is not already the beer in the store, add it. Avoids duplicates being added.
+    if (
+      !state.beersSelectedInfo.find((beer) => beer.beer_id === payload.beer_id)
+    ) {
+      state.beersSelectedInfo = [...state.beersSelectedInfo, payload]
+    }
+  },
   setLoading(state, payload) {
     state.loading = payload
   },
 }
+
 export const actions = {
   async postLogin(state, form) {
     try {
@@ -63,6 +73,23 @@ export const actions = {
       state.commit('setLoading', false)
     }
   },
+  async fetchBeerInfo(state, id) {
+    state.commit('setLoading', true)
+    try {
+      const fetchUrl = `/api/beer/${id}/`
+      const res = await this.$axios.$get(fetchUrl)
+      state.commit('addBeerInfo', res)
+      state.commit('setLoading', false)
+    } catch (error) {
+      state.commit('setLoading', false)
+      Vue.notify({
+        title: 'Beer',
+        text: `Error fetching beer - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error('Beer not found')
+    }
+  },
   async postRegisterProfile(state, data) {
     try {
       await this.$axios.$post('/api/ProfileCreate/', data)
@@ -91,7 +118,13 @@ export const actions = {
 
   async userUpdate(state, data) {
     try {
-      await this.$axios.$post('/api/UserUpdate/', data)
+      await this.$axios.$post('/api/UserUpdate/', data).then((resp) => {
+        Vue.notify({
+          title: 'User',
+          text: `Successfully updated`,
+          type: 'success',
+        })
+      })
     } catch (error) {
       Vue.notify({
         title: 'Authorization',
@@ -152,4 +185,5 @@ export const actions = {
 export const getters = {
   getBeerResults: (state) => state.beerResults,
   isLoading: (state) => state.loading,
+  beersSelectedInfo: (state) => state.beersSelectedInfo,
 }
