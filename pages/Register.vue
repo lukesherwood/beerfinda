@@ -90,10 +90,6 @@ export default {
 .forgot-password a {
   color: #2554ff;
 }
-.vertical-center .form-control:focus {
-  border-color: #2554ff;
-  box-shadow: none;
-}
 .vertical-center h3 {
   text-align: center;
   margin: 0;

@@ -1,55 +1,45 @@
-<template lang="">
+<template>
   <div class="container">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-10">
-        <div class="search">
-          <form @submit.prevent="onSearch">
-            <div class="input-group">
-              <b-icon
-                v-show="!keyword"
-                width="25px"
-                class="search-icon"
-                icon="search"
-              ></b-icon>
-              <input
-                v-model="keyword"
-                class="form-control border-end-0 border search-input"
-                type="search"
-                placeholder="Search"
-              />
-              <b-icon
-                v-show="keyword"
-                width="25px"
-                class="search-clear"
-                icon="x-circle"
-                @click="handleClear"
-              ></b-icon>
-              <span class="input-group-append">
-                <button
-                  v-if="loading"
-                  disabled
-                  type="submit"
-                  class="btn btn-secondary search-button"
-                >
-                  <span
-                    class="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  Loading...
-                </button>
-                <input
-                  v-else
-                  type="submit"
-                  value="Search"
-                  class="btn btn-secondary search-button"
-                />
-              </span>
-            </div>
-          </form>
-        </div>
+    <form @submit.prevent="onSearch">
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text bg-white">
+          <b-icon icon="search"></b-icon>
+        </span>
+        <input
+          v-model="keyword"
+          class="form-control"
+          type="search"
+          placeholder="Search"
+        />
+        <span v-show="keyword" class="input-group-text bg-white">
+          <b-icon
+            width="25px"
+            class="search-clear"
+            icon="x-circle"
+            @click="handleClear"
+          ></b-icon>
+        </span>
+        <button
+          v-if="loading"
+          disabled
+          type="submit"
+          class="btn btn-secondary btn-lg search-button"
+        >
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Loading...
+        </button>
+        <input
+          v-else
+          type="submit"
+          value="Search"
+          class="btn btn-secondary search-button"
+        />
       </div>
-    </div>
+    </form>
   </div>
 </template>
 <script>
@@ -83,39 +73,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.search {
-  box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
-}
-
-.search-input {
-  text-indent: 25px;
-  border-top-left-radius: 0.5rem !important;
-  border-bottom-left-radius: 0.5rem !important;
-  margin-left: -8px !important;
-  height: 3rem;
-  font-size: 1.25rem;
-}
-
-.search-icon {
-  z-index: 100;
-  position: absolute;
-  font-size: 1.75rem;
-  top: 10px;
-  padding-right: 5px;
-}
-
 .search-clear {
-  z-index: 100;
-  position: absolute;
-  font-size: 1.75rem;
-  top: 10px;
-  right: 11rem;
   cursor: pointer;
 }
-
-.search-button {
-  min-width: 10rem;
-  height: 100%;
-  cursor: pointer;
+.container {
+  max-width: 600px;
 }
 </style>

@@ -129,7 +129,7 @@ export const actions = {
         text: `Error fetching featured beers - ${error.message}`,
         type: 'error',
       })
-      throw new Error('Featured beers not found')
+      this.$nuxt.refresh()
     }
   },
 }

@@ -100,10 +100,6 @@ html,
   border-radius: 15px;
   transition: all 0.3s;
 }
-.vertical-center .form-control:focus {
-  border-color: #2554ff;
-  box-shadow: none;
-}
 .vertical-center h3 {
   text-align: center;
   margin: 0;
@@ -112,5 +108,12 @@ html,
 }
 label {
   font-weight: 500;
+}
+
+@media only screen and (max-width: 500px) {
+  .inner-block {
+    width: 100%;
+    padding: 20px;
+  }
 }
 </style>

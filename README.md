@@ -2,9 +2,27 @@
 
 Todo:
 - problem after logging in/logging out, beer fetch doesn't work, I think maybe it happens just before user gets logged in.
-- mobile enhance all pages
-- icons missing in prod (svg- bi-check2-square works, user and star doesn't)
+- mobile enhance all pages:
+  - decrease height of banner
+  - adjust search bar and header to top 3/4
+  - decrease height of background space before footer - shouldn't scroll so far if it doesn't need to
+  - auto-close navbar hamburger menu if click away
+  - homepage banner hand beer messed up
+  - make sure font is correct size
+  - horizontal scroll on homepage
+- improve merchants/brewer:
+  - layout of cards maybe doesn't seem right
+  - 
+- improve brewers/brewer:
+  - doesn't show beers from brewer - is this right?
+  - 
+- validation for contact form
+- fix layout of footer, the 4 page links don't look centered
+- improve legal page (privacy and terms and cs)
+- have words in about page
+- create or remove blog page
 - change profile create/update validation to vee-validate
+- pull out repeated css from sign in register forgot password user etc
 - add change email features
 - see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component
