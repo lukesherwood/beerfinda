@@ -1,5 +1,5 @@
 <template>
-  <div class="banner pb-5">
+  <div class="banner pb-1">
     <div class="centered">
       <div></div>
       <div></div>
@@ -35,7 +35,7 @@ export default {
     ),
     url('~static/beerWallpaper.jpg');
   width: 100%;
-  height: 400px;
+  height: 30vh;
   background-size: cover;
 }
 .centered > div:first-child {
