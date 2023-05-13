@@ -2,26 +2,13 @@
   <main class="text-center">
     <HomeBanner>
       <div class="text-start header-content">
-        <h2 class="text-white pt-5">
-          Do you want to discover new and exciting brews from New Zealand’s
-          finest breweries?
-        </h2>
-        <h3 class="text-white pt-3 pb-3">
-          Then BeerFinda is the website for you!
-        </h3>
-        <div class="text-white pt-3 pb-3">
-          BeerFinda is a website that helps you find beer that suits your taste
-          and mood. Whether you prefer a crisp lager, a hoppy IPA, a malty ale,
-          or a fruity cider, BeerFinda has you covered. BeerFinda creates a
-          profile of your beer preferences based on your ratings and reviews of
-          different beers. It then uses a smart algorithm to recommend other
-          beers that you might enjoy. You can also browse through hundreds of
-          beers from various categories, styles, and regions. And when you find
-          a beer that you like, BeerFinda provides links to other websites where
-          you can purchase it online or find a nearby store. BeerFinda is the
-          ultimate website for beer lovers in New Zealand. Join today and start
-          your beer adventure!
-        </div>
+        <h1 class="text-white pt-5">Find the best beer for you</h1>
+        <h5 class="text-white pt-3 pb-3">
+          BeerFinda searches the internet for the best beer to match your
+          preferences. We combine beers from brewers and merchants across New
+          Zealand into one platform where you can find the best price, merchant
+          and a personalised rating for every beer.
+        </h5>
         <nuxtLink to="/beers" class="btn btn-secondary text-white"
           >Find My Beer</nuxtLink
         >
@@ -59,13 +46,13 @@
         <div class="sign-up-content">
           <h2>Tell Us Your Taste</h2>
           <div class="sign-up-text">
-            Signing up for BeerFinda is easy and free. All you need is an email
-            address and a password. Once you sign up, you can start rating and
-            reviewing beers, creating your taste profile, and getting
-            personalized recommendations. BeerFinda is more than just a website,
-            it’s a lifestyle. Don’t miss this opportunity to join the best beer
-            club in New Zealand. Sign up for BeerFinda today and cheers to a
-            better beer experience!
+            Signing up for BeerFinda is easy and free, all you need is an email
+            address. Once you sign up, you can start rating and reviewing beers,
+            creating your taste profile, and getting personalized
+            recommendations. BeerFinda is more than just a website, it’s a
+            lifestyle. Don’t miss this opportunity to join the best beer club in
+            New Zealand. Sign up for BeerFinda today and cheers to a better beer
+            experience!
           </div>
           <nuxt-img
             style="
@@ -162,9 +149,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-h1 {
-  font-family: sans-serif;
-}
 .title {
   margin-top: -40px;
   padding-left: 20px;

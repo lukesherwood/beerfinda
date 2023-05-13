@@ -4,7 +4,12 @@
 
 .body {
   color: $primary;
-  min-height: 100vh;
+  min-height: 80vh;
+}
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
 }
 
 @media only screen and (max-width: 500px) {

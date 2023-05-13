@@ -124,7 +124,6 @@ label {
 }
 .social-icons {
   text-align: center;
-  font-family: 'Open Sans';
   font-weight: 300;
   font-size: 1.5em;
   color: #222222;

@@ -1,8 +1,8 @@
 <template>
-  <div class="w-100">
+  <div class="w-100 text-wrap">
     <header>
       <Navbar />
-      <notifications position="top right" />
+      <notifications position="top center" />
     </header>
     <div class="body">
       <Nuxt />
@@ -15,24 +15,6 @@
 
 <script>
 export default {
-  data() {
-    return { polling: null }
-  },
-  created() {
-    this.pollData()
-  },
-  beforeDestroy() {
-    clearInterval(this.polling)
-  },
-  methods: {
-    pollData() {
-      this.polling = setInterval(() => {
-        if (!this.$auth.user && !this.$auth.loggedIn) {
-          this.$auth.loginWith('basicRequestCookie')
-        }
-      }, 3000)
-    },
-  },
 }
 </script>
 

@@ -2,20 +2,20 @@
 
 Todo:
 - problem after logging in/logging out, beer fetch doesn't work, I think maybe it happens just before user gets logged in.
+- sign up:
+  - if user exists /userCreate returns AuthUser: "exists". Need to handle this before next step
+  - if login unsuccessful don't leave sign in page
 - mobile enhance all pages:
-  - decrease height of banner
-  - adjust search bar and header to top 3/4
-  - decrease height of background space before footer - shouldn't scroll so far if it doesn't need to
-  - auto-close navbar hamburger menu if click away
-  - homepage banner hand beer messed up
+  - homepage banner hand beer messed up when menu opens
   - make sure font is correct size
-  - horizontal scroll on homepage
 - improve merchants/brewer:
   - layout of cards maybe doesn't seem right
   - 
 - improve brewers/brewer:
   - doesn't show beers from brewer - is this right?
-  - 
+
+- if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
+- change beer register search to use search component
 - validation for contact form
 - fix layout of footer, the 4 page links don't look centered
 - improve legal page (privacy and terms and cs)

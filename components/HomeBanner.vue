@@ -32,9 +32,4 @@ export default {
   height: 450px;
   background-size: cover;
 }
-
-h1 {
-  font-family: 'Michroma';
-  word-spacing: 5px;
-}
 </style>
