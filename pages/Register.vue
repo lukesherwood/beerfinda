@@ -36,8 +36,8 @@ export default {
     handleUserCreate(userData) {
       const form = this.transformForm(userData)
       form.email = this.profileData.email
-      this.postRegisterUser(form).then((res) => {
-        this.postRegisterProfile(this.profileData).then((res) => {
+      this.postRegisterUser(form).then(() => {
+        this.postRegisterProfile(this.profileData).then(() => {
           this.$router.push('/login')
         })
       })
@@ -49,7 +49,9 @@ export default {
     transformForm(form) {
       const newForm = {}
       for (const key in form) {
-        newForm[snakeCase(key)] = form[key]
+        if (key !== 'confirmPassword') {
+          newForm[snakeCase(key)] = form[key]
+        }
       }
       return newForm
     },

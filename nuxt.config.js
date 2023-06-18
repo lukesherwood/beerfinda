@@ -92,6 +92,7 @@ export default {
   },
 
   auth: {
+    redirect: 'false',
     strategies: {
       user: {
         scheme: 'refresh',

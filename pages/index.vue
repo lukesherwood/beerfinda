@@ -176,7 +176,7 @@ export default {
   width: 40%;
 }
 .text-start {
-  padding: 50px;
+  padding: 40px;
 }
 @media screen and (max-width: 992px) {
   .header-content .sign-up-content {

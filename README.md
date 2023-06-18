@@ -1,16 +1,11 @@
 # Beerfinda
 
 Todo:
-- problem after logging in/logging out, beer fetch doesn't work, I think maybe it happens just before user gets logged in.
-- sign up:
-  - if user exists /userCreate returns AuthUser: "exists". Need to handle this before next step
-  - if login unsuccessful don't leave sign in page
+- make brewer in beer page a link
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
-  - make sure font is correct size
 - improve merchants/brewer:
   - layout of cards maybe doesn't seem right
-  - 
 - improve brewers/brewer:
   - doesn't show beers from brewer - is this right?
 

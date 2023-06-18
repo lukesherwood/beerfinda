@@ -54,7 +54,7 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ms-auto">
-          <li v-if="$auth.user.email" class="nav-item">
+          <li v-if="$auth.user?.email" class="nav-item">
             <nuxtLink
               to="/user"
               class="nav-link text-primary"
@@ -62,15 +62,15 @@
               ><b-icon class="pe-1" icon="person-circle"></b-icon>
             </nuxtLink>
           </li>
-          <li v-show="!$auth.user.email" class="nav-item">
+          <li v-show="!$auth.user?.email" class="nav-item">
             <nuxtLink to="/login" class="nav-link text-primary">Login</nuxtLink>
           </li>
-          <li v-show="!$auth.user.email" class="nav-item">
+          <li v-show="!$auth.user?.email" class="nav-item">
             <nuxtLink to="/register" class="nav-link text-primary"
               >Sign Up</nuxtLink
             >
           </li>
-          <li v-if="$auth.user.email" class="nav-item">
+          <li v-if="$auth.user?.email" class="nav-item">
             <div
               role="button"
               class="nav-link text-primary"

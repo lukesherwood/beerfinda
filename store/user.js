@@ -35,10 +35,10 @@ export const actions = {
     } catch (error) {
       Vue.notify({
         title: 'Authorization',
-        text: `Error logging in - ${error.message}`,
+        text: `Error logging in - ${error.response.data.detail}`,
         type: 'error',
       })
-      throw new Error(`User unable to login - ${error.message}`)
+      throw new Error(`User unable to login - ${error.response.data.detail}`)
     }
   },
   async postContact(state, form) {
@@ -105,7 +105,18 @@ export const actions = {
 
   async postRegisterUser(state, data) {
     try {
-      await this.$axios.$post('/api/UserCreate/', data)
+      await this.$axios.$post('/api/UserCreate/', data).then((resp) => {
+        if (resp.AuthUser === 'exists') {
+          throw new Error(
+            `User unable to register user - this email is already is use, please sign in or try another email`
+          )
+        }
+        Vue.notify({
+          title: 'User',
+          text: `Successfully created`,
+          type: 'success',
+        })
+      })
     } catch (error) {
       Vue.notify({
         title: 'Authorization',

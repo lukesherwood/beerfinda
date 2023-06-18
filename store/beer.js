@@ -130,6 +130,7 @@ export const actions = {
         type: 'error',
       })
       this.reloadNuxtApp()
+      throw new Error('Unable to reach server, please try again later')
     }
   },
 }

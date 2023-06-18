@@ -69,8 +69,12 @@ export default {
   },
   methods: {
     ...mapActions({ postLogin: 'user/postLogin' }),
-    handleSubmit() {
-      this.postLogin(this.form)
+    async handleSubmit() {
+      await this.postLogin(this.form)
+        .then(() => {
+          this.$router.back()
+        })
+        .catch(() => {})
     },
   },
 }
