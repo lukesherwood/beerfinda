@@ -29,7 +29,7 @@
           >
             <Card
               v-for="beer in getBeers"
-              :key="'beer-card' + beer.beer_id"
+              :key="'beer-card' + beer.beer_id + '-' + Math.random(10)"
               :title="beer.name"
               :link="`beer/${beer.beer_id}`"
               :image="beerImageUrl(beer)"

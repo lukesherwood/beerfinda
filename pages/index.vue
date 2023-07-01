@@ -38,9 +38,32 @@
           <h5>View All Beers</h5>
         </nuxtLink>
         <div class="section-wrapper">
-          <div class="section mt-3">
+          <div class="section mt-3 row">
             <h2 class="pb-5">How We Work:</h2>
-            <Carousel :images="howWeWorkImages" />
+            <div class="col col-sm-12 col-xl-4">
+              <nuxt-img
+                loading="lazy"
+                format="webp"
+                src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png"
+                alt="how-to1"
+              />
+            </div>
+            <div class="col col-sm-12 col-xl-4">
+              <nuxt-img
+                loading="lazy"
+                format="webp"
+                src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png"
+                alt="how-to2"
+              />
+            </div>
+            <div class="col col-sm-12 col-xl-4">
+              <nuxt-img
+                loading="lazy"
+                format="webp"
+                src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png"
+                alt="how-to3"
+              />
+            </div>
           </div>
         </div>
         <div class="sign-up-content">
@@ -98,7 +121,7 @@
             alt="default-beer"
             class="beer-pictures"
           />
-          <div class="py-5">
+          <div class="py-5 text-center">
             <nuxtLink
               class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
               to="/register"
@@ -115,21 +138,6 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Index',
-  data() {
-    return {
-      howWeWorkImages: [
-        {
-          src: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png',
-        },
-        {
-          src: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png',
-        },
-        {
-          src: 'https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png',
-        },
-      ],
-    }
-  },
   async fetch() {
     try {
       if (!this.$auth.strategy.token.status().valid()) {

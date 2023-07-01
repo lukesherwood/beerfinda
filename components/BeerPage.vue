@@ -5,7 +5,9 @@
         <strong>{{ beer.name }} </strong>
       </h1>
       <h2 class="display-6">
-        <em>{{ beer.brewer_name }}</em>
+        <nuxtLink :to="`/brewer/${titleize(beer.brewer_name)}`"
+          ><em>{{ beer.brewer_name }}</em></nuxtLink
+        >
       </h2>
     </div>
     <div>
@@ -76,6 +78,9 @@ export default {
   methods: {
     priceToString,
     beerImageUrl,
+    titleize(str) {
+      return str.toLowerCase().replace(/\s+/g, '-')
+    },
   },
 }
 </script>

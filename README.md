@@ -1,7 +1,7 @@
 # Beerfinda
 
 Todo:
-- make brewer in beer page a link
+-beer list in stock isnt working, proper parameter is merchantsellsfound__active=1 for those in stock (sorry stupid naming on my behalf)
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
