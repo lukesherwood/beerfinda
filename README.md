@@ -8,6 +8,8 @@ Todo:
   - layout of cards maybe doesn't seem right
 - improve brewers/brewer:
   - doesn't show beers from brewer - is this right?
+- double scroll bar right hand side?
+- find my beer button top of home page disappears behind second div in body when using small screens
 
 - if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
 - change beer register search to use search component
@@ -15,6 +17,7 @@ Todo:
 - fix layout of footer, the 4 page links don't look centered
 - improve legal page (privacy and terms and cs)
 - have words in about page
+  - https://drive.google.com/drive/folders/1kwk9AKihDgykBE1zafGBJ64g9boidV0f
 - create or remove blog page
 - change profile create/update validation to vee-validate
 - pull out repeated css from sign in register forgot password user etc
