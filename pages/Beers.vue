@@ -181,7 +181,7 @@ export default {
       }
       const isInStockSet = this.isInStockSet
       if (isInStockSet === true) {
-        query.merchantsellsfound__isnull = !isInStockSet
+        query.merchantsellsfound__active = isInStockSet
       }
       return query
     },

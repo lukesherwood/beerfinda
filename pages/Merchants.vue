@@ -36,10 +36,8 @@
             :key="'merchant-card' + merchant.merchant_id"
             :link="`merchant/${merchant.link}`"
             :title="merchant.name"
-            image="index.png"
+            :image="merchant.image_pre_link + merchant.image"
           >
-            <!-- Image is not in JSON yet -->
-            <!-- :image="merchant.image_pre_link + merchant.image" -->
             <template #text>
               <div class="merchant-est">
                 <em>Est. {{ merchant.established }}</em>

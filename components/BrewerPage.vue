@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     imageUrl() {
-      return this.brewer.image_pre_link + this.brewer.image || 'index.png'
+      return this.brewer.image_pre_link + this.brewer.link || 'index.png'
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {

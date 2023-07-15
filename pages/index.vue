@@ -2,13 +2,13 @@
   <main class="text-center">
     <HomeBanner>
       <div class="text-start header-content">
-        <h1 class="text-white pt-5">Find the best beer for you</h1>
-        <h5 class="text-white pt-3 pb-3">
+        <h1 class="text-white pt-4">Find the best beer for you</h1>
+        <h6 class="text-white pt-3 pb-3">
           BeerFinda searches the internet for the best beer to match your
           preferences. We combine beers from brewers and merchants across New
           Zealand into one platform where you can find the best price, merchant
           and a personalised rating for every beer.
-        </h5>
+        </h6>
         <nuxtLink to="/beers" class="btn btn-secondary text-white"
           >Find My Beer</nuxtLink
         >
@@ -77,7 +77,15 @@
             New Zealand. Sign up for BeerFinda today and cheers to a better beer
             experience!
           </div>
-          <nuxt-img
+          
+          <div class="py-5 sign-up-link">
+            <nuxtLink
+              class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
+              to="/register"
+            >
+              <h5>Sign Up</h5>
+            </nuxtLink>
+            <nuxt-img
             style="
               z-index: 2;
               width: 250px;
@@ -121,13 +129,6 @@
             alt="default-beer"
             class="beer-pictures"
           />
-          <div class="py-5 text-center">
-            <nuxtLink
-              class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
-              to="/register"
-            >
-              <h5>Sign Up</h5>
-            </nuxtLink>
           </div>
         </div>
       </div>
@@ -195,6 +196,9 @@ export default {
   }
   .beer-pictures {
     display: none;
+  }
+  .sign-up-link{
+    text-align: center;
   }
 }
 

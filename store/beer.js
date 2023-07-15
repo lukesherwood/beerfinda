@@ -129,7 +129,7 @@ export const actions = {
         text: `Error fetching featured beers - ${error.message}`,
         type: 'error',
       })
-      this.reloadNuxtApp()
+      // this.reloadNuxtApp()
       throw new Error('Unable to reach server, please try again later')
     }
   },

@@ -1,7 +1,8 @@
 # Beerfinda
 
 Todo:
--beer list in stock isnt working, proper parameter is merchantsellsfound__active=1 for those in stock (sorry stupid naming on my behalf)
+-beer list in stock isnt working, proper parameter is merchantsellsfound\_\_active=1 for those in stock (sorry stupid naming on my behalf)
+
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
@@ -26,15 +27,15 @@ Todo:
 - abstract (join) filter component from beerfilter component
 - fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 
-
 Issues found but maybe too-hard-basket/low value:
+
 - setup omniauth google, facebook etc
 - fix this.$refs.img error? image error handler not working at all
 - logout message not working
 - figure out why tooltips don't work or import a library
 
 Deployment:
-```git archive -v -o beerfinda.zip --format=zip HEAD```
+`git archive -v -o beerfinda.zip --format=zip HEAD`
 
 ## Build Setup
 
