@@ -2,6 +2,7 @@
 
 Todo:
 -beer list in stock isnt working, proper parameter is merchantsellsfound\_\_active=1 for those in stock (sorry stupid naming on my behalf)
+- double scroll bar right hand side?
 - remove hover and enlarge, pointer on merchant cards doesn't link to buy now
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
@@ -9,7 +10,6 @@ Todo:
   - layout of cards maybe doesn't seem right
 - improve brewers/brewer:
   - doesn't show beers from brewer - is this right?
-- double scroll bar right hand side?
 - find my beer button top of home page disappears behind second div in body when using small screens
 
 - if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
