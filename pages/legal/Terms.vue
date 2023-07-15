@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="text-center">Terms of use</h1>
+  <div class="container p-5">
+    <h1 class="text-center pb-5">Terms of use</h1>
     <p>By viewing and using this site, you agree to these terms of use.</p>
     <h3>Agreement to terms</h3>
     <p>
@@ -90,4 +90,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  background: white;
+  min-height: 90vh;
+}
+</style>

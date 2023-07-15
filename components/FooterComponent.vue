@@ -50,18 +50,22 @@
       <div class="container text-center text-md-start mt-5">
         <div class="row mt-3">
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <nuxtLink class="nav-link" to="/blog" aria-current="page"
-              ><h6 class="text-uppercase fw-bold mb-4">Blog</h6></nuxtLink
-            >
-          </div>
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
             <nuxtLink class="nav-link" to="/about" aria-current="page"
               ><h6 class="text-uppercase fw-bold mb-4">About</h6></nuxtLink
             >
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <nuxtLink class="nav-link" to="/legal" aria-current="page"
-              ><h6 class="text-uppercase fw-bold mb-4">Legal</h6></nuxtLink
+            <nuxtLink class="nav-link" to="/legal/terms" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">
+                Terms and Conditions
+              </h6></nuxtLink
+            >
+          </div>
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <nuxtLink class="nav-link" to="/legal/privacy" aria-current="page"
+              ><h6 class="text-uppercase fw-bold mb-4">
+                Privacy Policy
+              </h6></nuxtLink
             >
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">

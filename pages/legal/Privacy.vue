@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="text-center">Privacy Policy</h1>
+  <div class="container p-5">
+    <h1 class="text-center pb-5">Privacy Policy</h1>
     <p>
       We collect personal information from you, including information about
       your:
@@ -39,4 +39,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  background: white;
+  min-height: 90vh;
+}</style>

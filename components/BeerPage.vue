@@ -38,7 +38,7 @@
         <div class="clearfix"></div>
         <h3>Where to Buy</h3>
         <div
-          class="row row-cols-2 row-cols-md-2 row-cols-lg-4 gy-4 d-flex pt-3"
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gy-4 d-flex pt-3"
         >
           <Card
             v-for="merchant in beer.merchantsellsfound"

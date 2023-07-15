@@ -7,7 +7,7 @@
           to="/legal/privacy"
           class="nav-link text-primary p-5"
           aria-current="page"
-          ><h4>Privacy Policy</h4></nuxtLink
+          ><button class="btn btn-secondary">Privacy Policy</button></nuxtLink
         >
       </p>
       <p>
@@ -15,7 +15,9 @@
           to="/legal/terms"
           class="nav-link text-primary p-5"
           aria-current="page"
-          ><h4>Terms and Conditions</h4></nuxtLink
+          ><button class="btn btn-secondary">
+            Terms and Conditions
+          </button></nuxtLink
         >
       </p>
     </div>
@@ -28,4 +30,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  background: white;
+  min-height: 90vh;
+}
+</style>

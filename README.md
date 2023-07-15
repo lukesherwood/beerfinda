@@ -2,7 +2,7 @@
 
 Todo:
 -beer list in stock isnt working, proper parameter is merchantsellsfound\_\_active=1 for those in stock (sorry stupid naming on my behalf)
-
+- remove hover and enlarge, pointer on merchant cards doesn't link to buy now
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
@@ -38,6 +38,7 @@ Deployment:
 `git archive -v -o beerfinda.zip --format=zip HEAD`
 
 ## Build Setup
+You'll need to create a .env file and add the **baseUrl** to point to the api backend
 
 ```bash
 # install dependencies
