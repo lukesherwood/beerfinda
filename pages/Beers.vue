@@ -141,6 +141,12 @@ export default {
   watch: {
     '$route.query': '$fetch',
   },
+  activated() {
+    // Call fetch again if last fetch more than a 10 minutes ago
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {
+      this.$fetch()
+    }
+  },
   methods: {
     ...mapMutations({
       setCurrentPage: 'beer/setCurrentPage',
@@ -182,6 +188,8 @@ export default {
       const isInStockSet = this.isInStockSet
       if (isInStockSet === true) {
         query.merchantsellsfound__active = isInStockSet
+      } else {
+        delete query.merchantsellsfound__active
       }
       return query
     },

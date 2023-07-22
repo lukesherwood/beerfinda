@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <div class="card h-100 zoom" :style="{ width: width }">
+    <div class="card h-100" :style="{ width: width }">
       <nuxtLink
         v-show="link"
         class="stretched-link"
@@ -51,19 +51,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/variables.scss';
 .card img {
   object-fit: contain;
   height: 25vh;
 }
-
-.zoom:hover {
-  transform: scale(1.075);
-}
-
 .card-body {
   padding-bottom: 0px;
 }
-
 .card {
   border: 0;
   border-radius: 12px;
@@ -73,7 +68,7 @@ export default {
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid $secondary;
 }
 .card-footer {
   padding-top: 0px;

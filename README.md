@@ -1,25 +1,18 @@
 # Beerfinda
 
 Todo:
--beer list in stock isnt working, proper parameter is merchantsellsfound\_\_active=1 for those in stock (sorry stupid naming on my behalf)
-- remove hover and enlarge, pointer on merchant cards doesn't link to buy now
+beer image on beer page too big,can't see where to buy?
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
   - layout of cards maybe doesn't seem right
 - improve brewers/brewer:
   - doesn't show beers from brewer - is this right?
-- double scroll bar right hand side?
 - find my beer button top of home page disappears behind second div in body when using small screens
 
 - if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
 - change beer register search to use search component
 - validation for contact form
-- fix layout of footer, the 4 page links don't look centered
-- improve legal page (privacy and terms and cs)
-- have words in about page
-  - https://drive.google.com/drive/folders/1kwk9AKihDgykBE1zafGBJ64g9boidV0f
-- create or remove blog page
 - change profile create/update validation to vee-validate
 - pull out repeated css from sign in register forgot password user etc
 - add change email features

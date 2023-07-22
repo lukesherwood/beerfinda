@@ -69,7 +69,7 @@
               <div v-else>Currently Out of Stock</div>
             </template>
             <template #footer>
-              <a class="btn btn-secondary w-100" :href="beer.link" target="_blank"
+              <a class="btn btn-secondary w-100 stretched-link" :href="beer.link" target="_blank"
                 >Buy Now</a
               >
             </template>

@@ -37,6 +37,7 @@ export default {
       },
     ],
   },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/scss/custom.scss'],
 
@@ -108,6 +109,7 @@ export default {
           global: true, // This determines if the authentication token is automatically included in all custom axios requests.
           maxAge: 60 * 60 * 12,
         },
+        automaticRefresh: true,
         refreshToken: {
           property: 'refresh',
           data: 'refresh',
@@ -140,6 +142,7 @@ export default {
             secure: true,
           },
         },
+        automaticRefresh: true,
         scheme: 'local',
         token: {
           property: 'Token', // this is the place it gets the token from in the json response
