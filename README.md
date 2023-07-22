@@ -1,7 +1,6 @@
 # Beerfinda
 
 Todo:
-beer image on beer page too big,can't see where to buy?
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
