@@ -77,60 +77,61 @@ export const actions = {
   async fetchBeers(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get('/api/beer/', { params: query })
-      state.commit('addBeers', res.results)
-      const perPage = 100
-      const pages = {
-        perPage,
-        nextPage: res.next,
-        previousPage: res.previous,
-        totalPages: Math.ceil(res.count / perPage),
-      }
-      state.commit('setupPages', pages)
-      state.commit('setLoading', false)
+      await fetchBeers(state, this.$axios, query)
     } catch (error) {
-      state.commit('setLoading', false)
-      Vue.notify({
-        title: 'Beer',
-        text: `Error fetching beers - ${error.message}`,
-        type: 'error',
-      })
-      throw new Error('Beers not found')
+      try {
+        // refresh token and try again
+        await loginOrRefreshToken(this.$auth)
+        await fetchBeers(state, this.$axios, query)
+      } catch {
+        state.commit('setLoading', false)
+        Vue.notify({
+          title: 'Beer',
+          text: `Error fetching beers - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error('Beers not found')
+      }
     }
   },
   async fetchBeer(state, id) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `/api/beer/${id}/`
-      const res = await this.$axios.$get(fetchUrl)
-      state.commit('addBeer', res)
-      state.commit('setLoading', false)
+      await fetchBeer(state, this.$axios, id)
     } catch (error) {
-      state.commit('setLoading', false)
-      Vue.notify({
-        title: 'Beer',
-        text: `Error fetching beer - ${error.message}`,
-        type: 'error',
-      })
-      throw new Error('Beer not found')
+      try {
+        // refresh token and try again
+        await loginOrRefreshToken(this.$auth)
+        await fetchBeer(state, this.$axios, id)
+      } catch {
+        state.commit('setLoading', false)
+        Vue.notify({
+          title: 'Beer',
+          text: `Error fetching beer - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error('Beer not found')
+      }
     }
   },
   async fetchFeaturedBeers(state) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = '/api/beerfeatured/'
-      const res = await this.$axios.$get(fetchUrl)
-      state.commit('addFeaturedBeers', res.results)
-      state.commit('setLoading', false)
+      await fetchFeaturedBeers(state, this.$axios)
     } catch (error) {
-      state.commit('setLoading', false)
-      Vue.notify({
-        title: 'Beer',
-        text: `Error fetching featured beers - ${error.message}`,
-        type: 'error',
-      })
-      // this.reloadNuxtApp()
-      throw new Error('Unable to reach server, please try again later')
+      try {
+        // refresh token and try again
+        await loginOrRefreshToken(this.$auth)
+        await fetchFeaturedBeers(state, this.$axios)
+      } catch {
+        state.commit('setLoading', false)
+        Vue.notify({
+          title: 'Beer',
+          text: `Error fetching featured beers - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error('Unable to reach server, please try again later')
+      }
     }
   },
 }
@@ -145,4 +146,41 @@ export const getters = {
   getFilterCount: (state) => state.filters.filterCount,
   isInStockSet: (state) => state.filters.isInStockSet,
   beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
+}
+
+// Private Functions
+async function fetchBeers(state, axios, query) {
+  const res = await axios.$get('/api/beer/', { params: query })
+  state.commit('addBeers', res.results)
+  const perPage = 100
+  const pages = {
+    perPage,
+    nextPage: res.next,
+    previousPage: res.previous,
+    totalPages: Math.ceil(res.count / perPage),
+  }
+  state.commit('setupPages', pages)
+  state.commit('setLoading', false)
+}
+
+async function fetchBeer(state, axios, id) {
+  const fetchUrl = `/api/beer/${id}/`
+  const res = await axios.$get(fetchUrl)
+  state.commit('addBeer', res)
+  state.commit('setLoading', false)
+}
+
+async function fetchFeaturedBeers(state, axios) {
+  const fetchUrl = '/api/beerfeatured/'
+  const res = await axios.$get(fetchUrl)
+  state.commit('addFeaturedBeers', res.results)
+  state.commit('setLoading', false)
+}
+
+async function loginOrRefreshToken(auth) {
+  if (auth.loggedIn && auth.strategy === 'user') {
+    await auth.refreshTokens()
+  } else {
+    await auth.loginWith('basicRequestCookie')
+  }
 }

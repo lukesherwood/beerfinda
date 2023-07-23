@@ -149,6 +149,7 @@ export default {
           global: true, // this determines if the authentication token is automatically included in all custom axios requests.
           name: 'AToken', // this is the name of the key that is sent with the request in headers
           type: false, // this sets the prefix of the token key
+          maxAge: 60 * 60 * 12,
         },
         endpoints: {
           login: {

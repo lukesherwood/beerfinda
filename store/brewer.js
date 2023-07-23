@@ -38,42 +38,39 @@ export const actions = {
   async fetchBreweries(state, { query }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get('/api/brewer/', { params: query })
-      state.commit('addBreweries', res.results)
-      const perPage = 100
-      const pages = {
-        perPage,
-        nextPage: res.next,
-        previousPage: res.previous,
-        totalPages: Math.ceil(res.count / perPage),
-      }
-      state.commit('setupPages', pages)
-      state.commit('setLoading', false)
+      await fetchBrewers(state, this.$axios, query)
     } catch (error) {
-      state.commit('setLoading', false)
-      Vue.notify({
-        title: 'Brewer',
-        text: `Error fetching breweries - ${error.message}`,
-        type: 'error',
-      })
-      throw new Error('Breweries not found')
+      try {
+        await loginOrRefreshToken(this.$auth)
+        await fetchBrewers(state, this.$axios, query)
+      } catch {
+        state.commit('setLoading', false)
+        Vue.notify({
+          title: 'Brewer',
+          text: `Error fetching breweries - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error('Breweries not found')
+      }
     }
   },
   async fetchBrewer(state, slug) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `/api/brewer/${slug}/`
-      const res = await this.$axios.$get(fetchUrl)
-      state.commit('addBrewer', res)
-      state.commit('setLoading', false)
+      await fetchBrewer(state, this.$axios, slug)
     } catch (error) {
-      state.commit('setLoading', false)
-      Vue.notify({
-        title: 'Brewer',
-        text: `Error fetching brewer - ${error.message}`,
-        type: 'error',
-      })
-      throw new Error('Brewer not found')
+      try {
+        await loginOrRefreshToken(this.$auth)
+        await fetchBrewer(state, this.$axios, slug)
+      } catch {
+        state.commit('setLoading', false)
+        Vue.notify({
+          title: 'Brewer',
+          text: `Error fetching brewer - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error('Brewer not found')
+      }
     }
   },
 }
@@ -84,4 +81,34 @@ export const getters = {
   getBrewer: (state) => state.brewer,
   getFilters: (state) => state.filters,
   getPages: (state) => state.pages,
+}
+
+// Private Functions
+async function fetchBrewer(state, axios, slug) {
+  const fetchUrl = `/api/brewer/${slug}/`
+  const res = await axios.$get(fetchUrl)
+  state.commit('addBrewer', res)
+  state.commit('setLoading', false)
+}
+
+async function fetchBrewers(state, axios, query) {
+  const res = await axios.$get('/api/brewer/', { params: query })
+  state.commit('addBreweries', res.results)
+  const perPage = 100
+  const pages = {
+    perPage,
+    nextPage: res.next,
+    previousPage: res.previous,
+    totalPages: Math.ceil(res.count / perPage),
+  }
+  state.commit('setupPages', pages)
+  state.commit('setLoading', false)
+}
+
+async function loginOrRefreshToken(auth) {
+  if (auth.loggedIn && auth.strategy === 'user') {
+    await auth.refreshTokens()
+  } else {
+    await auth.loginWith('basicRequestCookie')
+  }
 }
