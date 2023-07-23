@@ -72,21 +72,6 @@
               </template>
             </Card>
           </div>
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4030304334636114"
-            crossorigin="anonymous"
-          ></script>
-          <ins
-            class="adsbygoogle"
-            style="display: block"
-            data-ad-format="autorelaxed"
-            data-ad-client="ca-pub-4030304334636114"
-            data-ad-slot="4273894106"
-          ></ins>
-          <script>
-            ;(adsbygoogle = window.adsbygoogle || []).push({})
-          </script>
           <Pagination
             class="p-5"
             :pages="getPages"

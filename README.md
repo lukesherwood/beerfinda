@@ -10,6 +10,7 @@ Todo:
 - find my beer button top of home page disappears behind second div in body when using small screens
 
 - if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
+- breadcrumbs
 - change beer register search to use search component
 - validation for contact form
 - change profile create/update validation to vee-validate
