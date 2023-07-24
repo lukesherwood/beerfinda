@@ -18,7 +18,6 @@ export default {}
 </script>
 
 <style lang="scss">
-@import '../assets/scss/variables.scss';
 a.nuxt-link-active {
   color: $secondary !important;
 }

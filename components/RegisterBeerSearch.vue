@@ -171,7 +171,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/scss/variables.scss';
 .search-input {
   text-indent: 20px;
   border-top-left-radius: 0.5rem !important;

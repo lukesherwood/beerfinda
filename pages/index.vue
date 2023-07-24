@@ -29,14 +29,18 @@
       />
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <h1 class="text-start title">Featured Beers</h1>
-        <CardCarousel :beers="getFeaturedBeers" />
-        <nuxtLink
-          class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
-          to="/beers"
-        >
-          <h5>View All Beers</h5>
-        </nuxtLink>
+        <div v-if="getFeaturedBeers.length > 0">
+          <h1 class="text-start title">Featured Beers</h1>
+          <CardCarousel :beers="getFeaturedBeers" />
+          <div class="pt-5">
+            <nuxtLink
+              class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
+              to="/beers"
+            >
+              <h5>View All Beers</h5>
+            </nuxtLink>
+          </div>
+        </div>
         <div class="section-wrapper">
           <div class="section mt-3 row">
             <h2 class="pb-5">How We Work:</h2>
@@ -77,7 +81,7 @@
             New Zealand. Sign up for BeerFinda today and cheers to a better beer
             experience!
           </div>
-          
+
           <div class="py-5 sign-up-link">
             <nuxtLink
               class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
@@ -86,49 +90,49 @@
               <h5>Sign Up</h5>
             </nuxtLink>
             <nuxt-img
-            style="
-              z-index: 2;
-              width: 250px;
-              position: absolute;
-              right: 150px;
-              bottom: 0px;
-            "
-            src="can1.png"
-            loading="lazy"
-            format="webp"
-            alt="default-beer"
-            class="beer-pictures"
-          />
-          <nuxt-img
-            style="
-              z-index: 1;
-              width: 280px;
-              position: absolute;
-              right: -20px;
-              bottom: 40px;
-              opacity: 0.6;
-            "
-            src="bottle.png"
-            loading="lazy"
-            format="webp"
-            alt="default-beer"
-            class="beer-pictures"
-          />
-          <nuxt-img
-            style="
-              z-index: 1;
-              width: 235px;
-              position: absolute;
-              right: 325px;
-              bottom: 50px;
-              opacity: 0.6;
-            "
-            src="bottles.png"
-            loading="lazy"
-            format="webp"
-            alt="default-beer"
-            class="beer-pictures"
-          />
+              style="
+                z-index: 2;
+                width: 250px;
+                position: absolute;
+                right: 150px;
+                bottom: 0px;
+              "
+              src="can1.png"
+              loading="lazy"
+              format="webp"
+              alt="default-beer"
+              class="beer-pictures"
+            />
+            <nuxt-img
+              style="
+                z-index: 1;
+                width: 280px;
+                position: absolute;
+                right: -20px;
+                bottom: 40px;
+                opacity: 0.6;
+              "
+              src="bottle.png"
+              loading="lazy"
+              format="webp"
+              alt="default-beer"
+              class="beer-pictures"
+            />
+            <nuxt-img
+              style="
+                z-index: 1;
+                width: 235px;
+                position: absolute;
+                right: 325px;
+                bottom: 50px;
+                opacity: 0.6;
+              "
+              src="bottles.png"
+              loading="lazy"
+              format="webp"
+              alt="default-beer"
+              class="beer-pictures"
+            />
           </div>
         </div>
       </div>
@@ -141,9 +145,6 @@ export default {
   name: 'Index',
   async fetch() {
     try {
-      if (!this.$auth.strategy.token.status().valid()) {
-        await this.$auth.loginWith('basicRequestCookie')
-      }
       await this.$store.dispatch('beer/fetchFeaturedBeers')
     } catch (error) {
       throw new Error(error)
@@ -197,7 +198,7 @@ export default {
   .beer-pictures {
     display: none;
   }
-  .sign-up-link{
+  .sign-up-link {
     text-align: center;
   }
 }

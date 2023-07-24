@@ -1,5 +1,5 @@
 <template>
-  <agile :options="myOptions" class="pb-5">
+  <agile :options="myOptions">
     <div
       v-for="beer in beers"
       :key="'carousel-beer' + beer.beer_id"
@@ -32,7 +32,8 @@ export default {
     return {
       myOptions: {
         autoplay: 'true',
-        navButtons: false,
+        navButtons: true,
+
         responsive: [
           {
             breakpoint: 300,
@@ -52,7 +53,6 @@ export default {
           {
             breakpoint: 1100,
             settings: {
-              navButtons: true,
               slidesToShow: '3',
               dots: true,
             },

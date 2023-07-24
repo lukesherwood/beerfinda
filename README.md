@@ -1,6 +1,7 @@
 # Beerfinda
 
 Todo:
+- placeholder for featured beer cards, as they start loading small
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
