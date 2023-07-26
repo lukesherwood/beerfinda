@@ -36,7 +36,7 @@
         >
           <nuxt-img
             loading="lazy"
-            placeholder="/index.png"
+            placeholder="/blank.jpg"
             format="webp"
             :src="image.src"
             alt="how-to1"

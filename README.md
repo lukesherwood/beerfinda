@@ -1,7 +1,7 @@
 # Beerfinda
 
 Todo:
-- placeholder for featured beer cards, as they start loading small
+finish error display in register page
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
@@ -24,6 +24,7 @@ Todo:
 Issues found but maybe too-hard-basket/low value:
 
 - setup omniauth google, facebook etc
+- placeholder for featured beer cards, as they start loading small
 - fix this.$refs.img error? image error handler not working at all
 - logout message not working
 - figure out why tooltips don't work or import a library

@@ -98,7 +98,7 @@ export const beerImageUrl = (beer) => {
   } else if (beer.image_pre_link && beer.image) {
     return `${beer.image_pre_link}${beer.image}`
   }
-  return 'index.png'
+  return 'blank.jpg'
 }
 
 export const brewerArray = {

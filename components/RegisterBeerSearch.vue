@@ -12,7 +12,7 @@
           v-model="keyword"
           class="form-control form-control-lg border-end-0 border search-input"
           type="search"
-          placeholder="Search for beer"
+          placeholder="Search"
           @click="toggleSearch"
         />
         <b-icon

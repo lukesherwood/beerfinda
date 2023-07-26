@@ -5,7 +5,9 @@
         novalidate="true"
         @submit.prevent="handleSubmit($emit('userCreate', form))"
       >
-        <h3>Sign Up 2/2</h3>
+        <div class="float-end">2/2</div>
+
+        <h3>Sign Up</h3>
         <h4>Create User</h4>
 
         <div class="form-group mb-3 pt-3">

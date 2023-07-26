@@ -30,20 +30,6 @@
         >
           <b-icon icon="instagram"></b-icon>
         </div>
-        <div
-          class="btn btn-link btn-floating btn-lg text-white m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <b-icon icon="linkedin"></b-icon>
-        </div>
-        <div
-          class="btn btn-link btn-floating btn-lg text-white m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <b-icon icon="github"></b-icon>
-        </div>
       </section>
     </div>
     <section class="">
@@ -79,7 +65,7 @@
     <div class="text-center p-4 text-dark" style="background-color: #dcd8cf">
       © 2022 Copyright:
       <a class="text-reset fw-bold" href="https://beerfinda.com/"
-        >BeerFinda.com</a
+        >BeerFinda.co.nz</a
       >
     </div>
   </footer>

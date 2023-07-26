@@ -56,7 +56,7 @@
       <div class="col-sm-6 col-xs-12 pb-5 d-flex justify-content-center">
         <nuxt-img
           loading="lazy"
-          placeholder="/index.png"
+          placeholder="/brewer.jpg"
           format="webp"
           class="img-fluid beer-image"
           :src="image"
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     imageUrl() {
-      return this.brewer.image_pre_link + this.brewer.link || 'index.png'
+      return this.brewer.image_pre_link + this.brewer.link || 'brewer.jpg'
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {

@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     handleError(e) {
-      this.imageUrl = 'index.png'
+      this.imageUrl = 'blank.jpg'
     },
   },
 }

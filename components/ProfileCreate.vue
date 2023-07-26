@@ -1,7 +1,8 @@
 <template>
   <div>
     <form @submit.prevent="$emit('profileCreate', form)">
-      <h3>Sign Up 1/2</h3>
+      <div class="float-end">1/2</div>
+      <h3>Sign Up</h3>
       <h4>Create Profile</h4>
       <div class="form-group mb-3 pt-3">
         <label>Enter one or more NZ beers that you enjoy</label>
@@ -31,6 +32,7 @@
           <span>{{ errors[0] }}</span>
         </ValidationProvider>
       </div>
+      <Error v-if="error" :error="error" />
       <div class="form-group">
         <button
           :disabled="validate()"
@@ -47,6 +49,7 @@
 <script>
 export default {
   name: 'ProfileCreate',
+  props: ['error'],
   data() {
     return {
       form: { beersLike: [], description: '', email: '' },
