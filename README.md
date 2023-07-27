@@ -1,7 +1,8 @@
 # Beerfinda
 
 Todo:
-finish error display in register page
+-redirect after register
+-finish error display in register page
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
