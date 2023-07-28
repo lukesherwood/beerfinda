@@ -9,7 +9,7 @@ export const orderingTypes = {
 export const imageUrl = (brewer) => {
   return isValidImage(brewer?.image_pre_link + brewer?.image)
     ? brewer.image_pre_link + brewer.image
-    : 'index.png'
+    : 'brewer.jpg'
 }
 
 function isValidImage(string) {

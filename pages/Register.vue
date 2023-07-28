@@ -4,11 +4,15 @@
     <div class="inner-block">
       <div class="vue-template">
         <ProfileCreate
-          v-if="!profileData"
-          :form="profileData"
+          v-if="!showUserCreate"
+          :form-data="rawProfileData"
+          :error="getError"
           @profileCreate="handleProfileCreate($event)"
         />
-        <UserCreate v-if="profileData" @userCreate="handleUserCreate($event)" />
+        <UserCreate
+          v-if="showUserCreate"
+          @userCreate="handleUserCreate($event)"
+        />
         <p class="forgot-password text-right">
           Already registered?
           <nuxtLink to="/login">Login</nuxtLink>
@@ -19,14 +23,22 @@
 </template>
 <script>
 import { snakeCase } from 'lodash'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Register',
+  middleware: 'loggedIn',
   data() {
     return {
       profileData: undefined,
+      showUserCreate: false,
+      rawProfileData: undefined,
     }
+  },
+  computed: {
+    ...mapGetters({
+      getError: 'user/getError',
+    }),
   },
   methods: {
     ...mapActions({
@@ -36,13 +48,20 @@ export default {
     handleUserCreate(userData) {
       const form = this.transformForm(userData)
       form.email = this.profileData.email
-      this.postRegisterUser(form).then(() => {
-        this.postRegisterProfile(this.profileData).then(() => {
-          this.$router.push('/login')
+      this.postRegisterUser(form)
+        .then(() => {
+          this.postRegisterProfile(this.profileData).then(() => {
+            this.$router.push('/login')
+          })
         })
-      })
+        .catch((e) => {
+          // return to profile create so they can try another email and error shows
+          this.showUserCreate = false
+        })
     },
     handleProfileCreate(profileData) {
+      this.showUserCreate = true
+      this.rawProfileData = profileData
       const form = this.transformForm(profileData)
       this.profileData = form
     },

@@ -4,6 +4,7 @@ export const state = () => ({
   beerResults: [],
   loading: false,
   beersSelectedInfo: [],
+  error: null,
 })
 
 export const mutations = {
@@ -20,6 +21,9 @@ export const mutations = {
   },
   setLoading(state, payload) {
     state.loading = payload
+  },
+  setError(state, payload) {
+    state.error = payload
   },
 }
 
@@ -61,33 +65,40 @@ export const actions = {
   async fetchBeerResults(state, { keyword }) {
     state.commit('setLoading', true)
     try {
-      const res = await this.$axios.$get(`/api/beer/?search=${keyword}`)
-      state.commit('addBeerResults', res.results)
-      state.commit('setLoading', false)
+      await fetchBeerResults(state, this.$axios, keyword)
     } catch (error) {
-      Vue.notify({
-        title: 'Authorization',
-        text: `Error fetching beer results - ${error.message}`,
-        type: 'error',
-      })
-      state.commit('setLoading', false)
+      try {
+        // refresh token and try again
+        await loginOrRefreshToken(this.$auth)
+        await fetchBeerResults(state, this.$axios, keyword)
+      } catch {
+        Vue.notify({
+          title: 'Authorization',
+          text: `Error fetching beer results - ${error.message}`,
+          type: 'error',
+        })
+        state.commit('setLoading', false)
+      }
     }
   },
   async fetchBeerInfo(state, id) {
     state.commit('setLoading', true)
     try {
-      const fetchUrl = `/api/beer/${id}/`
-      const res = await this.$axios.$get(fetchUrl)
-      state.commit('addBeerInfo', res)
-      state.commit('setLoading', false)
+      await fetchBeerInfo(state, this.$axios, id)
     } catch (error) {
-      state.commit('setLoading', false)
-      Vue.notify({
-        title: 'Beer',
-        text: `Error fetching beer - ${error.message}`,
-        type: 'error',
-      })
-      throw new Error('Beer not found')
+      try {
+        // refresh token and try again
+        await loginOrRefreshToken(this.$auth)
+        await fetchBeerInfo(state, this.$axios, id)
+      } catch {
+        state.commit('setLoading', false)
+        Vue.notify({
+          title: 'Beer',
+          text: `Error fetching beer - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error('Beer not found')
+      }
     }
   },
   async postRegisterProfile(state, data) {
@@ -104,13 +115,9 @@ export const actions = {
   },
 
   async postRegisterUser(state, data) {
+    state.commit('setError', null)
     try {
       await this.$axios.$post('/api/UserCreate/', data).then((resp) => {
-        if (resp.AuthUser === 'exists') {
-          throw new Error(
-            `User unable to register user - this email is already is use, please sign in or try another email`
-          )
-        }
         Vue.notify({
           title: 'User',
           text: `Successfully created`,
@@ -118,12 +125,21 @@ export const actions = {
         })
       })
     } catch (error) {
-      Vue.notify({
-        title: 'Authorization',
-        text: `Error registering user - ${error.message}`,
-        type: 'error',
-      })
-      throw new Error(`User unable to register user - ${error.message}`)
+      if (error.message === 'Request failed with status code 409') {
+        state.commit('setError', {
+          message:
+            'User unable to register user - this email is already is use, please sign in or try another email',
+        })
+
+        throw new Error(`User unable to register user - ${error.message}`)
+      } else {
+        Vue.notify({
+          title: 'Authorization',
+          text: `Error registering user - ${error.message}`,
+          type: 'error',
+        })
+        throw new Error(`User unable to register user - ${error.message}`)
+      }
     }
   },
 
@@ -197,4 +213,28 @@ export const getters = {
   getBeerResults: (state) => state.beerResults,
   isLoading: (state) => state.loading,
   beersSelectedInfo: (state) => state.beersSelectedInfo,
+  getError: (state) => state.error,
+}
+
+// Private Functions
+
+async function fetchBeerResults(state, axios, keyword) {
+  const res = await axios.$get(`/api/beer/?search=${keyword}`)
+  state.commit('addBeerResults', res.results)
+  state.commit('setLoading', false)
+}
+
+async function fetchBeerInfo(state, axios, id) {
+  const fetchUrl = `/api/beer/${id}/`
+  const res = await axios.$get(fetchUrl)
+  state.commit('addBeerInfo', res)
+  state.commit('setLoading', false)
+}
+
+async function loginOrRefreshToken(auth) {
+  if (auth.loggedIn && auth.strategy === 'user') {
+    await auth.refreshTokens()
+  } else {
+    await auth.loginWith('basicRequestCookie')
+  }
 }

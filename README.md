@@ -1,7 +1,7 @@
 # Beerfinda
 
 Todo:
-finish error display in register page
+-register page - display any other errors from backend??
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:

@@ -6,7 +6,10 @@
       <h4>Create Profile</h4>
       <div class="form-group mb-3 pt-3">
         <label>Enter one or more NZ beers that you enjoy</label>
-        <RegisterBeerSearch @beersSave="handleBeersSave" />
+        <RegisterBeerSearch
+          :beers-like="form.beersLike"
+          @beersSave="handleBeersSave"
+        />
       </div>
 
       <div class="form-group mb-3 pt-3">
@@ -32,7 +35,7 @@
           <span>{{ errors[0] }}</span>
         </ValidationProvider>
       </div>
-      <Error v-if="error" :error="error" />
+      <Error v-if="errorMessage" :error="errorMessage" />
       <div class="form-group">
         <button
           :disabled="validate()"
@@ -49,10 +52,11 @@
 <script>
 export default {
   name: 'ProfileCreate',
-  props: ['error'],
+  props: ['error', 'formData'],
   data() {
     return {
-      form: { beersLike: [], description: '', email: '' },
+      form: this.formData || { beersLike: [], description: '', email: '' },
+      errorMessage: this.error,
     }
   },
   methods: {
