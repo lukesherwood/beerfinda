@@ -51,6 +51,10 @@ export default {
       this.postRegisterUser(form)
         .then(() => {
           this.postRegisterProfile(this.profileData).then(() => {
+            // return state to normal
+            this.profileData = undefined
+            this.showUserCreate = false
+            this.rawProfileData = undefined
             this.$router.push('/login')
           })
         })
