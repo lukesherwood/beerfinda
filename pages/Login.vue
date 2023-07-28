@@ -99,7 +99,7 @@ export default {
   flex-direction: column;
 }
 .inner-block {
-  width: 450px;
+  width: 650px;
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);

@@ -1,48 +1,43 @@
 <template lang="">
   <div class="search">
     <form @submit.prevent="onSearch">
-      <div class="input-group form-group">
-        <b-icon
-          v-show="!keyword"
-          width="35px"
-          icon="search"
-          class="search-icon"
-        ></b-icon>
+      <div class="input-group input-group-lg">
+        <span class="input-group-text bg-white">
+          <b-icon icon="search"></b-icon>
+        </span>
         <input
           v-model="keyword"
-          class="form-control form-control-lg border-end-0 border search-input"
+          class="form-control"
           type="search"
           placeholder="Search"
-          @click="toggleSearch"
         />
-        <b-icon
-          v-show="keyword"
-          icon="x-circle"
-          class="search-clear"
-          width="25px"
-          @click="handleClear"
-        ></b-icon>
-        <span class="input-group-append">
-          <button
-            v-if="isLoading"
-            disabled
-            type="submit"
-            class="btn btn-primary search-button"
-          >
-            <span
-              class="spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            Loading...
-          </button>
-          <input
-            v-else
-            type="submit"
-            value="Search"
-            class="btn btn-primary search-button"
-          />
+        <span v-show="keyword" class="input-group-text bg-white">
+          <b-icon
+            width="25px"
+            class="search-clear"
+            icon="x-circle"
+            @click="handleClear"
+          ></b-icon>
         </span>
+        <button
+          v-if="isLoading"
+          disabled
+          type="submit"
+          class="btn btn-secondary btn-lg search-button"
+        >
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          ...
+        </button>
+        <input
+          v-else
+          type="submit"
+          value="Search"
+          class="btn btn-secondary search-button"
+        />
       </div>
     </form>
     <form @submit.prevent="submitHandler">
@@ -183,20 +178,8 @@ export default {
 input[type='checkbox'] {
   display: none;
 }
-.search-icon {
-  z-index: 100;
-  position: absolute;
-  font-size: 1.5rem;
-  top: 7px;
-  padding-right: 5px;
-}
 
 .search-clear {
-  z-index: 100;
-  position: absolute;
-  font-size: 1.5rem;
-  top: 7px;
-  right: 11rem;
   cursor: pointer;
 }
 .clear-beer {
@@ -208,12 +191,13 @@ input[type='checkbox'] {
 }
 
 .search-button {
-  min-width: 10rem;
+  min-width: 3rem;
   height: 100%;
   cursor: pointer;
 }
 
 .beer-select {
+  position: relative;
   max-height: 300px;
   overflow: scroll;
   min-width: 340px;

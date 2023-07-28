@@ -39,7 +39,7 @@
               name="Last Name"
               class="form-control form-control-lg"
             />
-            <span>{{ errors[0] }}</span>
+            <span class="text-danger">{{ errors[0] }}</span>
           </ValidationProvider>
         </div>
         <div class="form-group mb-3">

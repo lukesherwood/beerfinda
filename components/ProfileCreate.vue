@@ -32,7 +32,7 @@
             class="form-control form-control-lg"
             required
           />
-          <span>{{ errors[0] }}</span>
+          <span class="text-danger">{{ errors[0] }}</span>
         </ValidationProvider>
       </div>
       <Error v-if="errorMessage" :error="errorMessage" />
