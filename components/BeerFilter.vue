@@ -50,11 +50,13 @@
         aria-expanded="false"
       >
         <span v-if="!getFilters.order">Sort</span>
-        <span v-else>{{ getKeyByValue(orderingTypes, getFilters.order) }}</span>
+        <span v-else>{{
+          getKeyByValue(orderingTypesArray(), getFilters.order)
+        }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
         <li
-          v-for="type in Object.keys(orderingTypes)"
+          v-for="type in Object.keys(orderingTypesArray())"
           :key="'ordering-types' + type"
         >
           <div role="button" class="dropdown-item" @click="orderHandler(type)">
@@ -77,12 +79,14 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import { debounce } from 'lodash'
-import { beerTypes, orderingTypes } from '../helpers/beer.js'
+import { beerTypes, orderingTypes, userOrderingTypes } from '../helpers/beer.js'
 export default {
   name: 'BeerFilter',
   data() {
     return {
       beerTypes,
+      loggedIn: Boolean(this.$auth.$state.user?.email),
+      userOrderingTypes,
       orderingTypes,
     }
   },
@@ -142,15 +146,25 @@ export default {
       this.submitHandler()
     },
     orderHandler(keyword) {
-      this.setOrder(this.orderingTypes[keyword])
+      this.setOrder(this.orderingTypesArray()[keyword])
       const queries = JSON.parse(JSON.stringify(this.$route.query))
-      queries.ordering = this.orderingTypes[keyword]
+      queries.ordering = this.orderingTypesArray()[keyword]
       delete queries.page
       this.$router.push({
         path: 'beers',
         query: queries,
       })
       this.submitHandler()
+    },
+    orderingTypesArray() {
+      // need to update with user cluster
+      return this.loggedIn
+        ? {
+            ...this.userOrderingTypes,
+            'Rating (Low-High)': `ratings__cluster${this.$auth.$state.user?.last_name}`,
+            'Rating (High-Low)': `-ratings__cluster${this.$auth.$state.user?.last_name}`,
+          }
+        : this.orderingTypes
     },
     clearHandler() {
       this.clearFilters()

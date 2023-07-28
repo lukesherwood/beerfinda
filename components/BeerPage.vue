@@ -15,7 +15,7 @@
         <div class="col-sm-6 col-xs-12 pb-5 d-flex justify-content-center">
           <nuxt-img
             loading="lazy"
-            placeholder="/Loading_icon.gif"
+            placeholder="/blank.jpg"
             format="webp"
             class="img-fluid beer-image"
             :src="beerImageUrl(beer)"

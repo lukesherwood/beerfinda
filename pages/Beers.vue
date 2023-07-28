@@ -62,12 +62,12 @@
                   class="beer-rating badge rounded-pill"
                   :style="{
                     'background-color': beerRatingColor(
-                      beerRating(beer.ratings)
+                      Math.round(beer.rating * 10) / 10
                     ),
                   }"
                 >
                   <b-icon icon="star-fill"></b-icon>
-                  {{ beerRating(beer.ratings) }}
+                  {{ Math.round(beer.rating * 10) / 10 }}
                 </div>
               </template>
             </Card>
@@ -88,7 +88,6 @@ import {
   beerCategoryColors,
   beerImageUrl,
   priceToString,
-  beerRating,
   beerRatingColor,
 } from '../helpers/beer.js'
 
@@ -226,7 +225,6 @@ export default {
       }
     },
     beerImageUrl,
-    beerRating,
     beerRatingColor,
     filterBeerResults() {
       this.setCurrentPage(1)

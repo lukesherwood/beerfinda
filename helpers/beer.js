@@ -1,5 +1,3 @@
-import { round } from 'lodash'
-
 export const beerCategoryColors = {
   Cider: 'khaki',
   'Sour Beer': 'DarkGrey',
@@ -49,8 +47,18 @@ export const orderingTypes = {
   'Name Z-A': '-name',
   'Price (Low-High)': 'merchantsellsfound__price',
   'Price (High-Low)': '-merchantsellsfound__price',
-  'Rating (Low-High)': 'rating',
-  'Rating (High-Low)': '-rating',
+  'Rating (Low-High)': 'ratings__average',
+  'Rating (High-Low)': '-ratings__average',
+}
+
+export const userOrderingTypes = {
+  'Name A-Z': 'name',
+  'Name Z-A': '-name',
+  'Price (Low-High)': 'merchantsellsfound__price',
+  'Price (High-Low)': '-merchantsellsfound__price',
+  // ratings are added after
+  // 'Rating (Low-High)': 'ratings__cluster${user.cluster}',
+  // 'Rating (High-Low)': '-ratings__cluster${user.cluster}',
 }
 
 export const priceToString = (price) => {
@@ -58,15 +66,6 @@ export const priceToString = (price) => {
     style: 'currency',
     currency: 'USD',
   })
-}
-
-export const beerRating = (array) => {
-  if (!array[0]) {
-    return ''
-  }
-  const ratings = Object.values(array[0])
-  const values = ratings.reduce((a, b) => a + b, 0)
-  return round(values / ratings.length, 1)
 }
 
 export const beerRatingColor = (rating) => {
