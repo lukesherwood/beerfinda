@@ -51,12 +51,13 @@
       >
         <span v-if="!getFilters.order">Sort</span>
         <span v-else>{{
-          getKeyByValue(orderingTypesArray(), getFilters.order)
+          getKeyByValue(calculateOrderingTypes(), getFilters.order)
         }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
+        <!-- this breaks when a user logs out/logs in -->
         <li
-          v-for="type in Object.keys(orderingTypesArray())"
+          v-for="type in Object.keys(orderingTypes)"
           :key="'ordering-types' + type"
         >
           <div role="button" class="dropdown-item" @click="orderHandler(type)">
@@ -82,10 +83,10 @@ import { debounce } from 'lodash'
 import { beerTypes, orderingTypes, userOrderingTypes } from '../helpers/beer.js'
 export default {
   name: 'BeerFilter',
+  props: ['loggedIn'],
   data() {
     return {
       beerTypes,
-      loggedIn: Boolean(this.$auth.$state.user?.email),
       userOrderingTypes,
       orderingTypes,
     }
@@ -133,9 +134,7 @@ export default {
       setInStock: 'beer/setInStock',
     }),
     inStockHandler() {
-      // !!! ensures its a strict boolean and toggles to the opposite
-      // eslint-disable-next-line no-extra-boolean-cast
-      this.setInStock(!!!this.isInStockSet)
+      this.setInStock(Boolean(!this.isInStockSet))
       const queries = JSON.parse(JSON.stringify(this.$route.query))
       queries.inStock = this.isInStockSet
       delete queries.page
@@ -146,9 +145,9 @@ export default {
       this.submitHandler()
     },
     orderHandler(keyword) {
-      this.setOrder(this.orderingTypesArray()[keyword])
       const queries = JSON.parse(JSON.stringify(this.$route.query))
-      queries.ordering = this.orderingTypesArray()[keyword]
+      this.setOrder(this.calculateOrderingTypes()[keyword])
+      queries.ordering = this.calculateOrderingTypes()[keyword]
       delete queries.page
       this.$router.push({
         path: 'beers',
@@ -156,13 +155,12 @@ export default {
       })
       this.submitHandler()
     },
-    orderingTypesArray() {
-      // need to update with user cluster
+    calculateOrderingTypes() {
       return this.loggedIn
         ? {
             ...this.userOrderingTypes,
-            'Rating (Low-High)': `ratings__cluster${this.$auth.$state.user?.last_name}`,
-            'Rating (High-Low)': `-ratings__cluster${this.$auth.$state.user?.last_name}`,
+            'Rating (Low-High)': `ratings__cluster${this.$auth.$state.user?.cluster}`,
+            'Rating (High-Low)': `-ratings__cluster${this.$auth.$state.user?.cluster}`,
           }
         : this.orderingTypes
     },

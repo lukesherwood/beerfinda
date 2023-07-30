@@ -2,7 +2,6 @@
 
 Todo:
 -register page - display any other errors from backend??
-- reduce font on beer search register field (Chrome makes it unreadable)
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:

@@ -9,7 +9,11 @@
       />
     </Banner>
     <div class="container">
-      <BeerFilter @filter="filterBeerResults" @order="filterBeerResults" />
+      <BeerFilter
+        :logged-in="Boolean($store.state.auth.user?.email)"
+        @filter="filterBeerResults"
+        @order="filterBeerResults"
+      />
       <Spinner
         v-if="$fetchState.pending || isLoading"
         :loading="$fetchState.pending || isLoading"
