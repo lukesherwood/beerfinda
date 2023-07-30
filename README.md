@@ -1,7 +1,11 @@
 # Beerfinda
 
 Todo:
--register page - display any other errors from backend??
+- register page
+  - display any other errors from backend??
+- filters on beer page go off screen when sorting is applied on mobile devices
+- reduce font on beer search register field (Chrome Mobile makes it unreadable)
+- navbar goes wider than body on home page (Chrome PC)
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:
@@ -24,6 +28,7 @@ Todo:
 Issues found but maybe too-hard-basket/low value:
 
 - setup omniauth google, facebook etc
+  - this has been implemented in the backend
 - placeholder for featured beer cards, as they start loading small
 - fix this.$refs.img error? image error handler not working at all
 - logout message not working
