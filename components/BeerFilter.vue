@@ -1,6 +1,6 @@
 <template>
   <div class="container pt-4">
-    <div class="filter-buttons d-flex justify-content-evenly w-100">
+    <div class="filter-buttons text-center w-100">
       <button
         id="dropdownMenuButton"
         type="button"
@@ -185,13 +185,27 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.container {
-  width: 80%;
+
+@media only screen and (max-width: 770px) {
+  .filter-buttons {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: row;
+    grid-gap: 8px;
+    gap: 8px;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    white-space: nowrap;
+  }
+  .filter-buttons::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .container {
-    width: 100%;
+    width: 80%;
   }
 }
 </style>
