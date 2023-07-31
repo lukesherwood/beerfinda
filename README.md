@@ -5,7 +5,6 @@ Todo:
   - display any other errors from backend??
 - filters on beer page go off screen when sorting is applied on mobile devices
 - reduce font on beer search register field (Chrome Mobile makes it unreadable)
-- navbar goes wider than body on home page (Chrome PC)
 - mobile enhance all pages:
   - homepage banner hand beer messed up when menu opens
 - improve merchants/brewer:

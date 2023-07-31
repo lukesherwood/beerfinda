@@ -2,14 +2,11 @@
   <div class="search">
     <form @submit.prevent="onSearch">
       <div class="input-group input-group-lg">
-        <span class="input-group-text bg-white">
-          <b-icon icon="search"></b-icon>
-        </span>
         <input
           v-model="keyword"
           class="form-control"
           type="search"
-          placeholder="Search"
+          placeholder="Search for beers"
         />
         <span v-show="keyword" class="input-group-text bg-white">
           <b-icon
@@ -166,11 +163,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.search-input {
-  text-indent: 20px;
-  border-top-left-radius: 0.5rem !important;
-  border-bottom-left-radius: 0.5rem !important;
-}
 .highlight {
   background-color: $warning;
   border: 1px solid $secondary;
@@ -201,10 +193,6 @@ input[type='checkbox'] {
   max-height: 300px;
   overflow: scroll;
   min-width: 340px;
-}
-.cancel-button {
-  padding: 1px;
-  border-radius: 50%;
 }
 .pointer {
   cursor: pointer;
