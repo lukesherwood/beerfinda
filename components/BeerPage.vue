@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5">
+  <div class="p-4">
     <div class="header">
       <h1 class="display-2">
         <strong>{{ beer.name }} </strong>
@@ -11,7 +11,7 @@
       </h2>
     </div>
     <div>
-      <div class="row py-5">
+      <div class="row py-2">
         <div class="col-sm-6 col-xs-12 pb-5 d-flex justify-content-center">
           <nuxt-img
             loading="lazy"
@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .beer-image {
-  max-height: 100vh;
+  max-height: 50vh;
   width: 100%;
   object-fit: contain;
 }

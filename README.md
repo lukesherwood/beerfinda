@@ -1,16 +1,6 @@
 # Beerfinda
 
 Todo:
-- register page
-  - display any other errors from backend??
-- filters on beer page go off screen when sorting is applied on mobile devices
-- reduce font on beer search register field (Chrome Mobile makes it unreadable)
-- mobile enhance all pages:
-  - homepage banner hand beer messed up when menu opens
-- improve merchants/brewer:
-  - layout of cards maybe doesn't seem right
-- improve brewers/brewer:
-  - doesn't show beers from brewer - is this right?
 
 - if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
 - breadcrumbs
@@ -26,6 +16,7 @@ Todo:
 
 Issues found but maybe too-hard-basket/low value:
 
+- homepage banner hand beer messed up when menu opens
 - setup omniauth google, facebook etc
   - this has been implemented in the backend
 - placeholder for featured beer cards, as they start loading small

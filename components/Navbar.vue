@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-light pt-0">
-    <div class="container-fluid">
+    <div class="container">
       <button
         class="navbar-toggler"
         type="button"
