@@ -5,15 +5,9 @@ export const state = () => ({
   featuredBeers: [],
   beer: {},
   pages: { currentPage: 1, firstPage: 'beers' },
-  // abstracting this out to its own defaultState variable seemed to cause a pointer issue when trying to clear state.
-  filters: {
-    searchTerm: '',
-    filter: [],
-    order: '',
-    filterCount: 0,
-    isInStockSet: true,
-  },
+  filters: { ...defaultFilters },
   loading: false,
+  lastQuery: '',
 })
 export const mutations = {
   addBeers(state, payload) {
@@ -43,6 +37,9 @@ export const mutations = {
   setInStock(state, payload) {
     state.filters.isInStockSet = payload
   },
+  setLastQuery(state, payload) {
+    state.lastQuery = payload
+  },
   setFilter(state, { filterType, keyword }) {
     const newFilters = state.filters.filter
     const hasFilterType = newFilters.find((filter) => {
@@ -65,12 +62,9 @@ export const mutations = {
   },
   clearFilters(state) {
     state.filters = {
-      searchTerm: '',
-      filter: [],
-      order: '',
-      filterCount: 0,
-      isInStockSet: true,
+      ...defaultFilters,
     }
+    state.lastQuery = ''
   },
 }
 export const actions = {
@@ -146,10 +140,12 @@ export const getters = {
   getFilterCount: (state) => state.filters.filterCount,
   isInStockSet: (state) => state.filters.isInStockSet,
   beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
+  getLastQuery: (state) => state.lastQuery,
 }
 
 // Private Functions
 async function fetchBeers(state, axios, query) {
+  state.commit('setLastQuery', query)
   const res = await axios.$get('/api/beer/', { params: query })
   state.commit('addBeers', res.results)
   const perPage = 100
@@ -183,4 +179,12 @@ async function loginOrRefreshToken(auth) {
   } else {
     await auth.loginWith('basicRequestCookie')
   }
+}
+
+const defaultFilters = {
+  searchTerm: '',
+  filter: [],
+  order: '',
+  filterCount: 0,
+  isInStockSet: true,
 }

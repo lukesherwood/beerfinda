@@ -2,21 +2,21 @@
 
 Todo:
 
-- if beers or merchants whatever is already in state don't refetch (id go back from /beer/2 to /beers)
 - breadcrumbs
 - ways to sort within merchants beers for sale
 - change beer register search to use search component
 - validation for contact form
 - change profile create/update validation to vee-validate
-- pull out repeated css from sign in register forgot password user etc
 - add change email features
-- see if we can further obfuscate the image api url with env variables.
 - abstract (join) filter component from beerfilter component
+
+- pull out repeated css from sign in register forgot password user etc
 - fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 
 Issues found but maybe too-hard-basket/low value:
 
 - homepage banner hand beer messed up when menu opens
+- see if we can further obfuscate the image api url with env variables.
 - setup omniauth google, facebook etc
   - this has been implemented in the backend
 - placeholder for featured beer cards, as they start loading small
@@ -28,6 +28,7 @@ Deployment:
 `git archive -v -o beerfinda.zip --format=zip HEAD`
 
 ## Build Setup
+
 You'll need to create a .env file and add the **baseUrl** to point to the api backend
 
 ```bash

@@ -104,9 +104,20 @@ export default {
   },
   async fetch() {
     this.setStateFromQuery()
+    const query = this.buildQuery()
+    const array = Object.keys(query)
+    let shouldFetch = false
+    // query != getLastQuery for strange reasons as it has state gibberish as well
+    if (query){
+      array.forEach((key) => { if (query[key] !== this.getLastQuery[key]) shouldFetch = true})
+    }
     try {
+      // if query matches last query, don't refetch
+      if (!shouldFetch){
+      return
+      }
       await this.$store.dispatch('beer/fetchBeers', {
-        query: this.buildQuery(),
+        query
       })
     } catch (error) {
       throw new Error(error)
@@ -124,6 +135,7 @@ export default {
       isLoading: 'beer/isLoading',
       getFilters: 'beer/getFilters',
       isInStockSet: 'beer/isInStockSet',
+      getLastQuery: 'beer/getLastQuery'
     }),
   },
   watch: {
