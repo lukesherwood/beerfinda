@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Breadcrumbs />
     <h1 class="text-center pb-5">Legal</h1>
     <div class="text-center">
       <p>

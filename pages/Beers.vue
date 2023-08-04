@@ -9,6 +9,7 @@
       />
     </Banner>
     <div class="container">
+      <Breadcrumbs />
       <BeerFilter
         :logged-in="Boolean($store.state.auth.user?.email)"
         @filter="filterBeerResults"
@@ -35,7 +36,7 @@
               v-for="beer in getBeers"
               :key="'beer-card' + beer.beer_id + '-' + Math.random(10)"
               :title="beer.name"
-              :link="`beer/${beer.beer_id}`"
+              :link="`beers/${beer.beer_id}`"
               :image="beerImageUrl(beer)"
             >
               <template #badge>
@@ -108,16 +109,18 @@ export default {
     const array = Object.keys(query)
     let shouldFetch = false
     // query != getLastQuery for strange reasons as it has state gibberish as well
-    if (query){
-      array.forEach((key) => { if (query[key] !== this.getLastQuery[key]) shouldFetch = true})
+    if (query) {
+      array.forEach((key) => {
+        if (query[key] !== this.getLastQuery[key]) shouldFetch = true
+      })
     }
     try {
       // if query matches last query, don't refetch
-      if (!shouldFetch){
-      return
+      if (!shouldFetch) {
+        return
       }
       await this.$store.dispatch('beer/fetchBeers', {
-        query
+        query,
       })
     } catch (error) {
       throw new Error(error)
@@ -135,7 +138,7 @@ export default {
       isLoading: 'beer/isLoading',
       getFilters: 'beer/getFilters',
       isInStockSet: 'beer/isInStockSet',
-      getLastQuery: 'beer/getLastQuery'
+      getLastQuery: 'beer/getLastQuery',
     }),
   },
   watch: {

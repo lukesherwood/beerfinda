@@ -1,41 +1,46 @@
 <template>
   <div class="container">
+    <Breadcrumbs />
     <Spinner
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
     />
     <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
-    <BrewerPage v-else :brewer="getBrewer" />
+    <BeerPage v-else :beer="getBeer" />
   </div>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Brewer',
+  name: 'Beer',
   asyncData({ route }) {
     return {
       id: route.params.id,
     }
   },
   async fetch() {
-    await this.fetchBrewer(this.id)
+    try {
+      await this.fetchBeer(this.id)
+    } catch (error) {
+      throw new Error(error)
+    }
   },
   head() {
     return {
-      title: this.getBrewer.name
-        ? `Beerfinda | Brewer | ${this.getBrewer.name}`
-        : 'Beerfinda | Brewer',
+      title: this.getBeer.name
+        ? `Beerfinda | Beers | ${this.getBeer.name}`
+        : 'Beerfinda | Beers',
     }
   },
   computed: {
     ...mapGetters({
-      getBrewer: 'brewer/getBrewer',
-      isLoading: 'brewer/isLoading',
+      getBeer: 'beer/getBeer',
+      isLoading: 'beer/isLoading',
     }),
   },
 
   methods: {
-    ...mapActions({ fetchBrewer: 'brewer/fetchBrewer' }),
+    ...mapActions({ fetchBeer: 'beer/fetchBeer' }),
   },
 }
 </script>

@@ -9,6 +9,7 @@
       />
     </Banner>
     <div class="container">
+      <Breadcrumbs />
       <FilterComponent
         :ordering="orderingTypes"
         @filter="filterMerchantsResults"
@@ -34,7 +35,7 @@
           <Card
             v-for="merchant in getMerchants"
             :key="'merchant-card' + merchant.merchant_id"
-            :link="`merchant/${merchant.link}`"
+            :link="`merchants/${merchant.link}`"
             :title="merchant.name"
             :image="merchant.image_pre_link + merchant.image"
           >

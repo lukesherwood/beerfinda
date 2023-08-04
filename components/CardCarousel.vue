@@ -8,7 +8,7 @@
       <Card
         :key="beer.beer_id"
         :title="beer.name"
-        :link="`beer/${beer.beer_id}`"
+        :link="`beers/${beer.beer_id}`"
         :image="beerImageUrl(beer)"
         width="300px"
       >
@@ -69,7 +69,6 @@ export default {
 </script>
 
 <style lang="sass">
-
 .featured
   position: absolute
   top: 5px

@@ -1,5 +1,6 @@
 <template>
   <div class="container p-5">
+    <Breadcrumbs />
     <h1 class="text-center pb-5">Terms of use</h1>
     <p>By viewing and using this site, you agree to these terms of use.</p>
     <h3>Agreement to terms</h3>

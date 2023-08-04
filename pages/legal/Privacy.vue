@@ -1,5 +1,6 @@
 <template>
   <div class="container p-5">
+    <Breadcrumbs />
     <h1 class="text-center pb-5">Privacy Policy</h1>
     <p>
       We collect personal information from you, including information about
@@ -43,4 +44,5 @@ export default {
 .container {
   background: white;
   min-height: 90vh;
-}</style>
+}
+</style>

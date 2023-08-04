@@ -1,5 +1,6 @@
 <template>
   <div class="container p-5">
+    <Breadcrumbs />
     <h1 class="text-center">About</h1>
     <div>
       <h4 class="py-5">Welcome to BeerFinda!</h4>

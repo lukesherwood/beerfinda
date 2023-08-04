@@ -5,7 +5,7 @@
         <strong>{{ beer.name }} </strong>
       </h1>
       <h2 class="display-6">
-        <nuxtLink :to="`/brewer/${titleize(beer.brewer_name)}`"
+        <nuxtLink :to="`/breweries/${titleize(beer.brewer_name)}`"
           ><em>{{ beer.brewer_name }}</em></nuxtLink
         >
       </h2>

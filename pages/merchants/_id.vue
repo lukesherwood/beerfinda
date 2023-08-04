@@ -1,45 +1,40 @@
 <template>
   <div class="container">
+    <Breadcrumbs />
     <Spinner
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
     />
     <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
-    <BeerPage v-else :beer="getBeer" />
+    <MerchantPage v-else :merchant="getMerchant" />
   </div>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Beer',
+  name: 'Merchant',
   asyncData({ route }) {
     return {
       id: route.params.id,
     }
   },
   async fetch() {
-    try {
-      await this.fetchBeer(this.id)
-    } catch (error) {
-      throw new Error(error)
-    }
+    await this.fetchMerchant(this.id)
   },
   head() {
     return {
-      title: this.getBeer.name
-        ? `Beerfinda | Beers | ${this.getBeer.name}`
-        : 'Beerfinda | Beers',
+      title: `Beerfinda | Merchant | ${this.getMerchant.name}`,
     }
   },
   computed: {
     ...mapGetters({
-      getBeer: 'beer/getBeer',
-      isLoading: 'beer/isLoading',
+      getMerchant: 'merchant/getMerchant',
+      isLoading: 'merchant/isLoading',
     }),
   },
 
   methods: {
-    ...mapActions({ fetchBeer: 'beer/fetchBeer' }),
+    ...mapActions({ fetchMerchant: 'merchant/fetchMerchant' }),
   },
 }
 </script>
@@ -47,5 +42,7 @@ export default {
 .container {
   background-color: white !important;
   min-height: 80vh;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 </style>

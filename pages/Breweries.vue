@@ -9,6 +9,7 @@
       />
     </Banner>
     <div class="container">
+      <Breadcrumbs />
       <FilterComponent
         :ordering="orderingTypes"
         @filter="filterBreweriesResults"
@@ -34,7 +35,7 @@
           <Card
             v-for="brewer in getBreweries"
             :key="'brewer-card' + brewer.brewer_id"
-            :link="`brewer/${brewer.link}`"
+            :link="`breweries/${brewer.link}`"
             :title="brewer.name"
             :image="brewer.image_pre_link + brewer.link"
           >
