@@ -16,7 +16,7 @@
     </Banner>
     <div class="container">
       <div class="header">
-        <h1 class="display-2">
+        <h1 class="display-3 text-secondary fw-bold">
           <a :href="merchant.website" target="_blank"> {{ merchant.name }}</a>
         </h1>
         <div v-if="merchant.website" class="p-2">
