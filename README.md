@@ -2,8 +2,7 @@
 
 Todo:
 
-- breadcrumbs
-- ways to sort within merchants beers for sale
+- ways to sort within merchants beers for sale?
 - change beer register search to use search component
 - validation for contact form
 - change profile create/update validation to vee-validate

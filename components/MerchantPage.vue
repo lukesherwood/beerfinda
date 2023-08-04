@@ -63,15 +63,15 @@
           }}
         </div>
 
-        <div v-if="merchant.merchantdetails.length">
+        <div v-if="beers.length">
           <div class="clearfix"></div>
           <h3 class="pt-3">Beers for sale</h3>
           <div
             class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
           >
             <Card
-              v-for="beer in merchant.merchantdetails"
-              :key="'merchant-page-card' + beer.beer_id"
+              v-for="beer in beersToDisplay()"
+              :key="'merchant-page-card' + beer.beer_id + '-' + Math.random(10)"
               :title="beer.title"
               :image="beer.image_pre_link + beer.image_link"
               footer="true"
@@ -91,6 +91,11 @@
               </template>
             </Card>
           </div>
+          <Pagination
+            class="p-5"
+            :pages="{ currentPage, totalPages }"
+            @pageChange="handlePageChange"
+          />
         </div>
       </div>
     </div>
@@ -100,13 +105,18 @@
 import { priceToString } from '../helpers/beer.js'
 export default {
   name: 'MerchantPage',
-  props: ['merchant'],
+  props: ['merchant', 'beers'],
   data() {
     return {
       image: this.imageUrl(),
+      currentPage: 1,
+      totalPages: Math.ceil(this.beers.length / 20),
     }
   },
   methods: {
+    handlePageChange(page) {
+      this.currentPage = page
+    },
     imageUrl() {
       return this.merchant.image_pre_link + this.merchant.image || 'brewer.jpg'
     },
@@ -116,6 +126,11 @@ export default {
       })
     },
     priceToString,
+    beersToDisplay() {
+      const firstN = 20 * parseInt(this.currentPage) - 20
+      const secondN = 20 * parseInt(this.currentPage)
+      return this.beers.slice(firstN, secondN)
+    },
   },
 }
 </script>
