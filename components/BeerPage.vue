@@ -1,7 +1,7 @@
 <template>
   <div class="p-4">
     <div class="header">
-      <h1 class="display-2">
+      <h1 class="display-3 text-secondary fw-bold">
         <strong>{{ beer.name }} </strong>
       </h1>
       <h2 class="display-6">

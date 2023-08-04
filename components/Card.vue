@@ -59,15 +59,13 @@ export default {
   padding-bottom: 0px;
 }
 .card {
-  border: 0;
   border-radius: 12px;
-  transition: 0.3s;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
 .card:hover {
-  border: 2px solid $secondary;
+  outline: 2px solid $secondary;
 }
 .card-footer {
   padding-top: 0px;

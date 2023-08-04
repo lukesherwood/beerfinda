@@ -1,6 +1,6 @@
 <template>
   <div class="container pt-4">
-    <div class="filter-buttons d-flex justify-content-evenly w-100">
+    <div class="filter-buttons text-center w-100">
       <button
         id="dropdownMenuButton"
         type="button"
@@ -12,10 +12,7 @@
         <span v-else>{{ getKeyByValue(orderingTypes, filters.order) }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li
-          v-for="type in Object.keys(orderingTypes)"
-          :key="'ordering' + type"
-        >
+        <li v-for="type in Object.keys(orderingTypes)" :key="'ordering' + type">
           <div
             role="button"
             class="dropdown-item"
