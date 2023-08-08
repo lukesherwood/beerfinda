@@ -1,42 +1,6 @@
 <template lang="">
   <div class="search">
-    <form @submit.prevent="onSearch">
-      <div class="input-group input-group-lg">
-        <input
-          v-model="keyword"
-          class="form-control"
-          type="search"
-          placeholder="Search for beers"
-        />
-        <span v-show="keyword" class="input-group-text bg-white">
-          <b-icon
-            width="25px"
-            class="search-clear"
-            icon="x-circle"
-            @click="handleClear"
-          ></b-icon>
-        </span>
-        <button
-          v-if="isLoading"
-          disabled
-          type="submit"
-          class="btn btn-secondary btn-lg search-button"
-        >
-          <span
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          ...
-        </button>
-        <input
-          v-else
-          type="submit"
-          value="Search"
-          class="btn btn-secondary search-button"
-        />
-      </div>
-    </form>
+    <Search :loading="isLoading" :search-term="keyword" @search="onSearch" @clear="handleClear"/>
     <form @submit.prevent="submitHandler">
       <ul
         v-if="getBeerResults.length"
@@ -68,25 +32,25 @@
       </ul>
       <div v-if="beersSelected.length" class="pt-3">
         <div v-for="beer in beersSelectedInfo" :key="beer.beer_id">
+          <div v-if="beersSelected.includes(beer.beer_id)" class="badge rounded-pill text-bg-light">
           <span
-            v-if="beersSelected.includes(beer.beer_id)"
-            class="badge rounded-pill text-bg-light text-truncate"
+            class="text-truncate d-inline-block"
             style="max-width: 200px"
           >
             {{ beer.name }} - <em>{{ beer.brewer_name }}</em>
+          </span>
             <b-icon
               class="clear-beer"
               icon="x-circle"
               @click="clearBeer(beer.beer_id)"
             ></b-icon>
-          </span>
+            </div>
         </div>
       </div>
     </form>
   </div>
 </template>
 <script>
-import { debounce } from 'lodash'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'RegisterBeerSearch',
@@ -98,9 +62,6 @@ export default {
       dropdownClosed: false,
     }
   },
-  fetch() {
-    this.debounceSearch = debounce(this.onSearch, 1000)
-  },
   computed: {
     ...mapGetters({
       isLoading: 'user/isLoading',
@@ -109,11 +70,6 @@ export default {
     }),
   },
   watch: {
-    keyword() {
-      this.dropdownClosed = false
-      if (!this.keyword) return
-      this.debounceSearch()
-    },
     beersSelected() {
       this.updateBeerInfo()
       this.submitHandler()
@@ -131,8 +87,12 @@ export default {
       fetchBeerResults: 'user/fetchBeerResults',
       fetchBeerInfo: 'user/fetchBeerInfo',
     }),
-    onSearch() {
-      this.fetchBeerResults({ keyword: this.keyword })
+    onSearch(searchTerm) {
+      this.dropdownClosed = true
+      this.keyword = searchTerm
+      this.fetchBeerResults({ keyword: this.keyword }).then(() => {
+        this.dropdownClosed = false
+      })
     },
     handleClear() {
       this.keyword = ''
@@ -145,9 +105,6 @@ export default {
       if (!this.$el.contains(e.target)) {
         this.dropdownClosed = true
       }
-    },
-    toggleSearch() {
-      this.dropdownClosed = !this.dropdownClosed
     },
     submitHandler() {
       this.$emit('beersSave', this.beersSelected)
@@ -190,6 +147,7 @@ input[type='checkbox'] {
 
 .beer-select {
   position: relative;
+  margin-top: -20px;
   max-height: 300px;
   overflow: scroll;
   min-width: 340px;

@@ -2,8 +2,16 @@
 
 Todo:
 
-- ways to sort within merchants beers for sale?
-- change beer register search to use search component
+- pagination on mobile too big - should be just next/prev
+- breweries contact section mobile messed up - remove contact header
+- make merchants contact section the same
+- pagination next/prev bounce to top
+- filter count is off by one
+- in stock/out stock doesn't work properly
+- navbar content s should be same as homepage content width
+- beerfinda blurb should be same width as container
+- horizontal scroll on homepage mobile
+
 - validation for contact form
 - change profile create/update validation to vee-validate
 - add change email features
