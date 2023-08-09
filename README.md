@@ -2,12 +2,7 @@
 
 Todo:
 
-- pagination next/prev bounce to top for merchants
-- breweries contact section mobile messed up
-- make merchants contact section the same
 - filter count is off by one
-- navbar content s should be same as homepage content width
-  - ipad navbar items little too cramped
 - beerfinda blurb should be same width as container
 
 - add delete 'search' from query for breweries and merchants
@@ -16,6 +11,7 @@ Todo:
 - change profile create/update validation to vee-validate
 - add change email features
 - abstract (join) filter component from beerfilter component
+- back to top hovering thingy on beers
 
 - pull out repeated css from sign in register forgot password user etc
 - fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
@@ -23,6 +19,7 @@ Todo:
 Issues found but maybe too-hard-basket/low value:
 
 - homepage banner hand beer messed up when menu opens
+- scroll to top for each new page
 - see if we can further obfuscate the image api url with env variables.
 - setup omniauth google, facebook etc
   - this has been implemented in the backend

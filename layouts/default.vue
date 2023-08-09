@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 text-wrap">
+  <div>
     <header>
       <Navbar />
       <notifications position="top center" />

@@ -48,7 +48,7 @@
             height="50px"
             src="/beerfinda.png"
             format="webp"
-            class="navbar-brand pt-0"
+            class="navbar-brand pt-0 px-2"
           />
         </nuxtLink>
       </div>
@@ -111,6 +111,8 @@ export default {
   font-weight: bold;
   margin-left: 20px;
   display: flex;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .nav-link {

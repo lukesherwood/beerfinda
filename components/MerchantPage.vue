@@ -1,102 +1,107 @@
 <template>
-  <div class="">
-    <Banner>
-      <div class="w-100 d-flex justify-content-center">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12 pb-2">
         <a :href="merchant.website" target="_blank">
           <nuxt-img
             loading="lazy"
             placeholder="/brewer.jpg"
             format="webp"
-            class="img-fluid beer-image w-100"
+            class="img-fluid beer-image"
             :src="image"
             alt="default-beer"
           />
         </a>
       </div>
-    </Banner>
-    <div class="container">
-      <div class="header">
-        <h1 class="display-3 fw-bold">
-          <a class="text-secondary" :href="merchant.website" target="_blank"> {{ merchant.name }}</a>
-        </h1>
-        <div v-if="merchant.website" class="p-2">
-          <a :href="merchant.website"
-            >Website:
-            <b-icon icon="box-arrow-up-right"></b-icon>
-          </a>
-        </div>
-        <div v-if="merchant.email" class="p-2">
-          <a :href="'mailto:' + merchant.email"
-            >Email:
-            <b-icon icon="envelope"></b-icon>
-          </a>
-        </div>
-        <div v-if="merchant.twitter" class="p-2">
-          <a :href="merchant.twitter" target="_blank">
-            Twitter: <b-icon icon="twitter"></b-icon>
-          </a>
-        </div>
-        <div v-if="merchant.facebook" class="p-2">
-          <a :href="merchant.facebook" target="_blank">
-            Facebook: <b-icon icon="facebook"></b-icon>
-          </a>
-        </div>
-        <div v-if="merchant.instagram" class="p-2" target="_blank">
-          <a :href="merchant.instagram" target="_blank">
-            Instagram: <b-icon icon="instagram"></b-icon>
-          </a>
-        </div>
-        <div v-if="merchant.phone" class="p-2">
-          <a :href="'tel:' + merchant.phone">
-            Phone: <b-icon icon="telephone"></b-icon
-          ></a>
-        </div>
-        <div v-if="merchant.address" class="p-2">
-          <b-icon icon="mailbox2"></b-icon>
-          Address: {{ merchant.address }}
+      <div class="col-sm-6 col-xs-12">
+        <div class="header">
+          <h1 class="display-3 fw-bold text-center">
+            <a class="text-secondary" :href="merchant.website" target="_blank">
+              {{ merchant.name }}</a
+            >
+          </h1>
+          <div class="py-2 border-top border-bottom">
+            <div class="d-flex justify-content-evenly">
+              <div v-if="merchant.website" class="p-2">
+                <a :href="merchant.website"
+                  >Visit
+                  <b-icon icon="box-arrow-up-right"></b-icon>
+                </a>
+              </div>
+              <div v-if="merchant.email" class="p-2">
+                <a :href="'mailto:' + merchant.email"
+                  >Email:
+                  <b-icon icon="envelope"></b-icon>
+                </a>
+              </div>
+              <div v-if="merchant.twitter" class="p-2">
+                <a :href="merchant.twitter" target="_blank">
+                  <b-icon icon="twitter"></b-icon>
+                </a>
+              </div>
+              <div v-if="merchant.facebook" class="p-2">
+                <a :href="merchant.facebook" target="_blank">
+                  <b-icon icon="facebook"></b-icon>
+                </a>
+              </div>
+              <div v-if="merchant.instagram" class="p-2" target="_blank">
+                <a :href="merchant.instagram" target="_blank">
+                  <b-icon icon="instagram"></b-icon>
+                </a>
+              </div>
+            </div>
+            <div v-if="merchant.phone" class="p-2 text-center">
+              <a :href="'tel:' + merchant.phone">
+                Call: <b-icon icon="telephone"></b-icon>{{ merchant.phone }}</a
+              >
+            </div>
+            <div v-if="merchant.address" class="p-2 text-center">
+              <b-icon icon="mailbox2"></b-icon>
+              Address: {{ merchant.address }}
+            </div>
+            <div class="clearfix"></div>
+          </div>
         </div>
       </div>
-      <div class="p-3">
-        <div class="merchant-desc">
-          {{
-            merchant.description.substring(1, merchant.description.length - 1)
-          }}
-        </div>
+    </div>
+    <div>
+      <div class="merchant-desc">
+        {{ merchant.description.substring(1, merchant.description.length - 1) }}
+      </div>
 
-        <div v-if="beers.length">
-          <div class="clearfix"></div>
-          <h3 class="pt-3">Beers for sale</h3>
-          <div
-            class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+      <div v-if="beers.length" class="container">
+        <div class="clearfix"></div>
+        <h3 class="pt-3 text-center">Beers for sale</h3>
+        <div
+          class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+        >
+          <Card
+            v-for="beer in beersToDisplay()"
+            :key="'merchant-page-card' + beer.beer_id + '-' + Math.random(10)"
+            :title="beer.title"
+            :image="beer.image_pre_link + beer.image_link"
+            footer="true"
           >
-            <Card
-              v-for="beer in beersToDisplay()"
-              :key="'merchant-page-card' + beer.beer_id + '-' + Math.random(10)"
-              :title="beer.title"
-              :image="beer.image_pre_link + beer.image_link"
-              footer="true"
-            >
-              <template #text>
-                <div class="price">{{ priceToString(beer.price) }}</div>
-                <div v-if="beer.stock === 1">Currently In Stock</div>
-                <div v-else>Currently Out of Stock</div>
-              </template>
-              <template #footer>
-                <a
-                  class="btn btn-secondary w-100 stretched-link"
-                  :href="beer.link"
-                  target="_blank"
-                  >Buy Now</a
-                >
-              </template>
-            </Card>
-          </div>
-          <Pagination
-            class="p-5"
-            :pages="{ currentPage, totalPages }"
-            @pageChange="handlePageChange"
-          />
+            <template #text>
+              <div class="price">{{ priceToString(beer.price) }}</div>
+              <div v-if="beer.stock === 1">Currently In Stock</div>
+              <div v-else>Currently Out of Stock</div>
+            </template>
+            <template #footer>
+              <a
+                class="btn btn-secondary w-100 stretched-link"
+                :href="beer.link"
+                target="_blank"
+                >Buy Now</a
+              >
+            </template>
+          </Card>
         </div>
+        <Pagination
+          class="p-5"
+          :pages="{ currentPage, totalPages }"
+          @pageChange="handlePageChange"
+        />
       </div>
     </div>
   </div>
@@ -136,12 +141,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 .beer-image {
-  max-height: 28vh;
+  max-height: 60vh;
   width: 100%;
   object-fit: contain;
 }
+.row {
+  padding: 25px;
+}
 
-a:link {
-  text-decoration: none;
+@media screen and (max-width: 400px) {
+  .row {
+    padding: 10px;
+  }
 }
 </style>

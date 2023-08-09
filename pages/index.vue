@@ -19,7 +19,7 @@
         loading="lazy"
         format="webp"
         alt="default-beer"
-        class="beer-hand"
+        class="beer-hand d-none d-md-block"
       />
     </HomeBanner>
     <div class="container">
@@ -41,8 +41,8 @@
             </nuxtLink>
           </div>
         </div>
-        <div class="section-wrapper">
-          <div class="section mt-3 row">
+        <div class="section-wrapper container py-5">
+          <div class="section row">
             <h2 class="pb-5">How We Work:</h2>
             <div class="col col-sm-12 col-xl-4">
               <nuxt-img
@@ -89,50 +89,52 @@
             >
               <h5>Sign Up</h5>
             </nuxtLink>
-            <nuxt-img
-              style="
-                z-index: 2;
-                width: 250px;
-                position: absolute;
-                right: 150px;
-                bottom: 0px;
-              "
-              src="can1.png"
-              loading="lazy"
-              format="webp"
-              alt="default-beer"
-              class="beer-pictures"
-            />
-            <nuxt-img
-              style="
-                z-index: 1;
-                width: 280px;
-                position: absolute;
-                right: -20px;
-                bottom: 40px;
-                opacity: 0.6;
-              "
-              src="bottle.png"
-              loading="lazy"
-              format="webp"
-              alt="default-beer"
-              class="beer-pictures"
-            />
-            <nuxt-img
-              style="
-                z-index: 1;
-                width: 235px;
-                position: absolute;
-                right: 325px;
-                bottom: 50px;
-                opacity: 0.6;
-              "
-              src="bottles.png"
-              loading="lazy"
-              format="webp"
-              alt="default-beer"
-              class="beer-pictures"
-            />
+            <div class="d-none d-lg-block">
+              <nuxt-img
+                style="
+                  z-index: 2;
+                  width: 250px;
+                  position: absolute;
+                  right: 150px;
+                  bottom: 0px;
+                "
+                src="can1.png"
+                loading="lazy"
+                format="webp"
+                alt="default-beer"
+                class="beer-pictures"
+              />
+              <nuxt-img
+                style="
+                  z-index: 1;
+                  width: 280px;
+                  position: absolute;
+                  right: -20px;
+                  bottom: 40px;
+                  opacity: 0.6;
+                "
+                src="bottle.png"
+                loading="lazy"
+                format="webp"
+                alt="default-beer"
+                class="beer-pictures"
+              />
+              <nuxt-img
+                style="
+                  z-index: 1;
+                  width: 235px;
+                  position: absolute;
+                  right: 325px;
+                  bottom: 50px;
+                  opacity: 0.6;
+                "
+                src="bottles.png"
+                loading="lazy"
+                format="webp"
+                alt="default-beer"
+                class="beer-pictures"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -174,19 +176,11 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
 }
-.section-wrapper {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-.section {
-  padding-bottom: 150px;
-  padding-top: 50px;
-}
 .sign-up-text {
   width: 40%;
 }
 .text-start {
-  padding: 40px;
+  padding: 25px;
 }
 @media screen and (max-width: 992px) {
   .header-content .sign-up-content {
@@ -195,30 +189,25 @@ export default {
   .sign-up-text {
     width: 100%;
   }
-  .beer-pictures {
-    display: none;
-  }
   .sign-up-link {
     text-align: center;
   }
 }
 
 @media screen and (max-width: 820px) {
-  .beer-hand {
-    display: none;
-  }
   .text-start {
-    padding: 20px !important;
+    padding: 25px !important;
   }
 }
 @media screen and (max-width: 630px) {
   .header-content {
     padding: 5px !important;
     font-size: 70%;
+    width: 90%;
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 375px) {
   .header-content {
     padding: 5px !important;
     font-size: 50%;
