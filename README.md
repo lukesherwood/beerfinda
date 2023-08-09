@@ -2,16 +2,16 @@
 
 Todo:
 
-- pagination on mobile too big - should be just next/prev
-- breweries contact section mobile messed up - remove contact header
+- pagination next/prev bounce to top for merchants
+- breweries contact section mobile messed up
 - make merchants contact section the same
-- pagination next/prev bounce to top
 - filter count is off by one
-- in stock/out stock doesn't work properly
 - navbar content s should be same as homepage content width
+  - ipad navbar items little too cramped
 - beerfinda blurb should be same width as container
-- horizontal scroll on homepage mobile
 
+- add delete 'search' from query for breweries and merchants
+- searchTerm contamination when going back to breweries page after clicked on search for beers from brewery
 - validation for contact form
 - change profile create/update validation to vee-validate
 - add change email features

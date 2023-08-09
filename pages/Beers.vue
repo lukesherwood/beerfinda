@@ -88,6 +88,7 @@
   </div>
 </template>
 <script>
+import { isEmpty } from 'lodash'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import {
   beerCategoryColors,
@@ -108,12 +109,21 @@ export default {
     const query = this.buildQuery()
     const array = Object.keys(query)
     let shouldFetch = false
+    if (isEmpty(query)) {
+      shouldFetch = true
+    }
     // query != getLastQuery for strange reasons as it has state gibberish as well
     if (query) {
       array.forEach((key) => {
         if (query[key] !== this.getLastQuery[key]) shouldFetch = true
       })
+      if (this.getLastQuery) {
+        Object.keys(this.getLastQuery).forEach((key) => {
+          if (query[key] !== this.getLastQuery[key]) shouldFetch = true
+        })
+      }
     }
+
     try {
       // if query matches last query, don't refetch
       if (!shouldFetch) {
@@ -166,6 +176,9 @@ export default {
       const searchTerm = this.getFilters.searchTerm
       if (searchTerm) {
         query.search = searchTerm
+      } else if (!searchTerm && query.search) {
+        // remove 'search' from query if no search term
+        delete query.search
       }
       const page = this.getPages.currentPage
       if (page > 1) {
@@ -252,6 +265,9 @@ export default {
       this.setSearchTerm(keyword)
       const queries = JSON.parse(JSON.stringify(this.$route.query))
       queries.search = keyword
+      if (!keyword) {
+        delete queries.search
+      }
       delete queries.page
       this.$router.push({
         path: 'beers',

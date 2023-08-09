@@ -1,6 +1,6 @@
 <template>
-  <div class="p-5 row">
-    <div class="col-sm-6 col-xs-12 pb-5">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12 pb-2">
       <nuxt-img
         loading="lazy"
         placeholder="/brewer.jpg"
@@ -12,12 +12,11 @@
     </div>
     <div class="col-sm-6 col-xs-12">
       <div class="header">
-        <h1 class="display-3 text-secondary fw-bold">
+        <h1 class="display-3 text-secondary fw-bold text-center">
           <strong>{{ brewer.name }} </strong>
         </h1>
       </div>
       <div class="py-2 border-top border-bottom">
-        <h4 class="text-center w-100">Contact</h4>
         <div class="d-flex justify-content-evenly">
           <div v-if="brewer.email" class="p-2">
             Email:
@@ -64,7 +63,15 @@
         <div class="brewer-type">
           {{ brewer.type }}
         </div>
-        <div>Beers: {{ brewer.numberbeers }}</div>
+        <div>
+          Beers:
+          <nuxt-link
+            :to="'/beers?&inStock=false&search=' + brewer.name"
+            class="text-secondary"
+          >
+            {{ brewer.numberbeers }}</nuxt-link
+          >
+        </div>
         <div v-if="brewer.description" class="brewer-desc py-3">
           {{ brewer.description.substring(1, brewer.description.length - 1) }}
         </div>
@@ -98,5 +105,14 @@ export default {
   max-height: 100vh;
   width: 100%;
   object-fit: contain;
+}
+.row {
+  padding: 25px;
+}
+
+@media screen and (max-width: 400px) {
+  .row {
+    padding: 10px;
+  }
 }
 </style>

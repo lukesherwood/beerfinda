@@ -203,11 +203,9 @@ export default {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 820px) {
   .beer-hand {
-    scale: 90%;
-    right: -100px !important;
-    top: 50px !important;
+    display: none;
   }
   .text-start {
     padding: 20px !important;
@@ -218,21 +216,12 @@ export default {
     padding: 5px !important;
     font-size: 70%;
   }
-  .beer-hand {
-    scale: 60%;
-    right: -140px !important;
-    top: 90px !important;
-  }
 }
 
 @media screen and (max-width: 350px) {
   .header-content {
     padding: 5px !important;
     font-size: 50%;
-  }
-  .beer-hand {
-    scale: 50%;
-    top: 130px !important;
   }
 }
 </style>
