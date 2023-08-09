@@ -6,7 +6,7 @@
       <div>
         <h1 class="text-white display-1">{{ text }}</h1>
       </div>
-      <div class="w-100">
+      <div class="container">
         <slot />
       </div>
     </div>

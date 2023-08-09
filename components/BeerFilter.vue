@@ -1,5 +1,5 @@
 <template>
-  <div class="container pt-4">
+  <div class="container">
     <div class="filter-buttons text-center w-100">
       <button
         id="dropdownMenuButton"

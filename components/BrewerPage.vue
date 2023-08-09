@@ -53,7 +53,7 @@
         </div>
         <div class="clearfix"></div>
       </div>
-      <div class="brewer-text pt-3">
+      <div class="py-4">
         <div class="brewer-est">
           <em>Est. {{ brewer.established }}</em>
         </div>
