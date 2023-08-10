@@ -77,6 +77,7 @@ export default {
   cursor: pointer;
 }
 .container {
+  padding: 0px;
   max-width: 600px;
 }
 </style>

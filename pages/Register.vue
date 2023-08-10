@@ -1,23 +1,25 @@
 <template>
-  <div class="vertical-center">
-    <div class="pt-5"></div>
-    <div class="inner-block">
-      <div class="vue-template">
-        <ProfileCreate
-          v-if="!showUserCreate"
-          :form-data="rawProfileData"
-          :error="getError"
-          @profileCreate="handleProfileCreate($event)"
-        />
-        <UserCreate
-          v-if="showUserCreate"
-          @userCreate="handleUserCreate($event)"
-        />
-        <p class="forgot-password text-right">
-          Already registered?
-          <nuxtLink to="/login">Login</nuxtLink>
-        </p>
-      </div>
+  <div class="d-flex justify-content-center flex-column py-5">
+    <div class="inner-block bg-white">
+      <ProfileCreate
+        v-if="!showUserCreate"
+        :form-data="rawProfileData"
+        :error="getError"
+        @profileCreate="handleProfileCreate($event)"
+      />
+      <UserCreate
+        v-if="showUserCreate"
+        @userCreate="handleUserCreate($event)"
+      />
+      <h6 class="py-3">
+        Already registered?
+        <nuxtLink to="/login">Login</nuxtLink>
+      </h6>
+      <small class="text-center fw-lighter text-muted">
+        By continuing to use BeerFinda, you agree to our
+        <nuxt-link to="/legal/terms">Terms of Service</nuxt-link> and
+        <nuxt-link to="/legal/privacy">Privacy Policy</nuxt-link>
+      </small>
     </div>
   </div>
 </template>
@@ -81,54 +83,5 @@ export default {
   },
 }
 </script>
-<style scoped>
-* {
-  box-sizing: border-box;
-}
-.vue-template,
-.vertical-center {
-  width: 100%;
-  height: 100%;
-}
-.vertical-center {
-  display: flex;
-  text-align: left;
-  justify-content: center;
-  flex-direction: column;
-}
-.inner-block {
-  width: 650px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all 0.3s;
-}
-.forgot-password {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7a7a7a;
-  margin: 0;
-}
-.forgot-password a {
-  color: #2554ff;
-}
-.vertical-center h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
-label {
-  font-weight: 500;
-}
-
-@media only screen and (max-width: 500px) {
-  .inner-block {
-    width: 100%;
-    padding: 20px;
-  }
-}
+<style lang="scss" scoped>
 </style>

@@ -72,6 +72,5 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: white;
-  min-height: 90vh;
 }
 </style>

@@ -2,19 +2,17 @@
 
 Todo:
 
-- filter count is off by one
-- beerfinda blurb should be same width as container
-
-- add delete 'search' from query for breweries and merchants
+- copy changes from login to others
+- little back button in register second page
+- fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
+- abstract (join) filter component from beerfilter component
 - searchTerm contamination when going back to breweries page after clicked on search for beers from brewery
+- add delete 'search' from query for breweries and merchants
+- delete blank querires from route
 - validation for contact form
 - change profile create/update validation to vee-validate
 - add change email features
-- abstract (join) filter component from beerfilter component
 - back to top hovering thingy on beers
-
-- pull out repeated css from sign in register forgot password user etc
-- fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 
 Issues found but maybe too-hard-basket/low value:
 

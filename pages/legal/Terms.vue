@@ -1,8 +1,8 @@
 <template>
   <div class="container p-5">
     <Breadcrumbs />
-    <h1 class="text-center pb-5">Terms of use</h1>
-    <p>By viewing and using this site, you agree to these terms of use.</p>
+    <h1 class="text-center pb-5">Terms of Service</h1>
+    <p>By viewing and using this site, you agree to these terms of service.</p>
     <h3>Agreement to terms</h3>
     <p>
       Welcome to beerfinda.co.nz (the 'site'), a website hosted and operated by

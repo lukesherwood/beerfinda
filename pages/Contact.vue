@@ -1,10 +1,8 @@
 <template>
-  <div class="vertical-center">
-    <div class="pt-5"></div>
-    <div class="inner-block">
-      <div class="vue-template">
+  <div class="d-flex justify-content-center flex-column py-5">
+    <div class="inner-block bg-white">
         <form @submit.prevent="handleSubmit">
-          <h3>Contact</h3>
+          <h3 class="text-center">Contact</h3>
           <div class="form-group">
             <label>Name</label>
             <input
@@ -71,49 +69,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  box-sizing: border-box;
-}
-html,
-.App,
-.vue-template,
-.vertical-center {
-  width: 100%;
-  height: 100%;
-}
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
-.vertical-center {
-  display: flex;
-  text-align: left;
-  justify-content: center;
-  flex-direction: column;
-}
-.inner-block {
-  width: 650px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all 0.3s;
-}
-.vertical-center h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
-label {
-  font-weight: 500;
-}
-
-@media only screen and (max-width: 500px) {
-  .inner-block {
-    width: 100%;
-    padding: 20px;
-  }
-}
 </style>
