@@ -3,6 +3,7 @@
 Todo:
 
 - little back button in register second page
+  check if npm upgrade works
 - fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 - abstract (join) filter component from beerfilter component
 - searchTerm contamination when going back to breweries page after clicked on search for beers from brewery

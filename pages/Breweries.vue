@@ -37,7 +37,7 @@
             :key="'brewer-card' + brewer.brewer_id"
             :link="`breweries/${brewer.link}`"
             :title="brewer.name"
-            :image="brewer.image_pre_link + brewer.link"
+            :image="brewer.image_pre_link + brewer.image"
           >
             <template #text>
               <div class="brewer-est">
