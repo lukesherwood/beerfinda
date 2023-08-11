@@ -3,7 +3,7 @@
     <div
       v-for="beer in beers"
       :key="'carousel-beer' + beer.beer_id"
-      class="card-wrapper p-5"
+      class="p-5"
     >
       <Card
         :key="beer.beer_id"
@@ -49,7 +49,6 @@ export default {
               dots: true,
             },
           },
-
           {
             breakpoint: 1100,
             settings: {

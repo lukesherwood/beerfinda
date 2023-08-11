@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     imageUrl() {
-      return this.brewer.image_pre_link + this.brewer.link || 'brewer.jpg'
+      return this.brewer.image_pre_link + this.brewer.image || 'brewer.jpg'
     },
     formatString(string) {
       return string.replace(/.+?[.?!](\s|$)/g, function (a) {

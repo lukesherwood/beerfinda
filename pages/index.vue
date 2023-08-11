@@ -30,7 +30,7 @@
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
         <div v-if="getFeaturedBeers.length > 0">
-          <h1 class="text-start title">Featured Beers</h1>
+          <h1 class="title text-center">Featured Beers</h1>
           <CardCarousel :beers="getFeaturedBeers" />
           <div class="pt-5">
             <nuxtLink
@@ -180,7 +180,7 @@ export default {
   width: 40%;
 }
 .text-start {
-  padding: 25px;
+  padding: 5px;
 }
 @media screen and (max-width: 992px) {
   .header-content .sign-up-content {
@@ -194,12 +194,10 @@ export default {
   }
 }
 
-@media screen and (max-width: 820px) {
-  .text-start {
-    padding: 25px !important;
+@media screen and (max-width: 766px) {
+  .title {
+    padding-top: 50px;
   }
-}
-@media screen and (max-width: 630px) {
   .header-content {
     padding: 5px !important;
     font-size: 70%;

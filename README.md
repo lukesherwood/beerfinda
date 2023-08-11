@@ -2,7 +2,6 @@
 
 Todo:
 
-- copy changes from login to others
 - little back button in register second page
 - fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 - abstract (join) filter component from beerfilter component

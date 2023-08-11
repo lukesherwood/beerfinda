@@ -44,11 +44,11 @@
           <nuxt-img
             loading="lazy"
             preload
-            width="200px"
-            height="50px"
+            width="246px"
+            height="52px"
             src="/beerfinda.png"
             format="webp"
-            class="navbar-brand pt-0 px-2"
+            class="navbar-brand py-1 px-2"
           />
         </nuxtLink>
       </div>
@@ -109,7 +109,6 @@ export default {
   word-spacing: 3px;
   font-size: 1rem;
   font-weight: bold;
-  margin-left: 20px;
   display: flex;
   overflow: auto;
   white-space: nowrap;

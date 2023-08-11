@@ -56,10 +56,7 @@
         </div>
       </li>
       <!-- Go forward 1 Button -->
-      <li
-        v-if="pages.currentPage + 1 < pages.totalPages"
-        class="page-item mobile"
-      >
+      <li v-if="pages.currentPage + 1 < pages.totalPages" class="page-item">
         <div
           role="button"
           class="page-link"
@@ -85,7 +82,7 @@
       <li
         v-if="
           pages.currentPage != pages.totalPages &&
-          pages.currentPage + 1 < pages.totalPages
+          pages.currentPage + 2 < pages.totalPages
         "
         class="page-item disabled"
       >
