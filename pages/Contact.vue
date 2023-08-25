@@ -4,8 +4,9 @@
         <form @submit.prevent="handleSubmit">
           <h3 class="text-center">Contact</h3>
           <div class="form-group">
-            <label>Name</label>
+            <label for="name">Name</label>
             <input
+              id="name"
               v-model="form.name"
               type="text"
               name="name"
@@ -14,8 +15,9 @@
             />
           </div>
           <div class="form-group">
-            <label>Email address</label>
+            <label for="email">Email address</label>
             <input
+              id="email"
               v-model="form.email"
               type="email"
               name="email"
@@ -24,8 +26,9 @@
             />
           </div>
           <div class="form-group">
-            <label for="text">Send a message</label>
+            <label for="message">Send a message</label>
             <textarea
+              id="message"
               v-model="form.message"
               class="w-100 form-control form-control-lg"
               name="text"

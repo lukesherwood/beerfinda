@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumbs />
+    <Breadcrumbs/>
     <Spinner
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
@@ -13,6 +13,7 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Beer',
+  scrollToTop: true,
   asyncData({ route }) {
     return {
       id: route.params.id,

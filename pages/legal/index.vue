@@ -1,14 +1,17 @@
 <template>
   <div class="container">
     <Breadcrumbs />
-    <h1 class="text-center pb-5">Legal</h1>
+    <h1 id="legal-header" class="text-center pb-5">Legal</h1>
     <div class="text-center">
       <p>
         <nuxtLink
           to="/legal/privacy"
           class="nav-link text-primary p-5"
           aria-current="page"
-          ><button class="btn btn-secondary">Privacy Policy</button></nuxtLink
+          aria-labelledby="privacy-policy"
+          ><button id="privacy-policy" class="btn btn-secondary">
+            Privacy Policy
+          </button></nuxtLink
         >
       </p>
       <p>
@@ -16,7 +19,8 @@
           to="/legal/terms"
           class="nav-link text-primary p-5"
           aria-current="page"
-          ><button class="btn btn-secondary">
+          aria-labelledby="terms-conditions"
+          ><button id="terms-conditions" class="btn btn-secondary">
             Terms and Conditions
           </button></nuxtLink
         >

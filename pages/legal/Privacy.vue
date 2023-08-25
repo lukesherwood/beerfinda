@@ -1,12 +1,14 @@
 <template>
   <div class="container p-5">
-    <Breadcrumbs />
-    <h1 class="text-center pb-5">Privacy Policy</h1>
+    <nav aria-label="breadcrumb">
+      <Breadcrumbs />
+    </nav>
+    <h1 id="privacy-policy-title" class="text-center pb-5">Privacy Policy</h1>
     <p>
       We collect personal information from you, including information about
       your:
     </p>
-    <ul>
+    <ul aria-labelledby="privacy-policy-title">
       <li>Name</li>
       <li>Contact information</li>
       <li>Computer or network Interactions with us</li>
@@ -29,7 +31,7 @@
 
     <p>
       If you'd like to ask for a copy of your information, or to have it
-      corrected, please contact us at info@beerfinda.com.
+      corrected, please contact us at <a href="mailto:info@beerfinda.com">info@beerfinda.com</a>.
     </p>
   </div>
 </template>

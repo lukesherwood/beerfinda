@@ -3,7 +3,7 @@
     <Breadcrumbs />
     <h1 class="text-center pb-5">Terms of Service</h1>
     <p>By viewing and using this site, you agree to these terms of service.</p>
-    <h3>Agreement to terms</h3>
+    <h2 id="agreement-to-terms" class="text-center">Agreement to terms</h2>
     <p>
       Welcome to beerfinda.co.nz (the 'site'), a website hosted and operated by
       Beerfinda ('we', 'our', 'Beerfinda).
@@ -14,7 +14,7 @@
       the site. By viewing and using the site, you will be deemed to agree to
       these terms of use.
     </p>
-    <h3>Disclaimer</h3>
+    <h2 id="disclaimer" class="text-center">Disclaimer</h2>
     <p>
       'Beerfinda' disclaims and excludes all liability for any claim, loss,
       demand or damages of any kind whatsoever (including for negligence)
@@ -22,7 +22,7 @@
       information, content or materials included on this site or on any website
       we link to.
     </p>
-    <h3>Social share buttons</h3>
+    <h2 id="social-share-buttons" class="text-center">Social share buttons</h2>
     <p>
       We use 'buttons' that link to specific social media platforms. These
       'buttons' enable visitors to share pages from our website to their social
@@ -34,7 +34,7 @@
       obligation for you to share to platforms you belong to or have not already
       joined.
     </p>
-    <h3>Continuity of service</h3>
+    <h2 id="continuity-of-service" class="text-center">Continuity of service</h2>
     <p>
       'Beerfinda' makes no warranty or representation, express or implied, as to
       continuity of service. It reserves the right to suspend, terminate or
@@ -66,7 +66,7 @@
         </li>
       </ul>
     </div>
-    <h3>Third-party copyright</h3>
+    <h2 id="third-party-copyright" class="text-center">Third-party copyright</h2>
     <p>
       If your contributions to the site include material in which copyright or
       other intellectual property is owned by a third party, you warrant that
@@ -74,7 +74,7 @@
       to in, and on the terms of, the clause above.
     </p>
 
-    <h3>Revisions to these terms of use</h3>
+    <h2 id="revisions-to-these-terms-of-use" class="text-center">Revisions to these terms of use</h2>
     <p>
       Beerfinda may revise these terms of use at any time. Any such revisions
       take effect when this page is published.
