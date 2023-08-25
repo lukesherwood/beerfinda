@@ -1,10 +1,6 @@
 # Beerfinda
 
 Todo:
-
-- little back button in register second page
-  check if npm upgrade works
-- fix login/register/forgotten password styling css needs to be abstracted/bootstrapped
 - abstract (join) filter component from beerfilter component
 - searchTerm contamination when going back to breweries page after clicked on search for beers from brewery
 - add delete 'search' from query for breweries and merchants
@@ -16,7 +12,6 @@ Todo:
 
 Issues found but maybe too-hard-basket/low value:
 
-- homepage banner hand beer messed up when menu opens
 - scroll to top for each new page
 - see if we can further obfuscate the image api url with env variables.
 - setup omniauth google, facebook etc

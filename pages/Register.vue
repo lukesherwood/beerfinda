@@ -1,6 +1,16 @@
 <template>
   <div class="d-flex justify-content-center flex-column py-5">
     <div class="inner-block bg-white">
+      <div class="d-flex justify-content-end">
+        <button
+          v-if="showUserCreate"
+          class="btn btn-outline-link btn-sm text-end py-0"
+          @click="showUserCreate = false"
+        >
+          <i class="bi bi-arrow-counterclockwise"></i>
+          Previous
+        </button>
+      </div>
       <ProfileCreate
         v-if="!showUserCreate"
         :form-data="rawProfileData"

@@ -1,24 +1,24 @@
 <template>
   <main class="text-center">
     <HomeBanner>
-      <div class="text-start header-content">
+      <section class="text-start header-content">
         <h1 class="text-white pt-4">Find the best beer for you</h1>
-        <h6 class="text-white pt-3 pb-3">
+        <p class="text-white pt-3 pb-3">
           BeerFinda searches the internet for the best beer to match your
           preferences. We combine beers from brewers and merchants across New
           Zealand into one platform where you can find the best price, merchant
           and a personalised rating for every beer.
-        </h6>
+        </p>
         <nuxtLink to="/beers" class="btn btn-secondary text-white"
           >Find My Beer</nuxtLink
         >
-      </div>
+      </section>
       <nuxt-img
         style="z-index: 1; position: absolute; right: -50px; top: 30px"
         src="beer-hand.png"
         loading="lazy"
         format="webp"
-        alt="default-beer"
+        alt="Hand holding a beer"
         class="beer-hand d-none d-md-block"
       />
     </HomeBanner>
@@ -26,10 +26,11 @@
       <Spinner
         v-if="$fetchState.pending || isLoading"
         :loading="$fetchState.pending || isLoading"
+        aria-label="Loading beers"
       />
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <div v-if="getFeaturedBeers.length > 0">
+        <section v-if="getFeaturedBeers.length > 0">
           <h1 class="title text-center">Featured Beers</h1>
           <CardCarousel :beers="getFeaturedBeers" />
           <div class="pt-5">
@@ -37,19 +38,19 @@
               class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
               to="/beers"
             >
-              <h5>View All Beers</h5>
+              <h2>View All Beers</h2>
             </nuxtLink>
           </div>
-        </div>
-        <div class="section-wrapper container py-5">
-          <div class="section row">
+        </section>
+        <section class="section-wrapper container py-5">
+          <div class="section row pb-5">
             <h2 class="pb-5">How We Work:</h2>
             <div class="col col-sm-12 col-xl-4">
               <nuxt-img
                 loading="lazy"
                 format="webp"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png"
-                alt="how-to1"
+                alt="Step 1 of how it works"
               />
             </div>
             <div class="col col-sm-12 col-xl-4">
@@ -57,7 +58,7 @@
                 loading="lazy"
                 format="webp"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png"
-                alt="how-to2"
+                alt="Step 2 of how it works"
               />
             </div>
             <div class="col col-sm-12 col-xl-4">
@@ -65,14 +66,14 @@
                 loading="lazy"
                 format="webp"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png"
-                alt="how-to3"
+                alt="Step 3 of how it works"
               />
             </div>
           </div>
-        </div>
-        <div class="sign-up-content">
+        </section>
+        <section class="sign-up-content">
           <h2>Tell Us Your Taste</h2>
-          <div class="sign-up-text">
+          <p class="sign-up-text">
             Signing up for BeerFinda is easy and free, all you need is an email
             address. Once you sign up, you can start rating and reviewing beers,
             creating your taste profile, and getting personalized
@@ -80,14 +81,14 @@
             lifestyle. Don’t miss this opportunity to join the best beer club in
             New Zealand. Sign up for BeerFinda today and cheers to a better beer
             experience!
-          </div>
+          </p>
 
           <div class="py-5 sign-up-link">
             <nuxtLink
               class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
               to="/register"
             >
-              <h5>Sign Up</h5>
+              <h2>Sign Up</h2>
             </nuxtLink>
             <div class="d-none d-lg-block">
               <nuxt-img
@@ -101,7 +102,7 @@
                 src="can1.png"
                 loading="lazy"
                 format="webp"
-                alt="default-beer"
+                alt="Can of beer"
                 class="beer-pictures"
               />
               <nuxt-img
@@ -116,7 +117,7 @@
                 src="bottle.png"
                 loading="lazy"
                 format="webp"
-                alt="default-beer"
+                alt="Bottle of beer"
                 class="beer-pictures"
               />
               <nuxt-img
@@ -131,12 +132,12 @@
                 src="bottles.png"
                 loading="lazy"
                 format="webp"
-                alt="default-beer"
+                alt="Multiple bottles of beer"
                 class="beer-pictures"
               />
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </main>
@@ -183,10 +184,7 @@ export default {
   padding: 5px;
 }
 @media screen and (max-width: 992px) {
-  .header-content .sign-up-content {
-    width: 100%;
-  }
-  .sign-up-text {
+  .header-content .sign-up-content .sign-up-text {
     width: 100%;
   }
   .sign-up-link {

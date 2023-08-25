@@ -67,42 +67,58 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.featured
-  position: absolute
-  top: 5px
-  left: 5px
-.agile
-  margin-top: 20px
-  &__list
-    padding-top: 10px
-    padding-bottom: 10px
-  &__nav-button
-    background: transparent
-    border: none
-    color: #ccc
-    cursor: pointer
-    font-size: 24px
-    transition-duration: .3s
-    &:hover
-      color: #888
-  &__dot
-    margin: 0 10px
-    button
-      background-color: #eee
-      border: none
-      border-radius: 50%
-      cursor: pointer
-      display: block
-      height: 10px
-      font-size: 0
-      line-height: 0
-      margin: 0
-      padding: 0
-      transition-duration: .3s
-      width: 10px
+<style lang="scss">
+.featured {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.agile {
+  margin-top: 20px;
+
+  &__list {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &__nav-button {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 24px;
+    transition-duration: .3s;
+
+    &:hover {
+      color: #888;
+    }
+  }
+
+  &__dot {
+    margin: 0 10px;
+
+    button {
+      background-color: #eee;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: block;
+      height: 10px;
+      font-size: 0;
+      line-height: 0;
+      margin: 0;
+      padding: 0;
+      transition-duration: .3s;
+      width: 10px;
+    }
+
     &--current,
-    &:hover
-      button
-        background-color: #888
+    &:hover {
+      button {
+        background-color: #888;
+      }
+    }
+  }
+}
 </style>
