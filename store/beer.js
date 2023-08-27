@@ -5,7 +5,13 @@ export const state = () => ({
   featuredBeers: [],
   beer: {},
   pages: { currentPage: 1, firstPage: 'beers' },
-  filters: { ...defaultFilters },
+  filters: {
+    searchTerm: '',
+    filter: [],
+    order: '',
+    filterCount: 0,
+    isInStockSet: true,
+  },
   loading: false,
   lastQuery: '',
 })
@@ -62,7 +68,11 @@ export const mutations = {
   },
   clearFilters(state) {
     state.filters = {
-      ...defaultFilters,
+      searchTerm: '',
+      filter: [],
+      order: '',
+      filterCount: 0,
+      isInStockSet: true,
     }
     state.lastQuery = ''
   },
@@ -179,12 +189,4 @@ async function loginOrRefreshToken(auth) {
   } else {
     await auth.loginWith('basicRequestCookie')
   }
-}
-
-const defaultFilters = {
-  searchTerm: '',
-  filter: [],
-  order: '',
-  filterCount: 0,
-  isInStockSet: true,
 }
