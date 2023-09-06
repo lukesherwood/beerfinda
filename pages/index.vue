@@ -3,12 +3,12 @@
     <HomeBanner>
       <section class="text-start header-content">
         <h1 class="text-white pt-4">Find the best beer for you</h1>
-        <p class="text-white pt-3 pb-3">
+        <h6 class="text-white pt-3 pb-3">
           BeerFinda searches the internet for the best beer to match your
           preferences. We combine beers from brewers and merchants across New
           Zealand into one platform where you can find the best price, merchant
           and a personalised rating for every beer.
-        </p>
+        </h6>
         <nuxtLink to="/beers" class="btn btn-secondary text-white"
           >Find My Beer</nuxtLink
         >
@@ -42,8 +42,8 @@
             </nuxtLink>
           </div>
         </section>
-        <section class="section-wrapper container py-5">
-          <div class="section row pb-5">
+        <div class="section-wrapper container py-5">
+          <div class="section how-we-work row pb-5 overflow-hidden">
             <h2 class="pb-5">How We Work:</h2>
             <div class="col col-sm-12 col-xl-4">
               <nuxt-img
@@ -70,7 +70,7 @@
               />
             </div>
           </div>
-        </section>
+        </div>
         <section class="sign-up-content">
           <h2>Tell Us Your Taste</h2>
           <p class="sign-up-text">
@@ -153,6 +153,17 @@ export default {
       throw new Error(error)
     }
   },
+  head() {
+    return {
+      script: [
+        {
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4030304334636114',
+          async: true,
+          crossorigin: 'anonymous',
+        },
+      ],
+    }
+  },
   computed: {
     ...mapGetters({
       isLoading: 'beer/isLoading',
@@ -184,7 +195,10 @@ export default {
   padding: 5px;
 }
 @media screen and (max-width: 992px) {
-  .header-content .sign-up-content .sign-up-text {
+  .header-content .sign-up-content {
+    width: 100%;
+  }
+  .sign-up-text {
     width: 100%;
   }
   .sign-up-link {

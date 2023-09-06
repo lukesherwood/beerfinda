@@ -28,6 +28,13 @@ export default {
   head() {
     return {
       title: `Beerfinda | Merchant | ${this.getMerchant.name}`,
+      script: [
+        {
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4030304334636114',
+          async: true,
+          crossorigin: 'anonymous',
+        },
+      ],
     }
   },
   computed: {

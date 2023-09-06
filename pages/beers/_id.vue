@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumbs/>
+    <Breadcrumbs />
     <Spinner
       v-if="$fetchState.pending || isLoading"
       :loading="$fetchState.pending || isLoading"
@@ -31,6 +31,13 @@ export default {
       title: this.getBeer.name
         ? `Beerfinda | Beers | ${this.getBeer.name}`
         : 'Beerfinda | Beers',
+      script: [
+        {
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4030304334636114',
+          async: true,
+          crossorigin: 'anonymous',
+        },
+      ],
     }
   },
   computed: {
