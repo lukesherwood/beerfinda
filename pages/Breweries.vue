@@ -121,6 +121,9 @@ export default {
       const searchTerm = this.getFilters.searchTerm
       if (searchTerm) {
         query.search = searchTerm
+      } else if (!searchTerm && query.search) {
+        // remove 'search' from query if no search term
+        delete query.search
       }
       const page = this.getPages.currentPage
       if (page > 1) {
@@ -165,6 +168,9 @@ export default {
       this.setSearchTerm(keyword)
       const queries = JSON.parse(JSON.stringify(this.$route.query))
       queries.search = keyword
+      if (!keyword) {
+        delete queries.search
+      }
       delete queries.page
       this.$router.push({
         path: 'breweries',

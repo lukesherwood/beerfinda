@@ -163,6 +163,9 @@ export default {
       this.setSearchTerm(keyword)
       const queries = JSON.parse(JSON.stringify(this.$route.query))
       queries.search = keyword
+      if (!keyword) {
+        delete queries.search
+      }
       delete queries.page
       this.$router.push({
         path: 'merchants',

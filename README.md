@@ -1,10 +1,9 @@
 # Beerfinda
 
 Todo:
+
 - abstract (join) filter component from beerfilter component
 - searchTerm contamination when going back to breweries page after clicked on search for beers from brewery
-- add delete 'search' from query for breweries and merchants
-- delete blank querires from route
 - validation for contact form
 - change profile create/update validation to vee-validate
 - add change email features
