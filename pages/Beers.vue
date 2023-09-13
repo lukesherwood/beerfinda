@@ -85,6 +85,7 @@
         </div>
       </div>
     </div>
+    <JumpToTop />
   </div>
 </template>
 <script>
@@ -316,5 +317,11 @@ export default {
   right: 5px;
   background: red;
   font-size: 1rem;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
 }
 </style>

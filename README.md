@@ -7,7 +7,6 @@ Todo:
 - validation for contact form
 - change profile create/update validation to vee-validate
 - add change email features
-- back to top hovering thingy on beers
 
 Issues found but maybe too-hard-basket/low value:
 

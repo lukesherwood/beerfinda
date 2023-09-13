@@ -44,7 +44,7 @@
         </section>
         <div class="section-wrapper container py-5">
           <div class="section how-we-work row pb-5 overflow-hidden">
-            <h2 class="pb-5">How We Work:</h2>
+            <h2 class="py-5">How We Work</h2>
             <div class="col col-sm-12 col-xl-4">
               <nuxt-img
                 loading="lazy"
