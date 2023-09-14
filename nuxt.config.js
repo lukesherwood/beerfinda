@@ -78,13 +78,26 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     '@nuxtjs/auth-next',
+    '@nuxtjs/recaptcha',
   ],
   axios: {
     credentials: true,
     proxy: true,
   },
 
-  privateRuntimeConfig: { baseURL: process.env.BASE_URL },
+  recaptcha: {
+    // hideBadge: Boolean, // Hide badge element (v3 & v2 via size=invisible)
+    // language: String,   // Recaptcha language (v2)
+    mode: 'base', // Mode: 'base', 'enterprise'
+    siteKey: process.env.RECAPTCHA_SITE_KEY,
+    version: 2, // Version
+    size: 'normal', // Size: 'compact', 'normal', 'invisible' (v2)
+  },
+
+  privateRuntimeConfig: {
+    baseURL: process.env.baseUrl,
+    siteKey: process.env.RECAPTCHA_SITE_KEY,
+  },
 
   proxy: {
     '/api/': {
