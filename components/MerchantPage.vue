@@ -104,6 +104,7 @@
         />
       </div>
     </div>
+    <JumpToTop />
   </div>
 </template>
 <script>

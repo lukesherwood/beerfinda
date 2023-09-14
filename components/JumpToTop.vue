@@ -44,10 +44,12 @@ export default {
 <style>
 .scroll-to-top-btn {
   position: fixed;
+  z-index: 1;
   bottom: 2rem;
   right: 2rem;
   border-radius: 100%;
   font-size: 16px;
   cursor: pointer;
+  opacity: 70%;
 }
 </style>
