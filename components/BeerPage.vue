@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="content">
     <div class="header">
       <h1 class="display-3 text-secondary fw-bold">
         <strong>{{ beer.name }} </strong>
@@ -11,34 +11,35 @@
       </h2>
     </div>
     <div>
-      <div class="row py-2">
-        <div class="col-sm-6 col-xs-12 pb-5 d-flex justify-content-center">
-          <nuxt-img
-            loading="lazy"
-            placeholder="/blank.jpg"
-            format="webp"
-            class="img-fluid beer-image"
-            :src="beerImageUrl(beer)"
-            alt="default-beer"
-          />
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <h5>
-            {{ beer.type }}
-            <span v-if="beer.percentage != 'unknown'"
-              >- <em>{{ beer.percentage }} </em></span
-            >
-          </h5>
-          <div>
-            <p>{{ beer.description }}</p>
-          </div>
+      <div class="py-2">
+        <nuxt-img
+          loading="lazy"
+          placeholder="/blank.jpg"
+          format="webp"
+          class="img-fluid beer-image"
+          :src="beerImageUrl(beer)"
+          alt="default-beer"
+        />
+      </div>
+      <div class="py-2">
+        <h5 class="d-flex justify-content-between">
+          <span>
+            <strong>
+              {{ beer.type }}
+            </strong>
+          </span>
+          <span
+            ><em>{{ beer.percentage }} ABV</em></span
+          >
+        </h5>
+        <div class="text-start">
+          <p>{{ beer.description }}</p>
         </div>
       </div>
-      <div v-if="beer.merchantsellsfound.length">
-        <div class="clearfix"></div>
+      <div v-if="beer.merchantsellsfound.length" class="py-3">
         <h3>Where to Buy</h3>
         <div
-          class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gy-4 d-flex pt-3"
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex py-2"
         >
           <Card
             v-for="merchant in beer.merchantsellsfound"
@@ -48,7 +49,43 @@
           >
             <template #text>
               <div>
-                {{ merchant.merchant_name[0]?.name }}
+                {{ merchant.brewer }}
+              </div>
+              <div class="">
+                {{ priceToString(merchant.price) }}
+              </div>
+            </template>
+            <template #footer>
+              <a
+                class="btn btn-secondary float-end stretched-link"
+                :href="merchant.link"
+                target="_blank"
+                >Buy Now</a
+              >
+            </template>
+          </Card>
+        </div>
+        <small
+          ><em>
+            * BeerFinda is not responsible for merchants having stock. Check
+            with merchant for stock availability</em
+          >
+        </small>
+      </div>
+      <div v-if="beer.merchantsellsfound.length" class="py-3">
+        <h3>Similar Beers</h3>
+        <div
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex pt-3"
+        >
+          <Card
+            v-for="merchant in beer.merchantsellsfound"
+            :key="'beerPage-merchant' + merchant.merchant_id"
+            :title="merchant.title"
+            :image="merchant.image_pre_link + merchant.image_link"
+          >
+            <template #text>
+              <div>
+                {{ merchant.brewer }}
               </div>
               <div class="">
                 {{ priceToString(merchant.price) }}
@@ -90,5 +127,15 @@ export default {
   max-height: 50vh;
   width: 100%;
   object-fit: contain;
+}
+
+.content {
+  padding: 0 20% 50px 20%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .content {
+    padding: 0 10% 50px 10%;
+  }
 }
 </style>

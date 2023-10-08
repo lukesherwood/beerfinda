@@ -1,5 +1,5 @@
 <template>
-  <div class="banner pb-5">
+  <div class="banner pb-2">
     <div class="centered">
       <div></div>
       <div></div>
@@ -31,5 +31,10 @@ export default {
   width: 100%;
   height: 450px;
   background-size: cover;
+}
+@media screen and (max-width: 770px) {
+  .banner {
+    height: 385px;
+  }
 }
 </style>
