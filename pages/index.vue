@@ -214,6 +214,7 @@ export default {
     padding: 5px !important;
     font-size: 70%;
     width: 90%;
+    text-align: center !important;
   }
 }
 
