@@ -6,7 +6,7 @@
       :loading="$fetchState.pending || isLoading"
     />
     <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
-    <BrewerPage v-else :brewer="getBrewer" />
+    <BrewerPage v-else :brewer="getBrewer" :beers="getBrewer.beers_in_stock" />
   </div>
 </template>
 <script>

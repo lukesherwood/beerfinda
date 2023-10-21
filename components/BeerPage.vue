@@ -1,15 +1,14 @@
 <template>
   <div class="content">
-    <div class="header">
-      <h1 class="display-3 text-secondary fw-bold">
-        <strong>{{ beer.name }} </strong>
-      </h1>
-      <h2 class="display-6">
-        <nuxtLink :to="`/breweries/${titleize(beer.brewer_name)}`"
-          ><em>{{ beer.brewer_name }}</em></nuxtLink
-        >
-      </h2>
-    </div>
+    <Header :header="beer.name">
+      <template #subheader>
+        <h2 class="display-6">
+          <nuxtLink :to="`/breweries/${titleize(beer.brewer_name)}`"
+            ><em>{{ beer.brewer_name }}</em></nuxtLink
+          >
+        </h2>
+      </template>
+    </Header>
     <div>
       <div class="py-2">
         <nuxt-img
@@ -172,15 +171,5 @@ export default {
   right: 5px;
   background: red;
   font-size: 1rem;
-}
-
-.content {
-  padding: 0 20% 50px 20%;
-}
-
-@media only screen and (max-width: 1200px) {
-  .content {
-    padding: 0 10% 50px 10%;
-  }
 }
 </style>

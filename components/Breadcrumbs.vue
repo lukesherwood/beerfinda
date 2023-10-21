@@ -1,25 +1,29 @@
 <template>
-  <ol vocab="http://schema.org/" typeof="BreadcrumbList">
-    <li property="itemListElement" typeof="ListItem">
-      <nuxtLink property="item" typeof="WebPage" to="/">
-        <span property="name">BeerFinda</span>
-      </nuxtLink>
-      <meta property="position" content="1" />
-    </li>
-    <li
-      v-for="(crumb, index) in crumbs"
-      :key="index"
-      property="itemListElement"
-      typeof="ListItem"
-    >
-      <nuxtLink property="item" typeof="WebPage" :to="crumb.path">
-        <span property="name">{{
-          $route.fullPath === crumb.path && title !== null ? title : crumb.title
-        }}</span>
-      </nuxtLink>
-      <meta property="position" :content="index + 2" />
-    </li>
-  </ol>
+  <div class="breadcrumbs fs-6">
+    <ol vocab="http://schema.org/" typeof="BreadcrumbList">
+      <li property="itemListElement" typeof="ListItem">
+        <nuxtLink property="item" typeof="WebPage" to="/">
+          <span property="name">BeerFinda</span>
+        </nuxtLink>
+        <meta property="position" content="1" />
+      </li>
+      <li
+        v-for="(crumb, index) in crumbs"
+        :key="index"
+        property="itemListElement"
+        typeof="ListItem"
+      >
+        <nuxtLink property="item" typeof="WebPage" :to="crumb.path">
+          <span property="name">{{
+            $route.fullPath === crumb.path && title !== null
+              ? title
+              : crumb.title
+          }}</span>
+        </nuxtLink>
+        <meta property="position" :content="index + 2" />
+      </li>
+    </ol>
+  </div>
 </template>
 
 <script>
@@ -56,6 +60,9 @@ export default {
 </script>
 
 <style scoped>
+.breadcrumbs {
+  font-size: 0.9rem !important;
+}
 ol {
   list-style: none;
 }
