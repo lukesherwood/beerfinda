@@ -1,10 +1,8 @@
 <template>
   <div class="container p-5">
     <Breadcrumbs />
-    <h1 class="text-center">About</h1>
     <div>
-      <h4 class="py-5">Welcome to BeerFinda!</h4>
-
+      <h1 class="py-5">Welcome to BeerFinda!</h1>
       <p>
         At BeerFinda, we are passionate about one thing: beer. We believe that
         beer is more than just a beverage; it's a way of life. Our journey began

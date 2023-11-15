@@ -14,8 +14,7 @@
         >
       </section>
       <nuxt-img
-        style="z-index: 1; position: absolute; right: -50px; top: 30px"
-        src="beer-hand.png"
+        src="beer-glass-edit.png"
         loading="lazy"
         format="webp"
         alt="Hand holding a beer"
@@ -71,69 +70,41 @@
             </div>
           </div>
         </div>
-        <section class="sign-up-content">
-          <h2>Tell Us Your Taste</h2>
-          <p class="sign-up-text">
-            Signing up for BeerFinda is easy and free, all you need is an email
-            address. Once you sign up, you can start rating and reviewing beers,
-            creating your taste profile, and getting personalized
-            recommendations. BeerFinda is more than just a website, it’s a
-            lifestyle. Don’t miss this opportunity to join the best beer club in
-            New Zealand. Sign up for BeerFinda today and cheers to a better beer
-            experience!
-          </p>
+        <section class="sign-up-content container">
+          <div class="row">
+            <!-- Left Column for Text -->
+            <div class="col-md-6">
+              <h2>Tell Us Your Taste</h2>
+              <p class="sign-up-text">
+                Signing up for BeerFinda is easy and free, all you need is an
+                email address. Once you sign up, you can start rating and
+                reviewing beers, creating your taste profile, and getting
+                personalized recommendations. BeerFinda is more than just a
+                website, it’s a lifestyle. Don’t miss this opportunity to join
+                the best beer club in New Zealand. Sign up for BeerFinda today
+                and cheers to a better beer experience!
+              </p>
+              <div
+                class="d-flex justify-content-center align-items-center pt-5"
+              >
+                <nuxtLink
+                  class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
+                  to="/register"
+                >
+                  <h2>Sign Up</h2>
+                </nuxtLink>
+              </div>
+            </div>
 
-          <div class="py-5 sign-up-link">
-            <nuxtLink
-              class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
-              to="/register"
-            >
-              <h2>Sign Up</h2>
-            </nuxtLink>
-            <div class="d-none d-lg-block">
+            <!-- Right Column for Image -->
+            <div class="col-md-6">
               <nuxt-img
-                style="
-                  z-index: 2;
-                  width: 250px;
-                  position: absolute;
-                  right: 150px;
-                  bottom: 0px;
-                "
-                src="can1.png"
+                style="width: 100%; max-width: 480px"
+                src="beers.png"
                 loading="lazy"
                 format="webp"
                 alt="Can of beer"
-                class="beer-pictures"
-              />
-              <nuxt-img
-                style="
-                  z-index: 1;
-                  width: 280px;
-                  position: absolute;
-                  right: -20px;
-                  bottom: 40px;
-                  opacity: 0.6;
-                "
-                src="bottle.png"
-                loading="lazy"
-                format="webp"
-                alt="Bottle of beer"
-                class="beer-pictures"
-              />
-              <nuxt-img
-                style="
-                  z-index: 1;
-                  width: 235px;
-                  position: absolute;
-                  right: 325px;
-                  bottom: 50px;
-                  opacity: 0.6;
-                "
-                src="bottles.png"
-                loading="lazy"
-                format="webp"
-                alt="Multiple bottles of beer"
-                class="beer-pictures"
+                class="beer-pictures pt-5"
               />
             </div>
           </div>
@@ -175,7 +146,6 @@ export default {
 <style lang="scss" scoped>
 .title {
   margin-top: -40px;
-  padding-left: 20px;
 }
 .header-content {
   width: 65%;
@@ -188,11 +158,25 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
 }
-.sign-up-text {
-  width: 40%;
-}
 .text-start {
   padding: 5px;
+}
+.beer-hand {
+  z-index: 1;
+  width: 350px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.8)
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.8)
+  );
 }
 @media screen and (max-width: 992px) {
   .header-content .sign-up-content {
@@ -211,9 +195,9 @@ export default {
     padding-top: 50px;
   }
   .header-content {
-    padding: 5px !important;
+    padding: 20px !important;
     font-size: 70%;
-    width: 90%;
+    width: 100%;
     text-align: center !important;
   }
 }

@@ -2,11 +2,9 @@
 
 Todo:
 
-- apply indiv beer page changes to merchant and brewer
+- close hamburger menu after click
 - finish and test contact form
 - abstract (join) filter component from beerfilter component
-- searchTerm contamination when going back to breweries page after clicked on search for beers from brewery
-- validation for contact form
 - change profile create/update validation to vee-validate
 - add change email features
 
