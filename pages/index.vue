@@ -9,7 +9,7 @@
           Zealand into one platform where you can find the best price, merchant
           and a personalised rating for every beer.
         </h6>
-        <nuxtLink to="/beers" class="btn btn-secondary text-white"
+        <nuxtLink to="/beers" class="btn btn-secondary shadow text-white"
           >Find My Beer</nuxtLink
         >
       </section>
@@ -34,7 +34,7 @@
           <CardCarousel :beers="getFeaturedBeers" />
           <div class="pt-5">
             <nuxtLink
-              class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
+              class="btn btn-outline-primary shadow border border-primary border-2 py-3 px-5 rounded-pill"
               to="/beers"
             >
               <h2>View All Beers</h2>
@@ -72,7 +72,6 @@
         </div>
         <section class="sign-up-content container">
           <div class="row">
-            <!-- Left Column for Text -->
             <div class="col-md-6">
               <h2>Tell Us Your Taste</h2>
               <p class="sign-up-text">
@@ -88,15 +87,13 @@
                 class="d-flex justify-content-center align-items-center pt-5"
               >
                 <nuxtLink
-                  class="btn btn-outline-primary border border-primary border-2 py-3 px-5 rounded-pill"
+                  class="btn btn-outline-primary shadow border border-primary border-2 py-3 px-5 rounded-pill"
                   to="/register"
                 >
                   <h2>Sign Up</h2>
                 </nuxtLink>
               </div>
             </div>
-
-            <!-- Right Column for Image -->
             <div class="col-md-6">
               <nuxt-img
                 style="width: 100%; max-width: 480px"
@@ -104,7 +101,7 @@
                 loading="lazy"
                 format="webp"
                 alt="Can of beer"
-                class="beer-pictures pt-5"
+                class="beer-pictures pt-2"
               />
             </div>
           </div>
@@ -199,6 +196,9 @@ export default {
     font-size: 70%;
     width: 100%;
     text-align: center !important;
+  }
+  .beer-pictures {
+    display: none;
   }
 }
 

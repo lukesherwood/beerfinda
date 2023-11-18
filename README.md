@@ -2,7 +2,6 @@
 
 Todo:
 
-- close hamburger menu after click
 - finish and test contact form
 - abstract (join) filter component from beerfilter component
 - change profile create/update validation to vee-validate
@@ -11,6 +10,7 @@ Todo:
 Issues found but maybe too-hard-basket/low value:
 
 - scroll to top for each new page
+- close hamburger menu after click
 - see if we can further obfuscate the image api url with env variables.
 - setup omniauth google, facebook etc
   - this has been implemented in the backend

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-xl position-relative">
     <header>
       <Navbar />
       <notifications position="top center" />
@@ -18,6 +18,9 @@ export default {}
 </script>
 
 <style lang="scss">
+.container-xl {
+  padding: 0px !important;
+}
 a.nuxt-link-active {
   color: $secondary !important;
 }

@@ -16,6 +16,7 @@ export default {
         content: 'BeerFinda: You want to find beer, we want to help',
       },
       { name: 'format-detection', content: 'telephone=no' },
+      { name: 'monetag', content: '0cd176253f76f27c21958d2258caa940' },
     ],
     script: [
       {

@@ -2,10 +2,10 @@
   <div>
     <button
       v-if="showButton"
-      class="scroll-to-top-btn btn btn-warning p-3"
+      class="scroll-to-top-btn btn btn-warning p-2"
       @click="scrollToTop"
     >
-      Top <b-icon icon="chevron-up"></b-icon>
+      <b-icon icon="chevron-up"></b-icon>
     </button>
   </div>
 </template>
@@ -45,8 +45,9 @@ export default {
 .scroll-to-top-btn {
   position: fixed;
   z-index: 1;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 100%;
   font-size: 16px;
   cursor: pointer;

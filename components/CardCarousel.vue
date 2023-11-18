@@ -68,6 +68,10 @@ export default {
 </script>
 
 <style lang="scss">
+.agile__list {
+  margin-left: 25px;
+}
+
 .featured {
   position: absolute;
   top: 5px;
@@ -88,7 +92,7 @@ export default {
     color: #ccc;
     cursor: pointer;
     font-size: 24px;
-    transition-duration: .3s;
+    transition-duration: 0.3s;
 
     &:hover {
       color: #888;
@@ -109,7 +113,7 @@ export default {
       line-height: 0;
       margin: 0;
       padding: 0;
-      transition-duration: .3s;
+      transition-duration: 0.3s;
       width: 10px;
     }
 
@@ -118,6 +122,17 @@ export default {
       button {
         background-color: #888;
       }
+    }
+  }
+  @media screen and (max-width: 766px) {
+    .agile__list {
+      margin-left: 50px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .agile__list {
+      margin-left: 0px;
     }
   }
 }
