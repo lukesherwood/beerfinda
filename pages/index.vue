@@ -71,7 +71,7 @@
           </div>
         </div>
         <section class="sign-up-content container">
-          <div class="row">
+          <div class="row justify-content-evenly">
             <div class="col-md-6">
               <h2>Tell Us Your Taste</h2>
               <p class="sign-up-text">
@@ -96,7 +96,7 @@
             </div>
             <div class="col-md-6">
               <nuxt-img
-                style="width: 100%; max-width: 480px"
+                style="width: 100%"
                 src="beers.png"
                 loading="lazy"
                 format="webp"
