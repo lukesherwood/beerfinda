@@ -38,7 +38,4 @@ a.nuxt-link-active {
 .card-footer {
   background: $primary;
 }
-.section {
-  background: $light;
-}
 </style>

@@ -112,10 +112,17 @@ export default {
   display: flex;
   overflow: auto;
   white-space: nowrap;
+  margin-right: 30px;
 }
 
 .nav-link {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+@media (max-width: 990px) {
+  .nav-item {
+    margin-right: 10px;
+  }
 }
 </style>

@@ -2,13 +2,13 @@
   <main class="text-center">
     <HomeBanner>
       <section class="text-start header-content">
-        <h1 class="text-white pt-4">Find the best beer for you</h1>
-        <h6 class="text-white pt-3 pb-3">
+        <h1 class="text-white pt-4 fs-1 fw-bold">Find the best beer for you</h1>
+        <p class="text-white pt-3 pb-3 fs-6">
           BeerFinda searches the internet for the best beer to match your
           preferences. We combine beers from brewers and merchants across New
           Zealand into one platform where you can find the best price, merchant
           and a personalised rating for every beer.
-        </h6>
+        </p>
         <nuxtLink to="/beers" class="btn btn-secondary shadow text-white"
           >Find My Beer</nuxtLink
         >
@@ -30,7 +30,7 @@
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
         <section v-if="getFeaturedBeers.length > 0">
-          <h1 class="title text-center">Featured Beers</h1>
+          <h2 class="title text-center fs-1">Featured Beers</h2>
           <CardCarousel :beers="getFeaturedBeers" />
           <div class="pt-5">
             <nuxtLink
@@ -43,7 +43,7 @@
         </section>
         <div class="section-wrapper container py-5">
           <div class="section how-we-work row pb-5 overflow-hidden">
-            <h2 class="py-5">How We Work</h2>
+            <h2 class="py-5 fs-1">How We Work</h2>
             <div class="col col-sm-12 col-xl-4">
               <nuxt-img
                 loading="lazy"
@@ -72,9 +72,9 @@
         </div>
         <section class="sign-up-content container">
           <div class="row justify-content-evenly">
-            <div class="col-md-6">
-              <h2>Tell Us Your Taste</h2>
-              <p class="sign-up-text">
+            <div class="col-lg-6 col-sm-12 py-2">
+              <h2 class="fs-1">Tell Us Your Taste</h2>
+              <p class="sign-up-text fs-6">
                 Signing up for BeerFinda is easy and free, all you need is an
                 email address. Once you sign up, you can start rating and
                 reviewing beers, creating your taste profile, and getting
@@ -94,14 +94,13 @@
                 </nuxtLink>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-sm-12">
               <nuxt-img
-                style="width: 100%"
                 src="beers.png"
                 loading="lazy"
                 format="webp"
                 alt="Can of beer"
-                class="beer-pictures pt-2"
+                class="beer-pictures w-100"
               />
             </div>
           </div>
@@ -145,6 +144,7 @@ export default {
   margin-top: -40px;
 }
 .header-content {
+  max-width: 600px;
   width: 65%;
 }
 .sign-up-content {
@@ -189,13 +189,13 @@ export default {
 
 @media screen and (max-width: 766px) {
   .title {
-    padding-top: 50px;
+    padding-top: 30px;
   }
   .header-content {
     padding: 20px !important;
     font-size: 70%;
     width: 100%;
-    text-align: center !important;
+    text-align: left !important;
   }
   .beer-pictures {
     display: none;

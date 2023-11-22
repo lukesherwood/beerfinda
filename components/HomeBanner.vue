@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5 banner pb-2">
+  <div class="mb-3 banner pb-2">
     <div class="centered">
       <div></div>
       <div></div>

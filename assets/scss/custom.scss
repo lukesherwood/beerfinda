@@ -7,13 +7,25 @@
   min-height: 80vh;
 }
 html,
-body {
+body, p {
   font-family: 'Open Sans', sans-serif;
+  line-height: 1.4;
 }
 html {
   scroll-padding-top: 80px;
   scroll-behavior: smooth;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2 !important;
+  letter-spacing: -1px;
+}
+
 /* clears the ‘X’ from Internet Explorer */
 input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
 input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
