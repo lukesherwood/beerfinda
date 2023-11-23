@@ -2,6 +2,7 @@
 
 Todo:
 
+- add button to like a beer ie add to your beers-liked array
 - finish and test contact form
 - abstract (join) filter component from beerfilter component
 - change profile create/update validation to vee-validate

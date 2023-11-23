@@ -86,13 +86,13 @@
       <div class="clearfix"></div>
     </div>
 
-    <div v-if="beers?.length" class="container py-3">
-      <h3 class="pt-3">Beers for sale</h3>
+    <div v-if="beersInStock?.length" class="container py-3">
+      <h3 class="pt-3">Beers Currently In Stock</h3>
       <div
         class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
       >
         <Card
-          v-for="beer in beersToDisplay()"
+          v-for="beer in beersInStock"
           :key="'merchant-page-card' + beer.beer_id + '-' + Math.random(10)"
           :title="beer.title"
           :image="beer.image_pre_link + beer.image_link"
@@ -104,11 +104,60 @@
           </template>
         </Card>
       </div>
-      <Pagination
-        class="p-5"
-        :pages="{ currentPage, totalPages }"
-        @pageChange="handlePageChange"
-      />
+    </div>
+
+    <div v-if="beersBrewer?.length" class="container py-3">
+      <div id="accordionBeers" class="accordion">
+        <div class="accordion-item">
+          <h2 id="headingBeers" class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseBeers"
+              aria-expanded="false"
+              aria-controls="collapseBeers"
+            >
+              <h3>Other Beers</h3>
+            </button>
+          </h2>
+          <div
+            id="collapseBeers"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingBeers"
+            data-bs-parent="#accordionBeers"
+          >
+            <div class="accordion-body">
+              <p class="fst-italic fw-light">
+                *Check merchant for availability
+              </p>
+              <div
+                class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+              >
+                <Card
+                  v-for="brewerBeer in beersToDisplay(beersBrewer)"
+                  :key="
+                    'merchant-page-card' +
+                    brewerBeer.beer_id +
+                    '-' +
+                    Math.random(10)
+                  "
+                  :title="brewerBeer.name"
+                  :link="`beers/${brewerBeer.beer_id}`"
+                  :image="beerImageUrl(brewerBeer)"
+                  footer="true"
+                >
+                </Card>
+              </div>
+              <Pagination
+                class="p-5"
+                :pages="{ currentPage, totalPages: totalPages(beersBrewer) }"
+                @pageChange="handlePageChange"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -116,23 +165,32 @@
 import { priceToString } from '../helpers/beer.js'
 export default {
   name: 'BrewerPage',
-  props: ['brewer', 'beers'],
+  props: ['brewer', 'beersInStock', 'beersBrewer'],
   data() {
     return {
       image: this.imageUrl(),
       currentPage: 1,
-      totalPages: Math.ceil(this.beers.length / 20),
     }
   },
   methods: {
     imageUrl() {
       return this.brewer.image_pre_link + this.brewer.image || 'brewer.jpg'
     },
+    beerImageUrl(beer) {
+      if (!beer.imagefound.length) return 'beer.jpg'
+      return (
+        beer.imagefound[0].image_pre_link + beer.imagefound[0].image ||
+        'brewer.jpg'
+      )
+    },
     priceToString,
-    beersToDisplay() {
+    beersToDisplay(beers) {
       const firstN = 20 * parseInt(this.currentPage) - 20
       const secondN = 20 * parseInt(this.currentPage)
-      return this.beers.slice(firstN, secondN)
+      return beers.slice(firstN, secondN)
+    },
+    totalPages(beers) {
+      return Math.ceil(beers.length / 20)
     },
     handlePageChange(page) {
       this.currentPage = page
