@@ -42,6 +42,14 @@
             Submit
           </button>
         </div>
+        <div class="text-center pt-3">
+          <small
+            >This site is protected by reCAPTCHA and the Google
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms">Terms of Service</a>
+            apply.
+          </small>
+        </div>
       </form>
     </div>
   </div>
@@ -57,25 +65,36 @@ export default {
         name: '',
         email: '',
         message: '',
+        recaptcha: '',
       },
     }
+  },
+  async mounted() {
+    try {
+      await this.$recaptcha.init()
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
   },
   methods: {
     ...mapActions({ postContact: 'user/postContact' }),
     async handleSubmit() {
       try {
-        const token = await this.$recaptcha.getResponse()
-        console.log('ReCaptcha token:')
-
-        // send token to server alongside your form data
+        const token = await this.$recaptcha.execute('login')
+        if (!token) {
+          this.$recaptcha.reset()
+          return
+        }
+        this.form.recaptcha = token
         this.postContact(this.form).then(() => {
           this.$router.push('/')
         })
-
-        // at the end you need to reset recaptcha
         await this.$recaptcha.reset()
       } catch (error) {
-        console.log('Login error:', error)
+        console.log('error:', error)
       }
     },
   },

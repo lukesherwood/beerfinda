@@ -87,12 +87,10 @@ export default {
   },
 
   recaptcha: {
-    // hideBadge: Boolean, // Hide badge element (v3 & v2 via size=invisible)
-    // language: String,   // Recaptcha language (v2)
     mode: 'base', // Mode: 'base', 'enterprise'
     siteKey: process.env.RECAPTCHA_SITE_KEY,
-    version: 2, // Version
-    size: 'normal', // Size: 'compact', 'normal', 'invisible' (v2)
+    version: 3, // Version
+    size: 'invisible', // Size: 'compact', 'normal', 'invisible' (v2)
   },
 
   privateRuntimeConfig: {
