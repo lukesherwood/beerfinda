@@ -89,7 +89,10 @@
         <div role="button" class="page-link">...</div>
       </li>
       <!-- Last Page Button -->
-      <li v-if="pages.currentPage != pages.totalPages" class="page-item">
+      <li
+        v-if="pages.totalPages && pages.currentPage != pages.totalPages"
+        class="page-item"
+      >
         <div role="button" class="page-link" @click="handler(pages.totalPages)">
           {{ pages.totalPages }}
         </div>
@@ -97,7 +100,9 @@
       <!-- Next Button -->
       <li
         class="page-item"
-        :class="{ disabled: pages.currentPage == pages.totalPages }"
+        :class="{
+          disabled: pages.currentPage == pages.totalPages || !pages.totalPages,
+        }"
       >
         <div
           role="button"

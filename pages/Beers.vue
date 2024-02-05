@@ -21,7 +21,7 @@
       />
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <h4 v-if="getBeers.length == 0" class="text-center pt-5">
+        <h4 v-if="getBeers?.length == 0" class="text-center pt-5">
           <b-icon icon="search"></b-icon>
           Sorry, we couldn't find:
           <span v-if="getFilters.searchTerm">
@@ -194,11 +194,11 @@ export default {
         query.offset = (page - 1) * 100
       }
       const filters = this.getFilters.filter
-      if (filters.length) {
+      if (filters?.length) {
         filters.forEach((filter) => {
           query[filter.filterType] = ''
           const keyword =
-            filter.keywords.length > 1
+            filter.keywords?.length > 1
               ? filter.keywords.join(',')
               : filter.keywords
           // API doesn't like array
@@ -251,8 +251,8 @@ export default {
     },
     price(beer) {
       if (beer.merchantsellsfound) {
-        if (!beer.merchantsellsfound.length) return ''
-        if (beer.merchantsellsfound.length === 1) {
+        if (!beer.merchantsellsfound?.length) return ''
+        if (beer.merchantsellsfound?.length === 1) {
           return priceToString(beer.merchantsellsfound[0].price)
         }
         return priceToString(

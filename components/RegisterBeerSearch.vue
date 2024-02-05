@@ -1,12 +1,17 @@
 <template lang="">
   <div class="search">
-    <Search :loading="isLoading" :search-term="keyword" @search="onSearch" @clear="handleClear"/>
+    <Search
+      :loading="isLoading"
+      :search-term="keyword"
+      @search="onSearch"
+      @clear="handleClear"
+    />
     <form @submit.prevent="submitHandler">
       <ul
-        v-if="getBeerResults.length"
+        v-if="getBeerResults?.length"
         aria-labelledby="filterButton"
         class="dropdown-menu beer-select"
-        :class="{ show: keyword && getBeerResults.length && !dropdownClosed }"
+        :class="{ show: keyword && getBeerResults?.length && !dropdownClosed }"
       >
         <li
           v-for="beer in getBeerResults"
@@ -30,21 +35,21 @@
           </div>
         </li>
       </ul>
-      <div v-if="beersSelected.length" class="pt-3">
+      <div v-if="beersSelected?.length" class="pt-3">
         <div v-for="beer in beersSelectedInfo" :key="beer.beer_id">
-          <div v-if="beersSelected.includes(beer.beer_id)" class="badge rounded-pill text-bg-light">
-          <span
-            class="text-truncate d-inline-block"
-            style="max-width: 200px"
+          <div
+            v-if="beersSelected.includes(beer.beer_id)"
+            class="badge rounded-pill text-bg-light"
           >
-            {{ beer.name }} - <em>{{ beer.brewer_name }}</em>
-          </span>
+            <span class="text-truncate d-inline-block" style="max-width: 200px">
+              {{ beer.name }} - <em>{{ beer.brewer_name }}</em>
+            </span>
             <b-icon
               class="clear-beer"
               icon="x-circle"
               @click="clearBeer(beer.beer_id)"
             ></b-icon>
-            </div>
+          </div>
         </div>
       </div>
     </form>
@@ -110,7 +115,7 @@ export default {
       this.$emit('beersSave', this.beersSelected)
     },
     updateBeerInfo() {
-      if (this.beersSelected.length > 0) {
+      if (this.beersSelected?.length > 0) {
         this.beersSelected.forEach((beerId) => {
           this.fetchBeerInfo(beerId)
         })

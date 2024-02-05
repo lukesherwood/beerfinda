@@ -29,7 +29,7 @@
       />
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <section v-if="getFeaturedBeers.length > 0">
+        <section v-if="getFeaturedBeers?.length > 0">
           <h2 class="title text-center fs-1">Featured Beers</h2>
           <CardCarousel :beers="getFeaturedBeers" />
           <div class="pt-5">

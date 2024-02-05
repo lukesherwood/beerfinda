@@ -46,7 +46,9 @@
           </button>
           <button
             class="btn btn-sm btn-outline-primary mx-1 my-1"
-            :disabled="(currentPage + 1) * itemsPerPage >= form.flavours.length"
+            :disabled="
+              (currentPage + 1) * itemsPerPage >= form?.flavours?.length
+            "
             @click.prevent="nextPage"
           >
             Next
@@ -136,7 +138,7 @@ export default {
     nextPage() {
       if (
         (this.currentPage + 1) * this.itemsPerPage <
-        this.form.flavours.length
+        this.form?.flavours?.length
       ) {
         this.currentPage++
       }
@@ -147,7 +149,7 @@ export default {
       }
     },
     validate() {
-      return !this.form.beersLike.length || !this.form.email
+      return !this.form?.beersLike?.length || !this.form.email
     },
   },
 }

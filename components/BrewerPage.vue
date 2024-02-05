@@ -177,7 +177,7 @@ export default {
       return this.brewer.image_pre_link + this.brewer.image || 'brewer.jpg'
     },
     beerImageUrl(beer) {
-      if (!beer.imagefound.length) return 'beer.jpg'
+      if (!beer.imagefound?.length) return 'beer.jpg'
       return (
         beer.imagefound[0].image_pre_link + beer.imagefound[0].image ||
         'brewer.jpg'
@@ -190,7 +190,7 @@ export default {
       return beers.slice(firstN, secondN)
     },
     totalPages(beers) {
-      return Math.ceil(beers.length / 20)
+      return Math.ceil(beers?.length / 20)
     },
     handlePageChange(page) {
       this.currentPage = page

@@ -13,7 +13,9 @@
     </a>
     <h5 class="text-center py-4">
       Current Beers For Sale:
-      <span class="text-secondary">{{ merchant.merchantdetails.length }} </span>
+      <span class="text-secondary"
+        >{{ merchant.merchantdetails?.length }}
+      </span>
     </h5>
     <div class="py-2 border-top border-bottom">
       <div class="d-flex justify-content-evenly">
@@ -57,10 +59,10 @@
       <div class="clearfix"></div>
     </div>
     <div class="merchant-desc">
-      {{ merchant.description.substring(1, merchant.description.length - 1) }}
+      {{ merchant.description.substring(1, merchant?.description?.length - 1) }}
     </div>
 
-    <div v-if="beers.length" class="container py-3">
+    <div v-if="beers?.length" class="container py-3">
       <h3 class="pt-3">Beers for sale</h3>
       <div
         class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
@@ -105,7 +107,7 @@ export default {
     return {
       image: this.imageUrl(),
       currentPage: 1,
-      totalPages: Math.ceil(this.beers.length / 20),
+      totalPages: Math.ceil(this.beers?.length / 20),
     }
   },
   methods: {

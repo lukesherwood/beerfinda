@@ -52,7 +52,7 @@ export const mutations = {
       return filter.filterType === filterType
     })
     // if there are no filters or this is a new filterType add a new one.
-    if (!newFilters.length || !hasFilterType) {
+    if (!newFilters?.length || !hasFilterType) {
       newFilters.push({ filterType, keywords: keyword })
     } else {
       // if filterType and keyword is already set, then set to new values
@@ -63,7 +63,7 @@ export const mutations = {
         return filter
       })
     }
-    state.filters.filterCount = keyword.length
+    state.filters.filterCount = keyword?.length
     state.filters.filter = newFilters
   },
   clearFilters(state) {

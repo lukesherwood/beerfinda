@@ -115,7 +115,7 @@ export default {
     },
     validate() {
       return (
-        !this.form.beersLike.length ||
+        !this.form.beersLike?.length ||
         !this.form.description ||
         !this.form.email
       )

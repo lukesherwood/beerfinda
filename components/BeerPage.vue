@@ -20,58 +20,92 @@
           alt="default-beer"
         />
       </div>
-      <div class="py-2">
+      <div class="subheader pt-2 border-bottom">
         <h5 class="d-flex justify-content-between">
           <span>
-            <strong>
+            <em>
               {{ beer.type }}
-            </strong>
+            </em>
+          </span>
+          <span
+            class="badge rounded-pill"
+            :style="{
+              'background-color': beerRatingColor(
+                Math.round(beer.rating * 10) / 10
+              ),
+            }"
+          >
+            <b-icon icon="star-fill"></b-icon>
+            {{ Math.round(beer.rating * 10) / 10 }}
           </span>
           <span
             ><em>{{ beer.percentage }} ABV</em></span
           >
         </h5>
+      </div>
+      <div class="py-4">
         <div class="text-start">
-          <p>{{ beer.description }}</p>
+          <h5>Characteristics</h5>
+          <p>
+            <span v-for="desc in beer.characteristics" :key="desc">
+              {{ desc }},
+            </span>
+          </p>
+        </div>
+
+        <div class="text-start">
+          <h5>Description</h5>
+          <p style="white-space: pre-wrap">{{ beer.bfdescription }}</p>
+        </div>
+        <div v-if="beer.merchantsellsfound?.length" class="py-3">
+          <h3>Where to Buy</h3>
+          <div
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex py-2"
+          >
+            <Card
+              v-for="merchant in beer.merchantsellsfound"
+              :key="'beerPage-merchant' + merchant.merchant_id"
+              :title="merchant.title"
+              :image="merchant.image_pre_link + merchant.image_link"
+            >
+              <template #text>
+                <div>
+                  {{ merchant.brewer }}
+                </div>
+                <div class="">
+                  {{ priceToString(merchant.price) }}
+                </div>
+              </template>
+              <template #footer>
+                <a
+                  class="btn btn-secondary float-end stretched-link"
+                  :href="merchant.link"
+                  target="_blank"
+                  >Buy Now</a
+                >
+              </template>
+            </Card>
+          </div>
+          <small
+            ><em>
+              * BeerFinda is not responsible for merchants having stock. Check
+              with merchant for stock availability</em
+            >
+          </small>
+        </div>
+
+        <div class="text-start">
+          <h5>Occasion</h5>
+          <p style="white-space: pre-wrap">{{ beer.occasion }}</p>
+        </div>
+
+        <div class="text-start">
+          <h5>Pairing</h5>
+          <p style="white-space: pre-wrap">{{ beer.pairing }}</p>
         </div>
       </div>
-      <div v-if="beer.merchantsellsfound.length" class="py-3">
-        <h3>Where to Buy</h3>
-        <div
-          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex py-2"
-        >
-          <Card
-            v-for="merchant in beer.merchantsellsfound"
-            :key="'beerPage-merchant' + merchant.merchant_id"
-            :title="merchant.title"
-            :image="merchant.image_pre_link + merchant.image_link"
-          >
-            <template #text>
-              <div>
-                {{ merchant.brewer }}
-              </div>
-              <div class="">
-                {{ priceToString(merchant.price) }}
-              </div>
-            </template>
-            <template #footer>
-              <a
-                class="btn btn-secondary float-end stretched-link"
-                :href="merchant.link"
-                target="_blank"
-                >Buy Now</a
-              >
-            </template>
-          </Card>
-        </div>
-        <small
-          ><em>
-            * BeerFinda is not responsible for merchants having stock. Check
-            with merchant for stock availability</em
-          >
-        </small>
-      </div>
-      <div v-if="beer.similar_beers_in_stock.length" class="py-3">
+
+      <div v-if="beer.similar_beers_in_stock?.length" class="py-3">
         <h3>Similar Beers</h3>
         <div
           class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex pt-3"

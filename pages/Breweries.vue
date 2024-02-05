@@ -21,7 +21,7 @@
       />
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <h4 v-if="getBreweries.length == 0" class="text-center pt-3">
+        <h4 v-if="getBreweries?.length == 0" class="text-center pt-3">
           <b-icon icon="search"></b-icon>
           Sorry, we couldn't find:
           <span v-if="getFilters.searchTerm">
