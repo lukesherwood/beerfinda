@@ -15,17 +15,10 @@
       :src="image"
       alt="default-beer"
     />
-    <div class="d-flex justify-content-between py-3">
+    <div class="d-flex justify-content-between pt-3 border-bottom">
       <div class="brewer-location">
-        <h6>{{ brewer.location }}</h6>
+        <h5>{{ brewer.location }}</h5>
       </div>
-      <div class="spacer"></div>
-      <div class="brewer-type">
-        <h6>{{ brewer.type }}</h6>
-      </div>
-    </div>
-
-    <div class="py-1 text-center">
       <div>
         <h5>
           Beer Count:
@@ -37,12 +30,15 @@
           >
         </h5>
       </div>
+      <div class="brewer-type">
+        <h5>{{ brewer.type }}</h5>
+      </div>
     </div>
     <div v-if="brewer.description" class="brewer-desc py-4">
       {{ brewer.description }}
     </div>
 
-    <div class="py-2 border-top border-bottom">
+    <div class="py-3 border-top border-bottom">
       <div class="d-flex justify-content-between">
         <div v-if="brewer.website" class="p-2">
           Visit:
