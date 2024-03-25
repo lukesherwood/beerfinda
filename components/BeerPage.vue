@@ -1,16 +1,16 @@
 <template>
   <div class="content">
-    <Header :header="beer.name">
-      <template #subheader>
-        <h2 class="display-6">
-          <nuxtLink :to="`/breweries/${titleize(beer.brewer_name)}`"
-            ><em>{{ beer.brewer_name }}</em></nuxtLink
-          >
-        </h2>
-      </template>
-    </Header>
-    <div>
-      <div class="py-2">
+    <div class="row row-cols-1 row-cols-md-2">
+      <Header :header="beer.name">
+        <template #subheader>
+          <h2 class="display-6">
+            <nuxtLink :to="`/breweries/${titleize(beer.brewer_name)}`"
+              ><em>{{ beer.brewer_name }}</em></nuxtLink
+            >
+          </h2>
+        </template>
+      </Header>
+      <div class="py-2 d-flex">
         <nuxt-img
           loading="lazy"
           placeholder="/blank.jpg"
@@ -20,6 +20,8 @@
           alt="default-beer"
         />
       </div>
+    </div>
+    <div>
       <div class="subheader pt-2 border-bottom">
         <h5 class="d-flex justify-content-between">
           <span>
@@ -47,9 +49,7 @@
         <div class="text-start">
           <h5>Characteristics</h5>
           <p>
-            <span v-for="desc in beer.characteristics" :key="desc">
-              {{ desc }},
-            </span>
+            {{ beer.characteristics.join(', ') }}
           </p>
         </div>
 
@@ -188,7 +188,6 @@ export default {
 <style lang="scss" scoped>
 .beer-image {
   max-height: 50vh;
-  width: 100%;
   object-fit: contain;
 }
 

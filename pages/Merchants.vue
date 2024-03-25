@@ -197,10 +197,17 @@ export default {
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
-      this.$router.push({
-        path: 'merchants',
-        query: { ...this.$route.query, page },
-      })
+      this.$router
+        .push({
+          path: 'merchants',
+          query: { ...this.$route.query, page },
+        })
+        .then(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        })
     },
   },
 }

@@ -5,7 +5,7 @@
       class="scroll-to-top-btn btn btn-warning p-2"
       @click="scrollToTop"
     >
-      <b-icon icon="chevron-up"></b-icon>
+      TOP <b-icon icon="chevron-up"></b-icon>
     </button>
   </div>
 </template>

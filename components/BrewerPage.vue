@@ -1,40 +1,38 @@
 <template>
   <div class="content">
-    <Header :header="brewer.name">
-      <template #subheader>
-        <h4 v-if="brewer.established" class="brewer-est py-1">
-          <em class="text-primary">Established {{ brewer.established }}</em>
-        </h4>
-      </template>
-    </Header>
-    <nuxt-img
-      loading="lazy"
-      placeholder="/brewer.jpg"
-      format="webp"
-      class="img-fluid beer-image"
-      :src="image"
-      alt="default-beer"
-    />
-    <div class="d-flex justify-content-between pt-3 border-bottom">
-      <div class="brewer-location">
-        <h5>{{ brewer.location }}</h5>
-      </div>
-      <div>
-        <h5>
-          Beer Count:
-          <nuxt-link
-            :to="'/beers?&inStock=false&search=' + brewer.name"
-            class="text-secondary"
-          >
-            {{ brewer.numberbeers }}</nuxt-link
-          >
-        </h5>
-      </div>
-      <div class="brewer-type">
-        <h5>{{ brewer.type }}</h5>
-      </div>
+    <div class="row row-cols-1 row-cols-md-2">
+      <Header :header="brewer.name">
+        <template #subheader>
+          <h4 v-if="brewer.established" class="py-1">
+            <em>Established {{ brewer.established }}</em>
+          </h4>
+          <h4 class="py-1">{{ brewer.location }}</h4>
+          <h4 class="py-1">
+            Beer Count:
+            <nuxt-link
+              :to="'/beers?&inStock=false&search=' + brewer.name"
+              class="text-secondary"
+            >
+              {{ brewer.numberbeers }}</nuxt-link
+            >
+          </h4>
+          <h4 class="py-1">{{ brewer.type }}</h4>
+        </template>
+      </Header>
+      <nuxt-img
+        loading="lazy"
+        placeholder="/brewer.jpg"
+        format="webp"
+        class="img-fluid beer-image"
+        :src="image"
+        alt="default-beer"
+      />
     </div>
-    <div v-if="brewer.description" class="brewer-desc py-4">
+    <div
+      v-if="brewer.description"
+      class="brewer-desc py-4"
+      style="white-space: pre-wrap"
+    >
       {{ brewer.description }}
     </div>
 
@@ -90,14 +88,11 @@
         <Card
           v-for="beer in beersInStock"
           :key="'merchant-page-card' + beer.beer_id + '-' + Math.random(10)"
-          :title="beer.title"
-          :image="beer.image_pre_link + beer.image_link"
+          :title="beer.name"
           :link="`beers/${beer.beer_id}`"
+          :image="beerImageUrl(beer)"
           footer="true"
         >
-          <template #text>
-            <div class="price">{{ priceToString(beer.price) }}</div>
-          </template>
         </Card>
       </div>
     </div>
@@ -197,7 +192,6 @@ export default {
 <style lang="scss" scoped>
 .beer-image {
   max-height: 50vh;
-  width: 100%;
   object-fit: contain;
 }
 </style>

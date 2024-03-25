@@ -149,6 +149,8 @@ export const orderingTypes = {
   'Price (High-Low)': '-merchantsellsfound__price',
   'Rating (Low-High)': 'ratings__average',
   'Rating (High-Low)': '-ratings__average',
+  Newest: '-created_on',
+  Oldest: 'created_on',
 }
 
 export const userOrderingTypes = {

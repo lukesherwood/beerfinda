@@ -8,19 +8,7 @@ Todo:
 - change profile create/update validation to vee-validate
 - add change email features
 
-beers page - add created_on as a filter 'newest' and opposite as 'oldest'
-
-individual beer page for desktop - smaller image, title etc to side
-individual beer page for mobile - smaller title text. rating not centered. comma at end of characteristics
-
-clicking next page on breweries, beer, merchants doesnt scroll back to top
-
-individual brewer page - move details to the side of image and description below
-individual brewer page - description doesnt format like beer description using \n etc
 individual brewer page - if brewer_id greater than 0 then can you send them to brewer page instead of merchant page - dont want to duplicate pages
-home page - change banner title from 'Find the best beer for you' to 'All New Zealand Beers In One Place'
-
-i switched the individual brewer endpoint to return the beers_in_stock in the same format as beers_brewer. the card you use for beers_brewer can be applied to beers_in_stock
 
 Issues found but maybe too-hard-basket/low value:
 

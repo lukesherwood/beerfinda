@@ -2,8 +2,10 @@
   <main class="text-center">
     <HomeBanner>
       <section class="text-start header-content">
-        <h1 class="text-white pt-4 fs-1 fw-bold">Find the best beer for you</h1>
-        <p class="text-white pt-3 pb-3 fs-6">
+        <h1 class="text-white pt-3 fs-1 fw-bold">
+          All New Zealand Beers In One Place
+        </h1>
+        <p class="text-white pt-3 pb-2 fs-6">
           BeerFinda searches the internet for the best beer to match your
           preferences. We combine beers from brewers and merchants across New
           Zealand into one platform where you can find the best price, merchant
@@ -18,7 +20,7 @@
         loading="lazy"
         format="webp"
         alt="Hand holding a beer"
-        class="beer-hand d-none d-md-block"
+        class="beer-hand d-none d-lg-block"
       />
     </HomeBanner>
     <div class="container">

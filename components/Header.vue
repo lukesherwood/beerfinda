@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 class="display-1 text-secondary fw-bold">
+    <h1 class="display-2 text-secondary fw-bold">
       <strong>{{ header }} </strong>
     </h1>
     <h4 class="py-1">
@@ -15,5 +15,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>
