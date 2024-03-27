@@ -10,7 +10,7 @@
           </h2>
         </template>
       </Header>
-      <div class="py-2 d-flex">
+      <div class="py-2 d-flex justify-content-center">
         <nuxt-img
           loading="lazy"
           placeholder="/blank.jpg"
@@ -46,14 +46,14 @@
         </h5>
       </div>
       <div class="py-4">
-        <div class="text-start">
+        <div v-if="beer?.characteristics" class="text-start">
           <h5>Characteristics</h5>
           <p>
             {{ beer.characteristics.join(', ') }}
           </p>
         </div>
 
-        <div class="text-start">
+        <div v-if="beer?.bfdescription" class="text-start">
           <h5>Description</h5>
           <p style="white-space: pre-wrap">{{ beer.bfdescription }}</p>
         </div>
@@ -94,12 +94,12 @@
           </small>
         </div>
 
-        <div class="text-start">
+        <div v-if="beer.occasion" class="text-start">
           <h5>Occasion</h5>
           <p style="white-space: pre-wrap">{{ beer.occasion }}</p>
         </div>
 
-        <div class="text-start">
+        <div v-if="beer.pairing" class="text-start">
           <h5>Pairing</h5>
           <p style="white-space: pre-wrap">{{ beer.pairing }}</p>
         </div>
@@ -187,7 +187,7 @@ export default {
 
 <style lang="scss" scoped>
 .beer-image {
-  max-height: 50vh;
+  max-height: 35vh;
   object-fit: contain;
 }
 
