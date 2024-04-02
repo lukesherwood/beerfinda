@@ -59,7 +59,7 @@
       <div class="clearfix"></div>
     </div>
     <div class="merchant-desc">
-      {{ merchant.description.substring(1, merchant?.description?.length - 1) }}
+      <p style="white-space: pre-wrap">{{ merchant.description }}</p>
     </div>
 
     <div v-if="beers?.length" class="container py-3">
