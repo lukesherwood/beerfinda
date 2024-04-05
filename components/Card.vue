@@ -24,6 +24,7 @@
           <slot name="text" />
         </div>
         <slot name="rating" />
+        <slot name="heart" />
       </div>
       <slot name="body" />
       <div class="card-footer">

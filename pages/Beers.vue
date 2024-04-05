@@ -75,6 +75,20 @@
                   {{ Math.round(beer.rating * 10) / 10 }}
                 </div>
               </template>
+              <template #heart>
+                <button class="float-end heart">
+                  <i
+                    v-if="isLoggedIn && beersLiked.includes(beer.beer_id)"
+                    class="bi bi-heart-fill"
+                    @click="handleHearted(beer.beer_id)"
+                  ></i>
+                  <i
+                    v-else-if="isLoggedIn"
+                    class="bi bi-heart"
+                    @click="handleHearted(beer.beer_id)"
+                  ></i>
+                </button>
+              </template>
             </Card>
           </div>
           <Pagination
@@ -158,6 +172,12 @@ export default {
       isInStockSet: 'beer/isInStockSet',
       getLastQuery: 'beer/getLastQuery',
     }),
+    isLoggedIn() {
+      return Boolean(this.$store.state.auth.user?.email)
+    },
+    beersLiked() {
+      return this.$store.state.auth.user?.beers_like
+    },
   },
   watch: {
     '$route.query': '$fetch',
@@ -178,6 +198,7 @@ export default {
     }),
     ...mapActions({
       fetchBeers: 'beer/fetchBeers',
+      userUpdate: 'user/userUpdate',
     }),
     buildQuery() {
       const query = {}
@@ -307,6 +328,13 @@ export default {
           })
         })
     },
+    handleHearted(beerId) {
+      this.beersLiked.includes(beerId)
+        ? this.userUpdate({
+            beers_like: this.beersLiked.filter((beer) => beer !== beerId),
+          })
+        : this.userUpdate({ beers_like: [...this.beersLiked, beerId] })
+    },
   },
 }
 </script>
@@ -324,6 +352,17 @@ export default {
   right: 5px;
   background: red;
   font-size: 1rem;
+}
+
+.heart {
+  position: absolute;
+  z-index: 100;
+  color: red;
+  top: 200px;
+  right: 5px;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: none;
 }
 
 .back-to-top {

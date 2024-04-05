@@ -25,6 +25,12 @@ export const mutations = {
   setError(state, payload) {
     state.error = payload
   },
+  addUserChanges(state, payload) {
+    // update store with each key in json object
+    for (const key in payload) {
+      state.user[key] = payload[key]
+    }
+  },
 }
 
 export const actions = {
@@ -146,6 +152,13 @@ export const actions = {
   async userUpdate(state, data) {
     try {
       await this.$axios.$post('/api/UserUpdate/', data).then((resp) => {
+        // update store with each key in json object
+        const user = this.$auth.user
+        for (const key in resp) {
+          user[key] = resp[key]
+        }
+        // this is setting it but nested within auth.user.user
+        this.$auth.setUser(user)
         Vue.notify({
           title: 'User',
           text: `Successfully updated`,
