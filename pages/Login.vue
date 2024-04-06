@@ -32,7 +32,7 @@
           <h6>
             <nuxtLink to="/user/forgotPassword">Forgot Password?</nuxtLink>
           </h6>
-          <div class="py-3">
+          <!-- <div class="py-3">
             <button class="btn btn-light btn-lg btn-block w-100">
               <b-icon icon="google"></b-icon> Continue with Google
             </button>
@@ -42,7 +42,7 @@
             <button class="btn btn-light btn-lg btn-block w-100">
               <b-icon icon="twitter"></b-icon> Continue with Twitter
             </button>
-          </div>
+          </div> -->
           <h6 class="py-3">
             Don't have an account?
             <nuxtLink to="/register">Register Here</nuxtLink>
@@ -73,12 +73,11 @@ export default {
     async handleSubmit() {
       await this.postLogin(this.form)
         .then(() => {
-          this.$router.back()
+          this.$router.push('/beers')
         })
         .catch(() => {})
     },
   },
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

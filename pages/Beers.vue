@@ -110,7 +110,8 @@ export default {
     const query = this.buildQuery()
     const array = Object.keys(query)
     let shouldFetch = false
-    if (isEmpty(query)) {
+    // also need to check for if user just signed in so ratings can refresh
+    if (isEmpty(query) || this.$nuxt?.context?.from?.name === 'Login') {
       shouldFetch = true
     }
     // query != getLastQuery for strange reasons as it has state gibberish as well

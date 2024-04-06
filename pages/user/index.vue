@@ -1,7 +1,7 @@
 <template>
   <div class="vertical-center">
     <div class="pt-5"></div>
-    <div class="inner-block">
+    <div class="inner-block bg-white">
       <div class="vue-template">
         <h3>User Page</h3>
         <form @submit.prevent="handleUserUpdate">
@@ -45,7 +45,16 @@
               required
             />
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group mb-3 border p-2 rounded">
+            <CharacteristicsSelector
+              :flavours-like="form.characteristicsLike"
+              @flavourSave="handleFlavourSave"
+            />
+          </div>
+          <div class="form-group mb-3 border p-2 rounded">
+            <label id="beers-label"
+              >Enter one or more NZ beers that you enjoy</label
+            >
             <RegisterBeerSearch
               :beers-like="form.beersLike"
               @beersSave="handleBeersSave"
@@ -89,17 +98,21 @@ export default {
         lastName: this.$auth.user.last_name,
         email: this.$auth.user.email,
         description: this.$auth.user.description,
+        characteristicsLike: [...this.$auth.user.characteristics_like],
         beersLike: this.$auth.user.beers_like,
       },
     }
   },
   methods: {
-    handleBeersSave(beers) {
-      this.form.beersLike = beers
-    },
     ...mapActions({
       userUpdate: 'user/userUpdate',
     }),
+    handleBeersSave(beers) {
+      this.form.beersLike = beers
+    },
+    handleFlavourSave(flavours) {
+      this.form.characteristicsLike = flavours
+    },
     handleUserUpdate() {
       this.userUpdate(this.transformForm(this.form))
     },
@@ -124,46 +137,4 @@ export default {
 }
 </script>
 
-<style scoped>
-* {
-  box-sizing: border-box;
-}
-html,
-.App,
-.vue-template,
-.vertical-center {
-  width: 100%;
-  height: 100%;
-}
-.vertical-center {
-  display: flex;
-  text-align: left;
-  justify-content: center;
-  flex-direction: column;
-}
-.inner-block {
-  width: 50%;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all 0.3s;
-}
-.vertical-center h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
-label {
-  font-weight: 500;
-}
-
-@media only screen and (max-width: 500px) {
-  .inner-block {
-    width: 100%;
-    padding: 20px;
-  }
-}
-</style>
+<style scoped></style>

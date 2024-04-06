@@ -71,11 +71,7 @@
             >
           </li>
           <li v-if="$auth.user?.email" class="nav-item">
-            <div
-              role="button"
-              class="nav-link text-primary"
-              @click="$auth.logout()"
-            >
+            <div role="button" class="nav-link text-primary" @click="logout()">
               Logout
             </div>
           </li>
@@ -91,6 +87,7 @@ export default {
     logout() {
       this.$auth
         .logout()
+        .then(() => this.$router.push('/'))
         .then(() =>
           Vue.notify({ type: 'success', text: 'Logged out successfully' })
         )
