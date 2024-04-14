@@ -11,17 +11,17 @@
     <div class="container">
       <Breadcrumbs />
       <FilterComponent
+        v-if="getMerchants?.length > 0"
         :ordering="orderingTypes"
         @filter="filterMerchantsResults"
         @clear="handleClearFilter"
       />
-      <Spinner
-        v-if="$fetchState.pending"
-        :loading="$fetchState.pending || isLoading"
-      />
-      <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
+      <Error v-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <h4 v-if="getMerchants?.length == 0" class="text-center pt-3">
+        <h4
+          v-if="getMerchants?.length == 0 && !isLoading"
+          class="text-center pt-3 h-100"
+        >
           <b-icon icon="search"></b-icon>
           Sorry, we couldn't find:
           <span v-if="getFilters.searchTerm">
@@ -38,6 +38,7 @@
             :link="`merchants/${merchant.link}`"
             :title="merchant.name"
             :image="merchant.image_pre_link + merchant.image"
+            :loading="$fetchState.pending || isLoading"
           >
             <template #text>
               <div class="merchant-est">
@@ -56,6 +57,7 @@
           </Card>
         </div>
         <Pagination
+          v-if="getMerchants?.length > 0"
           class="p-5"
           :pages="getPages"
           @pageChange="handlePageChange"
@@ -197,17 +199,10 @@ export default {
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
-      this.$router
-        .push({
-          path: 'merchants',
-          query: { ...this.$route.query, page },
-        })
-        .then(() => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-          })
-        })
+      this.$router.push({
+        path: 'merchants',
+        query: { ...this.$route.query, page },
+      })
     },
   },
 }

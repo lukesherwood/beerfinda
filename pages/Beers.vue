@@ -11,17 +11,17 @@
     <div class="container">
       <Breadcrumbs />
       <BeerFilter
+        v-if="getBeers?.length > 0"
         :logged-in="Boolean($store.state.auth.user?.email)"
         @filter="filterBeerResults"
         @order="filterBeerResults"
       />
-      <Spinner
-        v-if="$fetchState.pending || isLoading"
-        :loading="$fetchState.pending || isLoading"
-      />
-      <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
+      <Error v-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <h4 v-if="getBeers?.length == 0" class="text-center pt-5">
+        <h4
+          v-if="getBeers?.length == 0 && !isLoading"
+          class="text-center pt-3 h-100"
+        >
           <b-icon icon="search"></b-icon>
           Sorry, we couldn't find:
           <span v-if="getFilters.searchTerm">
@@ -38,6 +38,7 @@
               :title="beer.name"
               :link="`beers/${beer.beer_id}`"
               :image="beerImageUrl(beer)"
+              :loading="$fetchState.pending || isLoading"
             >
               <template #badge>
                 <div
@@ -78,6 +79,7 @@
             </Card>
           </div>
           <Pagination
+            v-if="getBeers?.length > 0"
             class="p-5"
             :pages="getPages"
             @pageChange="handlePageChange"
@@ -191,8 +193,8 @@ export default {
       }
       const page = this.getPages.currentPage
       if (page > 1) {
-        query.limit = 100
-        query.offset = (page - 1) * 100
+        query.limit = 40
+        query.offset = (page - 1) * 40
       }
       const filters = this.getFilters.filter
       if (filters?.length) {
@@ -296,17 +298,10 @@ export default {
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
-      this.$router
-        .push({
-          path: 'beers',
-          query: { ...this.$route.query, page },
-        })
-        .then(() => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-          })
-        })
+      this.$router.push({
+        path: 'beers',
+        query: { ...this.$route.query, page },
+      })
     },
   },
 }

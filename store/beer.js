@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+const PerPage = 40
+
 export const state = () => ({
   beers: [],
   featuredBeers: [],
@@ -158,12 +160,11 @@ async function fetchBeers(state, axios, query) {
   state.commit('setLastQuery', query)
   const res = await axios.$get('/api/beer/', { params: query })
   state.commit('addBeers', res.results)
-  const perPage = 100
   const pages = {
-    perPage,
+    perPage: PerPage,
     nextPage: res.next,
     previousPage: res.previous,
-    totalPages: Math.ceil(res.count / perPage),
+    totalPages: Math.ceil(res.count / PerPage),
   }
   state.commit('setupPages', pages)
   state.commit('setLoading', false)

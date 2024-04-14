@@ -2,6 +2,7 @@
 
 Todo:
 
+- need to not refetch merchants/brewerys etc on back if already in state
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.
   - button adds beer id to beers liked array

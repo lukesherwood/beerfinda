@@ -7,7 +7,27 @@
         :to="`/${link}`"
         :aria-label="`Go to ${title}`"
       />
+      <svg
+        v-if="loading"
+        class="bd-placeholder-img card-img-top placeholder-wave"
+        width="100%"
+        height="180"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Placeholder"
+        preserveAspectRatio="xMidYMid slice"
+        focusable="false"
+      >
+        <title>Placeholder</title>
+        <rect
+          class="placeholder"
+          width="100%"
+          height="100%"
+          fill="#868e96"
+        ></rect>
+      </svg>
       <nuxt-img
+        v-else
         loading="lazy"
         placeholder="/Loading_icon.gif"
         format="webp"
@@ -17,17 +37,31 @@
         alt="card-img"
         @error="handleError"
       />
-      <div class="card-body pt-3">
-        <slot name="badge" />
-        <h5 class="card-title">{{ title }}</h5>
-        <div class="card-text">
-          <slot name="text" />
-        </div>
-        <slot name="rating" />
+      <div v-if="loading" class="card-body placeholder-glow">
+        <h5 class="card-title placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow pb-4">
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+        </p>
       </div>
-      <slot name="body" />
-      <div class="card-footer">
-        <slot name="footer" />
+      <div v-else class="card-body pt-3">
+        <div>
+          <slot name="badge" />
+          <h5 class="card-title">{{ title }}</h5>
+          <div class="card-text">
+            <slot name="text" />
+          </div>
+          <slot name="rating" />
+        </div>
+        <slot name="body" />
+        <div class="card-footer">
+          <slot name="footer" />
+        </div>
       </div>
     </div>
   </div>
@@ -36,7 +70,7 @@
 <script>
 export default {
   name: 'Card',
-  props: ['image', 'link', 'width', 'title'],
+  props: ['image', 'link', 'width', 'title', 'loading'],
   data() {
     return {
       imageUrl: this.image,

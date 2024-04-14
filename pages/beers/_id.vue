@@ -13,7 +13,6 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Beer',
-  scrollToTop: true,
   asyncData({ route }) {
     return {
       id: route.params.id,

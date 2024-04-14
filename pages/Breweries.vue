@@ -11,17 +11,17 @@
     <div class="container">
       <Breadcrumbs />
       <FilterComponent
+        v-if="getBreweries?.length > 0"
         :ordering="orderingTypes"
         @filter="filterBreweriesResults"
         @clear="handleClearFilter"
       />
-      <Spinner
-        v-if="$fetchState.pending"
-        :loading="$fetchState.pending || isLoading"
-      />
-      <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
+      <Error v-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
-        <h4 v-if="getBreweries?.length == 0" class="text-center pt-3">
+        <h4
+          v-if="getBreweries?.length == 0 && !isLoading"
+          class="text-center pt-3 h-100"
+        >
           <b-icon icon="search"></b-icon>
           Sorry, we couldn't find:
           <span v-if="getFilters.searchTerm">
@@ -38,6 +38,7 @@
             :link="`breweries/${brewer.link}`"
             :title="brewer.name"
             :image="brewer.image_pre_link + brewer.image"
+            :loading="$fetchState.pending || isLoading"
           >
             <template #text>
               <div class="brewer-est">
@@ -56,6 +57,7 @@
           </Card>
         </div>
         <Pagination
+          v-if="getBreweries?.length > 0"
           class="p-5"
           :pages="getPages"
           @pageChange="handlePageChange"
@@ -202,17 +204,10 @@ export default {
     },
     handlePageChange(page) {
       this.setCurrentPage(page)
-      this.$router
-        .push({
-          path: 'breweries',
-          query: { ...this.$route.query, page },
-        })
-        .then(() => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-          })
-        })
+      this.$router.push({
+        path: 'breweries',
+        query: { ...this.$route.query, page },
+      })
     },
   },
 }

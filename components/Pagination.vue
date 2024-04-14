@@ -13,37 +13,17 @@
       </li>
       <!-- Page 1 Button -->
       <li
-        v-if="pages.currentPage != 1 && pages.currentPage > 3"
+        v-if="pages.currentPage != 1 && pages.currentPage >= 2"
         class="page-item mobile"
       >
         <div role="button" class="page-link mobile" @click="handler(1)">1</div>
       </li>
       <!-- '...' showing gap in range -->
       <li
-        v-if="pages.currentPage != 1 && pages.currentPage > 4"
+        v-if="pages.currentPage != 1 && pages.currentPage > 2"
         class="page-item disabled"
       >
         <div role="button" class="page-link">...</div>
-      </li>
-      <!-- Go back 2 Button -->
-      <li v-if="pages.currentPage - 2 > 0" class="page-item mobile">
-        <div
-          role="button"
-          class="page-link"
-          @click="handler(pages.currentPage - 2)"
-        >
-          {{ pages.currentPage - 2 }}
-        </div>
-      </li>
-      <!-- Go back 1 Button -->
-      <li v-if="pages.currentPage - 1 > 0" class="page-item mobile">
-        <div
-          role="button"
-          class="page-link"
-          @click="handler(pages.currentPage - 1)"
-        >
-          {{ pages.currentPage - 1 }}
-        </div>
       </li>
       <!-- GCurrent Page -->
       <li class="page-item active">
@@ -53,29 +33,6 @@
           @click="handler(pages.currentPage)"
         >
           {{ pages.currentPage }}
-        </div>
-      </li>
-      <!-- Go forward 1 Button -->
-      <li v-if="pages.currentPage + 1 < pages.totalPages" class="page-item">
-        <div
-          role="button"
-          class="page-link"
-          @click="handler(pages.currentPage + 1)"
-        >
-          {{ pages.currentPage + 1 }}
-        </div>
-      </li>
-      <!-- Go forward 2 Button -->
-      <li
-        v-if="pages.currentPage + 2 < pages.totalPages"
-        class="page-item mobile"
-      >
-        <div
-          role="button"
-          class="page-link"
-          @click="handler(pages.currentPage + 2)"
-        >
-          {{ pages.currentPage + 2 }}
         </div>
       </li>
       <!-- '...' showing gap in range -->
