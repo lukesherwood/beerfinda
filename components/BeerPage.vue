@@ -93,6 +93,11 @@
             >
           </small>
         </div>
+        <div v-else class="py-3">
+          <h3>Where to buy</h3>
+          <p>No merchants found</p>
+          <nuxt-link to="/beers?inStock=true">Click here to see in-stock beers</nuxt-link>
+        </div>
 
         <div v-if="beer.occasion" class="text-start">
           <h5>Occasion</h5>
