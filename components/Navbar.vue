@@ -13,7 +13,7 @@
         class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
       >
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
+          <li class="nav-item px-3">
             <nuxtLink
               to="/beers"
               class="nav-link text-primary"
@@ -21,7 +21,7 @@
               >Beers</nuxtLink
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-3">
             <nuxtLink
               to="/breweries"
               class="nav-link text-primary"
@@ -29,7 +29,7 @@
               >Breweries</nuxtLink
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-3">
             <nuxtLink
               to="/merchants"
               class="nav-link text-primary"
@@ -54,7 +54,7 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ms-auto">
-          <li v-if="$auth.user?.email" class="nav-item">
+          <li v-if="$auth.user?.email" class="nav-item px-3">
             <nuxtLink
               to="/user"
               class="nav-link text-primary"
@@ -62,15 +62,15 @@
               ><b-icon class="pe-1" icon="person-circle"></b-icon>
             </nuxtLink>
           </li>
-          <li v-show="!$auth.user?.email" class="nav-item">
+          <li v-show="!$auth.user?.email" class="nav-item px-3">
             <nuxtLink to="/login" class="nav-link text-primary">Login</nuxtLink>
           </li>
-          <li v-show="!$auth.user?.email" class="nav-item">
+          <li v-show="!$auth.user?.email" class="nav-item px-3">
             <nuxtLink to="/register" class="nav-link text-primary"
               >Sign Up</nuxtLink
             >
           </li>
-          <li v-if="$auth.user?.email" class="nav-item">
+          <li v-if="$auth.user?.email" class="nav-item px-3">
             <div role="button" class="nav-link text-primary" @click="logout()">
               Logout
             </div>

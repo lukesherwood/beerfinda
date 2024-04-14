@@ -23,27 +23,33 @@
     </div>
     <div>
       <div class="subheader pt-2 border-bottom">
-        <h5 class="d-flex justify-content-between">
-          <span>
-            <em>
-              {{ beer.type }}
-            </em>
-          </span>
-          <span
-            class="badge rounded-pill"
-            :style="{
-              'background-color': beerRatingColor(
-                Math.round(beer.rating * 10) / 10
-              ),
-            }"
-          >
-            <b-icon icon="star-fill"></b-icon>
-            {{ Math.round(beer.rating * 10) / 10 }}
-          </span>
-          <span
-            ><em>{{ beer.percentage }} ABV</em></span
-          >
-        </h5>
+        <div class="d-flex flex-column flex-sm-row justify-content-between">
+          <h5 class="mb-2 mb-md-0">
+            <span>
+              <em>
+                {{ beer.type }}
+              </em>
+            </span>
+          </h5>
+          <h5 class="mb-2 mb-md-0">
+            <span
+              class="badge rounded-pill"
+              :style="{
+                'background-color': beerRatingColor(
+                  Math.round(beer.rating * 10) / 10
+                ),
+              }"
+            >
+              <b-icon icon="star-fill"></b-icon>
+              {{ Math.round(beer.rating * 10) / 10 }}
+            </span>
+          </h5>
+          <h5>
+            <span
+              ><em>{{ beer.percentage }} ABV</em></span
+            >
+          </h5>
+        </div>
       </div>
       <div class="py-4">
         <div v-if="beer?.characteristics" class="text-start">
