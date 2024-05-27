@@ -33,8 +33,10 @@ export const actions = {
       await this.$auth.loginWith('user', { data: form })
       Vue.notify({
         title: 'Authorization',
-        text: 'You have been logged in!',
+        text: 'You are now logged in, ratings are tailored to your preferences',
         type: 'success',
+        // stays open 10s
+        duration: 10000,
       })
     } catch (error) {
       Vue.notify({
