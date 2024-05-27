@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-light pt-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0">
     <div class="container">
       <button
         class="navbar-toggler"
@@ -10,7 +10,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
+        class="navbar-collapse collapse w-100 order-1 order-lg-0 dual-collapse2"
       >
         <ul class="navbar-nav me-auto">
           <li class="nav-item px-3">
