@@ -6,7 +6,7 @@
       <h4>Create Profile</h4>
       <div class="form-group mb-3 border p-2 rounded">
         <label id="beers-label"
-          >Enter one or more NZ beers that you enjoy</label
+          >Enter one or more NZ beers that you enjoy *</label
         >
         <RegisterBeerSearch
           :beers-like="form.beersLike"
@@ -29,7 +29,7 @@
         />
       </div>
       <div class="form-group mb-3">
-        <label id="email-label">Email address</label>
+        <label id="email-label">Email address *</label>
         <ValidationProvider v-slot="{ errors }" name="Email" rules="email">
           <input
             v-model="form.email"
@@ -52,6 +52,7 @@
           Next
         </button>
       </div>
+      <div>* Required fields</div>
     </form>
   </div>
 </template>

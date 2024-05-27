@@ -4,7 +4,7 @@
       <Header :header="beer.name">
         <template #subheader>
           <h2 class="display-6">
-            <nuxtLink :to="`/breweries/${titleize(beer.brewer_name)}`"
+            <nuxtLink :to="`/breweries/${beer.brewer_link}`"
               ><em>{{ beer.brewer_name }}</em></nuxtLink
             >
           </h2>
@@ -84,7 +84,7 @@
               </template>
               <template #footer>
                 <a
-                  class="btn btn-secondary float-end stretched-link"
+                  class="btn btn-secondary stretched-link"
                   :href="merchant.link"
                   target="_blank"
                   >Buy Now</a
@@ -102,7 +102,9 @@
         <div v-else class="py-3">
           <h3>Where to buy</h3>
           <p>No merchants found</p>
-          <nuxt-link to="/beers?inStock=true">Click here to see in-stock beers</nuxt-link>
+          <nuxt-link to="/beers?inStock=true"
+            >Click here to see in-stock beers</nuxt-link
+          >
         </div>
 
         <div v-if="beer.occasion" class="text-start">

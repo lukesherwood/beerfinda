@@ -59,7 +59,7 @@
           <slot name="rating" />
         </div>
         <slot name="body" />
-        <div class="card-footer">
+        <div class="card-footer text-center">
           <slot name="footer" />
         </div>
       </div>

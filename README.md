@@ -4,30 +4,10 @@ Todo:
 Home Page:
 
 - get rid of carousel, just do a grid with 3 across on desktop screen. i will only send 3 or 6 from api response
-- width under 386 pixels causes "how it works" to go out of screen
-
-  Beers, Breweries, Merchants:
-
-- cards have sharp top corners like the bottom corners
 
   Beers:
 
 - newest and oldest ordering doesnt work when signed in
-
-  Beer Individual:
-
-- buy now button on the where to buy section weirdly positioned
-- brewer link is broken when brewer has non alphanumeric characters. use 'brewer_link' instead of 'brewer_name' from api to build url
-
-  Profile Update:
-
-- needs required asterisk \* next to the update beer search part
-
-  General Responsiveness:
-
-- when viewing on Ipad Mini navbar truncated
-
-What im currently working on: - Identifying when beer is on special so can notify users - Multipack flag on in stock to help with comparison of prices - Fresh Hop filter - Zero Percent filter - ABV ordering for beers - Number of beers ordering for merchants
 
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.

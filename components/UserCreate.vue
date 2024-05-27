@@ -11,7 +11,7 @@
         <h4>Create User</h4>
 
         <div class="form-group mb-3 pt-3">
-          <label>First Name</label>
+          <label>First Name *</label>
           <ValidationProvider
             v-slot="{ errors }"
             name="First Name"
@@ -27,7 +27,7 @@
           </ValidationProvider>
         </div>
         <div class="form-group mb-3">
-          <label>Last Name</label>
+          <label>Last Name *</label>
           <ValidationProvider
             v-slot="{ errors }"
             name="Last Name"
@@ -43,7 +43,7 @@
           </ValidationProvider>
         </div>
         <div class="form-group mb-3">
-          <label>Password</label>
+          <label>Password *</label>
           <ValidationProvider
             v-slot="{ errors }"
             name="Password"
@@ -60,7 +60,7 @@
           </ValidationProvider>
         </div>
         <div class="form-group mb-3">
-          <label>Confirm Password</label>
+          <label>Confirm Password *</label>
           <ValidationProvider
             v-slot="{ errors }"
             name="Password Confirm"
@@ -84,6 +84,7 @@
             Sign Up
           </button>
         </div>
+        <div>* Required fields</div>
       </form>
     </ValidationObserver>
   </div>
