@@ -10,7 +10,7 @@
         :title="beer.name"
         :link="`beers/${beer.beer_id}`"
         :image="beerImageUrl(beer)"
-        width="300px"
+        width="350px"
       >
         <template #text>
           <div class="brewer-name">

@@ -1,27 +1,29 @@
 <template>
   <main class="text-center">
     <HomeBanner>
-      <section class="text-start header-content">
+      <section class="text-center header-content">
         <h1 class="text-white pt-3 fs-1 fw-bold">
-          All New Zealand Beers In One Place
+          All New Zealand Beers In One Place Curated To You
         </h1>
-        <p class="text-white pt-3 pb-2 fs-6">
+        <p class="text-white pt-3 pb-5 fs-6">
           BeerFinda searches the internet for the best beer to match your
           preferences. We combine beers from brewers and merchants across New
           Zealand into one platform where you can find the best price, merchant
           and a personalised rating for every beer.
         </p>
-        <nuxtLink to="/beers" class="btn btn-secondary shadow text-white"
-          >Find My Beer</nuxtLink
+        <nuxtLink
+          to="/register"
+          class="btn btn-primary shadow border border-primary border-2 py-3 px-5 rounded-pill"
+          ><h3>Find My Beer</h3></nuxtLink
         >
       </section>
-      <nuxt-img
+      <!-- <nuxt-img
         src="beer-glass-edit.png"
         loading="lazy"
         format="webp"
-        alt="Hand holding a beer"
+        alt="Hand holding a beer"s
         class="beer-hand d-none d-lg-block"
-      />
+      /> -->
     </HomeBanner>
     <div class="container">
       <Spinner
@@ -32,7 +34,7 @@
       <Error v-else-if="$fetchState.error" :error="$fetchState.error" />
       <div v-else>
         <section v-if="getFeaturedBeers?.length > 0">
-          <h2 class="title text-center fs-1">Featured Beers</h2>
+          <h2 class="title text-center fs-1 pt-5">Featured Beers</h2>
           <CardCarousel :beers="getFeaturedBeers" />
           <div class="pt-5">
             <nuxtLink
@@ -46,26 +48,29 @@
         <div class="section-wrapper container py-5">
           <div class="section how-we-work row pb-5 overflow-hidden">
             <h2 class="py-5 fs-1">How We Work</h2>
-            <div class="col col-sm-12 col-xl-4">
+            <div class="col col-sm-12 col-xl-4 p-0">
               <nuxt-img
                 loading="lazy"
                 format="webp"
+                width="100%"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png"
                 alt="Step 1 of how it works"
               />
             </div>
-            <div class="col col-sm-12 col-xl-4">
+            <div class="col col-sm-12 col-xl-4 p-0">
               <nuxt-img
                 loading="lazy"
                 format="webp"
+                width="100%"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png"
                 alt="Step 2 of how it works"
               />
             </div>
-            <div class="col col-sm-12 col-xl-4">
+            <div class="col col-sm-12 col-xl-4 p-0">
               <nuxt-img
                 loading="lazy"
                 format="webp"
+                width="100%"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png"
                 alt="Step 3 of how it works"
               />
@@ -146,7 +151,6 @@ export default {
   margin-top: -40px;
 }
 .header-content {
-  max-width: 600px;
   width: 65%;
 }
 .sign-up-content {
@@ -197,7 +201,6 @@ export default {
     padding: 20px !important;
     font-size: 70%;
     width: 100%;
-    text-align: left !important;
   }
   .beer-pictures {
     display: none;

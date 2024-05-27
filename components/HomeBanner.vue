@@ -1,6 +1,6 @@
 <template>
   <div class="mb-3 banner pb-2">
-    <div class="centered">
+    <div class="centered h-100">
       <div></div>
       <div></div>
       <div>
@@ -21,20 +21,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+}
 .banner {
   background-image: linear-gradient(
-      rgba(74, 97, 99, 0.8),
-      rgba(74, 97, 99, 0.8)
+      rgba(74, 97, 99, 0.2),
+      rgba(74, 97, 99, 0.2)
     ),
-    url('~static/beerWallpaper.jpg');
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(90% - 5vw));
+    url('~static/beerHeader3.jpg');
   width: 100%;
-  height: 450px;
+  height: 100%;
   background-size: cover;
-}
-@media screen and (max-width: 770px) {
-  .banner {
-    height: 385px;
-  }
+  background-position: center;
 }
 </style>

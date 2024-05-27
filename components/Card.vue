@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <div class="card h-100" :style="{ width: width }">
+    <div class="card h-100 rounded-0" :style="{ width: width }">
       <nuxtLink
         v-show="link"
         class="stretched-link"
@@ -93,7 +93,6 @@ export default {
   padding-bottom: 0px;
 }
 .card {
-  border-radius: 12px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
