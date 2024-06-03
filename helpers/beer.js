@@ -158,6 +158,8 @@ export const userOrderingTypes = {
   'Name Z-A': '-name',
   'Price (Low-High)': 'merchantsellsfound__price',
   'Price (High-Low)': '-merchantsellsfound__price',
+  Newest: '-created_on',
+  Oldest: 'created_on',
   // ratings are added after
   // 'Rating (Low-High)': 'ratings__cluster${user.cluster}',
   // 'Rating (High-Low)': '-ratings__cluster${user.cluster}',
