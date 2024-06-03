@@ -1,6 +1,6 @@
 <template>
-  <div class="col">
-    <div class="card h-100 rounded-0" :style="{ width: width }">
+  <div class="col d-flex justify-content-center">
+    <div class="card h-100 rounded-0" :style="{ width: width || '300px' }">
       <nuxtLink
         v-show="link"
         class="stretched-link"
@@ -95,6 +95,7 @@ export default {
 .card {
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  min-width: 250px;
 }
 
 .card:hover {

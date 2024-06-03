@@ -30,7 +30,7 @@
         </h4>
         <div v-else>
           <div
-            class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
+            class="pt-5 row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 gy-4"
           >
             <Card
               v-for="beer in getBeers"

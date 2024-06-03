@@ -17,13 +17,6 @@
           ><h3>Find My Beer</h3></nuxtLink
         >
       </section>
-      <!-- <nuxt-img
-        src="beer-glass-edit.png"
-        loading="lazy"
-        format="webp"
-        alt="Hand holding a beer"s
-        class="beer-hand d-none d-lg-block"
-      /> -->
     </HomeBanner>
     <div class="container">
       <Spinner
@@ -35,7 +28,29 @@
       <div v-else>
         <section v-if="getFeaturedBeers?.length > 0">
           <h2 class="title text-center fs-1 pt-5">Featured Beers</h2>
-          <CardCarousel :beers="getFeaturedBeers" />
+          <div
+            class="row row-cols-1 row-cols-lg-3 g-4 justify-content-center m-1"
+          >
+            <Card
+              v-for="beer in getFeaturedBeers"
+              :key="beer.beer_id"
+              :title="beer.name"
+              :link="`beers/${beer.beer_id}`"
+              :image="beerImageUrl(beer)"
+              width="350px"
+            >
+              <template #text>
+                <div class="brewer-name">
+                  <em>
+                    {{ beer.brewer_name }}
+                  </em>
+                </div>
+                <div class="badge rounded-pill bg-danger featured">
+                  Featured
+                </div>
+              </template>
+            </Card>
+          </div>
           <div class="pt-5">
             <nuxtLink
               class="btn btn-outline-primary shadow border border-primary border-2 py-3 px-5 rounded-pill"
@@ -118,6 +133,8 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import { beerImageUrl } from '../helpers/beer'
+
 export default {
   name: 'Index',
   async fetch() {
@@ -143,6 +160,10 @@ export default {
       isLoading: 'beer/isLoading',
       getFeaturedBeers: 'beer/getFeaturedBeers',
     }),
+  },
+
+  methods: {
+    beerImageUrl,
   },
 }
 </script>
@@ -181,6 +202,12 @@ export default {
     rgba(0, 0, 0, 0.8)
   );
 }
+.featured {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
 @media screen and (max-width: 992px) {
   .header-content .sign-up-content {
     width: 100%;

@@ -3,7 +3,7 @@
 Todo:
 Home Page:
 
-- get rid of carousel, just do a grid with 3 across on desktop screen. i will only send 3 or 6 from api response
+- fix pagination component again for mobile sizes
 
   Beers:
 
