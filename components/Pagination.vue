@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul class="pagination justify-content-center pagination-lg">
+    <ul class="pagination justify-content-center pagination-lg font-md">
       <!-- Previous Button -->
       <li class="page-item" :class="{ disabled: pages.currentPage - 1 == 0 }">
         <div
@@ -23,7 +23,7 @@
         v-if="pages.currentPage != 1 && pages.currentPage > 2"
         class="page-item disabled"
       >
-        <div role="button" class="page-link">...</div>
+        <div role="button" class="page-link mobile">...</div>
       </li>
       <!-- GCurrent Page -->
       <li class="page-item active">
@@ -39,7 +39,7 @@
       <li
         v-if="
           pages.currentPage != pages.totalPages &&
-          pages.currentPage + 2 < pages.totalPages
+          pages.currentPage + 1 < pages.totalPages
         "
         class="page-item disabled"
       >
@@ -84,9 +84,12 @@ export default {
 }
 </script>
 <style lang="scss">
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 440px) {
   .mobile {
     display: none;
   }
+}
+.font-md {
+  --bs-pagination-font-size: 1rem !important;
 }
 </style>

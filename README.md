@@ -1,13 +1,8 @@
 # Beerfinda
 
 Todo:
-Home Page:
 
 - fix pagination component again for mobile sizes
-
-  Beers:
-
-- newest and oldest ordering doesnt work when signed in
 
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.
