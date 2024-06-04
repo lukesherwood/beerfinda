@@ -53,14 +53,14 @@
           </div>
           <div class="form-group mb-3 border p-2 rounded">
             <label id="beers-label"
-              >Enter one or more NZ beers that you enjoy</label
+              >Enter one or more NZ beers that you enjoy *</label
             >
             <RegisterBeerSearch
               :beers-like="form.beersLike"
               @beersSave="handleBeersSave"
             />
           </div>
-          <div class="py-3">* Required</div>
+          <div class="py-3">* Required fields</div>
           <!-- tooltip not working but its straight from bootstrap docs-->
           <div class="form-group">
             <span
