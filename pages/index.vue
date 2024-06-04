@@ -61,33 +61,33 @@
           </div>
         </section>
         <div class="section-wrapper container py-5">
-          <div class="section how-we-work row pb-5 overflow-hidden">
+          <div class="section how-we-work row pb-5">
             <h2 class="py-5 fs-1">How We Work</h2>
-            <div class="col col-sm-12 col-xl-4 p-0">
+            <div class="col col-sm-12 col-xl-4 px-0 py-2">
               <nuxt-img
                 loading="lazy"
                 format="webp"
-                width="100%"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-1.png"
                 alt="Step 1 of how it works"
+                class="work-image"
               />
             </div>
-            <div class="col col-sm-12 col-xl-4 p-0">
+            <div class="col col-sm-12 col-xl-4 px-0 py-2">
               <nuxt-img
                 loading="lazy"
                 format="webp"
-                width="100%"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-2.png"
                 alt="Step 2 of how it works"
+                class="work-image"
               />
             </div>
-            <div class="col col-sm-12 col-xl-4 p-0">
+            <div class="col col-sm-12 col-xl-4 px-0 py-2">
               <nuxt-img
                 loading="lazy"
                 format="webp"
-                width="100%"
                 src="https://drs-pgo-image.s3.ap-southeast-2.amazonaws.com/brand/how-it-works-step-3.png"
                 alt="Step 3 of how it works"
+                class="work-image"
               />
             </div>
           </div>
@@ -208,6 +208,10 @@ export default {
   left: 5px;
 }
 
+.work-image {
+  width: 350px;
+}
+
 @media screen and (max-width: 992px) {
   .header-content .sign-up-content {
     width: 100%;
@@ -238,6 +242,9 @@ export default {
   .header-content {
     padding: 5px !important;
     font-size: 50%;
+  }
+  .work-image {
+    width: 300px;
   }
 }
 </style>
