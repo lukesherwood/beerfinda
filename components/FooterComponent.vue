@@ -2,34 +2,24 @@
   <footer class="text-center text-lg-start bg-primary text-white">
     <div class="container pt-4 text-center">
       <section class="mb-4">
-        <div
+        <a
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
+          href="https://facebook.com/beerfinda"
+          target="_blank"
         >
           <b-icon icon="facebook"></b-icon>
-        </div>
-        <div
+        </a>
+        <a
           class="btn btn-link btn-floating btn-lg text-white m-1"
           role="button"
           data-mdb-ripple-color="dark"
-        >
-          <b-icon icon="twitter"></b-icon>
-        </div>
-        <div
-          class="btn btn-link btn-floating btn-lg text-white m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <b-icon icon="google"></b-icon>
-        </div>
-        <div
-          class="btn btn-link btn-floating btn-lg text-white m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
+          href="https://instagram.com/beerfinda"
+          target="_blank"
         >
           <b-icon icon="instagram"></b-icon>
-        </div>
+        </a>
       </section>
     </div>
     <section class="">
