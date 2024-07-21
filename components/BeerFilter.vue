@@ -246,7 +246,11 @@ export default {
     },
     clearHandler() {
       this.clearFilters()
-      this.$router.replace({ path: 'beers', query: {} })
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      delete queries.ordering
+      delete queries.filter
+      delete queries.inStock
+      this.$router.replace({ path: 'beers', query: queries })
       this.submitHandler()
     },
     submitHandler() {

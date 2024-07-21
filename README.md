@@ -2,11 +2,7 @@
 
 Todo:
 
-- 2. another bit of feedback mentioned the individual beer pages seemed like they had too much text so I've added another field on the /beer/beer_id/ endpoint called "session_savour_scale" which is a number between 1-10 where 1 is meant for session beers and 10 is mean for beers to savour. so I was thinking instead of the "occasion" text block section we could show a scale of 1-10 with session and the beginning and savour at the end with the scale at the number. (most are at 5 at the moment because I'm yet to run it over all data)
 - 3. along the same lines as 2. I've switched the "pairing" section a bit to return an HTML formatted list. see /beer/675 for a good example. can you let me know if its easier for you to get the HTML formatted list or should I return a list like the characteristics value in the API response? 
-- when youre working on the imrpovements can you check the search call is including other parameters
-https://drspgoa.digifern.com/beer/?search=wired lager&merchantsellsfound__active=true
-currently its doing the search without including other parameters
 
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.

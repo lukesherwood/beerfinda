@@ -11,7 +11,6 @@
     <div class="container">
       <Breadcrumbs />
       <BeerFilter
-        v-if="getBeers?.length > 0"
         :logged-in="Boolean($store.state.auth.user?.email)"
         @filter="filterBeerResults"
         @order="filterBeerResults"
@@ -233,7 +232,6 @@ export default {
     },
     setStateFromQuery() {
       const query = this.$route.query
-      console.log(query, 'query')
       if (!query.page) {
         this.setCurrentPage(1)
       }

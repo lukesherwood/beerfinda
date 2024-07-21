@@ -68,7 +68,7 @@ export const mutations = {
   },
   clearFilters(state) {
     state.filters = {
-      searchTerm: '',
+      searchTerm: state.filters.searchTerm,
       filter: [],
       order: '',
       isInStockSet: true,
