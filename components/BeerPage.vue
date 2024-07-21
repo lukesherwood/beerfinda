@@ -89,12 +89,13 @@
         <Card
           v-for="merchant in beer.merchantsellsfound"
           :key="'beerPage-merchant' + merchant.merchant_id"
-          :title="merchant.title"
           :image="merchant.image_pre_link + merchant.image_link"
         >
           <template #text>
-            <div>{{ merchant.brewer }}</div>
-            <div>{{ priceToString(merchant.price) }}</div>
+            <div class="py-2">
+              <div>{{ merchant.size }}</div>
+              <div>{{ priceToString(merchant.price) }}</div>
+            </div>
           </template>
           <template #footer>
             <a
@@ -125,7 +126,16 @@
 
     <div v-if="beer.pairing" class="text-start mb-4">
       <h5 class="px-3">Pairing</h5>
-      <p class="p-3" style="white-space: pre-wrap">{{ beer.pairing }}</p>
+      <ul>
+        <li
+          v-for="pairing in beer.pairing_list"
+          :key="pairing + Math.random(10)"
+          class="p-3"
+          style="white-space: pre-wrap"
+        >
+          {{ pairing }}
+        </li>
+      </ul>
     </div>
 
     <div v-if="beer.similar_beers_in_stock?.length" class="py-3">

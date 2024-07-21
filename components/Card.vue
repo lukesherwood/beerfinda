@@ -1,9 +1,6 @@
 <template>
   <div class="col d-flex justify-content-center">
-    <div
-      class="card h-100 rounded-0"
-      :style="{ width: width || '300px' }"
-    >
+    <div class="card h-100 rounded-0" :style="{ width: width || '300px' }">
       <nuxtLink
         v-show="link"
         class="stretched-link"
@@ -55,7 +52,7 @@
       <div v-else class="card-body pt-3">
         <div>
           <slot name="badge" />
-          <h5 class="card-title">{{ title }}</h5>
+          <h5 v-if="title" class="card-title">{{ title }}</h5>
           <div class="card-text">
             <slot name="text" />
           </div>
