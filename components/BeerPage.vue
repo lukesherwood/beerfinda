@@ -46,7 +46,7 @@
           </h5>
           <h5>
             <span
-              ><em>{{ beer.percentage }} ABV</em></span
+              ><em>{{ beer.percentage }}% ABV</em></span
             >
           </h5>
         </div>

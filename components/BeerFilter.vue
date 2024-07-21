@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="filter-buttons text-center w-100">
+      <!-- Beer Type Dropdown -->
       <button
         id="dropdownMenuButton"
         type="button"
@@ -10,7 +11,9 @@
         aria-expanded="false"
       >
         Beer Type
-        <span v-if="getFilterCount > 0">({{ getFilterCount }})</span>
+        <span v-if="calculateBeerTypeCount() > 0"
+          >({{ calculateBeerTypeCount() }})</span
+        >
       </button>
       <ul
         class="dropdown-menu type-filter"
@@ -32,6 +35,7 @@
         </li>
       </ul>
 
+      <!-- In Stock Button -->
       <button
         type="button"
         class="btn btn-outline-primary"
@@ -42,6 +46,7 @@
         In Stock
       </button>
 
+      <!-- Order Dropdown -->
       <button
         id="orderButton"
         type="button"
@@ -55,7 +60,6 @@
         }}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="orderButton">
-        <!-- this breaks when a user logs out/logs in -->
         <li
           v-for="type in Object.keys(orderingTypes)"
           :key="'ordering-types' + type"
@@ -65,8 +69,62 @@
           </div>
         </li>
       </ul>
+
+      <!-- Range Filter -->
       <button
-        v-if="getFilterCount > 0 || getFilters.order"
+        id="rangeButton"
+        type="button"
+        class="btn btn-outline-primary dropdown-toggle"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span
+          v-if="
+            getFilters?.filter?.find(
+              (filter) => filter.filterType === 'percentage__range'
+            )
+          "
+        >
+          {{ ABVRange[0] }}% - {{ ABVRange[1] }}% ABV
+        </span>
+        <span v-else>Alcohol Percentage</span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="rangeButton">
+        <li>
+          <div class="dropdown-item">
+            <label role="button" class="w-50 form-label">
+              <input
+                v-model="ABVRange[0]"
+                class="form-range"
+                type="range"
+                min="0"
+                max="20"
+                step="1"
+              />
+              <input
+                v-model="ABVRange[1]"
+                class="form-range"
+                type="range"
+                min="0"
+                max="20"
+                step="1"
+              />
+            </label>
+            <div class="text-center">
+              {{ ABVRange[0] }}% - {{ ABVRange[1] }}%
+            </div>
+          </div>
+          <div class="dropdown-item text-center">
+            <button class="btn btn-primary w-100" @click="applyRangeFilter">
+              Apply
+            </button>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Clear and Filter Buttons -->
+      <button
+        v-if="getFilters.filter.length > 0 || getFilters.order"
         class="btn btn-outline-danger clear-button"
         @click="clearHandler"
       >
@@ -77,10 +135,12 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import { debounce } from 'lodash'
 import { beerTypes, orderingTypes, userOrderingTypes } from '../helpers/beer.js'
+
 export default {
   name: 'BeerFilter',
   props: ['loggedIn'],
@@ -89,13 +149,13 @@ export default {
       beerTypes,
       userOrderingTypes,
       orderingTypes,
+      ABVRange: [0, 20],
     }
   },
   computed: {
     ...mapGetters({
       getBeers: 'beer/getBeers',
       getFilters: 'beer/getFilters',
-      getFilterCount: 'beer/getFilterCount',
       isInStockSet: 'beer/isInStockSet',
     }),
     beerTypeKeywords: {
@@ -164,6 +224,26 @@ export default {
           }
         : this.orderingTypes
     },
+    calculateBeerTypeCount() {
+      return this.getFilters?.filter?.find(
+        (filter) => filter.filterType === 'type_upper__in'
+      )?.keywords?.length
+    },
+    applyRangeFilter() {
+      const [min, max] = this.ABVRange
+      const queries = JSON.parse(JSON.stringify(this.$route.query))
+      queries.filter = `percentage__range=${min},${max}`
+      delete queries.page
+      this.$router.push({
+        path: 'beers',
+        query: queries,
+      })
+      this.setFilter({
+        filterType: 'percentage__range',
+        keyword: [min, max],
+      })
+      this.submitHandler()
+    },
     clearHandler() {
       this.clearFilters()
       this.$router.replace({ path: 'beers', query: {} })
@@ -178,6 +258,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .type-filter {
   height: 200px;

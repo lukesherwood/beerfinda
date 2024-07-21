@@ -52,7 +52,9 @@
               </template>
               <template #text>
                 <div class="beer-price float-end">
-                  <small>{{ price(beer) }}</small>
+                  <div>
+                    <small>{{ price(beer) }}</small>
+                  </div>
                 </div>
                 <div class="brewer-name">
                   <em>
@@ -61,6 +63,15 @@
                 </div>
                 <div class="beer-type">
                   <small>{{ beer.type }}</small>
+                </div>
+                <div
+                  v-if="
+                    getFilters?.filter?.find(
+                      (f) => f.filterType === 'percentage__range'
+                    )
+                  "
+                >
+                  <small>{{ beer.percentage }}% ABV </small>
                 </div>
               </template>
               <template #rating>
@@ -222,6 +233,7 @@ export default {
     },
     setStateFromQuery() {
       const query = this.$route.query
+      console.log(query, 'query')
       if (!query.page) {
         this.setCurrentPage(1)
       }

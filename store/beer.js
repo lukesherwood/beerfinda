@@ -11,7 +11,6 @@ export const state = () => ({
     searchTerm: '',
     filter: [],
     order: '',
-    filterCount: 0,
     isInStockSet: true,
   },
   loading: false,
@@ -65,7 +64,6 @@ export const mutations = {
         return filter
       })
     }
-    state.filters.filterCount = keyword?.length
     state.filters.filter = newFilters
   },
   clearFilters(state) {
@@ -73,7 +71,6 @@ export const mutations = {
       searchTerm: '',
       filter: [],
       order: '',
-      filterCount: 0,
       isInStockSet: true,
     }
     state.lastQuery = ''
@@ -149,7 +146,6 @@ export const getters = {
   getPages: (state) => state.pages,
   isLoading: (state) => state.loading,
   getFilters: (state) => state.filters,
-  getFilterCount: (state) => state.filters.filterCount,
   isInStockSet: (state) => state.filters.isInStockSet,
   beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
   getLastQuery: (state) => state.lastQuery,
