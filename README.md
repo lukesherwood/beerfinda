@@ -2,8 +2,6 @@
 
 Todo:
 
-- 3. along the same lines as 2. I've switched the "pairing" section a bit to return an HTML formatted list. see /beer/675 for a good example. can you let me know if its easier for you to get the HTML formatted list or should I return a list like the characteristics value in the API response? 
-
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.
   - button adds beer id to beers liked array

@@ -50,21 +50,11 @@
               <em>{{ beer.percentage }}% ABV</em>
             </h5>
           </div>
-          <div v-if="beer.session_savour_scale" class="mb-3">
-            <h5>Sessionability</h5>
-            <div class="progress" style="height: 30px">
-              <div
-                class="progress-bar bg-secondary"
-                role="progressbar"
-                :style="{ width: (beer.session_savour_scale / 10) * 100 + '%' }"
-                :aria-valuenow="beer.session_savour_scale"
-                aria-valuemin="0"
-                aria-valuemax="5"
-              >
-                {{ beer.session_savour_scale }}/10
-              </div>
-            </div>
-          </div>
+          <SessionScale
+            v-if="beer.session_savour_scale"
+            :value="beer.session_savour_scale"
+          />
+
           <div v-if="beer.characteristics" class="mb-3">
             <h5>Characteristics</h5>
             <small>
@@ -116,7 +106,7 @@
         >
       </div>
     </div>
-    <div v-else class="py-3">
+    <div v-else class="p-3">
       <h3>Where to buy</h3>
       <p>No merchants found</p>
       <nuxt-link to="/beers?inStock=true"
@@ -125,13 +115,11 @@
     </div>
 
     <div v-if="beer.pairing" class="text-start mb-4">
-      <h5 class="px-3">Pairing</h5>
+      <h5 class="p-3">Pairing</h5>
       <ul>
         <li
           v-for="pairing in beer.pairing_list"
           :key="pairing + Math.random(10)"
-          class="p-3"
-          style="white-space: pre-wrap"
         >
           {{ pairing }}
         </li>
