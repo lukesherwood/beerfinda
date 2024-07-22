@@ -85,6 +85,7 @@
             )
           "
         >
+          <!-- if set from state ie in page address query then this is wrong -->
           {{ ABVRange[0] }}% - {{ ABVRange[1] }}% ABV
         </span>
         <span v-else>Alcohol Percentage</span>
