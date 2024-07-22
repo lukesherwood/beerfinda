@@ -1,7 +1,7 @@
 <template>
   <div class="mb-3">
     <h5 class="d-flex justify-content-between">
-      <span>Saviour</span>
+      <span>Savour</span>
       <span>Session</span>
     </h5>
     <div
