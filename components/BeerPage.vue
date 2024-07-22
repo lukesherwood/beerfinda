@@ -4,9 +4,9 @@
       <Header :header="beer.name">
         <template #subheader>
           <h2 class="display-6">
-            <nuxtLink :to="`/breweries/${beer.brewer_link}`"
-              ><em>{{ beer.brewer_name }}</em></nuxtLink
-            >
+            <nuxt-link :to="`/breweries/${beer.brewer_link}`">
+              <em>{{ beer.brewer_name }}</em>
+            </nuxt-link>
           </h2>
         </template>
       </Header>
@@ -25,20 +25,18 @@
     <div class="row">
       <div class="col-md-4 my-4">
         <div class="border rounded p-3 bg-light">
-          <div class="my-3">
-            <h5>
-              <span
-                class="badge rounded-pill"
-                :style="{
-                  'background-color': beerRatingColor(
-                    Math.round(beer.rating * 10) / 10
-                  ),
-                }"
-              >
-                <b-icon icon="star-fill"></b-icon>
-                {{ Math.round(beer.rating * 10) / 10 }}
-              </span>
-            </h5>
+          <div class="mb-3">
+            <span
+              class="badge rounded-pill"
+              :style="{
+                'background-color': beerRatingColor(
+                  Math.round(beer.rating * 10) / 10
+                ),
+              }"
+            >
+              <b-icon icon="star-fill"></b-icon>
+              {{ Math.round(beer.rating * 10) / 10 }}
+            </span>
           </div>
           <div class="mb-3">
             <h5>
@@ -54,28 +52,24 @@
             v-if="beer.session_savour_scale"
             :value="beer.session_savour_scale"
           />
-
           <div v-if="beer.characteristics" class="mb-3">
             <h5>Characteristics</h5>
-            <small>
-              {{ beer.characteristics.join(', ') }}
-            </small>
+            <small>{{ beer.characteristics.join(', ') }}</small>
           </div>
         </div>
       </div>
 
-      <div class="col-md-8">
-        <div v-if="beer.bfdescription" class="text-start">
-          <p class="" style="white-space: pre-wrap">
-            {{ beer.bfdescription }}
-          </p>
+      <div class="col-md-8 my-4">
+        <div v-if="beer.bfdescription" class="px-3 bg-white">
+          <h5>Description</h5>
+          <p style="white-space: pre-wrap">{{ beer.bfdescription }}</p>
         </div>
       </div>
     </div>
 
-    <div v-if="beer.merchantsellsfound?.length" class="py-3 mb-4">
-      <h3 class="px-3">Where to Buy</h3>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex p-2">
+    <div v-if="beer.merchantsellsfound?.length" class="py-3">
+      <h3>Where to Buy</h3>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 p-2">
         <Card
           v-for="merchant in beer.merchantsellsfound"
           :key="'beerPage-merchant' + merchant.merchant_id"
@@ -98,24 +92,24 @@
         </Card>
       </div>
       <div class="px-3">
-        <small
-          ><em
-            >* BeerFinda is not responsible for merchants having stock. Check
-            with merchant for stock availability</em
-          ></small
-        >
+        <small>
+          <em>
+            * BeerFinda is not responsible for merchants having stock. Check
+            with merchant for stock availability.
+          </em>
+        </small>
       </div>
     </div>
     <div v-else class="p-3">
-      <h3>Where to buy</h3>
-      <p>No merchants found</p>
+      <h3>Where to Buy</h3>
+      <p>No merchants found.</p>
       <nuxt-link to="/beers?inStock=true"
         >Click here to see in-stock beers</nuxt-link
       >
     </div>
 
     <div v-if="beer.pairing" class="text-start mb-4">
-      <h5 class="p-3">Pairing</h5>
+      <h5 class="px-3 py-2">Pairing</h5>
       <ul>
         <li
           v-for="pairing in beer.pairing_list"
@@ -129,7 +123,7 @@
     <div v-if="beer.similar_beers_in_stock?.length" class="py-3">
       <h3 class="px-3">Similar Beers</h3>
       <div
-        class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gy-4 d-flex p-2"
+        class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gy-4 p-2"
       >
         <Card
           v-for="similarBeer in beer.similar_beers_in_stock"
