@@ -77,6 +77,7 @@
         >
           <template #text>
             <div class="py-2">
+              <div>{{ merchant.merchant_name }}</div>
               <div>{{ merchant.size }}</div>
               <div>{{ priceToString(merchant.price) }}</div>
             </div>

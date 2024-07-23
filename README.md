@@ -2,6 +2,7 @@
 
 Todo:
 
+- add validation for alcohol percentage min max being amller than min
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.
   - button adds beer id to beers liked array
