@@ -52,6 +52,7 @@ export default {
     { src: '~/plugins/notifications-ssr', ssr: true },
     { src: '~/plugins/notifications-client', ssr: false },
     { src: '~/plugins/vee-validate.js', ssr: true },
+    { src: '~/plugins/multi-range-slider.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

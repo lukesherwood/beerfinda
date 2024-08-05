@@ -149,6 +149,18 @@ export const getters = {
   isInStockSet: (state) => state.filters.isInStockSet,
   beerTypeKeywords: (state) => state.filters.filter[0]?.keywords,
   getLastQuery: (state) => state.lastQuery,
+  percentageRange: (state) => {
+    const percentageFilter = state.filters.filter.find(
+      (filter) => filter.filterType === 'percentage__range'
+    )
+    return percentageFilter ? percentageFilter.keywords.map(Number) : []
+  },
+  beerTypes: (state) => {
+    const typeFilter = state.filters.filter.find(
+      (filter) => filter.filterType === 'type_upper__in'
+    )
+    return typeFilter ? typeFilter.keywords : []
+  },
 }
 
 // Private Functions

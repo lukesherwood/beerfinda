@@ -78,47 +78,23 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <span
-          v-if="
-            getFilters?.filter?.find(
-              (filter) => filter.filterType === 'percentage__range'
-            )
-          "
-        >
-          <!-- if set from state ie in page address query then this is wrong -->
-          {{ ABVRange[0] }}% - {{ ABVRange[1] }}% ABV
+        <span v-if="minABV !== 0 || maxABV !== 20">
+          {{ minABV }}% - {{ maxABV }}% ABV
         </span>
         <span v-else>Alcohol Percentage</span>
       </button>
-      <ul class="dropdown-menu" aria-labelledby="rangeButton">
+      <ul class="dropdown-menu p-0 w-25" aria-labelledby="rangeButton">
         <li>
           <div class="dropdown-item">
-            <label role="button" class="w-50 form-label">
-              <input
-                v-model="ABVRange[0]"
-                class="form-range"
-                type="range"
-                min="0"
-                max="20"
-                step="1"
-              />
-              <input
-                v-model="ABVRange[1]"
-                class="form-range"
-                type="range"
-                min="0"
-                max="20"
-                step="1"
-              />
-            </label>
-            <div class="text-center">
-              {{ ABVRange[0] }}% - {{ ABVRange[1] }}%
-            </div>
-          </div>
-          <div class="dropdown-item text-center">
-            <button class="btn btn-primary w-100" @click="applyRangeFilter">
-              Apply
-            </button>
+            <multi-range-slider
+              :min="0"
+              :max="20"
+              :step="1"
+              :min-value="minABV"
+              :max-value="maxABV"
+              @input="updateRangeValues"
+            ></multi-range-slider>
+            <div class="text-center mt-2">{{ minABV }}% - {{ maxABV }}%</div>
           </div>
         </li>
       </ul>
@@ -150,7 +126,8 @@ export default {
       beerTypes,
       userOrderingTypes,
       orderingTypes,
-      ABVRange: [0, 20],
+      minABV: 0,
+      maxABV: 20,
     }
   },
   computed: {
@@ -158,6 +135,8 @@ export default {
       getBeers: 'beer/getBeers',
       getFilters: 'beer/getFilters',
       isInStockSet: 'beer/isInStockSet',
+      getPercentageRange: 'beer/percentageRange',
+      getBeerTypes: 'beer/beerTypes',
     }),
     beerTypeKeywords: {
       get() {
@@ -168,7 +147,7 @@ export default {
         )
       },
       set(value) {
-        // makes a clean copy of the router query
+        // Make a clean copy of the router query
         const queries = JSON.parse(JSON.stringify(this.$route.query))
         delete queries.page
         queries.filter = `type_upper__in=${value}`
@@ -186,6 +165,7 @@ export default {
   },
   created() {
     this.debounceFilter = debounce(this.submitHandler, 2000)
+    this.debounceRange = debounce(this.applyRangeFilter, 1000)
   },
   methods: {
     ...mapMutations({
@@ -226,14 +206,28 @@ export default {
         : this.orderingTypes
     },
     calculateBeerTypeCount() {
-      return this.getFilters?.filter?.find(
-        (filter) => filter.filterType === 'type_upper__in'
-      )?.keywords?.length
+      return this.getBeerTypes?.length
+    },
+    updateRangeValues(e) {
+      this.minABV = e.minValue
+      this.maxABV = e.maxValue
+      this.debounceRange()
     },
     applyRangeFilter() {
-      const [min, max] = this.ABVRange
       const queries = JSON.parse(JSON.stringify(this.$route.query))
-      queries.filter = `percentage__range=${min},${max}`
+      let filtersArray = []
+      if (queries.filter) {
+        if (Array.isArray(queries.filter)) {
+          filtersArray = queries.filter
+        } else {
+          filtersArray = queries.filter.split(',')
+        }
+      }
+      filtersArray = filtersArray.filter(
+        (filter) => !filter.startsWith('percentage__range=')
+      )
+      filtersArray.push(`percentage__range=${this.minABV},${this.maxABV}`)
+      queries.filter = filtersArray.join(',')
       delete queries.page
       this.$router.push({
         path: 'beers',
@@ -241,9 +235,8 @@ export default {
       })
       this.setFilter({
         filterType: 'percentage__range',
-        keyword: [min, max],
+        keyword: [this.minABV, this.maxABV],
       })
-      this.submitHandler()
     },
     clearHandler() {
       this.clearFilters()
