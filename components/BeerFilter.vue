@@ -83,7 +83,10 @@
         </span>
         <span v-else>Alcohol Percentage</span>
       </button>
-      <ul class="dropdown-menu p-0 w-25" aria-labelledby="rangeButton">
+      <ul
+        class="dropdown-menu p-0 range-container"
+        aria-labelledby="rangeButton"
+      >
         <li>
           <div class="dropdown-item">
             <multi-range-slider
@@ -265,6 +268,10 @@ export default {
   overflow-x: hidden;
 }
 
+.range-container {
+  width: 30vw;
+}
+
 @media only screen and (max-width: 770px) {
   .filter-buttons {
     -ms-overflow-style: none;
@@ -279,6 +286,9 @@ export default {
   }
   .filter-buttons::-webkit-scrollbar {
     display: none;
+  }
+  .range-container {
+    width: 100vw;
   }
 }
 

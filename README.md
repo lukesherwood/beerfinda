@@ -1,8 +1,7 @@
 # Beerfinda
 
 Todo:
-
-- add validation for alcohol percentage min max being amller than min
+- change the way filters are set up - beertype should be in filters in state, not filter: []
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.
   - button adds beer id to beers liked array
