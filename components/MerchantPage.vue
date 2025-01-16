@@ -64,9 +64,7 @@
 
     <div v-if="beers?.length" class="container py-3">
       <h3 class="pt-3">Beers for sale</h3>
-      <div
-        class="pt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-4 d-flex"
-      >
+      <div class="pt-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-4 d-flex">
         <Card
           v-for="beer in beersToDisplay()"
           :key="'merchant-page-card' + beer.beer_id + '-' + Math.random(10)"
