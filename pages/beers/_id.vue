@@ -9,15 +9,17 @@
     <BeerPage v-else :beer="getBeer" />
   </div>
 </template>
+
 <script>
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Beer',
+
   asyncData({ route }) {
-    return {
-      id: route.params.id,
-    }
+    return { id: route.params.id }
   },
+
   async fetch() {
     try {
       await this.fetchBeer(this.id)
@@ -25,9 +27,10 @@ export default {
       throw new Error(error)
     }
   },
+
   head() {
     return {
-      title: this.getBeer.name
+      title: this.getBeer?.name
         ? `Beerfinda | Beers | ${this.getBeer.name}`
         : 'Beerfinda | Beers',
       script: [
@@ -39,6 +42,7 @@ export default {
       ],
     }
   },
+
   computed: {
     ...mapGetters({
       getBeer: 'beer/getBeer',
@@ -46,11 +50,27 @@ export default {
     }),
   },
 
+  watch: {
+    '$route.params.id': {
+      immediate: true,
+      handler(newId) {
+        if (newId) {
+          this.id = newId
+        }
+        this.refresh()
+      },
+    },
+  },
+
   methods: {
     ...mapActions({ fetchBeer: 'beer/fetchBeer' }),
+    refresh() {
+      this.$fetch()
+    },
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .container {
   background-color: white !important;
