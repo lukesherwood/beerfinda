@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { isNumber } from 'lodash'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -49,17 +48,6 @@ export default {
       getBeer: 'beer/getBeer',
       isLoading: 'beer/isLoading',
     }),
-  },
-
-  watch: {
-    '$route.params.id': {
-      handler(newId) {
-        if (newId && isNumber(newId)) {
-          this.id = newId
-        }
-        this.refresh()
-      },
-    },
   },
 
   methods: {

@@ -5,7 +5,8 @@
       <notifications position="top center" />
     </header>
     <div class="body">
-      <nuxt keep-alive :keep-alive-props="{ max: 10 }" />
+      <EmailPopup />
+      <nuxt />
     </div>
     <footer>
       <FooterComponent />

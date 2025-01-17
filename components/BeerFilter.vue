@@ -272,7 +272,11 @@ export default {
   width: 30vw;
 }
 
-@media only screen and (max-width: 770px) {
+.btn {
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 850px) {
   .filter-buttons {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -294,7 +298,7 @@ export default {
 
 @media only screen and (min-width: 1000px) {
   .container {
-    width: 80%;
+    width: 90%;
   }
 }
 </style>
