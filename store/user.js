@@ -64,6 +64,24 @@ export const actions = {
       throw new Error(`Contact message unsuccessful - ${error.message}`)
     }
   },
+  async postMailingList(state, email) {
+    try {
+      await this.$axios.$post('/api/mailinglist/', { email })
+      // state.set mailingList email and dateTime
+      Vue.notify({
+        title: 'Mailing List',
+        text: 'Successfully signed up to mailing list',
+        type: 'success',
+      })
+    } catch (error) {
+      Vue.notify({
+        title: 'Contact',
+        text: `Error sending contact message - ${error.message}`,
+        type: 'error',
+      })
+      throw new Error(`Contact message unsuccessful - ${error.message}`)
+    }
+  },
   async fetchBeerResults(state, { keyword }) {
     state.commit('setLoading', true)
     try {
