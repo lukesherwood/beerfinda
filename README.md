@@ -4,7 +4,6 @@ Todo:
 - mailing list:
   - configure on which pages the popup should show
 
-
 - change the way filters are set up - beertype should be in filters in state, not filter: []
 - add button to like a beer ie add to your beers-liked array
   - if logged in, show button.
