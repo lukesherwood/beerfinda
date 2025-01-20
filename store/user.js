@@ -4,6 +4,7 @@ export const state = () => ({
   beerResults: [],
   loading: false,
   beersSelectedInfo: [],
+  mailingList: { submitted: false, date: null },
   error: null,
 })
 
@@ -24,6 +25,9 @@ export const mutations = {
   },
   setError(state, payload) {
     state.error = payload
+  },
+  setMailingList(state, payload) {
+    state.mailingList = payload
   },
 }
 
@@ -64,22 +68,31 @@ export const actions = {
       throw new Error(`Contact message unsuccessful - ${error.message}`)
     }
   },
-  async postMailingList(state, email) {
+  async postMailingList(state, { email, date }) {
     try {
       await this.$axios.$post('/api/mailinglist/', { email })
-      // state.set mailingList email and dateTime
+      state.commit('setMailingList', {
+        submitted: true,
+        date,
+      })
       Vue.notify({
         title: 'Mailing List',
         text: 'Successfully signed up to mailing list',
         type: 'success',
       })
     } catch (error) {
+      if (error.message === 'Request failed with status code 409') {
+        state.commit('setError', {
+          message:
+            'User unable to sign up to mailing list - this email is already is use, please sign in or try another email',
+        })
+      }
       Vue.notify({
         title: 'Contact',
-        text: `Error sending contact message - ${error.message}`,
+        text: `Error signing up to mailing list - ${error.message}`,
         type: 'error',
       })
-      throw new Error(`Contact message unsuccessful - ${error.message}`)
+      throw new Error(`Mailing list signup unsuccessful - ${error.message}`)
     }
   },
   async fetchBeerResults(state, { keyword }) {
@@ -234,6 +247,7 @@ export const getters = {
   isLoading: (state) => state.loading,
   beersSelectedInfo: (state) => state.beersSelectedInfo,
   getError: (state) => state.error,
+  getMailingList: (state) => state.mailingList,
 }
 
 // Private Functions

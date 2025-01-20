@@ -94,12 +94,12 @@ export default {
   data() {
     return {
       form: {
-        firstName: this.$auth.user.first_name,
-        lastName: this.$auth.user.last_name,
-        email: this.$auth.user.email,
-        description: this.$auth.user.description,
+        firstName: this.$auth.user?.first_name,
+        lastName: this.$auth.user?.last_name,
+        email: this.$auth.user?.email,
+        description: this.$auth.user?.description,
         characteristicsLike: [...this.$auth.user.characteristics_like],
-        beersLike: this.$auth.user.beers_like,
+        beersLike: this.$auth.user?.beers_like,
       },
     }
   },

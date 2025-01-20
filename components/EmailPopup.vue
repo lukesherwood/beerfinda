@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- Modal -->
+  <div v-if="displayMailingListModal">
     <div
       id="exampleModal"
       class="modal fade"
@@ -25,28 +24,43 @@
               @click="handleClose"
             ></button>
           </div>
-          <div class="modal-body">
-            <p>Subscribe to our newsletter for the latest updates.</p>
-            <input
-              v-model="email"
-              type="email"
-              class="form-control"
-              placeholder="Enter your email"
-            />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-              @click="handleClose"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" @click="handleSubmit">
-              Submit
-            </button>
-          </div>
+          <ValidationProvider
+            v-slot="{ errors, valid, validate }"
+            name="Email"
+            rules="email"
+          >
+            <div class="modal-body">
+              <p>Subscribe to our newsletter for the latest updates.</p>
+              <input
+                v-model="email"
+                type="email"
+                class="form-control"
+                placeholder="Enter your email"
+                @input="handleInput(validate)"
+                @blur="handleBlur(validate)"
+              />
+              <span v-if="showError" class="text-danger">{{ errors[0] }}</span>
+              <Error v-if="getError" :error="getError" />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                @click="handleClose"
+              >
+                Close
+              </button>
+              <button
+                :disabled="!valid || !email"
+                type="button"
+                class="btn btn-primary"
+                @click="handleSubmit"
+              >
+                Submit
+              </button>
+            </div>
+          </ValidationProvider>
         </div>
       </div>
     </div>
@@ -55,22 +69,60 @@
 
 
 <script>
-import { mapActions } from 'vuex'
+import Cookies from 'js-cookie'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
   data() {
     return {
+      displayMailingListModal: false,
       email: '',
       isVisible: false,
+      showError: false,
     }
+  },
+  computed: {
+    ...mapGetters({
+      getMailingList: 'user/getMailingList',
+      getError: 'user/getError',
+    }),
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+    this.displayEmailPopup()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     ...mapActions({ postMailingList: 'user/postMailingList' }),
+    ...mapMutations({ setMailingList: 'user/setMailingList' }),
+    handleInput(validate) {
+      this.showError = false
+      clearTimeout(this.typingTimeout)
+      this.typingTimeout = setTimeout(() => {
+        validate().then(() => {
+          this.showError = true
+        })
+      }, 1500)
+    },
+    handleBlur(validate) {
+      validate().then(() => {
+        this.showError = true
+      })
+    },
+    displayEmailPopup() {
+      if (!this.getMailingList.submitted) {
+        const cookieDate = Cookies.get('mailingList')
+        if (cookieDate) {
+          this.setMailingList({
+            submitted: true,
+            date: cookieDate,
+          })
+        } else {
+          this.displayMailingListModal = true
+        }
+      }
+    },
     handleScroll() {
       if (window.scrollY > 100 && !this.isVisible) {
         this.isVisible = true
@@ -79,15 +131,23 @@ export default {
       }
     },
     async handleSubmit() {
-      await this.postMailingList(this.email)
+      const date = new Date(Date.now()).toString()
+      await this.postMailingList({ email: this.email, date })
         .then(() => {
+          Cookies.set('mailingList', date, { expires: 1 })
           this.isVisible = false
         })
         .catch(() => {})
     },
     handleClose() {
+      const date = new Date(Date.now()).toString()
+      Cookies.set('mailingList', date, { expires: 1 })
+      this.setMailingList({
+        submitted: true,
+        date: new Date(Date.now()).toString(),
+      })
       this.isVisible = false
-      document.body.classList.remove('modal-open')
+      //   document.body.classList.remove('modal-open')
     },
   },
 }
@@ -102,7 +162,7 @@ export default {
   height: 100%;
   overflow: hidden;
   z-index: 1050;
-  backdrop-filter: blur(4px); /* Optional for a blur effect */
+  backdrop-filter: blur(4px);
 }
 .modal-open .modal {
   background-color: rgba(0, 0, 0, 0.5); /* Grey overlay for the background */
