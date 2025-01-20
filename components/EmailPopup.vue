@@ -29,7 +29,7 @@
             name="Email"
             rules="email"
           >
-            <div class="modal-body">
+            <div class="modal-body" @keyup.enter="handleKeySubmit(valid)">
               <p>Subscribe to our newsletter for the latest updates.</p>
               <input
                 v-model="email"
@@ -88,7 +88,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
-    this.displayEmailPopup()
+    this.initPopup()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
@@ -110,7 +110,7 @@ export default {
         this.showError = true
       })
     },
-    displayEmailPopup() {
+    initPopup() {
       if (!this.getMailingList.submitted) {
         const cookieDate = Cookies.get('mailingList')
         if (cookieDate) {
@@ -130,6 +130,11 @@ export default {
         window.removeEventListener('scroll', this.handleScroll)
       }
     },
+    handleKeySubmit(valid) {
+      if (valid && this.email) {
+        this.handleSubmit()
+      }
+    },
     async handleSubmit() {
       const date = new Date(Date.now()).toString()
       await this.postMailingList({ email: this.email, date })
@@ -147,7 +152,6 @@ export default {
         date: new Date(Date.now()).toString(),
       })
       this.isVisible = false
-      //   document.body.classList.remove('modal-open')
     },
   },
 }
