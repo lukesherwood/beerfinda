@@ -98,7 +98,11 @@ export default {
         lastName: this.$auth.user?.last_name,
         email: this.$auth.user?.email,
         description: this.$auth.user?.description,
-        characteristicsLike: [...this.$auth.user.characteristics_like],
+        characteristicsLike: Array.isArray(
+          this.$auth.user?.characteristics_like
+        )
+          ? [...this.$auth.user?.characteristics_like]
+          : [],
         beersLike: this.$auth.user?.beers_like,
       },
     }
