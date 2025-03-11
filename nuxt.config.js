@@ -83,8 +83,6 @@ export default {
     '@nuxtjs/proxy',
     '@nuxtjs/auth-next',
     '@nuxtjs/recaptcha',
-    // sitemap must be at the end
-    '@nuxtjs/sitemap',
   ],
   axios: {
     credentials: true,
@@ -96,17 +94,6 @@ export default {
     siteKey: process.env.RECAPTCHA_SITE_KEY,
     version: 3, // Version
     size: 'invisible', // Size: 'compact', 'normal', 'invisible' (v2)
-  },
-
-  sitemap: {
-    exclude: ['/user/**'],
-    routes: async () => {
-      // const { data } = await axios.get(
-      //   'https://jsonplaceholder.typicode.com/users'
-      // )
-      // return data.map((user) => `/users/${user.username}`)
-      return []
-    },
   },
 
   privateRuntimeConfig: {
@@ -124,6 +111,8 @@ export default {
   router: {
     middleware: [],
   },
+
+  serverMiddleware: ['~/server-middleware/sitemap'],
 
   auth: {
     redirect: 'false',
