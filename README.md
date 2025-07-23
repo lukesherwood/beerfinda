@@ -1,33 +1,44 @@
-# Beerfinda
+# BeerFinda
 
-Todo:
-- mailing list:
-  - configure on which pages the popup should show
+**BeerFinda** is a comprehensive beer discovery platform that aggregates all New Zealand beers in one place, providing personalized recommendations and price comparisons across brewers and merchants.
 
-- change the way filters are set up - beertype should be in filters in state, not filter: []
-- add button to like a beer ie add to your beers-liked array
-  - if logged in, show button.
-  - button adds beer id to beers liked array
-  - then sends user details to /UserUpdate "beers_like" array in particular
-- finish and test contact form
-- abstract (join) filter component from beerfilter component
-- change profile create/update validation to vee-validate
-- add change email features
-- facebook login
+## What It Does
 
-Issues found but maybe too-hard-basket/low value:
+BeerFinda helps beer enthusiasts discover and find the perfect beer by:
 
-- close hamburger menu after click
-- see if we can further obfuscate the image api url with env variables.
-- setup omniauth google, facebook etc
-  - this has been implemented in the backend
-- placeholder for featured beer cards, as they start loading small
-- fix this.$refs.img error? image error handler not working at all
-- logout message not working
-- figure out why tooltips don't work or import a library
+- **Comprehensive Beer Database**: Aggregates beers from brewers and merchants across New Zealand
+- **Personalized Recommendations**: Users create taste profiles to receive curated beer suggestions
+- **Price Comparison**: Compare prices across different merchants to find the best deals
+- **Beer Discovery**: Browse featured beers, search by characteristics, and explore breweries
+- **User Profiles**: Rate and review beers, build personal collections, and track preferences
+- **Merchant Integration**: Find where to buy specific beers from various retailers
 
-Deployment:
-`git archive -v -o beerfinda.zip --format=zip HEAD`
+## Technology Stack
+
+### Frontend
+- **Nuxt.js 2** - Vue.js framework with server-side rendering
+- **Vue.js 2** - Progressive JavaScript framework
+- **Bootstrap 5** + **Bootstrap Vue** - UI framework and components
+- **Sass/SCSS** - CSS preprocessing
+
+### Authentication & Security
+- **Nuxt Auth** - Authentication module with JWT token support
+- **Google reCAPTCHA v3** - Bot protection
+- **VeeValidate** - Form validation
+
+### Development & Build Tools
+- **Webpack 4** - Module bundler
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
+- **Node.js** - Runtime environment
+
+### Key Features & Integrations
+- **Vue Agile** - Carousel/slider components
+- **Nuxt Image** - Optimized image handling
+- **Axios** - HTTP client for API communication
+- **Vuex** - State management
+- **Vue Notifications** - User notifications
+- **Multi-range Slider** - Interactive filter controls
 
 ## Build Setup
 
@@ -49,3 +60,28 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+
+## Development Todos
+
+### Features
+- Mailing list configuration for popup display
+- Improve filter system architecture (move beertype to filters in state)
+- Add beer "like" functionality with user collections
+- Complete and test contact form
+- Abstract filter component from BeerFilter component
+- Migrate profile validation to VeeValidate
+- Add change email feature
+- Implement Facebook login integration
+
+### Technical Improvements
+- Close hamburger menu after navigation
+- Enhance image API URL security with environment variables
+- Add placeholders for featured beer cards during loading
+- Fix image error handler issues
+- Resolve logout message functionality
+- Implement or import tooltip library
+
+### Deployment
+```bash
+git archive -v -o beerfinda.zip --format=zip HEAD
+```
