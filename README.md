@@ -2,6 +2,8 @@
 
 **BeerFinda** is a comprehensive beer discovery platform that aggregates all New Zealand beers in one place, providing personalized recommendations and price comparisons across brewers and merchants.
 
+<img width="1324" height="631" alt="Screenshot 2025-09-25 at 8 49 51 AM" src="https://github.com/user-attachments/assets/f175810e-a8e6-4583-9355-f2752f5be03d" />
+
 ## What It Does
 
 BeerFinda helps beer enthusiasts discover and find the perfect beer by:
